@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Easy Auction 경매ㄱㄱ</title>
+	<title>Easy Auction 직거래</title>
 	<link rel="Stylesheet" type="text/css" href="/auctiondemo/resources/styles/body_style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/auctiondemo/resources/styles/style.css"/>
 
@@ -23,7 +23,7 @@
 		<br/>
 		
 		<div id="directdealmap" >
-			
+				하이하이
 		</div> 
 		
 		
