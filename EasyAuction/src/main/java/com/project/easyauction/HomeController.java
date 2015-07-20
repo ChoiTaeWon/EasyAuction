@@ -1,4 +1,4 @@
-package com.easyauction.controller;
+package com.project.easyauction;
 
 import java.text.DateFormat;
 import java.util.Date;

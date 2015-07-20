@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.easyauction.controller">
+	<logger name="com.project.easyauction">
 		<level value="info" />
 	</logger>
 	
