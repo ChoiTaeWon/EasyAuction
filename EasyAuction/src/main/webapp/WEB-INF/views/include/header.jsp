@@ -3,7 +3,7 @@
 
 
 <script type="text/javascript"> 
-	var sidebarurl = "http://localhost:8081/auctiondemo"; // Change as required 
+	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
 	var url = this.location; 
 	var title = document.title; 
@@ -45,7 +45,7 @@
 					<td align="right" style="padding:5px 10px 10px 0;" colspan="3">
 						<table class="main_top" >
 									<tr>
-										<td><a href="#"><img src="/auctiondemo/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
+										<td><a href="#"><img src="/easyauction/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
 										<td><a href="#">회원가입</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">아이디찾기</a></td>
@@ -62,15 +62,15 @@
 		
 				<tr>
 					<td style="padding-left:10px; width:170px;"><!-- <img src='banner_view.php?number=54' width='167' height='61' border=0 align='absmiddle' style='cursor:hand'> --></td>
-					<td style="padding-bottom:10px;"align="center"><a href="/auctiondemo/home.action" onFocus="this.blur();"><img src="/auctiondemo/resources/images/mainlogo.png" title="메인으로"></td>
+					<td style="padding-bottom:10px;"align="center"><a href="/easyauction/home.action" onFocus="this.blur();"><img src="/easyauction/resources/images/mainlogo.png" title="메인으로"></td>
 					<td align="right" style="padding:0 10px 5px 0; width:130px;" valign="bottom">
-						<a href="#favorite" onclick="javaScript:bookmarksite();"><img src="/auctiondemo/resources/images/ico_favo.gif" title="즐겨찾기" style="margin-right:10px;"></a>
+						<a href="#favorite" onclick="javaScript:bookmarksite();"><img src="/easyauction/resources/images/ico_favo.gif" title="즐겨찾기" style="margin-right:10px;"></a>
 					</td>
 				</tr>
 			</table>
 			
 			
-					<table style="margin-top:0.5px; width: 960px;background-color: none; background-image:url('/auctiondemo/resources/images/topmenu.png');">
+					<table style="margin-top:0.5px; width: 960px;background-color: none; background-image:url('/easyauction/resources/images/topmenu.png');">
 						<tr>
 							<td style="width: 60%;height:30px;">
 								<ul class="main_top_menu">
@@ -80,7 +80,7 @@
 									<li class="smfont10"><a href="#">이용안내</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>
 									<li class="smfont10"><a href="#">경매 ㄱㄱ</a></li>
-									<li class="smfont10"><a href="/auctiondemo/direct/directdeal.action">직거래경매</a></li>
+									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
 								</ul>
 							
 							</td>
@@ -105,7 +105,7 @@
 											<option value='id'>아이디</option>
 											</select>
 											<input type='text' id="search_word" name="search_word" value="" class='search'  onkeyup="startMethod(event.keyCode);" onkeydown="moveLayer(event.keyCode);" onmouseup="startMethod();" AUTOCOMPLETE="off">
-											<input name="image" type="image" src='/auctiondemo/resources/images/btn_search_go.gif' title='검색하기' border="0" align="absmiddle">
+											<input name="image" type="image" src='/easyauction/resources/images/btn_search_go.gif' title='검색하기' border="0" align="absmiddle">
 										</td>
 									</tr>
 									</table>
