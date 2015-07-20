@@ -23,7 +23,7 @@
 		<br/>
 		
 		<div id="directdealmap" >
-				하이하이
+			
 		</div> 
 		
 		
