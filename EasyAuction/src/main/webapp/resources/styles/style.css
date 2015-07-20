@@ -1,0 +1,85 @@
+@CHARSET "utf-8";
+
+html, body{width:100%; height:100%;}
+
+div{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+img{border:none;}
+
+body, table{word-break:break-all; font-size:12px; color:#757575; font-family:Dotum 돋움;}
+
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+ 
+li {
+    margin: 0 0 0 0;
+    margin-left:30px;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+    
+}
+li:HOVER {
+	background-color:#e5e5e5;
+}
+
+
+
+
+
+.smfont { font-size:11px; color:#5F5F5F; font-family:돋움;}
+
+.smfont2 { font-size:11px; letter-spacing:-1px; font-family:돋움;}
+
+.smfont3 { font-size:11px; color:#FFF; font-family:돋움;}
+
+.smfont4 { font-size:12px; color:#CD0000; font-weight:bold; font-family:돋움;}
+
+.smfont5 { font-size:11px; color:#959595; font-family:돋움;}
+
+.smfont6 { font-size:12px; font-weight:bold; color:#5F5F5F }
+
+.smfont7 { font-size:12px; font-weight:bold; color:#5c5c5c letter-spacing:-1px;}
+
+.smfont8 { font-size:11px; color:#303030; font-weight:bold; font-family:돋움;}
+
+.smfont9 { font-size:12px; color:#5F5F5F; font-family:돋움;}
+
+.smfont10 {font-size:20px; color:#FFF; letter-spacing:1px; font-weight:bold; font-family:맑은 고딕; }
+
+
+
+
+.gonggi_box a{ font-size:11px; color:#959595; font-family:돋움; }
+.gonggi_box a:link{text-decoration:none;}
+.gonggi_box a:visited{text-decoration:none;}
+.gonggi_box a:hover{text-decoration:none;}
+.gonggi_box a:active{text-decoration:none;}
+
+
+
+.href_link a:link{text-decoration:none;}
+.href_link a:visited{text-decoration:none;}
+.href_link a:hover{text-decoration:none;}
+.href_link a:active{text-decoration:none;}
+
+
+.main_top a{ color:#FFF; font-size:11px; letter-spacing:-1px; font-family:돋움;}
+.main_top a:link{text-decoration:none;}
+.main_top a:visited{text-decoration:none;}
+.main_top a:hover{text-decoration:none;}
+.main_top a:active{text-decoration:none;}
+
+.main_top_menu a{font-size:15px; color:#FFF; letter-spacing:1px; font-weight:bold; font-family:맑은 고딕;}
+.main_top_menu a:link{text-decoration:none;}
+.main_top_menu a:visited{text-decoration:none;}
+.main_top_menu a:hover{text-decoration:none;}
+.main_top_menu a:active{text-decoration:none;}
+
+

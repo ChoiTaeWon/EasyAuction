@@ -1,0 +1,42 @@
+@CHARSET "utf-8";
+
+#wrap{
+	
+	align:center;
+	width: 960px;
+	margin:0 auto;
+}
+
+#top{
+	width: 960px;
+	height: 180px;
+}
+
+.top_link {
+	color:#626262;
+	font-size:11px;
+	font-family:돋움,Dotum;
+}
+
+#center_wrap{
+	width:960px;
+	margin:0 auto;
+}
+
+#left_wrap{
+	float:left;
+	margin:0 10px 0 0;
+	width:216px;
+}
+#contents_wrap{
+	width:730px;
+	float:left;
+}
+
+
+#directdealmap{
+	align:center;
+	width: 960px;
+	height:500px;
+	margin:0 auto;
+}

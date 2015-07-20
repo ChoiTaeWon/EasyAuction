@@ -1,0 +1,31 @@
+
+  #subflash_html {  float: left;position: relative;width:100%;height:auto;background-position:center top;}
+	.slideshow-wrapper2  { float:left;position: relative;width:700px;;height:250px; overflow:hidden;} /* overflow:hidden; */
+   .slideshow-wrapper-box2  { float:center;position: absolute;width:700px; height:250px; overflow:hidden;z-index:10;left:0px;top:0px;} /* overflow:hidden; */
+   
+ .slideshow-wrapper2  .wrapper-Num  {
+	float:left;
+	position: absolute;
+	width:100%;
+	height:20px;
+	margin-top:390px;
+	z-index:50;
+	text-align:left;
+	left:10px;
+}
+	/* 테일 넘버가 숫자형식일때 */
+    .slideshow-wrapper2  .wrapper-Num .num { float:none;position: relative; width:20px;height:20px;margin-right:5px;font-size:16px;font-weight:bold;color:#ffffff; border: 2px solid #bccf24;cursor:pointer;}
+    .slideshow-wrapper2  .wrapper-Num .num:hover { background-color:#bccf24; } 
+	.slideshow-wrapper2  .wrapper-Num .num.active { background-color:#bccf24; } 
+    /* 테일 넘버가 숫자형식일때 */
+	 /* 테일 넘버가 이미지형식일때 */
+    .slideshow-wrapper2  .wrapper-Num .numimg { float:none;position: relative; width:20px;height:20px;margin-right:5px;font-size:16px;font-weight:bold;color:#ffffff;cursor:pointer;}
+ 
+   .slideshow-wrapper-box2  .wrapper-li { float:left;position: absolute;width:590px;height:250px;overflow:hidden; }
+   .slideshow-wrapper-box2  .wrapper-li .part{ float:left;position: absolute;width:1000px;height:250px;overflow:hidden;}
+   .slideshow-wrapper-box2  .wrapper-li .part .zindex10 {z-index:10}
+   .slideshow-wrapper-box2  .wrapper-li .part .zindex20 {z-index:20}
+   .slideshow-wrapper-box2  .wrapper-li .part .zindex30 {z-index:30}
+
+
+
