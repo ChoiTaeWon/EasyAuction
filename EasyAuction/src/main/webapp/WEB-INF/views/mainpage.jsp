@@ -7,13 +7,13 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Easy Auction</title>
-	<link rel="Stylesheet" type="text/css" href="/auctiondemo/resources/styles/body_style.css"/>
-	<link rel="Stylesheet" type="text/css" href="/auctiondemo/resources/styles/style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	
 	<!-- 상단 슬라이드 -->
-	<link rel="Stylesheet" type="text/css" href="/auctiondemo/resources/styles/slide_style.css" />
-	<script type="text/javascript" src="/auctiondemo/resources/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/auctiondemo/resources/js/jquery.banner2.js"></script>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/slide_style.css" />
+	<script type="text/javascript" src="/easyauction/resources/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/easyauction/resources/js/jquery.banner2.js"></script>
 	
 	
 </head>
@@ -84,7 +84,7 @@
 						<%for(int i=0; i<5;i++){ %>
 						<tr align="left" style="text-align: left; width: 100%">
 							<td style="height: 20px;onMouseOver:this.style.backgroundColor='#F9F4F0'; onMouseOut:this.style.backgroundColor='';">
-								<img src='/auctiondemo/resources/images/ico_dot.gif'>
+								<img src='/easyauction/resources/images/ico_dot.gif'>
 								<a href='#gonggi1'>[공지] 공지글 <%= i %>입니다..........</a>
 							</td>
 						</tr>
@@ -95,7 +95,7 @@
 						<%for(int i=0; i<5;i++){ %>
 						<tr align="left" style="text-align: left; width: 100%">
 							<td style="height: 20px;onMouseOver:this.style.backgroundColor='#F9F4F0'; onMouseOut:this.style.backgroundColor='';">
-								<img src='/auctiondemo/resources/images/ico_dot.gif'>
+								<img src='/easyauction/resources/images/ico_dot.gif'>
 								<a href='#event'>[이벤트]  <%= i %>입니다..........</a>
 							</td>
 						</tr>
@@ -115,33 +115,33 @@
 					<div id="slideshow5" class="slideshow-wrapper2">
 						<div class="wrapper-Num">  </div> 
 						<div class="slideshow-wrapper-box2">
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg01.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg01.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg02.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg02.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg03.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg03.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg04.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg04.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg05.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg05.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg06.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg06.jpg"  border="0" alt=""></a></div>
 							</div>
-							<div  class="wrapper-li" rel='0' out="/auctiondemo/resources/images/icon02.gif" over="/auctiondemo/resources/images/icon01.gif" >
+							<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 								<div class="part zindex10" rel=0><a href="" target="_parent">
-								<img src="/auctiondemo/resources/images/mainimg07.jpg"  border="0" alt=""></a></div>
+								<img src="/easyauction/resources/images/mainimg07.jpg"  border="0" alt=""></a></div>
 							</div>
 															
 						</div>
@@ -162,7 +162,7 @@
 												<td valign=top align=center>
 													<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
 														<tr>
-															<td style="background:url(/auctiondemo/resources/images/mainlogo.png);" align="center" valign="top"></td>
+															<td style="background:url(/easyauction/resources/images/mainlogo.png);" align="center" valign="top"></td>
 														</tr>
 													</table>
 												</td>
@@ -175,7 +175,7 @@
 											<tr>
 												<td valign=top align=center>
 														<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
-														<tr><td style="width:209px; height:7px; background:url(/auctiondemo/resources/images/mainlogo.png);"></td></tr>
+														<tr><td style="width:209px; height:7px; background:url(/easyauction/resources/images/mainlogo.png);"></td></tr>
 															<tr><td style="background:url(img/imgpart_temple_round_02.gif);" align="center" valign="top">
 								
 										<div style="margin:8px 0 6px 0;"><a href='./view.php?num=32&tb=&count=&category=57r16&pg=1'><b>[우퍼]디자인어워드 대...</b></a></div>
