@@ -153,11 +153,11 @@
 	</div><!-- AAAAAA 끝 -->
 	
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	<div style="width: 960px;height:600px;border: 1px solid">
- 		  		<table style="width:100%;border:1px solid #000;background-color:red; border-top:none;">
+	<div style="width: 960px;height:600px;">
+ 		  		<table style="width:100%; ">
 								<tr>
-									<td style="padding: 10px;">
-										<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
+									<td>
+<!-- 										<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
 											<tr>
 												<td valign=top align=center>
 													<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
@@ -167,7 +167,8 @@
 													</table>
 												</td>
 											</tr>	
-										</table>
+										</table> -->
+										<img src="/easyauction/resources/images/real_auction_logo.png">
 									</td>									
 								
 			<!-- 						<td style="padding:10px;">
