@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <!-- namespace : 패키지명.클래스이름 을 논리적으로 선언 -->
-<!-- <mapper namespace="com.easyauction.mapper.MemberMapper">
+<mapper namespace="com.easyauction.mapper.MemberMapper">
 	<sql id="membercolumns">
 		mbId,
 		mbPasswd,
@@ -21,7 +21,7 @@
 		mbGrant,
 		mbDelete,
 		mbRegdate,
-		mbEmail,
+		mbEmail
 		</sql>
 
 	<select id="getMemberByIdAndPasswd" resultMap="hashMap">
@@ -32,4 +32,4 @@
 		mbpasswd = #{passwd}
 	</select> 
 	
-</mapper>-->
+</mapper>

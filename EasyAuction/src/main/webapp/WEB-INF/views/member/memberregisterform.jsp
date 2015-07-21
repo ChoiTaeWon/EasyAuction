@@ -51,12 +51,19 @@
 					}
 				}).open();
 	}
+	function loadHandler(){
+		<% String id = (String)request.getAttribute("failedid"); %>
+		<%if(id != null){ %>
+			alert('로그인실패');
+			document.getElementById("id").value = '<%= id%>';
+		<%} %>
+	}
 
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
 
-<body>
+<body onload="loadHandler();">
 <table>
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->

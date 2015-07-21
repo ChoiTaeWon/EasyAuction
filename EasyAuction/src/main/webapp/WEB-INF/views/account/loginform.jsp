@@ -77,7 +77,6 @@
 			document.happy_member_login_form.auto_login_use.checked = false;
 		}
 	}
-
 </SCRIPT>
 <div style="padding:15px;"></div>
 
@@ -93,7 +92,7 @@
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
 
 <!--폼시작-->
-<FORM action="login.action" method="post" name="happy_member_login_form" onSubmit="javas" >
+<FORM action="login.action" id='formsubmit' method="post">
 <input type="hidden" name="returnUrl" value="">
 <input type='hidden' name='save_id' value="" />
 <!--히든값 삭제하지말것! -->
@@ -108,17 +107,17 @@
 				<table align="center" width="100%">
 				<tr>
 					<td width="100">아이디</td>
-					<td><input name="member_id" value="" type="text" class="input_style1" id="id" tabindex="1" style="width:130px;"></td>
+					<td><input name="bmId" value="" type="text" class="input_style1" id="id" tabindex="1" style="width:130px;"></td>
 				</tr>
 				<tr><td height="3"></td></tr>
 				<tr>
 					<td width="100">패스워드</td>
-					<td><input name="member_pass" value="" type="password" class="input_style1" id="pass" tabindex="2" style="width:130px;"></td>
+					<td><input name="passwd" value="" type="password" class="input_style1" id="pass" tabindex="2" style="width:130px;"></td>
 				</tr>
 				</table>
 
 			</td>
-			<td style="padding-left:10px;"><input type="image" name="formimage1" src="/easyauction/resources/images/btn_login02.gif" align="absmiddle" border="0" tabindex="3"></td>
+			<td style="padding-left:10px;"><input type="image" name="formimage1" src="/easyauction/resources/images/btn_login02.gif" onclick="document.getElementById('formsubmit').submit();" align="absmiddle" border="0" tabindex="3"></td>
 		</tr>
 		<tr>
 			<td colspan="2">

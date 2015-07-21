@@ -16,6 +16,6 @@ import com.easyauction.mapper.MemberMapper;
 
 public interface MemberService {
 
-	//public Member getMemberByIdAndPasswd(String mbId, String mbPasswd);
+	public Member getMemberByIdAndPasswd(String mbId, String mbPasswd);
 
 }
