@@ -19,45 +19,93 @@
 		</div>
 		<br/>
 		
-		<div class="recommendview">
-<table>	
-	<tr>
-		<td valign="top" align="center">
-			<table width="120">
-				<tbody>
-					<tr>
-						<td>
-							<div style="width:120px;">
-								<div style="width:120px; position:relative; z-index:0;">
-									<div style="position:absolute; left:0px; top:0px; z-index:0;"> <img src="img/ico_ipchal_basic.gif" border="0" align="absmiddle" alt="일반경매"></div>
-								</div>
-								<div style="width:120px; border:1px solid #DEDEDE;">
-									<a href="./view.php?num=7&amp;tb=&amp;count=&amp;category=57r04&amp;pg=1"><img src="./upload/2011/07/07/1310020125-58-0_N_7_120x120_100_2_.jpg" width="120" height="120"></a>
-								</div>
-							</div>
-					
-						</td>
-					</tr>
-					<tr>
-						<td align="center"><div class="time_main2" id="main_ex_7_time_7"><div class="time_main2_day" style="display: none;" id="main_ex_7_time_7_day"></div><div class="time_main2_dayicon" style="display: none;" id="main_ex_7_time_7_dayicon"></div><div class="time_main2_day_no" id="main_ex_7_time_7_day_no"></div><div class="time_main2_dayicon_no" id="main_ex_7_time_7_dayicon_no"></div><div class="time_main2_hour" id="main_ex_7_time_7_hour">23</div><div class="time_main2_minutes" id="main_ex_7_time_7_minutes">03</div><div class="time_main2_second" id="main_ex_7_time_7_second">46</div></div></td>
-					</tr>
-					<tr>
-						<td style="padding-bottom:5px;padding-top:5px;" align="left"><a href="./view.php?num=7&amp;tb=&amp;count=&amp;category=57r04&amp;pg=1"><b>24인치 LED 모...</b></a></td>
-					</tr>
-					<tr>
-						<td align="center"><div style="clear:both;"><b><span class="tenwon_price_main" id="main_ex_7_price_7">1,000</span></b> <img src="img/ico_won.gif" align="absmiddle"></div></td>
-					</tr>
-				</tbody>
+		
+		<div id="viewlist"> <!-- viewlist div -->
+			<table style="width:955px">
+				<tr>
+					<td style="background-color:#5a5a5a; height:1px;"></td>
+				</tr>
+				<tr height="30">
+					<td style="background-color:#F8F8F8;">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center" width="150"><b>사진</b></td>
+								<td align="center" ><b>상품명</b></td>
+								<td align="center" width="150"><b>현재가</b></td>
+								<td align="center" width="120"><b>진행 상태</b></td>
+								<td align="center" width="70"><b>입찰수</b></td>
+								<td align="center" width="180"><b>마감시간</b></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td style="background-color:#DEDEDE; height:1px;"></td>
+				</tr>
 			</table>
-		</td>	
-	</tr>
-</table>
-		</div>
+			
+			
+			
+ <%for(int i=0; i<10;i++){ %> 
+			<table class="href_link" style="width: 955px;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td valign=top align=center> 
+						<table style="width:100%;border-bottom:1px dashed #dbdbdb;border: 0;" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="150" style="padding:10px 0 10px 0;" align="center">
+									<div style="position:relative; z-index:0;">
+										<div style="position:absolute; left:0px; top:0px; z-index:0;"></div>
+									</div>
+									<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action'>
+											<img src="/easyauction/resources/images/qwerqwerqwer.jpg" style="width:140px; height:120px;" align="absmiddle" ></a>
+									</div>
+								</td>
+	
+								<td style="padding-left:10px; text-align:left">
+									<a href='showdeal.action'>물품 명</a>
+									<div style="padding-top:5px;"></div>
+									<font class="smfont"></font>
+									<div style="padding-top:5px;"></div> 
+									<p>제목 제목 </p>  
+								</td>
 		
-		<div id="viewlist">
+								<td width="145" align="right" style="padding-right:5px;">
+									<b><font id="list_now_price">5,000,000</font> 원</b>
+									<div style="padding-top:5px;"></div>
+									<b>시작가격  5,000 원</b>
+								</td>
 		
+								<td width="120" align="center">
+									<!-- <img src=img/ico_baesong_free.gif alt='무료배송' border=0 align=absmiddle>
+									<div style="padding-top:5px;"></div>  
+									<img src=img/new_product_icon.gif border=0 align=absmiddle alt='새제품'> -->
+									<b>대기 중</b>									
+								</td>
 		
-		</div>
+								<td width="70" align="center">
+									<b>0 건</b> 
+								</td>
+		
+								<td width="180" align="center">
+									<div class="tenwon_time_list" id="main_ex_8_time_27">
+										<div class="tenwon_time_list_day" style="display:none;" id="main_ex_8_time_27_day"></div>
+										<div class="tenwon_time_list_day_icon" style="display:none;" id="main_ex_8_time_27_dayicon"></div>
+										<div class="tenwon_time_list_day_no" id="main_ex_8_time_27_day_no"></div>
+										<div class="tenwon_time_list_day_icon_no" id="main_ex_8_time_27_dayicon_no"></div>
+										<div class="tenwon_time_list_hour" id="main_ex_8_time_27_hour">00</div>
+										<div class="tenwon_time_list_minutes" id="main_ex_8_time_27_minutes">00</div>
+										<div class="tenwon_time_list_second" id="main_ex_8_time_27_second">00</div>
+									</div>
+									<a href="showdeal.action"><img src="/easyauction/resources/images/btn_ipchal_basic.gif" border="0" align="absmiddle" alt="일반경매입찰"></a>
+								</td>
+							</tr>
+							</table>
+					</td>
+				</tr>
+			</table>
+ <% } %> 
+		
+		</div><!-- viewlist div -->
 		
 		<div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
@@ -66,5 +114,3 @@
 	</div><!-- div wrap 끝 -->
 </body>
 </html>
-
-
