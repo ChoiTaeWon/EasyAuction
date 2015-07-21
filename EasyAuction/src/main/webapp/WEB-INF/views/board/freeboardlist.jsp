@@ -26,7 +26,7 @@
 			<!--내용-->
 			<div id="contents_wrap">
 				
-			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="img/img_customer_banner_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
 			<tr>
 				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>
@@ -38,11 +38,11 @@
 			<tr height="30">
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
-				<td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a> 
+				<!-- <td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a>  -->
 								  
-				<!-- <td align="right"><a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a> --> 
+				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
 				</td>
 			</tr>
 			</table>
@@ -55,6 +55,7 @@
 					<td height="26" bgcolor="#f8f8f8">
 					
 						<table width="100%">
+						<!-- 추천빼기 -->
 							<tr>
 								<td align="center" class="smfont" width="50"><font color="#666666">번호</font></td>
 								<td width="1" bgcolor="#e6e6e6"></td>
@@ -78,11 +79,64 @@
 			</table>
 			<!--내용 끝-->
 			
-			<!-- 검색폼 위의 내용 시작 -->
+			<!-- 게시글 내용 시작 -->
 			<table width="100%">
 			<tr>
-				<!-- 목록 -->
-				<td align="right"><a href='http://10won.cgimall.co.kr'><img src="/easyauction/resources/images/list.png" BORDER=0></A></td>
+				<td>
+				<table width=100% cellpadding=0 cellspacing=0  border=0><td valign=top align=center>
+			<table width="100%" height="30">
+				<tr>
+					<td align="center" width="50" class="smfont"><img src="/easyauction/resources/images/gongji.png" align="absmiddle"></td>
+					<td width="1"></td>
+					<td class="smfont" align="left"><div style="padding-left:10px;"><a href="bbs_detail.php?bbs_num=11&num=&tb=board_free"><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 자유게시판 공지사항입니다.</a></div></td>
+					<td width="1"></td>
+					<td width="90" class="smfont" align="center"><font color="#7f7b73">
+				<a href='#1' onClick="messageShowUser('0')" style='padding-bottom:6px;'>test</a>
+				<span style='position:relative;'>
+					<div style='position:absolute;top:0px;left:0px;width:110px;border:1px solid #000000;display:none;' id='board_view_0'>
+						<table cellpadding='2' cellspacing='0' onClick="messageShowUser('0')">
+						<tr>
+							<td width='110' bgcolor='#D9D9D9' align='left'>
+								<table cellpadding='2' cellspacing='1' width='100%' bgcolor='#CACACA'>
+								<tr>
+									<td bgcolor='white'>
+										<table cellpadding='2' cellspacing='0' width='100%'>
+										<tr>
+											<td height='25'><a href='#1' onClick="window.open('happy_message.php?mode=send&receiveid=test','happy_message_send','width=700,height=400,toolbar=no,scrollbars=no')"><img align='absmiddle' src='img/message/icon_messicon.gif' width='15' height='12' border='0'><img src='img/binimg.gif' width='5' height='1' border='0'>쪽지보내기</a></td>
+										</tr>
+										<tr>
+											<td height='25'><a href='list.php?action=search&search_type=id&search_word=test'><img align='absmiddle' src='img/message/icon_messregi.gif' width='16' height='16' border='0'><img src='img/binimg.gif' width='4' height='1' border='0'>등록매물보기</a>
+											</td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						</table>
+					</div>
+				</span>
+				</font></td>
+					<td width="1"></td>
+					<td align="center" width="90" class="smfont">2014-04-02</td>
+					<td width="1"></td>
+					<td align="center" width="40" class="smfont">0</td>
+					<td width="1"></td>
+					<td align="center" width="40" class="smfont">1</td>
+				</tr>
+				<tr>
+					<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
+				</tr>
+			</table>
+			<!-- 게시글 내용 끝 -->
+			
+			<!-- 검색폼 위의 내용 시작 -->
+			<div style="padding:3px;"></div>
+
+			<table width="100%">
+			<tr>
+				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			
@@ -94,7 +148,7 @@
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 검색폼 // 시작 -->
-			<table width="100%" align="center">
+			<table width="56%" align="center">
 			<form  method='post' action='./bbs_list.php'>
 			<input type=hidden name='num' value=''>
 			<input type=hidden name='action' value='search'>
@@ -105,17 +159,14 @@
 					<input type='radio' name='search' value='bbs_name'> 이름
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-					<input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'>
+					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
+					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
 				</td>
 			</tr>
 			</form>
 			</table>
 			<!-- 검색폼 끝 -->
 			
-			<div style="text-align:right">
-			<br/><br/>
-			<input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'>
-			</div>
 			
 			</div><!-- list 끝 -->
 		</div>
