@@ -41,8 +41,8 @@
 				<!-- <td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a>  -->
 								  
-				<td align="right"><a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
 				</td>
 			</tr>
 			</table>
@@ -55,6 +55,7 @@
 					<td height="26" bgcolor="#f8f8f8">
 					
 						<table width="100%">
+						<!-- 추천빼기 -->
 							<tr>
 								<td align="center" class="smfont" width="50"><font color="#666666">번호</font></td>
 								<td width="1" bgcolor="#e6e6e6"></td>
@@ -131,10 +132,11 @@
 			<!-- 게시글 내용 끝 -->
 			
 			<!-- 검색폼 위의 내용 시작 -->
+			<div style="padding:3px;"></div>
+
 			<table width="100%">
 			<tr>
-				<!-- 목록 -->
-				<td align="right"><a href='http://10won.cgimall.co.kr'><img src="/easyauction/resources/images/list.png" BORDER=0></A></td>
+				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list.png" BORDER=0></A></td>
 			</tr>
 			</table>
 			
@@ -164,18 +166,6 @@
 			</table>
 			<!-- 검색폼 끝 -->
 			
-			
-			<table width="100%">
-			<tr>
-				<td align="right"><a href='http://10won.cgimall.co.kr/bbs_detail.php?bbs_num=5&num=&tb=board_free'><img src="/easyauction/resources/images/write.png"></A></td>
-			</tr>
-			</table>
-			
-			<%-- <div style="text-align:center">
-			<%= request.getAttribute("pager").toString() %>
-			<br/><br/>
-			<a href='write.action?pageno=<%= request.getAttribute("pageno")%>&classify=<%= request.getAttribute("classify") %>'>글쓰기</a>
-			</div> --%>
 			
 			</div><!-- list 끝 -->
 		</div>

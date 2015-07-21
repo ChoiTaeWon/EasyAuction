@@ -16,6 +16,17 @@ public class BoardController {
 		return "board/freeboardlist";
 	}
 	
+	@RequestMapping(value = "register.action", method = RequestMethod.GET)
+	public String register() {
+		
+		return "board/freeboardregisterform";
+	}
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public String view() {
+		
+		return "board/freeboardeditviewform";
+	}
+	
 	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
 	public String photoList() {
 		
