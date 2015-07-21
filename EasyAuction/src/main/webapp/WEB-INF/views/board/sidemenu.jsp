@@ -32,8 +32,8 @@
 		      <tr>
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
-		         <a href="#" onFocus="this.blur();">
-		           <b><a href="#" class="bbs_menu_name">포토 후기</b>
+		         <a href="/easyauction/board/photolist.action" onFocus="this.blur();">
+		           <b><a href="/easyauction/board/photolist.action" class="bbs_menu_name">포토 후기</b>
 		         </a>
 		       </td>
 		      </tr>		      
