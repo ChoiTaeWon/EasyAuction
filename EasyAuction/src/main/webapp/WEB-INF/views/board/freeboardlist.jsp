@@ -136,7 +136,7 @@
 
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list.png" BORDER=0></A></td>
+				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			
@@ -148,7 +148,7 @@
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 검색폼 // 시작 -->
-			<table width="100%" align="center">
+			<table width="56%" align="center">
 			<form  method='post' action='./bbs_list.php'>
 			<input type=hidden name='num' value=''>
 			<input type=hidden name='action' value='search'>
@@ -159,7 +159,8 @@
 					<input type='radio' name='search' value='bbs_name'> 이름
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-					<input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'>
+					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
+					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
 				</td>
 			</tr>
 			</form>
