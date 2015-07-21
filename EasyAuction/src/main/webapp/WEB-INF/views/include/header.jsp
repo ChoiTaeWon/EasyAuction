@@ -76,8 +76,7 @@
 								<ul class="main_top_menu">
 									<li class="smfont10"><a href="#">경매 1</a></li>
 									<li class="smfont10"><a href="#">경매 2</a></li>
-									<li class="smfont10"><a href="#">경매 3</a></li>
-									<li class="smfont10"><a href="#">이용안내</a></li>
+									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>
 									<li class="smfont10"><a href="#">경매 ㄱㄱ</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
