@@ -12,10 +12,14 @@ public class BoardController {
 	
 	
 	@RequestMapping(value = "freeboard.action", method = RequestMethod.GET)
-	public String directList() {
+	public String freeboardList() {
 		
 		return "board/freeboardlist";
 	}
-	
+	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
+	public String photoList() {
+		
+		return "board/photolist";
+	}	
 	
 }
