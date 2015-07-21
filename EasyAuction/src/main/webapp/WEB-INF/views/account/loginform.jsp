@@ -3,9 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<title>10원경매 Ver1.3</title>
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <script language="javascript" src="js/happy_open.js" type="text/javascript"></script>
 </head>
 
@@ -17,7 +15,7 @@
 <table align="center" style="background-color:#565DD3; width:700px;">
 <tr>
 	<!-- -->
-	<td style="padding:15px;"><a href="홈액션"><img src="img/mainlogo.png" border="0" align="absmiddle"></a></td>
+	<td style="padding:15px;"><a href="홈액션"><img src="/easyauction/resources/images/mainlogo.png" border="0" align="absmiddle"></a></td>
 	
 </tr>
 </table>
@@ -81,13 +79,12 @@
 	}
 
 </SCRIPT>
-
 <div style="padding:15px;"></div>
 
 <table align="center" width="560">
 <tr>
-	<td><img src="img/member_login_tit.gif"></td>
-	<td class="smfont" valign="bottom" align="right" style="font-size: 5px">로그인하시면 경매사이트의 각종 서비스를 이용하실 수 있습니다.</td>
+	<td><img src="/easyauction/resources/images/member_login_tit.gif"></td>
+	<td class="smfont" valign="bottom" align="right">로그인하시면 경매사이트의 각종 서비스를 이용하실 수 있습니다.</td>
 </tr>
 </table>
 
@@ -121,7 +118,7 @@
 				</table>
 
 			</td>
-			<td style="padding-left:10px;"><input type="image" name="formimage1" src="img/btn_login02.gif" align="absmiddle" border="0" tabindex="3"></td>
+			<td style="padding-left:10px;"><input type="image" name="formimage1" src="/easyauction/resources/images/btn_login02.gif" align="absmiddle" border="0" tabindex="3"></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -149,11 +146,11 @@
 
 		<table align="center">
 		<tr>
-			<td class="smfont"><b><A HREF="happy_member.php?mode=joinus"><font color="#000000">회원가입</font></a></b></td>
+			<td class="smfont"><b><A HREF="/easyauction/member/register.action"><font color="#000000">회원가입</font></a></b></td>
 			<td width="30" align="center">ㅣ</td>
-			<td class="smfont"><a href="happy_member.php?mode=lostid">아이디찾기</font></a></td>
+			<td class="smfont"><a href=#">아이디찾기</font></a></td>
 			<td width="30" align="center">ㅣ</td>
-			<td class="smfont"><A HREF="happy_member.php?mode=lostpass">비밀번호 찾기</font></a></td>
+			<td class="smfont"><A HREF="#">비밀번호 찾기</font></a></td>
 		</tr>
 		</table>
 	</td>
@@ -172,10 +169,10 @@
 
 <table width="700" align="center">
 <tr>
-	<td align="center" class="smfont5" style="font-size: 5px">사이트에 등록된 내용은 판매자가 등록한 것으로 10원경매 Ver1.3에서는 등록내용에 대하여 일체의 책임을 지지 않습니다.</font></td>
+	<td align="center" class="smfont5">사이트에 등록된 내용은 판매자가 등록한 것으로 EasyAuction은 등록내용에 대하여 일체의 책임을 지지 않습니다.</font></td>
 </tr>
 <tr>
-	<td align="center" class="smfont5"  style="font-size: 5px">Copyright ⓒ 2015 10원경매 Ver1.3 All rights reserved</td>
+	<td align="center" class="smfont5">Copyright ⓒ 2015 EasyAuction All rights reserved</td>
 </tr>
 </table>
 </div>
