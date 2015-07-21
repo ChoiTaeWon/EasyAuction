@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="styles.css">
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- 쪽지 해더 -->
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='#'><span>받은 쪽지함</span></a></li>
-   <li><a href='#'><span>보낸쪽지함</span></a></li>
-   <li><a href='#'><span>쪽지보내기</span></a></li>
+   <li class='active'><a href='/easyauction/message/receivemessages.action'><span>받은 쪽지함</span></a></li>
+   <li><a href='/easyauction/message/sendmessages.action'><span>보낸쪽지함</span></a></li>
+   <li><a href='/easyauction/message/sendmessage.action'><span>쪽지보내기</span></a></li>
 </ul>
 </div>
 <!-- 쪽지 해더 -->
@@ -64,10 +64,10 @@
 
 <table width='100%' cellspacing='0' cellpadding='0' border='0'>
 	<tr height='25'>
-		<td style='padding-left:5px'><a href="#"><img src="img/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">내용</a></td>
+		<td style='padding-left:5px'><a href="#"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">내용</a></td>
 		<td width='81' align='center'><font color="#888888">보낸사람</td>
 		<td width='101' align='center'><font color="#888888">보낸시각</td>
-		<td width='61' align='center'><a href="#" Onclick="mesdel('?mode=receivelist&start=&kfield=&kword=&delType=receive&delNumber=28&adminMode=n')"><img src="img/bt_mess_del.gif" border="0" align="absmiddle"></a></td>
+		<td width='61' align='center'><a href="#" Onclick="mesdel('?mode=receivelist&start=&kfield=&kword=&delType=receive&delNumber=28&adminMode=n')"><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle"></a></td>
 	</tr>
 </table>
 <!-- 페이징 -->
