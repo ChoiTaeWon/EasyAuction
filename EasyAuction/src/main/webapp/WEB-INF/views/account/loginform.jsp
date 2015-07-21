@@ -93,7 +93,7 @@
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
 
 <!--폼시작-->
-<FORM action="loginaction" method="post" name="happy_member_login_form" onSubmit="javas" >
+<FORM action="login.action" method="post" name="happy_member_login_form" onSubmit="javas" >
 <input type="hidden" name="returnUrl" value="">
 <input type='hidden' name='save_id' value="" />
 <!--히든값 삭제하지말것! -->

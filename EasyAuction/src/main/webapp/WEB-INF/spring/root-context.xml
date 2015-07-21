@@ -37,4 +37,11 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sessionFactory" />
 	</bean>	
+<!-- 		<bean id="memberMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+			value="com.auction.mapper.MemberMapper" />
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean> -->
+	
 </beans>

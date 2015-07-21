@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace : 패키지명.클래스이름 을 논리적으로 선언 -->
+<!-- <mapper namespace="com.easyauction.mapper.MemberMapper">
+	<sql id="membercolumns">
+		mbId,
+		mbPasswd,
+		mbAddress1,
+		mbAddress2,
+		mbPhone1,
+		mbPhone2,
+		mbGender,
+		mbBirthdate,
+		mbGrade,
+		mbReportingCount,
+		mbName,
+		mbGrant,
+		mbDelete,
+		mbRegdate,
+		mbEmail,
+		</sql>
+
+	<select id="getMemberByIdAndPasswd" resultMap="hashMap">
+		SELECT <include refid="membercolumns" />
+		FROM member 
+		WHERE mbId = #{mbId} 
+		AND 
+		mbpasswd = #{passwd}
+	</select> 
+	
+</mapper>-->
