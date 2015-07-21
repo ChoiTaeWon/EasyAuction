@@ -146,11 +146,11 @@
 	</div><!-- AAAAAA 끝 -->
 	
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	<div style="width: 960px;height:600px;border: 1px solid">
- 		  		<table style="width:100%;border:1px solid #000;background-color:red; border-top:none;">
+	<div style="width: 960px;height:600px;">
+ 		  		<table style="width:100%; ">
 								<tr>
-									<td style="padding: 10px;">
-										<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
+									<td>
+<!-- 										<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
 											<tr>
 												<td valign=top align=center>
 													<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
@@ -160,13 +160,15 @@
 													</table>
 												</td>
 											</tr>	
-										</table>
+										</table> -->
+										<img src="/easyauction/resources/images/real_auction_logo.png">
 									</td>									
-								
-			<!-- 						<td style="padding:10px;">
+								   </tr>
+								   <tr>							   
+									<td style="padding:10px;">
 										<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
 											<tr>
-												<td valign=top align=center>
+												<td valign=top align=left>
 														<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
 														<tr><td style="width:209px; height:7px; background:url(/easyauction/resources/images/mainlogo.png);"></td></tr>
 															<tr><td style="background:url(img/imgpart_temple_round_02.gif);" align="center" valign="top">
@@ -189,9 +191,7 @@
 										<tr>
 											<td align="center"><div style="clear:both;"><b><span class="tenwon_price_main" id="main_ex_2_price_32">0</span></b> <img src="img/ico_won.gif" align="absmiddle"></div></td>
 										</tr>
-										<tr>
-											<td align="center" style="padding-top:5px; height:20px;"> <img src="img/ipchal_price_term_300.gif" border="0" align="absmiddle" alt="300$LANG[won]"> <img src="img/ico_red_bean.gif" border="0" align="absmiddle" alt="빨간콩"><img src="img/ico_blue_bean.gif" border="0" align="absmiddle" alt="파란콩"></td>
-										</tr>
+				
 										<tr>
 											<td align="center" style="padding-top:5px;"><a href="javascript:void(0);" onclick="tenAuctionIpchal('32')"><img src="img/btn_ipchal.gif" border="0" align="absmiddle"></a> </td>
 										</tr>
@@ -199,7 +199,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="width:209px; height:16px; background:url(img/imgpart_temple_round_03.gif);"></td> -->
+									<td style="width:209px; height:16px; background:url(img/imgpart_temple_round_03.gif);"></td>
 								</tr>
 				</table>
 	
