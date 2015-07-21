@@ -198,5 +198,11 @@
 		</div>
 	</div>
 </table>
+<!-- 푸터  -->
+<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+<div style="width: 960px; ">
+<!-- 푸터 끝 -->
 </body>
 </HTML>

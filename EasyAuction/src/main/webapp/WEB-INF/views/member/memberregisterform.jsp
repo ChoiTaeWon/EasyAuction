@@ -20,9 +20,7 @@
 						var extraAddr = ''; // 조합형 주소 변수
 
 						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우							fullAddr = data.roadAddress;
 						} else { // 사용자가 지번 주소를 선택했을 경우(J)
 							fullAddr = data.jibunAddress;
 						}
@@ -164,5 +162,11 @@
 				</table>
 	</div>
 </table>
+<!-- 푸터  -->
+<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+<div style="width: 960px; ">
+<!-- 푸터 끝 -->
 </body>
 </HTML>
