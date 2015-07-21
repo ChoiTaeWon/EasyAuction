@@ -1,30 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-<style type="text/css">
-.smfont4 {
-	height: 30px;
-	style-color: #6b6b6b;
-	background-color: #f5f5f5;
-	border-bottom: 1px solid #e3e3e3;
-	width: 140px;
-}
-
-img {
-	align: absmiddle;
-	border: 0;
-	margin: 0 10px 0 10px;
-}
-
-td {
-	padding: 3px 0 3px 10px;
-	border-bottom: 1px solid #e3e3e3;
-}
-</style>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <!-- 다음 주소관련 function 시작 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -40,9 +20,7 @@ td {
 						var extraAddr = ''; // 조합형 주소 변수
 
 						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우							fullAddr = data.roadAddress;
 						} else { // 사용자가 지번 주소를 선택했을 경우(J)
 							fullAddr = data.jibunAddress;
 						}
@@ -73,27 +51,26 @@ td {
 					}
 				}).open();
 	}
-</script>
-<script type="text/javascript">
-	function idcheck() {
-		window.open("idcheck.action", "_blank",
-				"width=600,height=300,titlebar=no");
-	}
+
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
 
 <body>
 <table>
-
+	<div id="wrap"> <!-- A 시작 -->
+		<div id="top"><!-- 헤더 -->
+			<c:import url="/WEB-INF/views/include/header.jsp" />
+		</div><!-- 헤더 끝 -->
+		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
 	<div align="center">
 		<tr>
 			<td><img
-				src="img/member_in_banner.jpg" align="absmiddle" border="0">
+				src="/easyauction/resources/images/member_in_banner.jpg" align="absmiddle" border="0">
 
 				<div style="padding: 5px;"></div>
 
-				<table width="100%" align="center" cellpadding="0" cellspacing="1"
+				<table width="727px" align="center" cellpadding="0" cellspacing="1"
 					bgcolor="#dcdcdc">
 					<tr>
 						<td bgcolor="#FFFFFF">
@@ -117,7 +94,7 @@ td {
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
 											style="border-top: 1px solid #ededed;">
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">아이디</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
@@ -127,48 +104,47 @@ td {
 												</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">패스워드</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드</td>
 												<td><input type='passwd' name='passwd' id='passwd'></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">패스워드
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드
 													확인</td>
 												<td><input type="text" id='passwd1' /></td>
 
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">이름</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이름</td>
 												<td><input type="text" name="memberName"
 													id="memberName" /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">성별</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">성별</td>
 												<td><input type=radio id=genderm name='gender'
 													value='1' checked="checked">남자&nbsp; <input
 													type=radio id=genderf name='gender' value='0'>여자
 													&nbsp;</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">이메일</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이메일</td>
 												<td><input type='text' name='memberEmail'></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">전화번호
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">전화번호
 												</td>
 												<td><input type='text' name='phone1' id='phone1' /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">휴대폰</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">휴대폰</td>
 												<td><input type='text' name='phone2' id='phone2' /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif">생년월일</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">생년월일</td>
 												<td><input type='date' name='birthdate' id='birthdate' />
 												</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="img/member_nemo_icon.gif"
-													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">주소</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">주소</td>
 												<td><input type="text" id="postcode1" name="postcode1"
 													style='width: 80px'> - <input type="text"
 													id="postcode2" name="postcode2" style='width: 80px'>
@@ -186,5 +162,11 @@ td {
 				</table>
 	</div>
 </table>
+<!-- 푸터  -->
+<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+<div style="width: 960px; ">
+<!-- 푸터 끝 -->
 </body>
 </HTML>

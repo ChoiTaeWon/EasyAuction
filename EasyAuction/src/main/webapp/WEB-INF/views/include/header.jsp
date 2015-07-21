@@ -35,6 +35,11 @@
 		      elem.click(); 
 		   }
 	 } 
+	
+	function messageshow() {
+		window.open("/easyauction/message/receivemessages.action", "쪽지함",
+				"width=700,height=500,titlebar=no");
+	}
  </script>
 
 
@@ -45,14 +50,15 @@
 					<td align="right" style="padding:5px 10px 10px 0;" colspan="3">
 						<table class="main_top" >
 									<tr>
-										<td><a href="#"><img src="/easyauction/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
-										<td><a href="#">회원가입</a></td>
+										<td><img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow();"></td>
+										<td><a href="/easyauction/account/login.action"><img src="/easyauction/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
+										<td><a href="/easyauction/member/register.action">회원가입</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">아이디찾기</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">비밀번호찾기</a></td>
 										<td class="smfont3">│</td>
-										<td><a href="#">마이페이지</a></td>
+										<td><a href="/easyauction/member/view.action">마이페이지</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">상품평보기</a></td>
 									</tr>
@@ -78,7 +84,7 @@
 									<li class="smfont10"><a href="#">경매 2</a></li>
 									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>
-									<li class="smfont10"><a href="#">경매 ㄱㄱ</a></li>
+									<li class="smfont10"><a href="/easyauction/deal/deal.action">경매 ㄱㄱ</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
 								</ul>
 							
