@@ -20,7 +20,7 @@ public class DirectdealController {
 	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
 	public String showdealView() {
 		
-		return "direct/dealview";
+		return "direct/directview";
 	}
 	
 }

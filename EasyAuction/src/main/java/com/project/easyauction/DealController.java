@@ -17,5 +17,13 @@ public class DealController {
 		return "deal/deallist";
 	}
 	
+	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
+	public String detailView() {
+		
+		return "deal/dealview";
+	}
+	
+	
+	
 	
 }

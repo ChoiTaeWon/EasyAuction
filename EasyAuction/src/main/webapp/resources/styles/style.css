@@ -53,6 +53,9 @@ li:HOVER {
 
 .smfont10 {font-size:20px; color:#FFF; letter-spacing:1px; font-weight:bold; font-family:맑은 고딕; }
 
+#list_now_price { font-size:14pt; color:#000000; font-family:tahoma ;}
+#list_start_price { color:#000000;font-weight:bold; font-family:tahoma ;}
+
 
 
 
@@ -98,6 +101,34 @@ li:HOVER {
         padding: 0;
         border: 1px solid;
 }
+
+.dealdetail{
+		width:950px;
+        height:400px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Starter CSS for Flyout Menu */
 #cssmenu,

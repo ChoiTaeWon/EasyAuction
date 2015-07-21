@@ -31,7 +31,7 @@
 		'<h2>위즈소프트</h2>'+
 		'<p>위즈소프트는 WEB Agency & SI 분야에서 10년 이상의 풍부한 경험을 보유한<br />' +
         '전문 인력으로 구성된 E-Business 전문 기업입니다.</p>' +
-		'<a href="http://localhost:8081/easyauction/direct/showdeal.aciton" target="_blank">123412341234</a>'+
+		'<a href="showdeal.action" target="_blank">123412341234</a>'+
 		'</div>';
 
 		var myLatlng = new google.maps.LatLng(Y_point, X_point);
