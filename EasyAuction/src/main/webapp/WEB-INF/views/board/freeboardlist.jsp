@@ -20,6 +20,7 @@
 			<div style="width:216px;float: left; margin:0 10px 0 0;"><!-- 사이드메뉴 -->
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />
 			</div><!-- 사이드메뉴 끝 -->
+			
 			<div style="width: 730px; float:right;"><!-- list -->
 			
 			<!--내용-->
@@ -71,7 +72,7 @@
 			</table>
 			<!--내용 끝-->
 			
-			<!-- 검색폼 시작 -->
+			<!-- 검색폼 위의 내용 시작 -->
 			<table width="100%">
 			<tr>
 				<td align="right"><A HREF="./bbs_list.php?tb=board_free"><img src="bbs_img/bbs_list.gif" BORDER=0></A></td>
@@ -83,6 +84,7 @@
 				<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
 			</tr>
 			</table>
+			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 검색폼 // 시작 -->
 			<table width="100%" align="center">
@@ -97,12 +99,16 @@
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 					<input type='image' src='bbs_img/bbs_search.gif' border="0" value='검색' align='absmiddle'>
-			
 				</td>
 			</tr>
 			</form>
 			</table>
 			<!-- 검색폼 끝 -->
+			
+			<div style="text-align:right">
+			<br/><br/>
+			<a href='write.action?pageno=<%= request.getAttribute("pageno")%>&classify=<%= request.getAttribute("classify") %>'>글쓰기</a>
+			</div>
 			
 			</div><!-- list 끝 -->
 		</div>
