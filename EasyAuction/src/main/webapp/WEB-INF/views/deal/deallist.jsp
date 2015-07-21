@@ -19,9 +19,19 @@
 		</div>
 		<br/>
 		
+		<div style="width: 960px;height:30px;border: 1px solid">
+			<table>
+				<tr>
+					<td style="text-align:left;">게시물 목록</td>
+					<td style="text-align:right;">글쓰기 ㄱㄱ</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br/>
 		
 		<div id="viewlist"> <!-- viewlist div -->
-			<table style="width:955px">
+			<table style="width:955px;margin-left: 5.5px" >
 				<tr>
 					<td style="background-color:#5a5a5a; height:1px;"></td>
 				</tr>
@@ -106,6 +116,8 @@
  <% } %> 
 		
 		</div><!-- viewlist div -->
+		
+		
 		
 		<div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
