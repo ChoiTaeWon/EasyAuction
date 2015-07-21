@@ -11,12 +11,12 @@ public class Member {
 	private String mbAddress2;
 	private String mbPhone1;
 	private String mbPhone2;
-	private Boolean mbGender;
+	private boolean mbGender;
 	private Date mbBirthDate;
 	private int mbGrade;
 	private int mbReportiongCount;
-	private Boolean mbGrant;
-	private Boolean mbDelete;
+	private boolean mbGrant;
+	private boolean mbDelete;
 	private Date mbRegdate;
 	private String mbEmail;
 	
