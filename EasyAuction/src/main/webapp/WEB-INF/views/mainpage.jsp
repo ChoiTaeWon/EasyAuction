@@ -212,7 +212,9 @@
 	
 	</div>
 	
-	
+	<div>
+		<% pageContext.include("/WEB-INF/views/include/footer.jsp"); %>
+	</div>
 	
 	
 </div><!-- div wrap 끝 -->

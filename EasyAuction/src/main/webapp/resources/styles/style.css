@@ -91,8 +91,14 @@ li:HOVER {
         border: 3px solid;
 }
 
+.recommendview {
+		width:950px;
+        height:400px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid;
+}
 
-@charset "UTF-8";
 /* Starter CSS for Flyout Menu */
 #cssmenu,
 #cssmenu ul,
