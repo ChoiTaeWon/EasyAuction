@@ -31,7 +31,7 @@
 		'<h2>위즈소프트</h2>'+
 		'<p>위즈소프트는 WEB Agency & SI 분야에서 10년 이상의 풍부한 경험을 보유한<br />' +
         '전문 인력으로 구성된 E-Business 전문 기업입니다.</p>' +
-		//'<a href="http://www.daegu.go.kr" target="_blank">http://www.daegu.go.kr</a>'+ //링크도 넣을 수 있음
+		'<a href="http://localhost:8081/easyauction/direct/showdeal.aciton" target="_blank">123412341234</a>'+
 		'</div>';
 
 		var myLatlng = new google.maps.LatLng(Y_point, X_point);
@@ -55,9 +55,10 @@
 													}
 		);
 
-		google.maps.event.addListener(marker, 'click', function() {
+		 google.maps.event.addListener(marker, 'click', function() {
 			infowindow.open(map, marker);
 		});
+		/* google.maps.event.addDomListener(window, 'load', initialize); */
 	}
     </script>
 
@@ -70,14 +71,7 @@
 		<br/>
 		
 		<div id="map_view" class="mapview"></div>
-			
-			
-	
 		
-		
-
-	
-	
 	</div><!-- div wrap 끝 -->
 </body>
 </html>
