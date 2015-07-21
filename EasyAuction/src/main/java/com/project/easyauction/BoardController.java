@@ -16,6 +16,12 @@ public class BoardController {
 		return "board/freeboardlist";
 	}
 	
+	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
+	public String gongjiList() {
+		
+		return "board/gongjilist";
+	}
+	
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String register() {
 		
