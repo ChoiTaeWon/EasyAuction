@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>커뮤니티</title>
+<title>포토 후기 게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
@@ -23,6 +23,6 @@
 				
 			</div><!-- list 끝 -->
 		</div>
-	</div> <!-- A 끝 -->
+	</div> <!-- A 끝 -->	
 </body>
 </html>
