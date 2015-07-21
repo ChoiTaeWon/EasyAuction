@@ -20,6 +20,44 @@
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />
 			</div><!-- 사이드메뉴 끝 -->
 			<div style="width: 730px; float:right;"><!-- list -->
+<table width="100%">
+<tr>
+	<td align="center"><a href="bbs_list.php?tb=board_review"><img src="img/img_photo_review.jpg" title="후기쓰러가기"></td>
+</tr>
+</table>
+
+
+<div style="padding:5px;"></div>
+
+<table width="100%">
+<tr height="30">
+	<td align="left">&nbsp;</td>
+	<td align="right"><a href='http://10won.cgimall.co.kr'><img src='./img/ico_home.gif'></a>  <a href=bbs_list.php?&num=&tb=board_review>포토리뷰</a> </td>
+</tr>
+</table>
+
+<table width="100%">
+	<tr>
+		<td height="1" bgcolor="#e6e6e6"></td>
+	</tr>
+	<tr>
+		<td height="26" bgcolor="#f8f8f8">
+		
+			<table width="100%">
+				<tr>
+					<td align="center" class="smfont" width="140"><font color="#666666">사진</font></td>
+					<td width="1" bgcolor="#e6e6e6"></td>
+					<td align="center" class="smfont"><font color="#666666">제목</font></td>
+					<td width="1" bgcolor="#e6e6e6"></td>
+					<td align="center" class="smfont" width="90"><font color="#666666">작성자</font></td>
+					<td width="1" bgcolor="#e6e6e6"></td>
+					<td align="center" class="smfont" width="90"><font color="#666666">작성일자</font></td>
+					<td width="1" bgcolor="#e6e6e회"></td>
+					<td align="center" class="smfont" width="40"><font color="#666666">추천</font></td>
+					<td width="1" bgcolor="#e6e6e회"></td>
+					<td align="center" class="smfont" width="40"><font color="#666666">조회</font></td>
+				</tr>
+			</table>	
 				
 			</div><!-- list 끝 -->
 		</div>

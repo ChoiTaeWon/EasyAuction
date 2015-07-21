@@ -25,7 +25,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="#" class="bbs_menu_name">자유게시판</b>
+		           <b><a href="/easyauction/board/freeboard.action" class="bbs_menu_name">자유게시판</b>
 		         </a>
 		       </td>
 		      </tr>
