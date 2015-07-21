@@ -65,8 +65,6 @@
 								<td width="1" bgcolor="#e6e6e6"></td>
 								<td align="center" class="smfont" width="90"><font color="#666666">작성일자</font></td>
 								<td width="1" bgcolor="#e6e6e회"></td>
-								<td align="center" class="smfont" width="40"><font color="#666666">추천</font></td>
-								<td width="1" bgcolor="#e6e6e회"></td>
 								<td align="center" class="smfont" width="40"><font color="#666666">조회</font></td>
 							</tr>
 						</table>
@@ -120,8 +118,6 @@
 				</font></td>
 					<td width="1"></td>
 					<td align="center" width="90" class="smfont">2014-04-02</td>
-					<td width="1"></td>
-					<td align="center" width="40" class="smfont">0</td>
 					<td width="1"></td>
 					<td align="center" width="40" class="smfont">1</td>
 				</tr>
