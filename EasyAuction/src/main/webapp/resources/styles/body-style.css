@@ -36,3 +36,26 @@
 .blank{
 	margin:0 0 7px 0;
 }
+
+
+#footer{
+	width:960px;
+	float:left;
+	margin:10px 0 0 0;
+	background:url("/img/copyright_bg.gif") repeat-x top;
+}
+
+#copyright{
+	width:960px;
+	float:left;
+	margin:10px 0 20px 0;
+}
+
+#viewlist{
+	width:960px;
+	height: 
+}
+
+
+
+

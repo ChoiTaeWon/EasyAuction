@@ -17,5 +17,10 @@ public class DirectdealController {
 		return "direct/directlist";
 	}
 	
+	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
+	public String showdealView() {
+		
+		return "direct/dealview";
+	}
 	
 }

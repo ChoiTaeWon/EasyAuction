@@ -143,7 +143,7 @@
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드
 													확인</td>
-												<td><input type="text" id='passwd1' /></td>
+												<td><input type="passwd" id='passwd1' /></td>
 
 											</tr>
 											<tr>
@@ -198,5 +198,11 @@
 		</div>
 	</div>
 </table>
+<!-- 푸터  -->
+<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+<div style="width: 960px; ">
+<!-- 푸터 끝 -->
 </body>
 </HTML>
