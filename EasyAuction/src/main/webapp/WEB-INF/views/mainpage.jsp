@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
 <!DOCTYPE html>
 
@@ -30,14 +30,7 @@
 		 });
 		 
 		 
-		 
-		 $(document).ready(function(){
-			$('#gonggi').css('display','block');
-			$('#event').css('display','none');
-			 
-		 });
-		 
-		 
+	 
 		 function changeBox1(){
 			 document.getElementById('gonggi').style.backgroungColor = "grey";
 			 document.getElementById('event').style.backgroungColor = "#F8F8F8";
@@ -60,7 +53,7 @@
 
 	<div id="wrap">
 		<div id="top">
-			<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 	
 	
@@ -212,8 +205,10 @@
 	
 	</div>
 	
-	<div>
-		<% pageContext.include("/WEB-INF/views/include/footer.jsp"); %>
+		<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+	
 	</div>
 	
 	
