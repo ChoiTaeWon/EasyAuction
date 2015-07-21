@@ -28,7 +28,7 @@
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="img/img_customer_banner_bg.gif">
 			<tr>
-				<td style="padding-left:25px;"><img src="img/txt_banner_free.gif"></td>
+				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>
 			</table>
 			
@@ -36,8 +36,14 @@
 			
 			<table width="100%">
 			<tr height="30">
+				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
-				<td align="right"><a href='http://10won.cgimall.co.kr'><img src='./img/ico_home.gif'></a>  <a href=bbs_list.php?&num=&tb=board_free>자유게시판</a> </td>
+				<td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a> 
+								  
+				<!-- <td align="right"><a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='http://localhost:8087/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a> --> 
+				</td>
 			</tr>
 			</table>
 			
@@ -75,7 +81,8 @@
 			<!-- 검색폼 위의 내용 시작 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><A HREF="./bbs_list.php?tb=board_free"><img src="bbs_img/bbs_list.gif" BORDER=0></A></td>
+				<!-- 목록 -->
+				<td align="right"><a href='http://10won.cgimall.co.kr'><img src="/easyauction/resources/images/list.png" BORDER=0></A></td>
 			</tr>
 			</table>
 			
@@ -98,7 +105,7 @@
 					<input type='radio' name='search' value='bbs_name'> 이름
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-					<input type='image' src='bbs_img/bbs_search.gif' border="0" value='검색' align='absmiddle'>
+					<input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'>
 				</td>
 			</tr>
 			</form>
@@ -107,7 +114,7 @@
 			
 			<div style="text-align:right">
 			<br/><br/>
-			<a href='write.action?pageno=<%= request.getAttribute("pageno")%>&classify=<%= request.getAttribute("classify") %>'>글쓰기</a>
+			<input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'>
 			</div>
 			
 			</div><!-- list 끝 -->
