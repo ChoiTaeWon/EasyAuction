@@ -16,8 +16,8 @@ import com.easyauction.service.DealService;
 public class DealController {
 	
 	private DealService dealService;
-	@Autowired
-	@Qualifier("dealService")
+	//@Autowired
+	//@Qualifier("dealService")
 	public void setDealService(DealService dealService) {
 		this.dealService = dealService;
 	}
