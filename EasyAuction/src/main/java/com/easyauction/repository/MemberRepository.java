@@ -8,8 +8,6 @@ import com.easyauction.mapper.MemberMapper;
 
 public interface MemberRepository {
 
-	void setMemberMapper(MemberMapper memberMapper);
-
 	Member getMemberByIdAndPasswd(String mbId, String mbPasswd);
 
 }

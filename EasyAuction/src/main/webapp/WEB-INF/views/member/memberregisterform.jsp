@@ -84,7 +84,7 @@
 						<td bgcolor="#FFFFFF">
 
 							<table width="100%" border="0" cellspacing="0" cellpadding="0"
-								align="center">
+								align="center" >
 								<tr>
 									<td style="padding-left: 5px;" height="20"
 										background="color: white"><b>일반회원 정보입력</b></td>
@@ -102,7 +102,7 @@
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
 											style="border-top: 1px solid #ededed;">
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">아이디</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
@@ -113,47 +113,47 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드</td>
 												<td><input type='passwd' name='passwd' id='passwd'></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드
 													확인</td>
 												<td><input type="text" id='passwd1' /></td>
 
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이름</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이름</td>
 												<td><input type="text" name="memberName"
 													id="memberName" /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">성별</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   성별</td>
 												<td><input type=radio id=genderm name='gender'
 													value='1' checked="checked">남자&nbsp; <input
 													type=radio id=genderf name='gender' value='0'>여자
 													&nbsp;</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이메일</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이메일</td>
 												<td><input type='text' name='memberEmail'></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">전화번호
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   전화번호
 												</td>
 												<td><input type='text' name='phone1' id='phone1' /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">휴대폰</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   휴대폰</td>
 												<td><input type='text' name='phone2' id='phone2' /></td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">생년월일</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   생년월일</td>
 												<td><input type='date' name='birthdate' id='birthdate' />
 												</td>
 											</tr>
 											<tr>
-												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">주소</td>
+												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   주소</td>
 												<td><input type="text" id="postcode1" name="postcode1"
 													style='width: 80px'> - <input type="text"
 													id="postcode2" name="postcode2" style='width: 80px'>

@@ -107,7 +107,7 @@
 				<table align="center" width="100%">
 				<tr>
 					<td width="100">아이디</td>
-					<td><input name="bmId" value="" type="text" class="input_style1" id="id" tabindex="1" style="width:130px;"></td>
+					<td><input name="mbId" value="" type="text" class="input_style1" id="id" tabindex="1" style="width:130px;"></td>
 				</tr>
 				<tr><td height="3"></td></tr>
 				<tr>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace : 패키지명.클래스이름 을 논리적으로 선언 -->
+<mapper namespace="com.easyauction.mapper.MessageMapper">
+
+	<sql id="messagecolumns">
+		msgNo,
+		msgSenderDelete,
+		msgReceiverDelete,
+		msgContent,
+		msgTitle,
+		msgDate,
+		msgSenger,
+		msgReceiver,
+		msgReadCheck
+		</sql>
+<!-- mybatis-config.xml에 alias으로 Dto로 정의 해두면 resultType="Member" 접근 가능 함.  
+	만약  resultMap로 설정했을경우 resultMap="Member"로 접근 -->
+	<!-- <select id="getMemberByIdAndPasswd" parameterType="hashMap" resultType="Member">
+		SELECT * FROM member 
+		WHERE mbId = #{mbId} 
+		AND 
+		mbPasswd = #{mbPasswd}
+	</select>  -->
+	
+	
+</mapper>

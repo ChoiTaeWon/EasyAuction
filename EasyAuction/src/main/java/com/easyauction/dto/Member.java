@@ -5,7 +5,6 @@ import java.util.Date;
 public class Member {
 	
 	private String mbId;
-	private String mbName;
 	private String mbPasswd;
 	private String mbAddress1;
 	private String mbAddress2;
@@ -14,7 +13,8 @@ public class Member {
 	private boolean mbGender;
 	private Date mbBirthDate;
 	private int mbGrade;
-	private int mbReportiongCount;
+	private int mbReportingCount;
+	private String mbName;
 	private boolean mbGrant;
 	private boolean mbDelete;
 	private Date mbRegdate;
@@ -80,11 +80,11 @@ public class Member {
 	public void setMbGrade(int mbGrade) {
 		this.mbGrade = mbGrade;
 	}
-	public int getMbReportiongCount() {
-		return mbReportiongCount;
+	public int getMbReprtiongCount() {
+		return mbReportingCount;
 	}
-	public void setMbReportiongCount(int mbReportiongCount) {
-		this.mbReportiongCount = mbReportiongCount;
+	public void setMbReportiongCount(int mbReportingCount) {
+		this.mbReportingCount = mbReportingCount;
 	}
 	public Boolean getMbGrant() {
 		return mbGrant;

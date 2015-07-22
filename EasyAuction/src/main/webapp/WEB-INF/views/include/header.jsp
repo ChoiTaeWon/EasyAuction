@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
@@ -36,22 +36,32 @@
 		   }
 	 } 
 	
-	function messageshow() {
-		window.open("/easyauction/message/receivemessages.action", "쪽지함",
+	function messageshow(mbId) {
+		window.open("/easyauction/message/receivemessages.action?" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
 	}
  </script>
-
-
-
-
 			<table style="width:960px; height:40px; background-color:#565DD3;">
 				<tr>
 					<td align="right" style="padding:5px 10px 10px 0;" colspan="3">
 						<table class="main_top" >
 									<tr>
-										<td><img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow();"></td>
+										<%-- <c:choose><c:when test="${ sessionScope.loginuser ne null }"> --%>
+							                <td class="smfont3">${ loginuser.mbName }
+							                <%-- <c:when test=""> --%>
+							                	뉴메일이있을때
+												<img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow(${loginuser.mbId});">
+							               	<%-- </c:when><c:otherwise> --%>
+							               		없을때
+							               		<img src="/easyauction/resources/images/ico_mail.gif" onclick="javascript:messageshow(${loginuser.mbId});"></td>
+							               	<%-- </c:otherwise> --%>
+							                <td class="smfont3">│</td>
+											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3">│</td>
+											<td class="smfont3"><img src="/easyauction/resources/images/btn_logout.gif" onclick="javascript:logout();"></td>
+							          <%--   </c:when><c:otherwise> --%>
 										<td><a href="/easyauction/account/login.action"><img src="/easyauction/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
+										<td class="smfont3">│</td>
 										<td><a href="/easyauction/member/register.action">회원가입</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">아이디찾기</a></td>
@@ -59,15 +69,14 @@
 										<td><a href="#">비밀번호찾기</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">상품평보기</a></td>
-										<td class="smfont3">│</td>
-										<td><a href="/easyauction/member/view.action">마이페이지</a></td>
+							           <%--  </c:otherwise></c:choose> --%>
 									</tr>
 						</table>
 					</td>
 				</tr>
 		
 				<tr>
-					<td style="padding-left:10px; width:170px;"><!-- <img src='banner_view.php?number=54' width='167' height='61' border=0 align='absmiddle' style='cursor:hand'> --></td>
+					<td style="padding-left:10px; width:170px;"><!-- <img src='banner_view.php?n umber=54' width='167' height='61' border=0 align='absmiddle' style='cursor:hand'> --></td>
 					<td style="padding-bottom:10px;"align="center"><a href="/easyauction/home.action" onFocus="this.blur();"><img src="/easyauction/resources/images/mainlogo.png" title="메인으로"></td>
 					<td align="right" style="padding:0 10px 5px 0; width:130px;" valign="bottom">
 						<a href="#favorite" onclick="javaScript:bookmarksite();"><img src="/easyauction/resources/images/ico_favo.gif" title="즐겨찾기" style="margin-right:10px;"></a>

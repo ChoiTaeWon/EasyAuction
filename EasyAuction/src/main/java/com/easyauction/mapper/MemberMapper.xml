@@ -8,13 +8,12 @@
 <mapper namespace="com.easyauction.mapper.MemberMapper">
 <!-- <resultMap id="memberResult" type="Member">
 			<id column="mbId" property="mbId" />
-			<result column="mbPasswd" property="mbPasswd" />
 			<result column="mbAddress1" property="mbAddress1" />
 			<result column="mbAddress2" property="mbAddress2" />
 			<result column="mbPhone1" property="mbPhone1" />
 			<result column="mbPhone2" property="mbPhone2" />
 			<result column="mbGender" property="mbGender" />
-			<result column="mbBirthdate" property="mbBirthdate" />
+			<result column="mbBirthDate" property="mbBirthDate" />
 			<result column="mbGrade" property="mbGrade" />
 			<result column="mbReportingCount" property="mbReportingCount" />
 			<result column="mbName" property="mbName" />
@@ -25,7 +24,6 @@
 		</resultMap> -->
 	<sql id="membercolumns">
 		mbId,
-		mbPasswd,
 		mbAddress1,
 		mbAddress2,
 		mbPhone1,
@@ -40,10 +38,10 @@
 		mbRegdate,
 		mbEmail
 		</sql>
-
-	<select id="getMemberByIdAndPasswd" resultMap="hashMap">
-		SELECT <include refid="membercolumns" />
-		FROM member 
+<!-- mybatis-config.xml에 alias으로 Dto로 정의 해두면 resultType="Member" 접근 가능 함.  
+	만약  resultMap로 설정했을경우 resultMap="Member"로 접근 -->
+	<select id="getMemberByIdAndPasswd" parameterType="hashMap" resultType="Member">
+		SELECT * FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
 		mbPasswd = #{mbPasswd}

@@ -5,13 +5,14 @@ import java.util.Date;
 public class Message {
 	
 	private int msgNo;
-	private Boolean msgsenderdelete;
-	private Boolean msgreceiverdelete;
+	private boolean msgSenderDelete;
+	private boolean msgReceiverDelete;
 	private String msgContent;
 	private String msgTitle;
 	private Date msgDate;
 	private String msgSenger;
-	private String msgreceiver;
+	private String msgReceiver;
+	private boolean msgReadCheck;
 	
 	
 	public int getMsgNo() {
@@ -20,17 +21,17 @@ public class Message {
 	public void setMsgNo(int msgNo) {
 		this.msgNo = msgNo;
 	}
-	public Boolean getMsgsenderdelete() {
-		return msgsenderdelete;
+	public Boolean getMsgSenderDelete() {
+		return msgSenderDelete;
 	}
-	public void setMsgsenderdelete(Boolean msgsenderdelete) {
-		this.msgsenderdelete = msgsenderdelete;
+	public void setMsgSenderDelete(Boolean msgSenderDelete) {
+		this.msgSenderDelete = msgSenderDelete;
 	}
-	public Boolean getMsgreceiverdelete() {
-		return msgreceiverdelete;
+	public Boolean getMsgReceiverDelete() {
+		return msgReceiverDelete;
 	}
-	public void setMsgreceiverdelete(Boolean msgreceiverdelete) {
-		this.msgreceiverdelete = msgreceiverdelete;
+	public void setMsgReceiverDelete(Boolean msgReceiverDelete) {
+		this.msgReceiverDelete = msgReceiverDelete;
 	}
 	public String getMsgContent() {
 		return msgContent;
@@ -56,11 +57,19 @@ public class Message {
 	public void setMsgSenger(String msgSenger) {
 		this.msgSenger = msgSenger;
 	}
-	public String getMsgreceiver() {
-		return msgreceiver;
+	public String getMsgReceiver() {
+		return msgReceiver;
 	}
-	public void setMsgreceiver(String msgreceiver) {
-		this.msgreceiver = msgreceiver;
+	public void setMsgReceiver(String msgReceiver) {
+		this.msgReceiver = msgReceiver;
 	}
+	public boolean isMsgReadCheck() {
+		return msgReadCheck;
+	}
+	public void setMsgReadCheck(boolean msgReadCheck) {
+		this.msgReadCheck = msgReadCheck;
+	}
+	
+	
 	
 }

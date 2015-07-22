@@ -13,9 +13,8 @@ import com.easyauction.mapper.MemberMapper;
 public class MyMemberRepository implements MemberRepository {
 	
 	private MemberMapper memberMapper;
-	@Override
 	@Autowired
-	@Qualifier("memberMapper")
+	@Qualifier(value="memberMapper")
 	public void setMemberMapper(MemberMapper memberMapper) {
 		this.memberMapper = memberMapper;
 	}	
