@@ -42,6 +42,11 @@
 	만약  resultMap로 설정했을경우 resultMap="Member"로 접근 -->
 	<select id="getMemberByIdAndPasswd" parameterType="hashMap" resultType="Member">
 		SELECT * FROM member 
+	</select>
+	
+	<select id="getMemberByIdAndPasswd">
+		SELECT <include refid="membercolumns" />
+		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
 		mbPasswd = #{mbPasswd}

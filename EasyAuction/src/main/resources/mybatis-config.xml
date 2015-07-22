@@ -10,12 +10,15 @@
 	<typeAliases>
 		<typeAlias type="com.easyauction.dto.Member" alias="Member" />
 		<typeAlias type="com.easyauction.dto.Message" alias="Message" />
+		<typeAlias type="com.easyauction.dto.Board" alias="Board" />
+		<typeAlias type="com.easyauction.dto.BoardImage" alias="boardImage"/>
 	</typeAliases>
 
 
 	<mappers>
 		<mapper resource="com/easyauction/mapper/MemberMapper.xml" />
 		<mapper resource="com/easyauction/mapper/MessageMapper.xml" />
-	</mappers>
+		<mapper resource="com/easyauction/mapper/BoardMapper.xml" />
+	</mappers> 
 
 </configuration>
