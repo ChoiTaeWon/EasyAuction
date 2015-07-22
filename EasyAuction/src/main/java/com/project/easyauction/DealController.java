@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DealController {
 	
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "deal.action", method = RequestMethod.GET)
 	public String directList() {
 		

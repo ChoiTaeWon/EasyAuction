@@ -20,12 +20,16 @@
 		
 		<br/>
 		
-		<div style="width: 960px; border: 1px solid;float: left;padding: 0 0 0 0;margin: 0 0 0 0;">
-			<table style="border: 1px solid;width: 100%" >
+		<div style="width: 960px;float: left;padding: 0 0 0 0;margin: 0 0 0 0;">
+			<table style="width: 100%" >
 				<tr>
-					<td style="text-align:left;width: 80%">게시물 목록</td>
+					<td style="text-align:left;width: 95%">
+						<img src="/easyauction/resources/images/deal_list.png" style="width: 132px;height: 31px">
+						<img src="/easyauction/resources/images/deal_list_eng.png" style="width: 132px;height: 31px">
+					</td>
 				
-					<td style="text-align:center;width: 20%"><a href="dealregister.action">글쓰기 ㄱㄱㄱ</a></td>
+					<td style="text-align:center;width: 5%"><a href="dealregister.action">
+					<img  src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 			</table>
 		</div>
