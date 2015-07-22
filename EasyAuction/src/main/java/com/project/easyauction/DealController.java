@@ -23,7 +23,11 @@ public class DealController {
 		return "deal/dealview";
 	}
 	
-	
+	@RequestMapping(value = "dealregister.action", method = RequestMethod.GET)
+	public String dealRegister() {
+		
+		return "deal/dealregister";
+	}
 	
 	
 }
