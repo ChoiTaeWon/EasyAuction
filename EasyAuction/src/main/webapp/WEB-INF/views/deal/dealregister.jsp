@@ -6,7 +6,7 @@
 	
 	<meta charset="utf-8" />
 	<title>Easy Auction 경매 등록</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/datetimepicker.min.css"/>
 	<script type="text/javascript" src="/easyauction/resources/js/datetimepicker.min.js"></script>

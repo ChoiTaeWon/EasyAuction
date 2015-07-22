@@ -6,7 +6,7 @@
 	
 	<meta charset="utf-8" />
 	<title>Easy Auction 게시글 보기</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
@@ -21,15 +21,16 @@
 		
 		<div class="recommendview">
 		
-		
+			상품 정보
 		
 		</div>
 			
 			
 	
 		
-
-	
+		<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
 	
 	</div><!-- div wrap 끝 -->
 </body>

@@ -6,7 +6,7 @@
 	
 	<meta charset="utf-8" />
 	<title>Easy Auction 경매 거래</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
@@ -24,8 +24,8 @@
 			<table style="width: 100%" >
 				<tr>
 					<td style="text-align:left;width: 95%">
-						<img src="/easyauction/resources/images/deal_list.png" style="width: 132px;height: 31px">
-						<img src="/easyauction/resources/images/deal_list_eng.png" style="width: 132px;height: 31px">
+						<img src="/easyauction/resources/images/deal_list.png" style="width: 125px;height: 31px">
+						<img src="/easyauction/resources/images/deal_list_eng.png" style="width: 125px;height: 31px">
 					</td>
 				
 					<td style="text-align:center;width: 5%"><a href="dealregister.action">
@@ -39,7 +39,7 @@
 		
 		
 		<div id="viewlist"> <!-- viewlist div -->
-			<table style="width:955px;margin-left: 5.5px" >
+			<table style="width:955px; margin-left: 5.5px" >
 				<tr>
 					<td style="background-color:#5a5a5a; height:1px;"></td>
 				</tr>
