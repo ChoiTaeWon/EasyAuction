@@ -26,7 +26,7 @@
 		AND 
 		mbPasswd = #{mbPasswd}
 	</select>  -->
-	<select id="getMsgSendList" parameterType="String" resultType="Message">
+	<select id="getMsgReceiveList" parameterType="String" resultType="Message">
 		SELECT 
 	   		<include refid="messagecolumns" />
 	   	FROM
@@ -39,7 +39,7 @@
 		   			<include refid="messagecolumns" />
 		   		FROM 
 		   			Message 
-		   		AND msgSenderDelete = 0 
+		   		WHERE MSGRECEIVERDELETE = 0 AND MSGRECEIVER Like = #{mbId} 
 		   		ORDER BY 
 		   			msgNo DESC
 	   		) s	   
