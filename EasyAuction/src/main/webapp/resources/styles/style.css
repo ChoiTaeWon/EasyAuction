@@ -85,6 +85,14 @@ li:HOVER {
 .main_top_menu a:hover{text-decoration:none;}
 .main_top_menu a:active{text-decoration:none;}
 
+.input_style1 {
+	height:18px;
+	border-width:1;
+	text-decoration: none;
+	border-color:#DEDEDE;
+	border: 1px solid #DEDEDE;
+	background-repeat:no-repeat;
+}
 
 .mapview {
 		width:950px;
@@ -176,3 +184,4 @@ li:HOVER {
 .active {
 	background: #377722 url(images/pattern.png) top left repeat;
 }
+

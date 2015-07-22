@@ -25,7 +25,7 @@
 				<tr>
 					<td style="text-align:left;width: 80%">게시물 목록</td>
 				
-					<td style="text-align:center;width: 20%">글쓰기 ㄱㄱㄱ</td>
+					<td style="text-align:center;width: 20%"><a href="dealregister.action">글쓰기 ㄱㄱㄱ</a></td>
 				</tr>
 			</table>
 		</div>

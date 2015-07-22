@@ -19,7 +19,9 @@ public class Auction {
 	private	boolean aucType;
 	private	int aucReadCount;
 	private	String aucWriter;
+	private String aucAdText;
 	
+
 	public int getAucNo() {
 		return aucNo;
 	}
@@ -117,5 +119,10 @@ public class Auction {
 		this.aucWriter = aucWriter;
 	}
 	
-	
+	public String getAucAdText() {
+		return aucAdText;
+	}
+	public void setAucAdText(String aucAdText) {
+		this.aucAdText = aucAdText;
+	}	
 }
