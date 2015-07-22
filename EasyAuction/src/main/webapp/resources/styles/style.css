@@ -111,25 +111,6 @@ li:HOVER {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Starter CSS for Flyout Menu */
 #cssmenu,
 #cssmenu ul,
@@ -195,12 +176,23 @@ li:HOVER {
 .active {
 	background: #377722 url(images/pattern.png) top left repeat;
 }
-
-
-
-
-
-
-
-
-
+.donguri {
+	text-align : center;
+	align : center;
+	background : linear-gradient( to bottom, #c0c0c0, #e3e3e3 );
+	padding:15px;
+	border: solid 1px #959595;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.dongurimom {
+	width:152;
+	text-align : center;
+	border: solid 1px #959595;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
