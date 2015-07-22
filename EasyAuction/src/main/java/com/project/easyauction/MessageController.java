@@ -12,8 +12,9 @@ public class MessageController {
 	
 	
 	@RequestMapping(value = "receivemessages.action", method = RequestMethod.GET)
-	public String register() {
+	public String register(String mbId) {
 		
+	
 		return "message/receivemessages";
 	}
 	@RequestMapping(value = "sendmessages.action", method = RequestMethod.GET)
@@ -26,6 +27,10 @@ public class MessageController {
 		
 		return "message/sendmessage";
 	}
-	
+	@RequestMapping(value = "viewmessage.action", method = RequestMethod.GET)
+	public String viewmessage() {
+		
+		return "message/viewmessage";
+	}
 	
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/messagestyles.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -18,6 +18,7 @@
 </div>
 <!-- 쪽지 해더 -->
 <!-- 쪽지 제목 및 내용 -->
+<form action="sendmessge.action" method="post">
 <table cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 			<td height="2" bgcolor="#227405"></td>
@@ -36,7 +37,10 @@
 내용
 <textarea id='content' name='content' style="width:100%;height:250px;"></textarea></td>
 </tr>
-
 </table>
+<div align="center">
+	<img src="/easyauction/resources/images/bt_submit.gif" onclick="submit();" />
+</div>
+</form>
 <!-- 쪽지 제목 및 내용 --></body>
 </html>

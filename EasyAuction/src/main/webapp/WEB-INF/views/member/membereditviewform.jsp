@@ -126,7 +126,7 @@
 
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
 											style="border-top: 1px solid #ededed;">
-											<tr>
+											<tr height="300px">
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
@@ -180,12 +180,14 @@
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif"
 													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">주소</td>
 												<td><input type="text" id="postcode1" name="postcode1"
-													style='width: 80px'> - <input type="text"
-													id="postcode2" name="postcode2" style='width: 80px'>
+													style='width: 80px' readonly="readonly"> - <input type="text"
+													id="postcode2" name="postcode2" style='width: 80px' readonly="readonly">
 													<input type="button" onclick="daumPostcode()"
-													value="우편번호 찾기" style='height: 25px'><br> <input
+													value="우편번호 찾기" style='height: 25px'><br> 
+													<input
 													type="text" id="address1" name="memberAddress1"
-													placeholder="주소" style='width: 280px'><br /> <input
+													placeholder="주소" style='width: 280px' readonly="readonly"><br /> 
+													<input
 													type="text" id="address2" name="memberAddress2"
 													placeholder="상세주소" style='width: 280px'><span id="guide" style="color: #999"></span></td>
 											</tr>

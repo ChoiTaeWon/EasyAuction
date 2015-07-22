@@ -28,7 +28,7 @@
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
 			<tr>
-				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
+				<td style="padding-left:25px;"><img src="/easyauction/resources/images/gongjimain.png"></td>
 			</tr>
 			</table>
 			
@@ -41,8 +41,8 @@
 				<!-- <td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a>  -->
 								  
-				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
 				</td>
 			</tr>
 			</table>
@@ -86,7 +86,7 @@
 				<tr>
 					<td align="center" width="50" class="smfont"><img src="/easyauction/resources/images/gongji.png" align="absmiddle"></td>
 					<td width="1"></td>
-					<td class="smfont" align="left"><div style="padding-left:10px;"><a href="bbs_detail.php?bbs_num=11&num=&tb=board_free"><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 자유게시판 공지사항입니다.</a></div></td>
+					<td class="smfont" align="left"><div style="padding-left:10px;"><a href="bbs_detail.php?bbs_num=11&num=&tb=board_free"><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 공지사항 게시판입니다.</a></div></td>
 					<td width="1"></td>
 					<td width="90" class="smfont" align="center"><font color="#7f7b73">
 				<a href='#1' onClick="messageShowUser('0')" style='padding-bottom:6px;'>test</a>
@@ -132,7 +132,7 @@
 
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
+				<td align="right"><a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			
@@ -163,12 +163,14 @@
 			</table>
 			<!-- 검색폼 끝 -->
 			
+
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->
 	<%-- <div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</div>
+	<div style="width: 960px; ">
 	</div> --%>
 </body>
-
 </html>
