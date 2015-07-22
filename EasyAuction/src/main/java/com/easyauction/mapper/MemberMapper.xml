@@ -41,7 +41,7 @@
 		mbEmail
 		</sql>
 
-	<select id="getMemberByIdAndPasswd" resultMap="hashMap">
+	<select id="getMemberByIdAndPasswd">
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId} 

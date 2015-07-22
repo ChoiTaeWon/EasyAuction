@@ -9,7 +9,8 @@
 	<!-- Mapper 파일에서 사용하는 타입에 대한 단축 이름을 지정하는 설정 -->
 	<typeAliases>
 		<typeAlias type="com.easyauction.dto.Member" alias="Member" />
-		<typeAlias type="com.eayauction.dto.Board" alias="Board" />
+		<typeAlias type="com.easyauction.dto.Board" alias="Board" />
+		<typeAlias type="com.easyauction.dto.BoardImage" alias="boardImage"/>
 	</typeAliases>
 
 

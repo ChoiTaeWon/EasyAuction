@@ -28,7 +28,7 @@
 				
 				<div style="padding:5px;"></div>
 
-<form method='post' action='photoregister.action' >
+<form method='post' action='photoregister.action' enctype="multipart/form-data">
 <input type=hidden name='mode' value='add_ok'>
 <input type=hidden name='tb' value='board_knowhow'>
 <input type=hidden name='bbs_num' value=''>
@@ -53,13 +53,13 @@
 		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 		<tr height="28">
 			<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-			<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='name' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='test' readonly></td>
+			<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
 		</tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 		<tr height="28">
 			<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>첨부자료1</td>
-			<td bgcolor="#FFFFFF" style="padding-left:10px;"><input type='file' name='img[]' maxlength=20 style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'></td>
+			<td bgcolor="#FFFFFF" style="padding-left:10px;"><input type='file' name='img' maxlength=20 style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'></td>
 		</tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
@@ -81,7 +81,7 @@
 		<tr>			
 			<td colspan="2">
 				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30"> 
+				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
 					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
 				</td>
 			</tr>
