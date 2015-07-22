@@ -1,5 +1,5 @@
 package com.easyauction.repository;
 
-public class BoardRepository {
+public interface BoardRepository {
 	
 }

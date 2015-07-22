@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>커뮤니티</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
@@ -15,7 +15,7 @@
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 -->
-		<br />
+		<br /><br />
 		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
 			<div style="width:216px;float: left; margin:0 10px 0 0;"><!-- 사이드메뉴 -->
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />

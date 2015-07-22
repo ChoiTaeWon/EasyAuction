@@ -37,6 +37,16 @@ public class BoardController {
 	public String photoList() {
 		
 		return "board/photolist";
+		
+	}
+	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
+	public String photoviewList() {
+		
+		return "board/photoview";
 	}	
-	
+	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
+	public String photoregisterList() {
+		
+		return "board/photoregister";
+	}	
 }

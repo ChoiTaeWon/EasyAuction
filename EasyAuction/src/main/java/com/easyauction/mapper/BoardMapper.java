@@ -1,5 +1,5 @@
-//package com.easyauction.mapper;
-//
-//public class BoardMapper {
-//
-//}
+package com.easyauction.mapper;
+
+public interface BoardMapper {
+
+}
