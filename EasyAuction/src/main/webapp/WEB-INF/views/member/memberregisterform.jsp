@@ -69,7 +69,8 @@
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 -->
-		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
+		<div style="width: 960px; ">
+		<!-- 헤더밑 부분 margin:0 auto;-->
 	<div align="center">
 		<tr>
 			<td><img
