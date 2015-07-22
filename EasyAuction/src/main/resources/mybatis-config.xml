@@ -7,13 +7,13 @@
 <configuration>
 
 	<!-- Mapper 파일에서 사용하는 타입에 대한 단축 이름을 지정하는 설정 -->
-	<typeAliases>
-		<!-- <typeAlias type="com.easyauction.dto" alias="Member" /> -->
-		</typeAliases>
+<!-- 	<typeAliases>
+		<typeAlias type="com.easyauction.dto" alias="Member" />
+	</typeAliases>
 
 
 	<mappers>
-		<!-- <mapper resource="com/easyauction/mapper/MemberMapper.xml" />	  -->
-	</mappers>
+		<mapper resource="com/easyauction/mapper/MemberMapper.xml" />
+	</mappers> -->
 
 </configuration>

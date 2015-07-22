@@ -13,7 +13,7 @@
 
 <body>
 
-	<div id="wrap">
+		
 		<div id="top">
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>

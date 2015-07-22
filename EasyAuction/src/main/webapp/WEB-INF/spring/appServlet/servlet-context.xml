@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.project.easyauction" />
+	<context:component-scan base-package="com.easyauction.service" />
 	
 	
 	

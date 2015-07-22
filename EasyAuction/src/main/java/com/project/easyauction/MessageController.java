@@ -26,6 +26,10 @@ public class MessageController {
 		
 		return "message/sendmessage";
 	}
-	
+	@RequestMapping(value = "viewmessage.action", method = RequestMethod.GET)
+	public String viewmessage() {
+		
+		return "message/viewmessage";
+	}
 	
 }

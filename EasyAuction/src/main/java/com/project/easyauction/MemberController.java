@@ -19,7 +19,7 @@ public class MemberController {
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
 	public String view() {
 		
-		return "member/membereditviewform";
+		return "member/mypage";
 	}
 
 }

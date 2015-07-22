@@ -58,9 +58,9 @@
 										<td class="smfont3">│</td>
 										<td><a href="#">비밀번호찾기</a></td>
 										<td class="smfont3">│</td>
-										<td><a href="/easyauction/member/view.action">마이페이지</a></td>
-										<td class="smfont3">│</td>
 										<td><a href="#">상품평보기</a></td>
+										<td class="smfont3">│</td>
+										<td><a href="/easyauction/member/view.action">마이페이지</a></td>
 									</tr>
 						</table>
 					</td>
