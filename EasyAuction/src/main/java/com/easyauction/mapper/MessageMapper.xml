@@ -26,6 +26,27 @@
 		AND 
 		mbPasswd = #{mbPasswd}
 	</select>  -->
+	<select id="getMsgSendList" parameterType="String" resultType="Message">
+		SELECT 
+	   		<include refid="messagecolumns" />
+	   	FROM
+	   	(			
+	   		SELECT
+	   			rownum idx, s.* 
+	   		FROM
+	   		(			   
+	   			SELECT
+		   			<include refid="messagecolumns" />
+		   		FROM 
+		   			Message 
+		   		AND msgSenderDelete = 0 
+		   		ORDER BY 
+		   			msgNo DESC
+	   		) s	   
+	   	)
+	   	WHERE 
+	   		idx >= 1 AND idx &lt; 10
+	</select>
 	
 	
 </mapper>
