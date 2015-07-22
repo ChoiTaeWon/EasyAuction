@@ -33,8 +33,10 @@
 											</b>
 										</td>
 										<td align="right" style="padding-right:10px;">
-											<img src='img/detail_report.gif' alt='쪽지신고하기' title='쪽지신고하기' align='absmiddle' onclick="window.open('happy_report.php?report_post=','happy_report','width=350,height=350');" style='cursor:pointer; vertical-align:middle;'/> 
-											<a href='./my_zzim.php?action=del&links_number=4&category=47r09'><img src=img/btn_outzzim.gif border=0 style='vertical-align:middle;'></a>
+											<img src="/easyauction/resources/images/btn_auction_report.gif" alt='쪽지신고하기' title='쪽지신고하기' 
+											align='absmiddle' onclick="window.open('happy_report.php?report_post=','happy_report','width=350,height=350');" 
+											style='cursor:pointer; vertical-align:middle;'/> 
+											
 										</td>
 									</tr>
 								</table>
@@ -77,19 +79,29 @@
 																	</script>
 														     </div> -->
 														
-														<img src="/easyauction/resources/images/qwerqwerqwer.jpg" onclick="javascript:Selection('2');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('3');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('4');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('5');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/qwerqwerqwer.jpg" onclick="javascript:Selection('2');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('3');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('4');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('5');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('6');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
 														<br>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('6');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('7');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('8');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('9');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('10');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('7');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('8');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('9');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('10');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('11');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
 														
 													</td>
 												</tr>
+												<tr>
+														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #DEDEDE;">
+													</td>
+												</tr>
+												
 											</table>
 										</td>
 							

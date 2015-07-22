@@ -8,6 +8,8 @@
 	<title>Easy Auction 경매 등록</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/datetimepicker.min.css"/>
+	<script type="text/javascript" src="/easyauction/resources/js/datetimepicker.min.js"></script>
 </head>
 <body>
 		<div id="wrap">
@@ -63,23 +65,23 @@
 													</td>
 													<td width="800" style="padding-left:10px;">	
 													
-														<select size=1 name="aucCategory" onChange=startRequest(this,'company','type','sub_type','150','1','regiform') style="width:150px">
+														<select size=1 name="aucCategory" style="width:150px">
 															<option selected="selected">카테고리 선택</option>
-															<option value=47>의류/패션용품</option>
-															<option value=48>국내화장품</option>
-															<option value=57>컴퓨터/주변기기/게임</option>
-															<option value=49>해외화장품/향수</option>
-															<option value=50>출산용품/유아용품</option>
-															<option value=51>자연식품/식재료</option>
-															<option value=52>가공식품/건강/음료</option>
-															<option value=53>가구/생활용품</option>
-															<option value=54>악기/음악관련상품</option>
-															<option value=55>프라모델/문구/사무</option>
-															<option value=56>디지털/가전제품</option>
-															<option value=58>스포츠/성인/상품권</option>
-															<option value=59>자동차/관련용품</option>
-															<option value=60>도서/티켓/서비스</option>
-															<option value=348>출력될 매물 디렉토리</option>
+															<option value=01>의류/패션용품</option>
+															<option value=02>국내화장품</option>
+															<option value=03>컴퓨터/주변기기/게임</option>
+															<option value=04>해외화장품/향수</option>
+															<option value=05>출산용품/유아용품</option>
+															<option value=06>자연식품/식재료</option>
+															<option value=07>가공식품/건강/음료</option>
+															<option value=08>가구/생활용품</option>
+															<option value=09>악기/음악관련상품</option>
+															<option value=10>프라모델/문구/사무</option>
+															<option value=11>디지털/가전제품</option>
+															<option value=12>스포츠/성인/상품권</option>
+															<option value=13>자동차/관련용품</option>
+															<option value=14>도서/티켓/서비스</option>
+															<option value=15>출력될 매물 디렉토리</option>
 														</select>	
 																
 														<font> 상품등록 카테고리를 설정 하세요</font>
