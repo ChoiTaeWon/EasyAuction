@@ -163,14 +163,12 @@
 			</table>
 			<!-- 검색폼 끝 -->
 			
-			
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->
 	<%-- <div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</div>
-	<div style="width: 960px; ">
 	</div> --%>
 </body>
+
 </html>
