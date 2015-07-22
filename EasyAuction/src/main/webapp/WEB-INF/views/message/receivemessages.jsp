@@ -14,6 +14,7 @@
    <li class='active'><a href='/easyauction/message/receivemessages.action'><span>받은 쪽지함</span></a></li>
    <li><a href='/easyauction/message/sendmessages.action'><span>보낸쪽지함</span></a></li>
    <li><a href='/easyauction/message/sendmessage.action'><span>쪽지보내기</span></a></li>
+   <li><a href='/easyauction/message/viewmessage.action'><span>쪽지보기(임시)</span></a></li>
 </ul>
 </div>
 <!-- 쪽지 해더 -->

@@ -6,6 +6,23 @@
   
 <!-- namespace : 패키지명.클래스이름 을 논리적으로 선언 -->
 <mapper namespace="com.easyauction.mapper.MemberMapper">
+<!-- <resultMap id="memberResult" type="Member">
+			<id column="mbId" property="mbId" />
+			<result column="mbPasswd" property="mbPasswd" />
+			<result column="mbAddress1" property="mbAddress1" />
+			<result column="mbAddress2" property="mbAddress2" />
+			<result column="mbPhone1" property="mbPhone1" />
+			<result column="mbPhone2" property="mbPhone2" />
+			<result column="mbGender" property="mbGender" />
+			<result column="mbBirthdate" property="mbBirthdate" />
+			<result column="mbGrade" property="mbGrade" />
+			<result column="mbReportingCount" property="mbReportingCount" />
+			<result column="mbName" property="mbName" />
+			<result column="mbGrant" property="mbGrant" />
+			<result column="mbDelete" property="mbDelete" />
+			<result column="mbRegdate" property="mbRegdate" />
+			<result column="mbEmail" property="mbEmail" />
+		</resultMap> -->
 	<sql id="membercolumns">
 		mbId,
 		mbPasswd,
@@ -29,7 +46,7 @@
 		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
-		mbpasswd = #{passwd}
+		mbPasswd = #{mbPasswd}
 	</select> 
 	
 </mapper>

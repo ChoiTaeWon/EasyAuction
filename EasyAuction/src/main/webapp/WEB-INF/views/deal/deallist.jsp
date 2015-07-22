@@ -17,11 +17,25 @@
 		<div id="top">
 			<c:import url="/WEB-INF/views/include/header.jsp"/>
 		</div>
+		
 		<br/>
+		
+		<div style="width: 960px; border: 1px solid;float: left;padding: 0 0 0 0;margin: 0 0 0 0;">
+			<table style="border: 1px solid;width: 100%" >
+				<tr>
+					<td style="text-align:left;width: 80%">게시물 목록</td>
+				
+					<td style="text-align:center;width: 20%">글쓰기 ㄱㄱㄱ</td>
+				</tr>
+			</table>
+		</div>
+			
+		<br/><br/>
+		
 		
 		
 		<div id="viewlist"> <!-- viewlist div -->
-			<table style="width:955px">
+			<table style="width:955px;margin-left: 5.5px" >
 				<tr>
 					<td style="background-color:#5a5a5a; height:1px;"></td>
 				</tr>
@@ -106,6 +120,8 @@
  <% } %> 
 		
 		</div><!-- viewlist div -->
+		
+		
 		
 		<div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />

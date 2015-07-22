@@ -126,7 +126,7 @@
 
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
 											style="border-top: 1px solid #ededed;">
-											<tr>
+											<tr height="300px">
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
