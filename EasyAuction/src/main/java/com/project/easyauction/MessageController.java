@@ -35,6 +35,8 @@ public class MessageController {
 		
 		mav.setViewName("message/receivemessages");
 		mav.addObject("messages", messages);
+		mav.addObject("mbId", mbId);
+		
 		
 		return mav; 
 	}
@@ -46,13 +48,25 @@ public class MessageController {
 		
 		mav.setViewName("message/sendmessages");
 		mav.addObject("messages", messages);
+		mav.addObject("mbId", mbId);
 		
 		return mav; 
 	}
 	@RequestMapping(value = "sendmessage.action", method = RequestMethod.GET)
-	public String sendmessage() {
+	public ModelAndView sendmessage(String mbId) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("message/sendmessage");
+		mav.addObject("mbId", mbId);
+		return mav;
+	}
+	@RequestMapping(value = "sendmessage.action", method = RequestMethod.POST)
+	public ModelAndView send(Message message) {
+		message.getMsgNo();
 		
-		return "message/sendmessage";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("message/sendmessages");
+		
+		return mav;
 	}
 	@RequestMapping(value = "viewmessage.action", method = RequestMethod.GET)
 	public ModelAndView viewmessage(int msgNo) {

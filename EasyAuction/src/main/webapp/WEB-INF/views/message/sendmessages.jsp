@@ -11,9 +11,8 @@
 $(function(){
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
-		alert(id);
-		alert('${loginuser.mbId}');
-		var mbId = '${loginuser.mbId}';
+		alert('${mbId}');
+		var mbId = '${mbId}';
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
