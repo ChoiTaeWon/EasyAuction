@@ -38,5 +38,17 @@ public class OracleMessageRepository implements MessageRepository{
 		Message message = messageMapper.getMsgBymsgNo(msgNo);
 		return message;
 	}
+
+	@Override
+	public void setSendMessage(Message message) {
+		messageMapper.setSendMessage(message);
+		
+	}
+
+	@Override
+	public void deleteMsgBymsgNo(int msgNo, String pageId) {
+		messageMapper.deleteMsgBymsgNo(msgNo, pageId);
+		
+	}
 	
 }

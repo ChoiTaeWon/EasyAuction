@@ -61,11 +61,10 @@ public class MessageController {
 	}
 	@RequestMapping(value = "sendmessage.action", method = RequestMethod.POST)
 	public ModelAndView send(Message message) {
-		message.getMsgNo();
-		
+		msgsvc.setSendMessage(message);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("message/sendmessages");
-		
+		mav.addObject("mbId", message.getMsgSender());
 		return mav;
 	}
 	@RequestMapping(value = "viewmessage.action", method = RequestMethod.GET)
@@ -76,6 +75,17 @@ public class MessageController {
 		
 		mav.setViewName("message/viewmessage");
 		mav.addObject("message", message);
+		
+		return mav;
+	}
+	@RequestMapping(value = "deletemessage.action", method = RequestMethod.GET)
+	public ModelAndView deletemessage(int msgNo, String pageId, String mbId) {
+		
+		msgsvc.deleteMsgBymsgNo(msgNo, pageId);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("message/" + pageId);
+		mav.addObject("mbId", mbId);
 		
 		return mav;
 	}

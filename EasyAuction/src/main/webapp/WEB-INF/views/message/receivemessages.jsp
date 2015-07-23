@@ -18,6 +18,11 @@ $(function(){
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
+function deletemessage(msgNo){
+	alert(msgNo);
+	var pageId = 'receivemessages';
+	location.href="/easyauction/message/deletemessage.action?msgNo=" + mbId + "&pageId" + pageId;
+}
 </script>
 </head>
 <body>
@@ -80,10 +85,10 @@ $(function(){
 <c:when test="${ messages ne null }">
 <c:forEach var="message" items="${ messages }">
 	<tr height='25'>
-		<td style='padding-left:5px'><a href="#"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">${ message.msgContent }</a></td>
+		<td style='padding-left:5px'><a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">${ message.msgContent }</a></td>
 		<td width='81' align='center'><font color="#888888">${ message.msgSender }</td>
 		<td width='101' align='center'><font color="#888888">${ message.msgDate }</td>
-		<td width='61' align='center'><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle"></a></td>
+		<td width='61' align='center'><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle" onclick="deletemessage(${ message.msgNo });"></a></td>
 </c:forEach>
 </c:when>
 <c:otherwise>
@@ -93,11 +98,11 @@ $(function(){
 	</tr>
 </table>
 <!-- 페이징 -->
-<table width='96%' cellspacing='0' cellpadding='0' border='0'>
+<!-- <table width='96%' cellspacing='0' cellpadding='0' border='0'>
 	<tr>
 		<td align="center" height="30"><font style='font-size:11px'>[Prev]...<font color='#00CC00'>[</font><font color='red'><b>1</b></font><font color='#00CC00'>]</font>[<a href='/happy_message.php?start=10&mode=receivelist&kfield=&kword=&adminMode=n' onfocus=this.blur()>2</a>]<a href='/happy_message.php?start=10&mode=receivelist&kfield=&kword=&adminMode=n' onfocus=this.blur();>...[Next]</a></font></td>
 	</tr>
-</table>
+</table> -->
 <!-- 페이징 -->
 <!-- for문들어갈 쪽지내용 -->
 </body>

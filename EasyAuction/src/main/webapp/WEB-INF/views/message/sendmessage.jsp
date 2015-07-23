@@ -67,7 +67,7 @@ $(function(){
 		<tr>
 			<td height="27" bgcolor="#F9F9F9">
 		<tr>
-<input type="hidden" id="msgSender" value="${ mbId }"/>
+<input type="hidden" id="msgSender" name="msgSender" value="${ mbId }"/>
 <td>제목<br /><input align="right" type="text" id='msgTitle' name='msgTitle' style="width:100%;" /><br /></td>
 </tr>
 <tr>

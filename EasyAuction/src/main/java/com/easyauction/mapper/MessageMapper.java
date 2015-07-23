@@ -16,6 +16,10 @@ public interface MessageMapper {
 	List<Message> getMsgSenderList(String mbId);
 
 	Message getMsgBymsgNo(int msgNo);
+
+	void setSendMessage(Message message);
+
+	void deleteMsgBymsgNo(int msgNo, String pageId);
 	
 
 }

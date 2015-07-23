@@ -12,4 +12,9 @@ public interface MessageService {
 
 	Message getMsgBymsgNo(int msgNo);
 
+	void setSendMessage(Message message);
+
+	void deleteMsgBymsgNo(int msgNo, String pageId);
+
+
 }
