@@ -52,4 +52,10 @@ public class OracleBoardRepository implements BoardRepository{
 		List<Board> photos = boardMapper.getPhotoList();
 		return photos;
 	}
+
+	@Override
+	public List<Board> getfreeBoardList() {
+		List<Board> boards = boardMapper.getfreeBoardList();
+		return boards;
+	}
 }

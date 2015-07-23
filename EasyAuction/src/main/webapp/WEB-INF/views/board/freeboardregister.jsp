@@ -94,7 +94,7 @@
 						
 						<table border="0" cellspacing="0" cellpadding="0" width="100%" >
 						<tr>
-							<td> 
+							<td align=center> 
 								<input type=image value='등록' src='/easyauction/resources/images/gaib.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
 					 			<a href='freeboard.action';><img src='/easyauction/resources/images/listlist.png' BORDER=0 width="70" height="30"></A>
 							</td>

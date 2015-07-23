@@ -36,12 +36,15 @@ public class MyBoardService implements BoardService{
 	public void insertPhotoImage(BoardImage boardImage){
 		boardRepository.insertPhotoImage(boardImage);
 	}
-
 	
 	public List<Board> getPhotoList(){
 		List<Board> photos = boardRepository.getPhotoList();
-		
 		return photos;
+	}
+	
+	public List<Board> getfreeBoardList(){
+		List<Board> boards = boardRepository.getfreeBoardList();
+		return boards;
 	}
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>공지사항게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
@@ -19,7 +19,6 @@
 			<div style="width:216px;float: left; margin:0 0 0 0;"><!-- 사이드메뉴 -->
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />
 			</div><!-- 사이드메뉴 끝 -->
-			
 			<div style="width: 730px; float:right;"><!-- list -->
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
 				<tr>
@@ -34,17 +33,17 @@
 					<!-- 오른쪽 위 자유게시판 -->
 					<td align="left">&nbsp;</td>
 								  
-					<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								 	 <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
+					<td align="right"><a href='/easyauction/board/gonji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								 	  <a href='/easyauction/board/gonji.action'><img src='/easyauction/resources/images/gonjismall.png'></a>
 					</td>
 				</tr>
 			</table>
 
-				<form method='post' action='gongjiregister.action' enctype="multipart/form-data">
-				<input type=hidden name='mode' value='add_ok'>
-				<input type=hidden name='tb' value='board_knowhow'>
-				<input type=hidden name='bbs_num' value=''>
-
+			<form method='post' action='gonjiregister.action' enctype="multipart/form-data">
+			<input type=hidden name='mode' value='add_ok'>
+			<input type=hidden name='tb' value='board_knowhow'>
+			<input type=hidden name='bbs_num' value=''>
+			
 			<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td>
@@ -90,22 +89,30 @@
 					<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 					<tr><td height="5"></td></tr>
 					<tr><td height="5"></td></tr>
-					<tr>			
+					
 						<td colspan="2">
-						<table align="center">
-							<td>
-								<input type="button" value="등록" style='height:25px;' onclick="location.href='employeeexcel.action';"/>
-								<input type="button" value="취소" style='height:25px;' onclick="location.href='gongji.action';"/>
+						
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" >
+						<tr>
+							<td align=center> 
+								<input type=image value='등록' src='/easyauction/resources/images/gaib.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 			<a href='freeboard.action';><img src='/easyauction/resources/images/listlist.png' BORDER=0 width="70" height="30"></A>
 							</td>
+						</tr>
 						</table>
+						
+						<!-- <table align="center">
+							<td>
+								<input type="button" value="등록" style='height:25px;' onclick="submit()"/>
+								<input type="button" value="취소" style='height:25px;' onclick="location.href='freeboard.action';"/>
+							</td>
+						</table> -->
 					</tr>
 					</table>
 				</td>
 			</tr>
 			</table>
 			</form>
-							
-							
-				</div> <!-- A 끝 -->	
-			</body>
-			</html>
+	</div> <!-- A 끝 -->	
+</body>
+</html>

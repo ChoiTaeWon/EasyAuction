@@ -30,7 +30,7 @@
 	  	select SEQUENCEBORADNO.currval from dual
 	  </selectKey>
 		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
-		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
+		       VALUES(SEQUENCEBORADNO.nextVal, 2, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
 	</insert>
 	
 	<insert id="insertGongjiboard" parameterType="Board" >
@@ -38,7 +38,7 @@
 	  	select SEQUENCEBORADNO.currval from dual
 	  </selectKey>
 		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
-		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
+		       VALUES(SEQUENCEBORADNO.nextVal, 1, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
 	</insert>
 	
 	<insert id="insertPhoto" parameterType="Board" >
@@ -53,6 +53,7 @@
 		INSERT INTO BOARDIMAGE(bdimgno, bdimgname, bdno)
 			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdImgName }, #{ bdNo })
 	</insert>
+	
 	<select id="getPhotoList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
@@ -60,10 +61,19 @@
 		ORDER BY 
 			bdno DESC
 	</select>
+	
+	<select id="getfreeBoardList" resultMap="boardResult">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		ORDER BY 
+			bdno DESC
+	</select>
+	
 	<select id="getImageByBoardNo" resultMap="imageResult" parameterType="int">
 		select bdimgno, bdimgname, bdno
 		from BOARDIMAGE
 		where bdno = #{ bdNo }
 	</select>
-		
+	
 </mapper>

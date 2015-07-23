@@ -1,3 +1,5 @@
+<%@page import="com.easyauction.dto.Board"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -79,46 +81,25 @@
 			<table width="100%">
 			<tr>
 				<td>
-				<table width=100% cellpadding=0 cellspacing=0  border=0><td valign=top align=center>
-			<table width="100%" height="30">
+				<table width="100%" height="30">
+				<c:forEach var="board" items="${ boards }">
+				<c:if test="${ board.bdType eq 1 }">
 				<tr>
-					<td align="center" width="50" class="smfont"><img src="/easyauction/resources/images/gongji.png" align="absmiddle"></td>
+					<td align="center" width="50" class="smfont">${board.bdNo}</td>
 					<td width="1"></td>
-					<td class="smfont" align="left"><div style="padding-left:10px;"><a href='/easyauction/board/gongjiview.action'><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 공지사항 게시판입니다.</a></div></td>
+					<td height='32' class="smfont" align="center">			<div style="padding-left:10px;">${board.bdTitle}</div></td>
 					<td width="1"></td>
-					<td width="90" class="smfont" align="center"><font color="#7f7b73">
-				<a href='#1' onClick="messageShowUser('0')" style='padding-bottom:6px;'>test</a>
-				<span style='position:relative;'>
-					<div style='position:absolute;top:0px;left:0px;width:110px;border:1px solid #000000;display:none;' id='board_view_0'>
-						<table cellpadding='2' cellspacing='0' onClick="messageShowUser('0')">
-						<tr>
-							<td width='110' bgcolor='#D9D9D9' align='left'>
-								<table cellpadding='2' cellspacing='1' width='100%' bgcolor='#CACACA'>
-								<tr>
-									<td bgcolor='white'>
-										<table cellpadding='2' cellspacing='0' width='100%'>
-										<tr>
-											<td height='25'><a href='#1' onClick="window.open('happy_message.php?mode=send&receiveid=test','happy_message_send','width=700,height=400,toolbar=no,scrollbars=no')"><img align='absmiddle' src='img/message/icon_messicon.gif' width='15' height='12' border='0'><img src='img/binimg.gif' width='5' height='1' border='0'>쪽지보내기</a></td>
-										</tr>
-										<tr>
-											<td height='25'><a href='list.php?action=search&search_type=id&search_word=test'><img align='absmiddle' src='img/message/icon_messregi.gif' width='16' height='16' border='0'><img src='img/binimg.gif' width='4' height='1' border='0'>등록매물보기</a>
-											</td>
-										</tr>
-										</table>
-									</td>
-								</tr>
-								</table>
-							</td>
-						</tr>
-						</table>
-					</div>
-				</span>
-				</font></td>
+					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>
-					<td align="center" width="90" class="smfont">2014-04-02</td>
+					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdDate}</div></td>
 					<td width="1"></td>
-					<td align="center" width="40" class="smfont">1</td>
+					<%-- <td 			class="smfont" align="center" width="90"><div style="padding-left:10px;"><fmt:formatDate value="${ board.bdDate }" pattern="yyyy-MM-dd" /></td>
+				 	<td width="1"></td> --%>
+					<td 			class="smfont" align="center" width="40"><div style="padding-left:10px;">${board.bdReadCount}</div></td>
+					<td width="1"></td>
 				</tr>
+				</c:if>
+				</c:forEach>
 				<tr>
 					<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
 				</tr>
@@ -128,12 +109,14 @@
 			<!-- 검색폼 위의 내용 시작 -->
 			<div style="padding:3px;"></div>
 
+			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
+				<td align="right"><td align="right"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			
+			<!-- 페이지 번호 -->
 			<table width="100%">
 			<tr>
 				<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
@@ -147,6 +130,7 @@
 			<input type=hidden name='num' value=''>
 			<input type=hidden name='action' value='search'>
 			<input type=hidden name='tb' value='board_free'>
+			
 			<tr>
 				<td height='30' border='0' align='center' valign='middle'>
 					<input type='radio' name='search' value='bbs_title' checked> 제목
@@ -154,7 +138,7 @@
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
-					<td align="left"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/search1.png"></a>
+					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
 				</td>
 			</tr>
 			</form>
