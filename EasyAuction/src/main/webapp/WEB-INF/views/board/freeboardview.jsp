@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>포토 후기 게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
