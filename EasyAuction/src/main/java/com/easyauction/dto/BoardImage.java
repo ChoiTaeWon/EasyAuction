@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BoardImage {
 	private int bdimgNo;
-	private String bdName;
+	private String bdImgName;
 	private int bdNo;
 	private Date bdimgRegdate;
 	 
@@ -15,11 +15,11 @@ public class BoardImage {
 	public void setBdimgNo(int bdimgNo) {
 		this.bdimgNo = bdimgNo;
 	}
-	public String getBdName() {
-		return bdName;
+	public String getBdImgName() {
+		return bdImgName;
 	}
-	public void setBdName(String bdName) {
-		this.bdName = bdName;
+	public void setBdImgName(String bdImgName) {
+		this.bdImgName = bdImgName;
 	}
 	public int getBdNo() {
 		return bdNo;

@@ -3,6 +3,7 @@ package com.project.easyauction;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardImage;
-import com.easyauction.repository.BoardRepository;
 import com.easyauction.service.BoardService;
 
 @Controller
@@ -28,9 +29,18 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "freeboard.action", method = RequestMethod.GET)
-	public String freeboardList() {
+	public ModelAndView freeboardList() {
+		ModelAndView mav = new ModelAndView();
+		List<Board> boards = boardService.getfreeBoardList();
 		
-		return "board/freeboardlist";
+//		for(int i=0; i< boards.size(); i++){
+//			System.out.println(boards);
+//		}
+		
+		mav.setViewName("board/freeboardlist");
+		mav.addObject("boards", boards);
+		return mav;
+		
 	}
 	
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
@@ -68,7 +78,7 @@ public class BoardController {
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			}
 			BoardImage boardImage = new BoardImage();
-			boardImage.setBdName(fileName);
+			boardImage.setBdImgName(fileName);
 			boardImage.setBdNo(board.getBdNo());
 			
 			boardService.insertPhotoImage(boardImage);
@@ -76,7 +86,7 @@ public class BoardController {
 			//파일을 디스크에 저장
 			try {
 				FileOutputStream ostream = 
-					new FileOutputStream(new File(path, boardImage.getBdName()));
+					new FileOutputStream(new File(path, boardImage.getBdImgName()));
 				InputStream istream = file.getInputStream();
 				while (true) {
 					int data = istream.read();
@@ -112,9 +122,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
-	public String photoList() {
-		
-		return "board/photolist";
+	public ModelAndView photoList() {
+		ModelAndView mav = new ModelAndView();
+		List<Board> photos = boardService.getPhotoList();
+		mav.setViewName("board/photolist");
+		mav.addObject("photos",photos);
+		return mav;
 		
 	}
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
@@ -133,7 +146,7 @@ public class BoardController {
 		ServletContext application = req.getSession().getServletContext();
 				
 		//가상경로 -> 물리경로
-		String path = application.getRealPath("/WEB-INF/imagefile/");
+		String path = application.getRealPath("/resources/imagefile/");
 		
 		Board board = new Board();
 		board.setBdWriter(id);
@@ -150,7 +163,7 @@ public class BoardController {
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			}
 			BoardImage boardImage = new BoardImage();
-			boardImage.setBdName(fileName);
+			boardImage.setBdImgName(fileName);
 			boardImage.setBdNo(board.getBdNo());
 			
 			boardService.insertPhotoImage(boardImage);
@@ -158,7 +171,7 @@ public class BoardController {
 			//파일을 디스크에 저장
 			try {
 				FileOutputStream ostream = 
-					new FileOutputStream(new File(path, boardImage.getBdName()));
+					new FileOutputStream(new File(path, boardImage.getBdImgName()));
 				InputStream istream = file.getInputStream();
 				while (true) {
 					int data = istream.read();

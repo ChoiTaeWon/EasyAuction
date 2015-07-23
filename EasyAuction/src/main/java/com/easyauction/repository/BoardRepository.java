@@ -15,5 +15,7 @@ public interface BoardRepository {
 	
 	void insertPhotoImage(BoardImage boardImage);
 	
-	List<Board>getBoardList();
+	List<Board> getPhotoList();
+	
+	List<Board> getfreeBoardList();
 }

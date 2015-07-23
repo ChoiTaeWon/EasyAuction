@@ -19,7 +19,7 @@ public class Board implements Serializable{
 	// 데이터베이스의 Board 와 BoardComment 테이블 간의 1:M 관계를 구현한 필드 
 	private List<BoardComment> comments;
 	
-	private List<BoardImage> bdImage;
+	private List<BoardImage> boardImage;
 		
 	public Board() {}
 	
@@ -103,12 +103,12 @@ public class Board implements Serializable{
 		this.bdBlindCheck = bdBlindCheck;
 	}
 
-	public List<BoardImage> getBdImage() {
-		return bdImage;
+	public List<BoardImage> getboardImage() {
+		return boardImage;
 	}
 
-	public void setBdImage(List<BoardImage> bdImage) {
-		this.bdImage = bdImage;
+	public void setBdImage(List<BoardImage> boardImage) {
+		this.boardImage = boardImage;
 	}
 	
 }
