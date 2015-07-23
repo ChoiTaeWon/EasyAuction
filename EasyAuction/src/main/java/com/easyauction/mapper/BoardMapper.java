@@ -18,4 +18,5 @@ public interface BoardMapper {
 	List<Board> getPhotoList();
 	
 	List<Board> getfreeBoardList();
+
 }

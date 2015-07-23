@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,19 +37,21 @@
                 </tr>
                 <tr>
                     <td class="viewmessage" width="95">보낸 사람</td>
-                    <td class="viewmessage" width="232">해피CGI(HappyCGI)</td>
+                    <td class="viewmessage" align="center" width="232">${ message.msgSender }</td>
                     <td class="viewmessage" width="90">받는 사람</td>
-                    <td class="viewmessage"width="150">(test)</td>
+                    <td class="viewmessage" align="center" width="150">${ message.msgReceiver }</td>
                 </tr>
                 <tr>
                     <td class="viewmessage">받은 시간</td>
-					<td class="viewmessage">2014-04-02 16:23:50</td>
+					<td class="viewmessage" align="left;">${ message.msgDate }</td>
 					<td class="viewmessage" align="right" colspan="2">
 					<a href="#"><img src="/easyauction/resources/images/bt_reply.gif"></a>
 					<a href="#"><img src="/easyauction/resources/images/bt_list.gif"></a></td>
                 </tr>
                 <tr><td><br /></td></tr>
-  	 			<td colspan="5" height="300px" style="border: solid 1px #377722;background-color: #ffffff;"></td>
+  	 			<td valign="top" colspan="5" height="300px" style="border: solid 1px #377722;background-color: #ffffff;">
+  	 			${ message.msgContent }
+  	 			</td>
             </table>
 		</td>
     </tr>

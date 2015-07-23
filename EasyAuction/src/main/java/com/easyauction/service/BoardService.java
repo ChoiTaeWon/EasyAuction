@@ -18,5 +18,5 @@ public interface BoardService {
 	List<Board> getPhotoList();
 	
 	List<Board> getfreeBoardList();
- 
+
 }

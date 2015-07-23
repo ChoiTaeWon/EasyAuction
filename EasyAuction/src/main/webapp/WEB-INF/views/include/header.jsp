@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script src="//code.jquery.com/jquery-1.11.3.js"></script>
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -35,11 +36,14 @@
 		      elem.click(); 
 		   }
 	 } 
-	
-	function messageshow(mbId) {
-		window.open("/easyauction/message/receivemessages.action?" + mbId, "쪽지함",
+	$(function(){
+		$("#message").click(function(event) {
+			alert('${loginuser.mbId}');
+			var mbId = '${loginuser.mbId}';
+			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
-	}
+		})
+	})
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
 				<tr>
@@ -53,7 +57,8 @@
 												<img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow(${loginuser.mbId});">
 							               	<%-- </c:when><c:otherwise> --%>
 							               		없을때
-							               		<img src="/easyauction/resources/images/ico_mail.gif" onclick="javascript:messageshow(${loginuser.mbId});"></td>
+							               		<%-- <img src="/easyauction/resources/images/ico_mail.gif" onclick="javascript:messageshow(${loginuser.mbId});"></td> --%>
+							               		<img src="/easyauction/resources/images/ico_mail.gif" id="message"></td>
 							               	<%-- </c:otherwise> --%>
 							                <td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>

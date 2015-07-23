@@ -15,7 +15,7 @@
 <table align="center" style="background-color:#565DD3; width:700px;">
 <tr>
 	<!-- -->
-	<td style="padding:15px;"><a href="홈액션"><img src="/easyauction/resources/images/mainlogo.png" border="0" align="absmiddle"></a></td>
+	<td style="padding:15px;"><a href="/easyauction/home.action"><img src="/easyauction/resources/images/mainlogo.png" border="0" align="absmiddle"></a></td>
 	
 </tr>
 </table>

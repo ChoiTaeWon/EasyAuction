@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.easyauction.common.Util;
 import com.easyauction.dto.Member;
 import com.easyauction.repository.MemberRepository;
-import com.easyauction.repository.MyMemberRepository;
 import com.easyauction.service.MemberService;
 
 

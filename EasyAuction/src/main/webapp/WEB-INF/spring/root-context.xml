@@ -43,6 +43,13 @@
 			value="com.easyauction.mapper.MemberMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
 	</bean>
+	<!-- Mapper에대한 빈크리에이트구문은 어디에서도 작성할수 없으므로 여기에 빈을 등록해주어야한다  -->
+		<bean id="messageMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+			value="com.easyauction.mapper.MessageMapper" />
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="boardMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" 

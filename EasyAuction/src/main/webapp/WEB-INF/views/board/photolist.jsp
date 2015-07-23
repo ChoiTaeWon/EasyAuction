@@ -72,7 +72,7 @@
 				 	  <td width="140" align="center"><a href="#"><img width="140" height="110" src="/easyauction/resources/imagefile/${ image.bdImgName }"></a></td>
 				 	</c:forEach>
 				 	  <td width="1"></td>
-				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action">${ photo.bdTitle }</a></b>[댓글수]</td>
+				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action">${ photo.bdTitle }</a></b>[댓글갯수]</td>
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">${ photo.bdWriter }</td>
 				 	  <td width="1"></td>
