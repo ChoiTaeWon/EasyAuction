@@ -10,7 +10,7 @@ import com.easyauction.dto.Member;
 import com.easyauction.mapper.MemberMapper;
 
 @Repository(value = "memberRepository")//객체등록
-public class MyMemberRepository implements MemberRepository {
+public class OracleMemberRepository implements MemberRepository {
 	
 	private MemberMapper memberMapper;
 	@Autowired
@@ -28,6 +28,13 @@ public class MyMemberRepository implements MemberRepository {
 		
 		Member member = memberMapper.getMemberByIdAndPasswd(params);
 		return member;
+	}
+
+
+	@Override
+	public int getCountByMemberId(String mbId) {
+		int result= memberMapper.getCountByMemberId(mbId);
+		return result;
 	}
 	
 }

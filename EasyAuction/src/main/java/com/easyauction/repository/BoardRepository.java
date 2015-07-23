@@ -18,4 +18,5 @@ public interface BoardRepository {
 	List<Board> getPhotoList();
 	
 	List<Board> getfreeBoardList();
+
 }

@@ -112,7 +112,7 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
+				<td align="right"><td align="right"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			
