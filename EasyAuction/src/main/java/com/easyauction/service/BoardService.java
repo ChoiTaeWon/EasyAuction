@@ -7,3 +7,4 @@ public interface BoardService {
  void insertPhoto(Board board);
  void insertPhotoImage(BoardImage boardImage);
 }
+
