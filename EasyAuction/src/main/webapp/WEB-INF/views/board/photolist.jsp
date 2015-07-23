@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 				<table width="100%">
 				<tr height="30">
 					<td align="left">&nbsp;</td>
-					<td align="right"><a href='#'><img src='/easyauction/resources/images/ico_home.gif'></a>  <a href=bbs_list.php?&num=&tb=board_review>포토리뷰</a> </td>
+					<td align="right"><a href='#'><img src='/easyauction/resources/images/ico_home.gif'></a> <a href=bbs_list.php?&num=&tb=board_review>포토리뷰</a> </td>
 				</tr>
 				</table>
 				
@@ -62,22 +63,29 @@
 					</tr>		
 				 </table>
 				 <div style="padding:3px;"></div>
+				 
+				 <c:forEach var="photo" items="${ photos }">
+				 <c:if test="${ photo.bdType eq 3 }">
 				 <table width="100%">
 				 	<tr height="130">
-				 	  <td width="140" align="center"><a href="#"><img width="140" height="110" src=""></a></td>
+				 	<c:forEach var="image" items="${ photo.boardImage }">
+				 	  <td width="140" align="center"><a href="#"><img width="140" height="110" src="/easyauction/resources/imagefile/${ image.bdImgName }"></a></td>
+				 	</c:forEach>
 				 	  <td width="1"></td>
-				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action">제목</a></b>[댓글수]</td>
+				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action">${ photo.bdTitle }</a></b>[댓글갯수]</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">회원명</td>
+				 	  <td width="90" align="center">${ photo.bdWriter }</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">등록일</td>
+				 	  <td width="90" align="center"><fmt:formatDate value="${ photo.bdDate }" pattern="yyyy-MM-dd" /></td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">조회수</td>
+				 	  <td align="center" width="40">${ photo.bdReportingCount }</td>
 				 	</tr>
 				    <tr>
 						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>
 					</tr>
 				 </table>
+				 </c:if>
+				 </c:forEach>
 				 <div style="padding:3px;"></div>
 				<table width="100%">
 				<tr>
