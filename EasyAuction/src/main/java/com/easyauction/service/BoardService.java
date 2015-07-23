@@ -4,6 +4,12 @@ import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardImage;
 
 public interface BoardService {
- void insertPhoto(Board board);
- void insertPhotoImage(BoardImage boardImage);
+	
+	void insertFreeboard(Board board);
+	
+	void insertGongjiboard(Board board);
+	
+	void insertPhoto(Board board);
+ 
+	void insertPhotoImage(BoardImage boardImage);
 }

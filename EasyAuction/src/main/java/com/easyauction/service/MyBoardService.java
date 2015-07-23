@@ -18,10 +18,22 @@ public class MyBoardService implements BoardService{
 		this.boardRepository = boardRepository;
 	}
 	
+	@Override
+	public void insertFreeboard(Board board) {
+		boardRepository.insertFreeboard(board);		
+	}
+
+	@Override
+	public void insertGongjiboard(Board board) {
+		boardRepository.insertGongjiboard(board);		
+	}
+	
 	public void insertPhoto(Board board){
 		boardRepository.insertPhoto(board);
 	}
 	public void insertPhotoImage(BoardImage boardImage){
 		boardRepository.insertPhotoImage(boardImage);
 	}
+
+	
 }

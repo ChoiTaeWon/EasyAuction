@@ -124,6 +124,26 @@
 						</tr>
 					</td>
 					</table>
+					
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tr>
+							<td align=right> 
+								<input type=image value='수정' src='/easyauction/resources/images/sujung.png' border=0 width="70" height="30" onclick="document.forms[0].submit();">
+								<input type=image value='삭제' src='/easyauction/resources/images/delete.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 			<a href='freeboard.action';><img src='/easyauction/resources/images/listlistlist.png' BORDER=0 width="70" height="30"></A>
+							</td>
+						</tr>
+					</table>
+					
+						<!-- <table align="right">
+							<td>
+								<input type="button" value="수정" style='height:25px;' onclick="submit()"/>
+								<input type="button" value="삭제" style='height:25px;' onclick="submit()"/>
+								<input type="button" value="목록" style='height:25px;' onclick="location.href='gongji.action';"/>
+							</td>
+						</table> -->
+					
+					
 				</form>
 				<!-- 댓글 // 끝 -->
 			</div><!-- list 끝 -->
