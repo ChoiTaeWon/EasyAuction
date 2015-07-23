@@ -35,7 +35,7 @@
 		INSERT INTO BOARDIMAGE(bdimgno, bdimgname, bdno)
 			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdName }, #{ bdNo })
 	</insert>
-		<select id="getBoardList" resultMap="resultRent">
+		<select id="getBoardList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
 		FROM rent
