@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>커뮤니티</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+<title>공지사항게시판</title>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
@@ -15,7 +15,7 @@
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 -->
-		<br />
+		<br /><br />
 		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
 			<div style="width:216px;float: left; margin:0 10px 0 0;"><!-- 사이드메뉴 -->
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />
@@ -38,8 +38,6 @@
 			<tr height="30">
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
-				<!-- <td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a>  -->
 								  
 				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
@@ -86,7 +84,7 @@
 				<tr>
 					<td align="center" width="50" class="smfont"><img src="/easyauction/resources/images/gongji.png" align="absmiddle"></td>
 					<td width="1"></td>
-					<td class="smfont" align="left"><div style="padding-left:10px;"><a href="bbs_detail.php?bbs_num=11&num=&tb=board_free"><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 공지사항 게시판입니다.</a></div></td>
+					<td class="smfont" align="left"><div style="padding-left:10px;"><a href='/easyauction/board/gongjiview.action'><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 공지사항 게시판입니다.</a></div></td>
 					<td width="1"></td>
 					<td width="90" class="smfont" align="center"><font color="#7f7b73">
 				<a href='#1' onClick="messageShowUser('0')" style='padding-bottom:6px;'>test</a>
@@ -156,21 +154,19 @@
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
-					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
+					<td align="left"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/search1.png"></a>
 				</td>
 			</tr>
 			</form>
 			</table>
 			<!-- 검색폼 끝 -->
 			
-
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->
 	<%-- <div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</div>
-	<div style="width: 960px; ">
 	</div> --%>
 </body>
+
 </html>
