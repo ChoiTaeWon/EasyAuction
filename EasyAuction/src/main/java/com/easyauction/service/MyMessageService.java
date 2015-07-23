@@ -18,7 +18,6 @@ public class MyMessageService implements MessageService {
 	//사용할땐 인터페이스를 사용
 	@Override
 	public List<Message> getMsgReceiveList(String mbId) {
-		
 		List<Message> messages = msgrepo.getMsgReceiveList(mbId);
 		return messages;
 	}
