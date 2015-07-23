@@ -17,12 +17,30 @@
 		<result column="bdblindcheck" property="bdBlindCheck" />
 		<collection property="boardImage" column="bdno" select="getImageByBoardNo" />
 	</resultMap>
+	
 	<resultMap type="boardImage" id="imageResult">
 		<id column="bdimgno" property="bdimgNo"/>
 		<result column="bdimgname" property="bdImgName" />
 		<result column="bdno" property="bdNo" />
 		<result column="bdimgregdate" property="bdImgRegdate" />
 	</resultMap>
+	
+	<insert id="insertFreeboard" parameterType="Board" >
+	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEBORADNO.currval from dual
+	  </selectKey>
+		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
+		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
+	</insert>
+	
+	<insert id="insertGongjiboard" parameterType="Board" >
+	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEBORADNO.currval from dual
+	  </selectKey>
+		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
+		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
+	</insert>
+	
 	<insert id="insertPhoto" parameterType="Board" >
 	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
 	  	select SEQUENCEBORADNO.currval from dual
@@ -30,6 +48,7 @@
 		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
 		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
 	</insert>
+	
 	<insert id="insertPhotoImage" parameterType="boardImage">
 		INSERT INTO BOARDIMAGE(bdimgno, bdimgname, bdno)
 			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdImgName }, #{ bdNo })
@@ -46,4 +65,5 @@
 		from BOARDIMAGE
 		where bdno = #{ bdNo }
 	</select>
+		
 </mapper>
