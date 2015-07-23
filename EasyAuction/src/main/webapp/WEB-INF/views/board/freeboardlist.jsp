@@ -38,8 +38,6 @@
 			<tr height="30">
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
-				<!-- <td align="right"><a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='http://10won.cgimall.co.kr'><img src='/easyauction/resources/images/freeboardsmall.png'></a>  -->
 								  
 				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
@@ -86,7 +84,7 @@
 				<tr>
 					<td align="center" width="50" class="smfont"><img src="/easyauction/resources/images/gongji.png" align="absmiddle"></td>
 					<td width="1"></td>
-					<td class="smfont" align="left"><div style="padding-left:10px;"><a href="bbs_detail.php?bbs_num=11&num=&tb=board_free"><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 자유게시판 공지사항입니다.</a></div></td>
+					<td class="smfont" align="left"><div style="padding-left:10px;"><a href='/easyauction/board/freeboardview.action'><img src="/easyauction/resources/images/new.png" align=absmiddle border=0> 안녕하세요 자유게시판 공지사항입니다.</a></div></td>
 					<td width="1"></td>
 					<td width="90" class="smfont" align="center"><font color="#7f7b73">
 				<a href='#1' onClick="messageShowUser('0')" style='padding-bottom:6px;'>test</a>
@@ -132,7 +130,7 @@
 
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
+				<td align="right"><a href="/easyauction/board/freeboardregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			

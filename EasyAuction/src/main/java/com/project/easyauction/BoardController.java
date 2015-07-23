@@ -40,15 +40,16 @@ public class BoardController {
 		return "board/gongjilist";
 	}
 	
-	@RequestMapping(value = "register.action", method = RequestMethod.GET)
-	public String register() {
+	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
+	public String freeboardview() {
 		
-		return "board/freeboardregisterform";
+		return "board/freeboardview";
 	}
-	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public String view() {
+	
+	@RequestMapping(value = "freeboardregister.action", method = RequestMethod.GET)
+	public String freeboardregister() {
 		
-		return "board/freeboardeditviewform";
+		return "board/freeboardregister";
 	}
 	
 	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
