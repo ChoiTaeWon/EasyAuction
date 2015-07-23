@@ -35,8 +35,8 @@ public class OracleBoardRepository implements BoardRepository{
 		
 	}
 	@Override
-	public List<Board> getBoardList(){
-		
-		return null;
+	public List<Board> getPhotoList(){
+		List<Board> photos = boardMapper.getPhotoList();
+		return photos;
 	}
 }
