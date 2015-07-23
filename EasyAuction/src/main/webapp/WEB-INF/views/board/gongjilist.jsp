@@ -154,7 +154,7 @@
 					<input type='radio' name='search' value='bbs_review'> 내용
 					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
-					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
+					<td align="left"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/search1.png"></a>
 				</td>
 			</tr>
 			</form>

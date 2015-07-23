@@ -34,12 +34,6 @@ public class BoardController {
 		return "board/freeboardlist";
 	}
 	
-	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
-	public String gongjiList() {
-		
-		return "board/gongjilist";
-	}
-	
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
 	public String freeboardview() {
 		
@@ -50,6 +44,24 @@ public class BoardController {
 	public String freeboardregister() {
 		
 		return "board/freeboardregister";
+	}
+	
+	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
+	public String gongjiList() {
+		
+		return "board/gongjilist";
+	}
+	
+	@RequestMapping(value = "gongjiview.action", method = RequestMethod.GET)
+	public String gongjiview() {
+		
+		return "board/gongjiview";
+	}
+	
+	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.GET)
+	public String gongjiregister() {
+		
+		return "board/gongjiregister";
 	}
 	
 	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
