@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +44,6 @@
 						<td height="26" bgcolor="#f8f8f8">
 							<table width="100%">
 								<tr>
-									<td align="center" class="smfont" width="140"><font color="#666666">사진</font></td>
-									<td width="1" bgcolor="#e6e6e6"></td>
 									<td align="center" class="smfont"><font color="#666666">제목</font></td>
 									<td width="1" bgcolor="#e6e6e6"></td>
 									<td align="center" class="smfont" width="90"><font color="#666666">작성자</font></td>
@@ -64,10 +61,8 @@
 				 </table>
 				 <div style="padding:3px;"></div>
 				 <table width="100%">
-				 	<tr height="130">
-				 	  <td width="140" align="center"><a href="#"><img width="140" height="110" src=""></a></td>
-				 	  <td width="1"></td>
-				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action">제목</a></b>[댓글수]</td>
+				 	<tr height="26">
+				 	  <td align="left" style="padding-left:10px;"><b><a href="#">제목</a></b></td>
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">회원명</td>
 				 	  <td width="1"></td>
@@ -78,37 +73,55 @@
 				    <tr>
 						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>
 					</tr>
-				 </table>
-				 <div style="padding:3px;"></div>
-				<table width="100%">
-				<tr>
-					<td align="right"><a href="/easyauction/board/photoregister.action"><img src="/easyauction/resources/images/write.png"></a></td>
-				</tr>
-				</table>
-				 <table width="100%">
 					<tr>
-						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
+						<td style="padding:15 0 20 0;">
+						<div  id="ct" class="WYS" align="justify" style="font-size:12px; line-height:21px; border:0px solid red; word-break:break-all;">
+							<img border="0" alt="" src="#" /><br />
+							<div style="border-bottom: red 0px solid; border-left: red 0px solid; line-height: 1.6; font-size: 14px; word-break: break-all; border-top: red 0px solid; border-right: red 0px solid" id="ct" align="justify"><br />
+							내용
+							</div>
+						</div>
+						</td>
 					</tr>
 				 </table>
-				<!-- 검색폼 // 시작 -->
-				<table width="100%" align="center">
-				<form  method='post' action='photoregister.action'>
-				<input type=hidden name='num' value=''>
-				<input type=hidden name='action' value='search'>
-				<input type=hidden name='tb' value='board_review'>
-				<tr>
-					<td height='30' border='0' align='center' valign='middle'>
-						<input type='radio' name='search' value='bbs_title' checked> 제목
-						<input type='radio' name='search' value='bbs_name'> 이름
-						<input type='radio' name='search' value='bbs_review'> 내용
-						<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-						<input type='image' src='/easyauction/resources/images/bbs_search.gif' border="0" value='검색' align='absmiddle'>
-				
-					</td>
-				</tr>
-				</form>
+				 <div style="padding:3px;"></div>
+				<!-- 댓글 // 시작 -->
+				<table width="100%" border="0">
+					<tr>
+						<td height="2px" bgcolor="#EBEBEB"></td>
+					</tr>
+					<tr>
+						<td height="20px" align="left" style="background-color:#F4F4F4;"><font color="">&nbsp;&nbsp;<img src="/easyauction/resources/images/ico_arrow_01.gif" width="9px" height="9px" border="0" align="absmiddle">&nbsp;&nbsp;comment</b></font></td>
+					</tr>
+					<tr>
+						<td height="2px"  bgcolor="#EBEBEB"></td>
+					</tr>
 				</table>
-				<!-- 검색폼 // 끝 -->
+				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>밤비</b></td>
+						<td width='600' align='eft'>댓글내용&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>2011-08-29 10:31:34</font></td>
+						<td width='50'></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
+					</tr>
+				</table>
+				<form name='reply_add_form' action='bbs_short_comment.php?id=&action=add' method='post' style='margin:0;' onSubmit="return check_comment_form()">
+					<input type=hidden name=tb value=board_review>
+					<input type=hidden name=id value=''>
+					<input type=hidden name=bbs_num value=5>
+					<input type=hidden name=pg value=>
+				
+					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+						<tr>
+							<td><textarea style='width:95%' rows=4 name=short_comment class=Sinput2  style='font-size:12px; height:35;'></textarea></td>
+							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif></td>
+						</tr>
+						
+					</table>
+				</form>
+				<!-- 댓글 // 끝 -->
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->	

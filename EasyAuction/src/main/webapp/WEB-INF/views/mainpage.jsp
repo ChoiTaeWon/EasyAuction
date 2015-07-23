@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Easy Auction</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	
 	<!-- 상단 슬라이드 -->

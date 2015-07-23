@@ -1,5 +1,12 @@
 package com.easyauction.repository;
 
-public class BoardRepository {
-	
+import java.util.List;
+
+import com.easyauction.dto.Board;
+import com.easyauction.dto.BoardImage;
+
+public interface BoardRepository {
+	int insertPhoto(Board board);
+	void insertPhotoImage(BoardImage boardImage);
+	List<Board> getBoardList();
 }
