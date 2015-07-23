@@ -44,12 +44,17 @@
 		SELECT * FROM member 
 	</select> -->
 	
-	<select id="getMemberByIdAndPasswd">
+	<select id="getMemberByIdAndPasswd" resultType="Member">
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
 		mbPasswd = #{mbPasswd}
 	</select>  
+<select id="getCountByMemberId" parameterType="String" resultType="integer">
+		SELECT Count(*) 
+		FROM member 
+		WHERE mbId = #{mbId} 
+</select>  
 	
 </mapper>

@@ -10,4 +10,6 @@ public interface MemberRepository {
 
 	Member getMemberByIdAndPasswd(String mbId, String mbPasswd);
 
+	int getCountByMemberId(String mbId);
+
 }

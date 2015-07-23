@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.dto.Message;
+import com.easyauction.service.MemberService;
 import com.easyauction.service.MessageService;
 
 
@@ -24,10 +25,10 @@ public class MessageController {
 	public void setMessageService(MessageService msgsvc){
 		this.msgsvc = msgsvc;
 	}
-	
+
 	@RequestMapping
 	(value = "receivemessages.action", method = RequestMethod.GET)
-	public ModelAndView register(String mbId) {
+	public ModelAndView receivemessages(String mbId) {
 		
 		List<Message> messages = msgsvc.getMsgReceiveList(mbId);
 		ModelAndView mav = new ModelAndView();
@@ -39,19 +40,30 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value = "sendmessages.action", method = RequestMethod.GET)
-	public String view() {
+	public ModelAndView sendmessages(String mbId) {
+		List<Message> messages = msgsvc.getMsgSenderList(mbId);
+		ModelAndView mav = new ModelAndView();
 		
-		return "message/sendmessages";
+		mav.setViewName("message/sendmessages");
+		mav.addObject("messages", messages);
+		
+		return mav; 
 	}
 	@RequestMapping(value = "sendmessage.action", method = RequestMethod.GET)
-	public String message() {
+	public String sendmessage() {
 		
 		return "message/sendmessage";
 	}
 	@RequestMapping(value = "viewmessage.action", method = RequestMethod.GET)
-	public String viewmessage() {
+	public ModelAndView viewmessage(int msgNo) {
 		
-		return "message/viewmessage";
+		Message message = msgsvc.getMsgBymsgNo(msgNo);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("message/viewmessage");
+		mav.addObject("message", message);
+		
+		return mav;
 	}
 	
 }

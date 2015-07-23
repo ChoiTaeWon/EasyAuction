@@ -21,5 +21,16 @@ public class MyMessageService implements MessageService {
 		List<Message> messages = msgrepo.getMsgReceiveList(mbId);
 		return messages;
 	}
+	@Override
+	public List<Message> getMsgSenderList(String mbId) {
+		List<Message> messages = msgrepo.getMsgSenderList(mbId);
+		return messages;
+	}
+	@Override
+	public Message getMsgBymsgNo(int msgNo) {
+		Message message = msgrepo.getMsgBymsgNo(msgNo);
+		return message;
+	
+	}
 
 }

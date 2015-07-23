@@ -8,4 +8,8 @@ public interface MessageService {
 
 	List<Message> getMsgReceiveList(String mbId);
 
+	List<Message> getMsgSenderList(String mbId);
+
+	Message getMsgBymsgNo(int msgNo);
+
 }

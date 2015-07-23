@@ -26,5 +26,17 @@ public class OracleMessageRepository implements MessageRepository{
 		 List<Message> messages = (List<Message>) messageMapper.getMsgReceiveList(mbId);
 		return messages;
 	}
+
+	@Override
+	public List<Message> getMsgSenderList(String mbId) {
+		List<Message> messages = (List<Message>) messageMapper.getMsgSenderList(mbId);
+		return messages;
+	}
+
+	@Override
+	public Message getMsgBymsgNo(int msgNo) {
+		Message message = messageMapper.getMsgBymsgNo(msgNo);
+		return message;
+	}
 	
 }
