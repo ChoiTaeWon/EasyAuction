@@ -21,7 +21,7 @@ $(function(){
 function deletemessage(msgNo){
 	alert(msgNo);
 	var pageId = 'receivemessages';
-	location.href="/easyauction/message/deletemessage.action?msgNo=" + mbId + "&pageId" + pageId;
+	location.href="/easyauction/message/deletemessage.action?msgNo=" + msgNo + "&pageId=" + pageId;
 }
 </script>
 </head>
