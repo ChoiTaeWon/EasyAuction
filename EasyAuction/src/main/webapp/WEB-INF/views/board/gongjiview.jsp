@@ -117,7 +117,10 @@
 					<tr>
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='eft'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td>
-						<td width='50'></td>
+						<!-- 댓글 옆 수정 삭제 -->
+						<td align="right"><a href='/easyauction/board/updatefreeboardcomment.action'><img src='/easyauction/resources/images/sujung.png'></a>
+										  <a href='/easyauction/board/deletedfreeboardcomment.action'><img src='/easyauction/resources/images/delete.png'></a>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>

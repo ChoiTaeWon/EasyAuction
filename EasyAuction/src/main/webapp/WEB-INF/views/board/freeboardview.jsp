@@ -117,15 +117,10 @@
 					<tr>
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
-						<!-- 수정할 곳 -->
-						<%-- <td width='40'><img src="/easyauction/resources/images/sujung"></td> <b>${ comment.bdNo }</b></td>
-						<td width='40'><img src="/easyauction/resources/images/delete"></td> <b>${ comment.bdNo }</b></td> --%>
-						
-						<!-- <tr>
-							<td style="padding-left:25px;"><img src="/easyauction/resources/images/sujung.png"></td>
-						
-							<td style="padding-left:25px;"><img src="/easyauction/resources/images/delete.png"></td>
-						</tr> -->
+						<!-- 댓글 옆 수정 삭제 -->
+						<td align="right"><a href='/easyauction/board/updatefreeboardcomment.action'><img src='/easyauction/resources/images/sujung.png'></a>
+										  <a href='/easyauction/board/deletedfreeboardcomment.action'><img src='/easyauction/resources/images/delete.png'></a>
+						</td>
 						
 						</td>
 						<td width='50'></td>
