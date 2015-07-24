@@ -77,50 +77,7 @@ public class BoardController {
 
 		return "board/photoview";
 	}	
-	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
-	public String photoregister() {
-		
 
-		Board board = new Board();
-		board.setBdWriter(id);
-		board.setBdTitle(title);
-		board.setBdContent(content);
-		System.out.println(id+"/"+title+"/"+content);
-		boardService.insertFreeBoard(board);
-		MultipartFile file = req.getFile("img");//요청 데이터에서 파일 정보 추출
-		if (file != null && file.getSize() > 0) {
-			
-			String fileName = file.getOriginalFilename();//파일이름 읽어서 변수에 저장
-			if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
-				//C:\ABC\DEF\xyz.txt -> xyz.txt
-				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-			}
-			BoardImage boardImage = new BoardImage();
-			boardImage.setBdImgName(fileName);
-			boardImage.setBdNo(board.getBdNo());
-			
-			boardService.insertPhotoImage(boardImage);
-			
-			//파일을 디스크에 저장
-			try {
-				FileOutputStream ostream = 
-					new FileOutputStream(new File(path, boardImage.getBdImgName()));
-				InputStream istream = file.getInputStream();
-				while (true) {
-					int data = istream.read();
-					if (data == -1) break;
-					ostream.write(data);
-				}
-				istream.close();
-				ostream.close();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-
-		return "redirect:/board/freeboard.action";
-	}
-	
 	
 	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
