@@ -19,26 +19,29 @@
 			<div style="width:216px;float: left; margin:0 0 0 0;"><!-- 사이드메뉴 -->
 			  <c:import url="/WEB-INF/views/board/sidemenu.jsp" />
 			</div><!-- 사이드메뉴 끝 -->
-			
 			<div style="width: 730px; float:right;"><!-- list -->
+			
+			<!--내용-->
+			<div id="contents_wrap">
+				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
-				<tr>
-					<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
-				</tr>
+			<tr>
+				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
+			</tr>
 			</table>
 				
-				<div style="padding:5px;"></div>
 				
+			<div style="padding:5px;"></div>
+			
 			<table width="100%">
-				<tr height="30">
-					<!-- 오른쪽 위 자유게시판 -->
-					<td align="left">&nbsp;</td>
+			<tr height="30">
+				<!-- 오른쪽 위 자유게시판 -->
+				<td align="left">&nbsp;</td>
 								  
-					<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								 	 <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
-					</td>
-				</tr>
-			</table>
+				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				</td>
+			</tr>
 				
 				<table width="100%">
 					<tr>
@@ -70,7 +73,7 @@
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">${ view.bdWriter }</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">${ view.bdRegdate }</td>
+				 	  <td width="90" align="center">${ view.bdDate }</td>
 				 	  <td width="1"></td>
 				 	  <td align="center" width="40">${ view.bdReportingCount }</td>
 				 	</tr>
@@ -109,13 +112,24 @@
 						<td height="2px"  bgcolor="#EBEBEB"></td>
 					</tr>
 				</table>
-				
-				<!-- 댓글 -->
 				<c:forEach var="comment" items="${ view.comments }">
 				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
-						<td width='600' align='eft'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td>
+						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
+						<!-- 수정할 곳 -->
+						<%-- <td width='40'><img src="/easyauction/resources/images/sujung"></td> <b>${ comment.bdNo }</b></td>
+						<td width='40'><img src="/easyauction/resources/images/delete"></td> <b>${ comment.bdNo }</b></td> --%>
+						
+						<!-- <tr>
+							<td style="padding-left:25px;"><img src="/easyauction/resources/images/sujung.png"></td>
+						</tr>
+						
+						<tr>
+							<td style="padding-left:25px;"><img src="/easyauction/resources/images/delete.png"></td>
+						</tr> -->
+						
+						</td>
 						<td width='50'></td>
 					</tr>
 					<tr>
@@ -123,13 +137,18 @@
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
+				<form action='freeboardcomment.action?bdno=${ view.bdNo }' method='post'>
 					<input type="hidden" value="${ view.bdWriter }" name="writer" >
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
 							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
 						</tr>
+						
+						  <td>
+						  <input type="button" value="수정" style='height:25px;' onclick="location.href='updatefreeboardcomment.action';"/>
+						  <input type="button" value="삭제" style='height:25px;' onclick="location.href='deletedfreeboardcomment.action';"/>
+						  </td>
 						
 					</table>
 				</form>

@@ -119,4 +119,60 @@
 		where bdno = #{ bdNo }
 	</select>
 	
+	<select id="getGongjiBoardViewByBoardNo" resultMap="boardResult" parameterType="int">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		where bdno = #{ bdNo }
+	</select>
+	
+	<insert id="insertFreeBoardComment" parameterType="BoardComment">
+		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
+			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
+	</insert>
+	
+	<insert id="insertGongjiBoardComment" parameterType="BoardComment">
+		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
+			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
+	</insert>
+	
+	<select id="UpdateFreeBoardComment" parameterType="BoardComment">
+		UPDATE board SET 
+		bc_content = #{bcContent},
+		bd_no = #{bdNo},
+		bc_writer = #{bcWriter} WHERE bc_no = #{bcNo}
+	</select>
+	
+	<update id="DeletedFreeBoardComment" parameterType="integer">
+	DELETE FROM BOARD WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!--
+	<select id="getMemberSearchListBySomething" parameterType="Member"
+		resultMap="memberResult">
+		SELECT <include refid="membercolumns" />
+			FROM member
+		<trim prefix="where" prefixOverrides="AND | OR">
+				<if test="memberNo != 0">
+					MEMBER_NO LIKE '%'|| #{memberNo} ||'%'
+				</if>
+				<if test="memberId != null">
+					AND MEMBER_ID LIKE '%'|| #{memberId} ||'%'
+				</if>
+				<if test="memberName != null">
+					AND MEMBER_NAME LIKE '%'||  #{memberName} ||'%'
+				</if>
+
+		</trim>
+		ORDER BY Member_No DESC
+	</select>
+	
+	<select id="getMemberCountById"
+		parameterType="string"
+		resultType="integer">
+		SELECT COUNT(member_id) 
+		FROM member 
+		WHERE member_id = #{memberId}
+	</select> -->
+	
 </mapper>
