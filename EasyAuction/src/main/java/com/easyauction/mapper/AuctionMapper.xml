@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.easyauction.mapper.AuctionMapper">
+	<resultMap type="Auction" id="auctionResult">
+		<id column="aucno" property="aucNo" />
+		<result column="auctitle" property="aucTitle" />
+		<result column="aucstartdate" property="aucStartDate" />
+		<result column="aucenddate" property="aucEndDate" />
+		<result column="aucitemname" property="aucItemName" />
+		<result column="auccategory" property="aucCategory" />
+		<result column="aucdetail" property="aucDetail" />
+		<result column="aucstartprice" property="aucStartPrice" />
+		<result column="aucfinalprice" property="aucFinalPrice" />
+		<result column="aucstate" property="aucState" />
+		<result column="aucregdate" property="aucRegdate" />
+		<result column="aucreportingcount" property="aucReportingCount" />
+		<result column="aucblindcheck" property="aucBlindCheck" />
+		<result column="auctype" property="aucType" />
+		<result column="aucreadcount" property="aucReadCount" />
+		<result column="aucwriter" property="aucWriter" />
+		<result column="aucadtext" property="aucAdText" />
+		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
+	</resultMap>
+	
+	<resultMap type="auctionImage" id="auctionImageResult">
+		<id column="aucimgno" property="aucImgNo"/>
+		<result column="aucimgname" property="aucImgName" />
+		<result column="aucno" property="aucNo" />
+		<result column="aucimgregdate" property="aucImgRegdate" />
+	</resultMap>
+	
+	<sql id="auctioncolumns">
+			 aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, 
+			 aucfinalprice, aucstate, aucregdate, aucreportingcount,
+			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext
+	</sql>
+	
+<!-- 	<sql id="insertcolumns">
+			aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter
+	</sql> -->	
+	
+  	<insert id="insertAuction" parameterType="Auction" >
+	  <selectKey keyProperty="aucNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEAUCTIONNO.currval from dual
+	  </selectKey>
+		INSERT INTO auction(aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter)  
+		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, #{aucStartDate},#{aucEndDate},#{aucItemName},
+		       #{aucCategory},#{aucAdText},#{aucDetail},#{aucStartPrice},#{aucWriter})
+	</insert> 
+	
+	<insert id="insertAuctionPhotoImage" parameterType="auctionImage">
+		INSERT INTO AUCTIONIMAGE(aucimgno, aucimgname, aucno)
+			VALUES(SEQUENCEAUCTIONIMAGENO.nextVal, #{ aucImgName }, #{ aucNo })
+	</insert> 
+	
+	
+	
+	<select id="getAuctionImageByAuctionNo" resultMap="auctionImageResult" parameterType="int">
+		select aucimgno, aucimgname, aucno
+		from AUCTIONIMAGE
+		where aucno = #{ aucNo }
+	</select>
+	
+	
+	
+	
+	<select id="getAuctionList" resultMap="auctionResult" parameterType="int">
+		select  aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate,auctype, aucwriter, aucadtext
+		from AUCTION
+		order By
+		aucno DESC
+	</select>
+	
+	
+	
+	
+	
+</mapper>

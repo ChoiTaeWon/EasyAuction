@@ -41,3 +41,4 @@ public interface BoardService {
 	void deletedFreeBoardComment(BoardComment boardComment);
 	
 }
+

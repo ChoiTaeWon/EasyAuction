@@ -16,6 +16,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan base-package="com.easyauction.repository" />
+	<context:component-scan base-package="com.easyauction.service" />
 		
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
 			p:driverClassName="oracle.jdbc.OracleDriver"
@@ -54,6 +55,12 @@
 		class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" 
 			value="com.easyauction.mapper.BoardMapper" />
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean>	
+		<bean id="auctionMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+			value="com.easyauction.mapper.AuctionMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
 	</bean>	
 </beans>

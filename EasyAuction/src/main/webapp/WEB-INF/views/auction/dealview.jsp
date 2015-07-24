@@ -4,16 +4,52 @@
 <html>
 <head>
 	
-	<meta charset="utf-8" />
+	<meta charset="utf-8" http-equiv="Content-Type"/>
 	<title>Easy Auction 게시글 보기</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
+<script type="text/javascript">
 
+	function getTime() { 
+		 now = new Date(); 
+		dday = new Date(2015,07,31,00,00,00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+		days = (dday - now) / 1000 / 60 / 60 / 24; 
+		dRound = Math.floor(days); 
+		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
+		hRound = Math.floor(hours); 
+		minutes = (dday - now) / 1000 /60 - (24 * 60 * dRound) - (60 * hRound); 
+		mRound = Math.floor(minutes); 
+		seconds = (dday - now) / 1000 - (24 * 60 * 60 * dRound) - (60 * 60 * hRound) - (60 * mRound); 
+		sRound = Math.round(seconds);
+	
+
+		
+		if(hRound <10){
+			document.getElementById("counter1").innerHTML = "0" + hRound;
+		}else{
+			document.getElementById("counter1").innerHTML = hRound;	
+		}
+		
+		if(mRound <10){
+			document.getElementById("counter2").innerHTML = "0" + mRound;
+		}else{
+			document.getElementById("counter2").innerHTML = mRound; 
+		}
+		
+		if(sRound <10){
+			document.getElementById("counter3").innerHTML = "0" + sRound; 
+		}else{
+			document.getElementById("counter3").innerHTML = sRound; 	
+		}
+		newtime = window.setTimeout("getTime();", 1000); 
+	}													
+
+</script>
 
 <body>
 
-		
+	<div id="wrap">
 		<div id="top">
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
@@ -107,11 +143,11 @@
 							
 							
 									<!--중간-->
-										<td width="300" style="padding-left:20px; padding-right:20px;" align="center">
+										<td width="300" style="padding-left:15px; padding-right:15px;" align="center">
 											<div id="end_view_layer">
 											
 													<div style="padding:10px;"></div>
-													<table width="250px;" align="center">
+													<table width="270px;" align="center">
 														<tr height="40px;">
 															<td width="72"><img src="/easyauction/resources/images/ico_now_price.gif" title="현재가격"></td>
 															<td width="178" align="right">0</font> 원</td>
@@ -129,43 +165,73 @@
 													</table>
 								
 													<div style="padding:15px;"></div>
-												
-													<table style="width: 250px">
+
+													<!-- 남은시간 day 표시 -->
+<!--  													<table style="width: 270px">
 														<tr>
 															<td  align="center">
 																<table style="width: 100%;"  >
-																<tr>
-																	<td align="center" style="padding:5px 5px 0 0;">
-																		<!-- <table style="width:5px;border:2px solid height:35px; background-repeat:no-repeat; ">
-																		<tr>
-																			<td>0</td>
-																		</tr>
-																		</table> -->
-																		<img src="/easyauction/resources/images/clock_icon.png">
-																	</td>
-																	<td align="center">
-																		<div class="tenwon_time" id="tenwon_time_4">
-																			<div class="tenwon_time_day" style="display:none;" id="tenwon_time_4_day"></div>
-																			<div class="tenwon_time_day_icon" style="display:none;" id="tenwon_time_4_dayicon"></div>
-																			<div class="tenwon_time_day_no" id="tenwon_time_4_day_no"></div><div class="tenwon_time_dayicon_no" id="tenwon_time_4_dayicon_no"></div>
-																			<div class="tenwon_time_hour" id="tenwon_time_4_hour">00</div>
-																			<div class="tenwon_time_minutes" id="tenwon_time_4_minutes">00</div>
-																			<div class="tenwon_time_second" id="tenwon_time_4_second">00</div>
-																		</div>
-																	</td>
-																</tr>
+																	<tr>
+																		<td align="center" style="padding:0;margin:0;">
+																		</td>
+																		<td align="center">
+																				<div class="deal_time_blank"></div> 
+																				<div class="deal_time_hour">
+																					<SPAN id=counter1>00</SPAN>
+																				</div>
+																				<div class="deal_time_blank">:</div> 
+																				<div class="deal_time_minutes">
+																					<SPAN id=counter2>00</SPAN>
+																				</div>
+																				<div class="deal_time_blank">:</div>
+																				<div class="deal_time_second">
+																					<SPAN id=counter3>00</SPAN>
+																				</div>
+																				<SCRIPT>getTime()</SCRIPT>
+																		</td>
+																	</tr>
 																</table>
 															</td>
 														</tr>
-													</table>
-								
+													</table> -->
+													 
+													<!-- 남은시간 time 표시 -->
+													<table style="width: 270px">
+														<tr>
+															<td  align="center">
+																<table style="width: 100%;"  >
+																	<tr>
+																		<td align="center" style="padding:0;margin:0;">
+																			<img src="/easyauction/resources/images/clock_icon.png" style="padding:0;margin:0;width: 44px;height: 44px;">
+																		</td>
+																		<td align="center">
+																				<div class="deal_time_blank"></div> 
+																				<div class="deal_time_hour" id="counter1">
+																				</div>
+																				<div class="deal_time_blank">:</div> 
+																				<div class="deal_time_minutes">
+																					<SPAN id="counter2"></SPAN>
+																				</div>
+																				<div class="deal_time_blank">:</div>
+																				<div class="deal_time_second">
+																					<SPAN id="counter3"></SPAN>
+																				</div>
+																				
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table> 
+													<SCRIPT>getTime()</SCRIPT>
+
 											</div>
 										
 										
 										
 										
 										
-											<div style="padding:15px;"></div>
+											<div style="padding:5px;"></div>
 											
 												<table width="250" align="center">
 													<tr align="center">
@@ -219,6 +285,8 @@
 																<tr>
 																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 																</tr>
+																
+																
 																								<!--<tr>
 																									<td align="left" height="25">남은시간</td>
 																									<td>:</td>
@@ -385,6 +453,7 @@
 		</div>
 	
 	</div><!-- div wrap 끝 -->
+	
 </body>
 </html>
 

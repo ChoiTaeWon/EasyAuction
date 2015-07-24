@@ -1,6 +1,7 @@
 package com.easyauction.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Auction {
 	private	int aucNo;
@@ -21,7 +22,17 @@ public class Auction {
 	private	String aucWriter;
 	private String aucAdText;
 	
-
+	private List<AuctionImage> auctionImage;
+	public List<AuctionImage> getAuctionImage() {
+		return auctionImage;
+	}
+	public void setAuctionImage(List<AuctionImage> auctionImage) {
+		this.auctionImage = auctionImage;
+	}
+	
+	
+	
+	
 	public int getAucNo() {
 		return aucNo;
 	}
