@@ -21,7 +21,7 @@
 		<mapper resource="com/easyauction/mapper/MemberMapper.xml" />
 		<mapper resource="com/easyauction/mapper/MessageMapper.xml" />
 		<mapper resource="com/easyauction/mapper/BoardMapper.xml" />
-		<mapper resource="com/easyauction/mapper/DealMapper.xml" />
+		<mapper resource="com/easyauction/mapper/AuctionMapper.xml" />
 	</mappers> 
 
 </configuration>

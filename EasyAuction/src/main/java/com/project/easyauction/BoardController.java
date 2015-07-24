@@ -66,10 +66,6 @@ public class BoardController {
 	
 	
 	
-	
-	
-
-	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
 	public String gongjiList() {
 		

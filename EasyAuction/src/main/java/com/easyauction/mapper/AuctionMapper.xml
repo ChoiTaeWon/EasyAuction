@@ -23,28 +23,52 @@
 		<result column="aucreadcount" property="aucReadCount" />
 		<result column="aucwriter" property="aucWriter" />
 		<result column="aucadtext" property="aucAdText" />
+		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
 	</resultMap>
 	
-	<resultMap type="auctionImage" id="imageResult">
+	<resultMap type="auctionImage" id="auctionImageResult">
 		<id column="aucimgno" property="aucImgNo"/>
 		<result column="aucimgname" property="aucImgName" />
 		<result column="aucno" property="aucNo" />
 		<result column="aucimgregdate" property="aucImgRegdate" />
 	</resultMap>
 	
+	<sql id="auctioncolumns">
+			 aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, 
+			 aucfinalprice, aucstate, aucregdate, aucreportingcount,
+			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext
+	</sql>
 	
-<!--  	<insert id="insertPhoto" parameterType="Auction" >
+<!-- 	<sql id="insertcolumns">
+			aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter
+	</sql> -->	
+	
+  	<insert id="insertAuction" parameterType="Auction" >
 	  <selectKey keyProperty="aucNo" order="AFTER" resultType="int" >
-	  	select SEQUENCEBORADNO.currval from dual
+	  	select SEQUENCEAUCTIONNO.currval from dual
 	  </selectKey>
-		INSERT INTO board(bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bdreportingcount)  
-		       VALUES(SEQUENCEBORADNO.nextVal, 3, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
-	</insert> -->
+		INSERT INTO auction(aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter)  
+		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, #{aucStartDate},#{aucEndDate},#{aucItemName},
+		       #{aucCategory},#{aucAdText},#{aucDetail},#{aucStartPrice},#{aucWriter})
+	</insert> 
 	
-<!--	<insert id="insertPhotoImage" parameterType="boardImage">
-		INSERT INTO BOARDIMAGE(bdimgno, bdimgname, bdno)
-			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdName }, #{ bdNo })
-	</insert> -->
+	<insert id="insertAuctionPhotoImage" parameterType="auctionImage">
+		INSERT INTO AUCTIONIMAGE(aucimgno, aucimgname, aucno)
+			VALUES(SEQUENCEAUCTIONIMAGENO.nextVal, #{ aucImgName }, #{ aucNo })
+	</insert> 
+	
+	
+	
+	<select id="getAuctionImageByBoardNo" resultMap="auctionImageResult" parameterType="int">
+		select aucimgno, aucimgname, aucno
+		from AUCTIONIMAGE
+		where aucno = #{ aucNo }
+	</select>
+	
+	
 	
 	
 </mapper>

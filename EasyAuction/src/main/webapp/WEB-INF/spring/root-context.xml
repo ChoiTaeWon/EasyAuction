@@ -49,10 +49,10 @@
 			value="com.easyauction.mapper.BoardMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
 	</bean>	
-		<bean id="dealMapper"
+		<bean id="auctionMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" 
-			value="com.easyauction.mapper.DealMapper" />
+			value="com.easyauction.mapper.AuctionMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
 	</bean>	
 </beans>
