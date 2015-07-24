@@ -12,6 +12,7 @@
 		<typeAlias type="com.easyauction.dto.Message" alias="Message" />
 		<typeAlias type="com.easyauction.dto.Board" alias="Board" />
 		<typeAlias type="com.easyauction.dto.BoardImage" alias="boardImage"/>
+		<typeAlias type="com.easyauction.dto.BoardComment" alias="boardComment"/>
 	</typeAliases>
 
 

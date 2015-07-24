@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.easyauction.dto.Board;
+import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
 import com.easyauction.repository.BoardRepository;
 
@@ -43,6 +44,14 @@ public class MyBoardService implements BoardService{
 		
 		return photos;
 	}
-
+	public Board getPhotoViewByBoardNo(int bdNo){
+		return boardRepository.getPhotoViewByBoardNo(bdNo);
+	}
+	public void insertComment(BoardComment boardComment){
+		boardRepository.insertComment(boardComment);
+	}
+	public List<BoardComment> getCommentByBoardNo(int bdNo){
+		return boardRepository.getCommentByBoardNo(bdNo);
+	}
 
 }

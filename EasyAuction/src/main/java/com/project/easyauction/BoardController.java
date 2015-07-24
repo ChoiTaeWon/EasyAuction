@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.dto.Board;
+import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
 import com.easyauction.service.BoardService;
 
@@ -116,16 +118,38 @@ public class BoardController {
 	public ModelAndView photoList() {
 		ModelAndView mav = new ModelAndView();
 		List<Board> photos = boardService.getPhotoList();
+		
 		mav.setViewName("board/photolist");
 		mav.addObject("photos",photos);
 		return mav;
 		
 	}
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public String photoviewList() {
+	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
+		System.out.println(bdNo);
+		Board view = boardService.getPhotoViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
 		
-		return "board/photoview";
-	}	
+		mav.setViewName("board/photoview");
+		mav.addObject("view", view);
+		
+		return mav;
+	}
+
+	@RequestMapping(value="comment.action", method=RequestMethod.POST)
+	public String insertComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+		BoardComment boardComment = new BoardComment();
+		boardComment.setBdNo(bdNo);
+		boardComment.setBcContent(content);
+		boardComment.setBcWriter(writer);
+		System.out.println(bdNo + "/" + content + "/" +writer);
+		
+		boardService.insertComment(boardComment);
+		return "redirect:/board/photoview.action?bdno="+bdNo;
+	}
+	
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
 	public String photoregister() {
 		

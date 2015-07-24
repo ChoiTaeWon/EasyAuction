@@ -62,13 +62,13 @@
 				 <div style="padding:3px;"></div>
 				 <table width="100%">
 				 	<tr height="26">
-				 	  <td align="left" style="padding-left:10px;"><b><a href="#">제목</a></b></td>
+				 	  <td align="left" style="padding-left:10px;"><b>${ view.bdTitle }</b></td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">회원명</td>
+				 	  <td width="90" align="center">${ view.bdWriter }</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">등록일</td>
+				 	  <td width="90" align="center">${ view.bdDate }</td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">조회수</td>
+				 	  <td align="center" width="40">${ view.bdReportingCount }</td>
 				 	</tr>
 				    <tr>
 						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>
@@ -76,9 +76,17 @@
 					<tr>
 						<td style="padding:15 0 20 0;">
 						<div  id="ct" class="WYS" align="justify" style="font-size:12px; line-height:21px; border:0px solid red; word-break:break-all;">
-							<img border="0" alt="" src="#" /><br />
 							<div style="border-bottom: red 0px solid; border-left: red 0px solid; line-height: 1.6; font-size: 14px; word-break: break-all; border-top: red 0px solid; border-right: red 0px solid" id="ct" align="justify"><br />
-							내용
+							<table>
+								<tr>
+								 <c:forEach var="images" items="${ view.boardImage }">
+								  <td><img src="/easyauction/resources/imagefile/${ images.bdImgName }"><br /></td>
+								 </c:forEach>
+								</tr>
+								<tr>
+								  <td>${ view.bdContent }</td>
+								</tr>
+							</table>
 							</div>
 						</div>
 						</td>
@@ -97,26 +105,24 @@
 						<td height="2px"  bgcolor="#EBEBEB"></td>
 					</tr>
 				</table>
+				<c:forEach var="comment" items="${ view.comments }">
 				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>밤비</b></td>
-						<td width='600' align='eft'>댓글내용&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>2011-08-29 10:31:34</font></td>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
+						<td width='600' align='eft'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td>
 						<td width='50'></td>
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
 					</tr>
 				</table>
-				<form name='reply_add_form' action='bbs_short_comment.php?id=&action=add' method='post' style='margin:0;' onSubmit="return check_comment_form()">
-					<input type=hidden name=tb value=board_review>
-					<input type=hidden name=id value=''>
-					<input type=hidden name=bbs_num value=5>
-					<input type=hidden name=pg value=>
-				
+				</c:forEach>
+				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
+					<input type="hidden" value="${ view.bdWriter }" name="writer" >
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
-							<td><textarea style='width:95%' rows=4 name=short_comment class=Sinput2  style='font-size:12px; height:35;'></textarea></td>
-							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif></td>
+							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
+							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
 						</tr>
 						
 					</table>
