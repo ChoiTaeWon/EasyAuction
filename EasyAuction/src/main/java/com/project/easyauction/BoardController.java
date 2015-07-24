@@ -209,7 +209,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
 	public String photoregister() {
-		
+		//photo
 		return "board/photoregister";
 	}
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.POST)
