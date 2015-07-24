@@ -47,8 +47,23 @@ public class OracleMessageRepository implements MessageRepository{
 
 	@Override
 	public void deleteMsgBymsgNo(int msgNo, String pageId) {
-		messageMapper.deleteMsgBymsgNo(msgNo, pageId);
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("msgNo", msgNo+"");
+		params.put("pageId", pageId);
+		messageMapper.deleteMsgBymsgNo(params);
 		
 	}
+
+	@Override
+	public void setReadMsgBymsgNo(int msgNo) {
+		messageMapper.setReadMsgBymsgNo(msgNo);
+	}
+
+	@Override
+	public int getMessageCountBymbId(String mbId) {
+		int mssagecount = messageMapper.getMessageCountBymbId(mbId);
+		return mssagecount;
+	}
+	
 	
 }

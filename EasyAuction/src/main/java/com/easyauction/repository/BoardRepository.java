@@ -10,19 +10,24 @@ public interface BoardRepository {
 	
 	int insertFreeboard(Board board);
 	
-	int insertGongjiboard(Board board);
+	int insertGongjiBoard(Board board);
 	
 	int insertPhoto(Board board);
 	
 	void insertPhotoImage(BoardImage boardImage);
+	
 	List<Board> getPhotoList();
 	
 	Board getPhotoViewByBoardNo(int bdNo);
 	
 	void insertComment(BoardComment boardComment);
+	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
 	
+	List<Board> getFreeBoardList();
 	
-	List<Board> getfreeBoardList();
+	List<Board> getGongjiList();
+
+	Board getFreeBoardViewByBoardNo(int bdNo);
 
 }

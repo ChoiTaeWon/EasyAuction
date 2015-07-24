@@ -16,4 +16,8 @@ public interface MessageRepository {
 
 	void deleteMsgBymsgNo(int msgNo, String pageId);
 
+	void setReadMsgBymsgNo(int msgNo);
+
+	int getMessageCountBymbId(String mbId);
+
 }

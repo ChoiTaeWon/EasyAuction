@@ -8,24 +8,26 @@ import com.easyauction.dto.BoardImage;
 
 public interface BoardMapper {
 	
-	int insertFreeboard(Board board);
+	int insertFreeBoard(Board board);
 
-	int insertGongjiboard(Board board);
+	int insertGongjiBoard(Board board);
 	
 	int insertPhoto(Board board);
 	
 	void insertPhotoImage(BoardImage boardImage);
 	
-
 	void insertComment(BoardComment boardComment);
 
 	List<Board> getPhotoList();
 	
-	List<Board> getfreeBoardList();
+	List<Board> getFreeBoardList();
 	
+	List<Board> getGongjiList();
 
 	Board getPhotoViewByBoardNo(int bdNo);
 	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
+	
+	Board getFreeBoardViewByBoardNo(int bdNo);
 	
 }

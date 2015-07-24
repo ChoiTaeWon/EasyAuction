@@ -34,7 +34,7 @@
 		<result column="bcregdate" property="bcRegdate" />
 	</resultMap>
 	
-	<insert id="insertFreeboard" parameterType="Board" >
+	<insert id="insertFreeBoard" parameterType="Board" >
 	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
 	  	select SEQUENCEBORADNO.currval from dual
 	  </selectKey>
@@ -42,7 +42,7 @@
 		       VALUES(SEQUENCEBORADNO.nextVal, 2, #{ bdContent }, #{ bdWriter }, #{ bdTitle }, #{ bdReadCount }, #{ bdReportingCount })
 	</insert>
 	
-	<insert id="insertGongjiboard" parameterType="Board" >
+	<insert id="insertGongjiBoard" parameterType="Board" >
 	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
 	  	select SEQUENCEBORADNO.currval from dual
 	  </selectKey>
@@ -62,10 +62,12 @@
 		INSERT INTO BOARDIMAGE(bdimgno, bdimgname, bdno)
 			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdImgName }, #{ bdNo })
 	</insert>
+	
 	<insert id="insertComment" parameterType="BoardComment">
 		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
 			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
+	
 	<select id="getPhotoList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
@@ -74,7 +76,15 @@
 			bdno DESC
 	</select>
 	
-	<select id="getfreeBoardList" resultMap="boardResult">
+	<select id="getFreeBoardList" resultMap="boardResult">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		ORDER BY 
+			bdno DESC
+	</select>
+	
+	<select id="getGongjiList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
 		FROM Board
@@ -87,17 +97,26 @@
 		from BOARDIMAGE
 		where bdno = #{ bdNo }
 	</select>
+	
  	<select id="getPhotoViewByBoardNo" resultMap="boardResult" parameterType="int">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
 		FROM Board
 		where bdno = #{ bdNo }
 	</select>
+	
 	<select id="getCommentByBoardNo" resultMap="commentResult" parameterType="int">
 		SELECT
 			bcno, bccontent, bdno, bcwriter, bcregdate
 		FROM BOARDCOMMENT
 		where bdno = #{ bdNo }				
+	</select>
+	
+	<select id="getFreeBoardViewByBoardNo" resultMap="boardResult" parameterType="int">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		where bdno = #{ bdNo }
 	</select>
 	
 </mapper>

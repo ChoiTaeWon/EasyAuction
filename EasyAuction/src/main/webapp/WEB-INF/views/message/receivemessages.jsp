@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,17 +12,15 @@
 $(function(){
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
-		alert('${mbId}');
 		var mbId = '${mbId}';
-		
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
 function deletemessage(msgNo){
-	alert(msgNo);
 	var pageId = 'receivemessages';
-	location.href="/easyauction/message/deletemessage.action?msgNo=" + msgNo + "&pageId=" + pageId;
+	var mbId = '${mbId}';
+	location.href="/easyauction/message/deletemessage.action?msgNo=" + msgNo + "&pageId=" + pageId + "&mbId=" + mbId;
 }
 </script>
 </head>
@@ -32,7 +31,6 @@ function deletemessage(msgNo){
    <li class='active' id="receivemessages"><a href="#"><span>받은 쪽지함</span></a></li>
    <li id="sendmessages"><a href='#'><span>보낸쪽지함</span></a></li>
    <li id="sendmessage"><a href='#'><span>쪽지보내기</span></a></li>
-   <li id="viewmessage"><a href='#'><span>쪽지보기(임시)</span></a></li>
 </ul>
 </div>
 <!-- 쪽지 해더 -->
@@ -82,20 +80,29 @@ function deletemessage(msgNo){
 <!-- for문들어갈 쪽지내용 -->
 <table width='100%' cellspacing='0' cellpadding='0' border='0'>
 <c:choose>
-<c:when test="${ messages ne null }">
+<c:when test="${ messages ne null && fn:length(messages) > 0 }">
 <c:forEach var="message" items="${ messages }">
 	<tr height='25'>
-		<td style='padding-left:5px'><a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">${ message.msgContent }</a></td>
-		<td width='81' align='center'><font color="#888888">${ message.msgSender }</td>
-		<td width='101' align='center'><font color="#888888">${ message.msgDate }</td>
-		<td width='61' align='center'><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle" onclick="deletemessage(${ message.msgNo });"></a></td>
+		<td style='padding-left:5px'>
+		<img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle">
+		<c:if test="${ message.msgReadCheck == false }">
+		<img src="/easyauction/resources/images/icon_new.gif" border="0" align="absmiddle"/>
+		</c:if>
+		&nbsp;&nbsp;
+		<a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }&mbId=${mbId}">
+		<font color="#888888">
+		${ message.msgTitle }</font></a>
+		</td>
+		<td width='81' align='center'><font color="#888888">${ message.msgSender }</font></td>
+		<td width='101' align='center'><font color="#888888">${ message.msgDate }</font></td>
+		<td width='61' align='center'><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle" onclick="deletemessage(${ message.msgNo });"></td>
+	</tr>
 </c:forEach>
 </c:when>
 <c:otherwise>
-	<td width='101' align='center'><font color="#888888">보낸 쪽지가 없습니다.</td>
+	<tr><td width='101' align='center'><font color="#888888">보낸 쪽지가 없습니다.</font></td></tr>
 </c:otherwise>
 </c:choose>
-	</tr>
 </table>
 <!-- 페이징 -->
 <!-- <table width='96%' cellspacing='0' cellpadding='0' border='0'>

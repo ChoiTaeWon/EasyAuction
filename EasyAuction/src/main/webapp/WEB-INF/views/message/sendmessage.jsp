@@ -20,14 +20,12 @@ $(function(){
 $(function(){
 		$("#msgReceiver").blur(function(event) {
 			var mbId = $("#msgReceiver").val();
-			alert(mbId);
 			$.ajax({
 				url : "/easyauction/ajax/membercheck.action?mbId=" + mbId,
 				async : true,
 				data : {},
 				method : "GET",
 				success : function(result, status, xhr) {
-					alert(result);
 					if (result != 1){
 						alert("유효하지 않는 아이디");
 						$("#msgReceiver").val('').focus();
@@ -54,7 +52,6 @@ $(function(){
    <li id="receivemessages"><a href="#"><span>받은 쪽지함</span></a></li>
    <li id="sendmessages"><a href='#'><span>보낸쪽지함</span></a></li>
    <li class='active' id="sendmessage"><a href='#'><span>쪽지보내기</span></a></li>
-   <li id="viewmessage"><a href='#'><span>쪽지보기(임시)</span></a></li>
 </ul>
 </div>
 <!-- 쪽지 해더 -->
