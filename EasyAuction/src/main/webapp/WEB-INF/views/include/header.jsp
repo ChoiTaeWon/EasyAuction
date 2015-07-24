@@ -67,7 +67,7 @@
 				
 			},
 			error : function(xhr, status, ex) {
-				alert(status+ex);
+				/* alert(status+ex); */
 			}
 		})
 		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
@@ -84,7 +84,7 @@
 							               		</td>
 							               	<%-- </c:otherwise> --%>
 							                <td class="smfont3">│</td>
-											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?${loginuser.mbId}">마이페이지</a></td>
 											<td class="smfont3">│</td>
 											<td class="smfont3"><img src="/easyauction/resources/images/btn_logout.gif" onclick="javascript:logout();"></td>
 							          <%--   </c:when><c:otherwise> --%>
