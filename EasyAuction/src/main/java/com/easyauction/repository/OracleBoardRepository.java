@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.easyauction.dto.Board;
+import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
 import com.easyauction.mapper.BoardMapper;
 
@@ -48,11 +49,21 @@ public class OracleBoardRepository implements BoardRepository{
 		
 	}
 	@Override
+	public void insertComment(BoardComment boardComment){
+		boardMapper.insertComment(boardComment);
+	}
+	@Override
 	public List<Board> getPhotoList(){
 		List<Board> photos = boardMapper.getPhotoList();
 		return photos;
 	}
-
+	@Override
+	public Board getPhotoViewByBoardNo(int bdNo){
+		return boardMapper.getPhotoViewByBoardNo(bdNo);
+	}
+	public List<BoardComment> getCommentByBoardNo(int bdNo){
+		return boardMapper.getCommentByBoardNo(bdNo);
+	}
 	@Override
 	public List<Board> getfreeBoardList() {
 		List<Board> boards = boardMapper.getfreeBoardList();
