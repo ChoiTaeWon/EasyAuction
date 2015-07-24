@@ -5,6 +5,7 @@
 <html>
 <head>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 <!-- 다음 주소관련 function 시작 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -62,15 +63,14 @@
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
-
 <body onload="loadHandler();">
-<table>
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
-		</div><!-- 헤더 끝 -->
+		</div><!-- 헤더 끝 --><br />
 		<div style="width: 960px; ">
 		<!-- 헤더밑 부분 margin:0 auto;-->
+<table align="center">
 	<div align="center">
 		<tr>
 			<td><img
@@ -100,7 +100,8 @@
 									<div style="margin: 10px;">
 
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
-											style="border-top: 1px solid #ededed;">
+											style="border-top: 1px solid #ededed;border-bottom: 1px solid #ededed;">
+											<div style="padding: 5px;"></div>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   아이디</td>
 												<td>
@@ -163,12 +164,20 @@
 													placeholder="주소" style='width: 280px'><br /> <input
 													type="text" id="address2" name="memberAddress2"
 													placeholder="상세주소" style='width: 280px'><span
-													id="guide" style="color: #999"></span></td>
+													id="guide" style="color: #999"></span>
+													<div style="padding: 5px;"></div>
+													<div style="padding: 5px;"></div>
+													</td>
+												
 											</tr>
 										</table>
+										<div style="padding: 5px;"></div>
 						</td>
 					</tr>
+					<div style="padding: 5px;"></div>
 				</table>
+				<div style="padding: 5px;"></div>
+				<tr><td><img src="" /></td></tr>
 	</div>
 </table>
 <!-- 푸터  -->
@@ -177,5 +186,6 @@
 		</div>
 <div style="width: 960px; ">
 <!-- 푸터 끝 -->
+</div>
 </body>
 </HTML>

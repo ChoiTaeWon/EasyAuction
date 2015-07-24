@@ -25,5 +25,10 @@ public class MyMemberService implements MemberService {
 		int result = mbrepo.getCountByMemberId(mbId);
 		return result;
 	}
+	@Override
+	public Member getMemberById(String mbId) {
+		Member member = mbrepo.getMemberById(mbId);
+		return member;
+	}
 
 }

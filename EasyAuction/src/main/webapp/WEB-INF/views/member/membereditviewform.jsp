@@ -6,6 +6,7 @@
 <head>
 <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 <!-- 다음 주소관련 function 시작 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -59,47 +60,20 @@
 </head>
 
 <body>
-<table>
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 -->
+		<br />
 		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
-		<!-- 사이드메뉴 헤더 -->
-<div style='float: left;'>
-<table style="border-collapse: collapse; width: 216px;">
-	<tr>
-		<td><a href="#" onFocus="this.blur();"><img src="/easyauction/resources/images/tit_community.gif" title="마이페이지"></a></td>
-	</tr>
-</table><!-- 사이드메뉴헤더끝 -->
-<table style="border:1px solid #DEDEDE; border-collapse: collapse; background-color:#F8F8F8;" width="216"><!-- 사이드메뉴 몸통 -->
-	<tr>
-		<td>
-		  <table cellspacing='0' cellpadding='0' border='0' width='100%'>
-		   <tr>
-		    <td>
-		     <table width='100%'>
-		      <tr>
-		       <td style="padding-top: 10px">
-		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
-		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action" class="bbs_menu_name">내 정보 수정</b>
-		         </a>
-		       </td>
-		      </tr>
-		     </table>
-		    </td>
-		   </tr>
-		  </table>
-		</td>
-	</tr>
-</table>		
-</div>
-<!-- 사이드 메뉴 -->
+<!-- 사이드메뉴 -->
+	<c:import url="/WEB-INF/views/member/sidemenu.jsp" />
+<!-- 사이드메뉴 끝 -->
+<table>
+<div style="float: right;width: 76%">
 	<div align="center" style='float: right;'>
 		<tr>
-			<td><img
-				src="/easyauction/resources/images/member_out_banner.gif" align="absmiddle" border="0">
+			<td><img src="/easyauction/resources/images/member_out_banner.gif" align="absmiddle" border="0">
 
 				<div style="padding: 5px;"></div>
 
@@ -125,20 +99,20 @@
 									<div style="margin: 10px;">
 
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
-											style="border-top: 1px solid #ededed;">
-											<tr height="300px">
+											style="border-top: 1px solid #ededed;border-bottom: 1px solid #ededed;">
+											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
-															이엘 아이디값
+															${ member.mbId }
 														</tr>
 													</table>
 												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드</td>
-												<td><input type='passwd' name='passwd' id='passwd'></td>
+												<td><input type='passwd' name='mbPasswd' id='passwd'></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드
@@ -148,63 +122,72 @@
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이름</td>
-												<td><input type="text" name="memberName"
-													id="memberName" /></td>
+												<td><input type="text" name="mbName"
+													id="memberName" value="${ member.mbName }" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">성별</td>
-												<td><input type=radio id=genderm name='gender'
-													value='1' checked="checked">남자&nbsp; <input
-													type=radio id=genderf name='gender' value='0'>여자
-													&nbsp;</td>
+												<td>
+													<input type=radio id=genderm name='mbGender' checked='${member.mbGender eq true ? checked : ""}'>남자&nbsp; 
+													<input type=radio id=genderf name='mbGender' checked='${member.mbGender eq true ? "" : checked}'>여자&nbsp;
+												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이메일</td>
-												<td><input type='text' name='memberEmail'></td>
+												<td><input type='text' name='mbEmail' value="${ member.mbEmail }"></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">전화번호
 												</td>
-												<td><input type='text' name='phone1' id='phone1' /></td>
+												<td><input type='text' name='mbPhone1' id='phone1' value="${ member.mbPhone1 }"/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">휴대폰</td>
-												<td><input type='text' name='phone2' id='phone2' /></td>
+												<td><input type='text' name='mbPhone2' id='phone2' value="${ member.mbPhone2 }"/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">생년월일</td>
-												<td><input type='date' name='birthdate' id='birthdate' />
+												<td><input type='date' name='mbBirthDate' id='birthdate' value="${ member.mbBirthDate }"/>
 												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif"
 													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">주소</td>
-												<td><input type="text" id="postcode1" name="postcode1"
-													style='width: 80px' readonly="readonly"> - <input type="text"
-													id="postcode2" name="postcode2" style='width: 80px' readonly="readonly">
-													<input type="button" onclick="daumPostcode()"
-													value="우편번호 찾기" style='height: 25px'><br> 
-													<input
-													type="text" id="address1" name="memberAddress1"
-													placeholder="주소" style='width: 280px' readonly="readonly"><br /> 
-													<input
-													type="text" id="address2" name="memberAddress2"
-													placeholder="상세주소" style='width: 280px'><span id="guide" style="color: #999"></span></td>
+												<td><input type="text" id="postcode1" name="postcode1" style='width: 80px' readonly="readonly"> - 
+													<input type="text" id="postcode2" name="postcode2" style='width: 80px' readonly="readonly">
+													<input type="button" onclick="daumPostcode()" value="우편번호 찾기" style='height: 25px'><br> 
+													<input type="text" id="address1" name="mbAddress1" placeholder="주소" style='width: 280px' readonly="readonly" value="${ member.mbAddress1 }"><br /> 
+													<input type="text" id="address2" name="mbAddress2" placeholder="상세주소" style='width: 280px' value="${ member.mbAddress2 }">
+													<span id="guide" style="color: #999"></span>
+													
+													<div style="padding: 5px;"></div>
+													</td>
+												
 											</tr>
 										</table>
+										<div style="padding: 5px;"></div>
 						</td>
 					</tr>
+					<div style="padding: 5px;"></div>
 				</table>
+				<div style="padding: 5px;"></div>
 				<div align="center">
-				<img src="/easyauction/resources/images/btn_my_modify.gif" onclick="javascript:updateMember();" /><img src="/easyauction/resources/images/member_mod_backpage_btn.gif" onclick="#" />
+				<div style="padding: 5px;"></div>
+				<img src="/easyauction/resources/images/btn_my_modify.gif" onclick="javascript:updateMember();" />
+				<img src="/easyauction/resources/images/member_mod_backpage_btn.gif" />
 		</div>
+		<!-- 줄 -->
+		
+		<!-- 줄 -->
 	</div>
 </table>
+</div>
 <!-- 푸터  -->
 <div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
 		</div>
-<div style="width: 960px; ">
+<div style="width: 960px;">
 <!-- 푸터 끝 -->
+</div>
 </body>
 </HTML>

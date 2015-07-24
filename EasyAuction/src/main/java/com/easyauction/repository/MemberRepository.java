@@ -12,4 +12,6 @@ public interface MemberRepository {
 
 	int getCountByMemberId(String mbId);
 
+	Member getMemberById(String mbId);
+
 }

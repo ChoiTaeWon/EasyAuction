@@ -67,7 +67,7 @@
 				
 			},
 			error : function(xhr, status, ex) {
-				alert(status+ex);
+				/* alert(status+ex); */
 			}
 		})
 		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
@@ -78,16 +78,15 @@
 					<td align="right" style="padding:5px 10px 10px 0;" colspan="3">
 						<table class="main_top" >
 									<tr>
-										<%-- <c:choose><c:when test="${ sessionScope.loginuser ne null }"> --%>
+										 <c:choose><c:when test="${ sessionScope.loginuser ne null }"> 
 							                <td class="smfont3">${ loginuser.mbName }
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
-							               	<%-- </c:otherwise> --%>
 							                <td class="smfont3">│</td>
-											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?${loginuser.mbId}">마이페이지</a></td>
 											<td class="smfont3">│</td>
-											<td class="smfont3"><img src="/easyauction/resources/images/btn_logout.gif" onclick="javascript:logout();"></td>
-							          <%--   </c:when><c:otherwise> --%>
+											<td class="smfont3"><a href="/easyauction/account/logout.action"><img src="/easyauction/resources/images/btn_logout.gif"></a></td>
+							          </c:when><c:otherwise>
 										<td><a href="/easyauction/account/login.action"><img src="/easyauction/resources/images/btn_login.gif" title="로그인"></a>&nbsp;&nbsp;</td>
 										<td class="smfont3">│</td>
 										<td><a href="/easyauction/member/register.action">회원가입</a></td>
@@ -97,7 +96,7 @@
 										<td><a href="#">비밀번호찾기</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">상품평보기</a></td>
-							           <%--  </c:otherwise></c:choose> --%>
+							         </c:otherwise></c:choose>
 									</tr>
 						</table>
 					</td>

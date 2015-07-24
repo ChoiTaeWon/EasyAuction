@@ -55,6 +55,11 @@
 		SELECT Count(*) 
 		FROM member 
 		WHERE mbId = #{mbId} 
+</select>
+<select id="getMemberById" resultType="Member">
+		SELECT <include refid="membercolumns" />
+		FROM member 
+		WHERE mbId = #{mbId}
 </select>  
 	
 </mapper>
