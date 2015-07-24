@@ -123,9 +123,7 @@
 						
 						<!-- <tr>
 							<td style="padding-left:25px;"><img src="/easyauction/resources/images/sujung.png"></td>
-						</tr>
 						
-						<tr>
 							<td style="padding-left:25px;"><img src="/easyauction/resources/images/delete.png"></td>
 						</tr> -->
 						
