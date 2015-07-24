@@ -81,4 +81,28 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getFreeBoardViewByBoardNo(bdNo);
 	}
 	
+	@Override
+	public Board getGongjiBoardViewByBoardNo(int bdNo) {
+		return boardMapper.getGongjiBoardViewByBoardNo(bdNo);
+	}
+
+	@Override
+	public void insertFreeBoardComment(BoardComment boardComment) {
+		boardMapper.insertFreeBoardComment(boardComment);
+	}
+
+	@Override
+	public void insertGongjiBoardComment(BoardComment boardComment) {
+		boardMapper.insertGongjiBoardComment(boardComment);
+	}
+	
+	@Override
+	public void updateFreeBoardComment(BoardComment boardComment) {
+		boardMapper.updateFreeBoardComment(boardComment);
+	}
+	
+	@Override
+	public void deletedFreeBoardComment(BoardComment boardComment) {
+		boardMapper.deletedFreeBoardComment(boardComment);
+	}
 }
