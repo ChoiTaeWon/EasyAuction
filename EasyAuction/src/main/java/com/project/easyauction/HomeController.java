@@ -34,23 +34,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value ={ "/","home.action"}, method = RequestMethod.GET)
-	//public String home(HttpServletRequest req) {
-	public ModelAndView home(HttpServletRequest req) {
-			//요청 데이터 읽기
-			String mbId = "in";
-			String passwd = "123";
-			passwd = Util.getHashedString(passwd, "SHA-1");
-			
-			Member member = mbsvc.getMemberByIdAndPasswd(mbId, passwd);
-
-			ModelAndView mav = new ModelAndView();
-			
-				mav.setViewName("mainpage");
-				req.getSession().setAttribute("loginuser", member);
-			return mav; 
-		}
-		
-//		return "mainpage";
-//	}
+	public String home(HttpServletRequest req) {
+//	public ModelAndView home(HttpServletRequest req) {
+//			//요청 데이터 읽기
+//			String mbId = "in";
+//			String passwd = "123";
+//			passwd = Util.getHashedString(passwd, "SHA-1");
+//			
+//			Member member = mbsvc.getMemberByIdAndPasswd(mbId, passwd);
+//
+//			ModelAndView mav = new ModelAndView();
+//			
+//				mav.setViewName("mainpage");
+//				req.getSession().setAttribute("loginuser", member);
+//			return mav; 
+//		}
+		return "mainpage";
+	}
 	
 }
