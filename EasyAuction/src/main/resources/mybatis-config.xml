@@ -12,7 +12,10 @@
 		<typeAlias type="com.easyauction.dto.Message" alias="Message" />
 		<typeAlias type="com.easyauction.dto.Board" alias="Board" />
 		<typeAlias type="com.easyauction.dto.BoardImage" alias="boardImage"/>
+		<typeAlias type="com.easyauction.dto.Auction" alias="Auction"/>
+		<typeAlias type="com.easyauction.dto.AuctionImage" alias="auctionImage"/>
 		<typeAlias type="com.easyauction.dto.BoardComment" alias="boardComment"/>
+
 	</typeAliases>
 
 
@@ -20,6 +23,7 @@
 		<mapper resource="com/easyauction/mapper/MemberMapper.xml" />
 		<mapper resource="com/easyauction/mapper/MessageMapper.xml" />
 		<mapper resource="com/easyauction/mapper/BoardMapper.xml" />
+		<mapper resource="com/easyauction/mapper/AuctionMapper.xml" />
 	</mappers> 
 
 </configuration>

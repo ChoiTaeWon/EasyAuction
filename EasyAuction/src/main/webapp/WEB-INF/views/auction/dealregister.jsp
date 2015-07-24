@@ -6,10 +6,29 @@
 	
 	<meta charset="utf-8" />
 	<title>Easy Auction 경매 등록</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/datetimepicker.min.css"/>
-	<script type="text/javascript" src="/easyauction/resources/js/datetimepicker.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+
+	/* 	$(function(){
+			$("#doregistdeal").on({ 
+				//이벤트 이름 : 호출할 함수
+				click : function(event) {
+					$("#regiform").submit();
+					
+				}
+			});
+		});  */
+			
+		
+	function sub() {
+		document.getElementById("regiform").submit();
+	}
+</script>
+
+
 </head>
 <body>
 		<div id="wrap">
@@ -19,7 +38,8 @@
 		<br/>
 					
 			<div class="registerauction">
-				<form action="dealregister.action" method="post" enctype='multipart/form-data' name='regiform' style="margin:0;">
+				<form action="dealregister.action" method="POST" enctype="multipart/form-data" id='regiform' name="auction" style="margin:0;">
+								<input type=hidden name="aucWriter" value="${ loginuser.mbId }">
 								
 								<!-- 상단 이미지  -->
 								
@@ -36,7 +56,7 @@
 								<div style="padding:5px;"></div>
 								
 								<!-- 입력 시작 -->
-								<table style="border:1px solid #DEDEDE;width:960px;">
+								<table style="border:1px solid #DEDEDE;width:960px;" >
 									<tr>
 										<td style="padding:5px;">
 											<table width="100%">
@@ -64,15 +84,15 @@
 													
 														<select size=1 name="aucCategory" style="width:150px">
 															<option selected="selected">카테고리 선택</option>
-															<option value=01>의류/패션용품</option>
-															<option value=02>국내화장품</option>
-															<option value=03>컴퓨터/주변기기/게임</option>
-															<option value=04>해외화장품/향수</option>
-															<option value=05>출산용품/유아용품</option>
-															<option value=06>자연식품/식재료</option>
-															<option value=07>가공식품/건강/음료</option>
-															<option value=08>가구/생활용품</option>
-															<option value=09>악기/음악관련상품</option>
+															<option value=1>의류/패션용품</option>
+															<option value=2>국내화장품</option>
+															<option value=3>컴퓨터/주변기기/게임</option>
+															<option value=4>해외화장품/향수</option>
+															<option value=5>출산용품/유아용품</option>
+															<option value=6>자연식품/식재료</option>
+															<option value=7>가공식품/건강/음료</option>
+															<option value=8>가구/생활용품</option>
+															<option value=9>악기/음악관련상품</option>
 															<option value=10>프라모델/문구/사무</option>
 															<option value=11>디지털/가전제품</option>
 															<option value=12>스포츠/성인/상품권</option>
@@ -94,7 +114,7 @@
 												<tr height="30">
 													<td width="150" style="background-color:#F6F6F6;"><img src="/easyauction/resources/images/ico_dot.gif" style="margin-left:10px;margin-right: 10px;" align="absmiddle"><b>상품명</b></td>
 													<td width="800" style="padding-left:10px;">
-														<input type="text" name="aucItemName" value="" style="width:300px;" class="input_style1"> 
+														<input type="text" name="aucItemName" style="width:300px;" class="input_style1"> 
 														<font> 판매상품과 관련없는 스팸성 문구일 경우 관리자에 의하여 조기마감될 수 있습니다.</font></td>
 												</tr>
 												<tr>
@@ -106,7 +126,7 @@
 												<tr height="30">
 													<td width="150" style="background-color:#F6F6F6;"><img src="/easyauction/resources/images/ico_dot.gif" style="margin-left:10px;margin-right: 10px;" align="absmiddle"> <b>홍보 문구</b></td>
 													<td width="800" style="padding-left:10px;">
-														<input type="text" name="aucAdText" value="" style="width:300px;" class="input_style1">
+														<input type="text" name="aucAdText" style="width:300px;" class="input_style1">
 															<font>거짓문구나 상품과 관계없는 홍보문구 사용시 관리자의 제재가 있을수 있습니다.</font></td>
 												</tr>
 												<tr>
@@ -122,7 +142,7 @@
 															src="./js/time_calrendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
 														</iframe> -->
 														
-														 <input data-format="yyyy/MM/dd hh:mm:ss" type="date" name="aucStartDate"></input>
+														 <input type="date" name="aucStartDate"></input>
 														<font class="product_add_red"> 상품판매 시작일시를 좌측의 달력아이콘을 클릭하여 선택해주세요</font>
 															
 															
@@ -143,7 +163,7 @@
 													<td width="150" style="background-color:#F6F6F6;"><img src="/easyauction/resources/images/ico_dot.gif" style="margin-left:10px;margin-right: 10px;" align="absmiddle"> <b>입찰마감일시</b></td>
 													<td width="800" style="padding-left:10px;">
 															
-															<input data-format="yyyy/MM/dd hh:mm:ss" type="date" name="aucStartDate"></input>
+															<input type="date" name="aucEndDate"></input>
 															<font> 상품판매 마감일시를 좌측의 달력아이콘을 클릭하여 선택해주세요</font>
 															<!-- <iframe width=188 height=166 name="gToday:datetime:agenda.js:gfPop:plugins_time.js" id="gToday:datetime:agenda.js:gfPop:plugins_time.js" src="./js/time_calrendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
 															</iframe>
@@ -220,7 +240,7 @@
 									<div style="padding-top:5px;"></div>
 									
 									<div style="padding-top:5px;width:100%;" align="center">
-										<textarea rows="30" cols="130"></textarea>
+										<textarea rows="30" cols="130" name="aucDetail"></textarea>
 									</div>
 								
 									<!-- <SCRIPT language="javascript" src="/easyauction/resources/js/fckeditor.js"></SCRIPT>
@@ -323,7 +343,7 @@
 									
 									<!--플래시 업로드 툴 끝-->
 								<div style="width: 960px;height: 100px;border:1px solid #DEDEDE;">
-									<input type="file" name="attach" style="width:960px;height:20px;" />
+									<input id="aucImgName" type="file" name="aucImg" style="width:960px;height:20px;" />
 								</div>
 									
 									
@@ -354,11 +374,10 @@
 								<div style="padding:10px;"></div>
 								
 								<div align="center" style="width:960px;">
-									<input type=hidden name=gou_number value=''>
-									<input type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'>
+									<!-- <input id="doregistdeal" type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'> -->
+										<input type="button" value="등록" id="gogo" onclick="javascript:sub();">
 									
-									 <a href=''>
-									 <img src='/easyauction/resources/images/btn_resetregister.gif'  border='0'></a> 
+									 <img src='/easyauction/resources/images/btn_resetregister.gif'  border='0'>
 								 
 									 <a href="deal.action">
 									 <img src='/easyauction/resources/images/btn_backtolist.gif' border='0'></a>

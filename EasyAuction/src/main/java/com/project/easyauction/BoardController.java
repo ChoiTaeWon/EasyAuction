@@ -95,52 +95,19 @@ public class BoardController {
 		return "board/freeboardregister";
 	}
 	
-	@RequestMapping(value = "freeboardregister.action", method = RequestMethod.POST)
-	public String freeboardregisterEdit(MultipartHttpServletRequest req, String id, String title, String content) {
-		//가상경로를 물리경로로 변환하는 기능을 가진 객체 반환
-		ServletContext application = req.getSession().getServletContext();
-				
-		//가상경로 -> 물리경로
-		String path = application.getRealPath("/WEB-INF/imagefile/");
-		
-		Board board = new Board();
-		board.setBdWriter(id);
-		board.setBdTitle(title);
-		board.setBdContent(content);
-		System.out.println(id+"/"+title+"/"+content);
-		boardService.insertFreeBoard(board);
-		MultipartFile file = req.getFile("img");//요청 데이터에서 파일 정보 추출
-		if (file != null && file.getSize() > 0) {
-			
-			String fileName = file.getOriginalFilename();//파일이름 읽어서 변수에 저장
-			if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
-				//C:\ABC\DEF\xyz.txt -> xyz.txt
-				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-			}
-			BoardImage boardImage = new BoardImage();
-			boardImage.setBdImgName(fileName);
-			boardImage.setBdNo(board.getBdNo());
-			
-			boardService.insertPhotoImage(boardImage);
-			
-			//파일을 디스크에 저장
-			try {
-				FileOutputStream ostream = 
-					new FileOutputStream(new File(path, boardImage.getBdImgName()));
-				InputStream istream = file.getInputStream();
-				while (true) {
-					int data = istream.read();
-					if (data == -1) break;
-					ostream.write(data);
-				}
-				istream.close();
-				ostream.close();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
 
-		return "redirect:/board/freeboard.action";
+	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
+	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
+		System.out.println(bdNo);
+		Board view = boardService.getPhotoViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("board/photoview");
+		mav.addObject("view", view);
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
@@ -182,7 +149,7 @@ public class BoardController {
 		
 		return "board/gongjiregister";
 	}
-	
+
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.POST)
 	public String gongjiregisterEdit(MultipartHttpServletRequest req, String id, String title, String content) {
 		//가상경로를 물리경로로 변환하는 기능을 가진 객체 반환
@@ -241,19 +208,7 @@ public class BoardController {
 		return mav;
 		
 	}
-	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
-		System.out.println(bdNo);
-		Board view = boardService.getPhotoViewByBoardNo(bdNo);
-		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
-		view.setComments(comments);
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("board/photoview");
-		mav.addObject("view", view);
-		
-		return mav;
-	}
+	
 
 	@RequestMapping(value="comment.action", method=RequestMethod.POST)
 	public String insertComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
@@ -267,11 +222,7 @@ public class BoardController {
 		return "redirect:/board/photoview.action?bdno="+bdNo;
 	}
 	
-	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
-	public String photoregister() {
-		//photo
-		return "board/photoregister";
-	}
+
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.POST)
 	public String photoregisterEdit(MultipartHttpServletRequest req, String id, String title, String content) {
 		//가상경로를 물리경로로 변환하는 기능을 가진 객체 반환

@@ -120,7 +120,7 @@
 									<li class="smfont10"><a href="#">경매 2</a></li>
 									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>
-									<li class="smfont10"><a href="/easyauction/deal/deal.action">경매 ㄱㄱ</a></li>
+									<li class="smfont10"><a href="/easyauction/auction/auction.action">경매 ㄱㄱ</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
 								</ul>
 							

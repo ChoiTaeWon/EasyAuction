@@ -119,6 +119,97 @@ li:HOVER {
 	
 }
 
+.deal_time { 
+	letter-spacing:-1px;
+}
+.deal_time_day {
+	width:41px;
+	height:35px;
+	font-family:tahoma;
+	font-size:12px;
+	font-weight:bold;
+	float:left;
+	color:#4d53cd;
+	line-height:35px;
+	text-align:center;
+	background:url(/img/rest_time_daydetail_on01.gif);
+	margin-right:5px;
+}
+.deal_time_day_no {
+	width:%;
+	height:35px;
+	float:left;
+	background:url(/img/rest_time_daydetail_off01.gif);
+	margin-right:5px;
+}
+
+.deal_time_hour {
+	width:42px;
+	height:34px;
+	color:#FFF;
+	float:left;
+	font-family:tahoma;
+	font-size:20px;
+	font-weight:bold;
+	line-height:34px;
+	border: 3px solid #000;
+	background-color: #000;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	
+	}
+.deal_time_minutes {
+	width:42px;
+	height:34px;
+	color:#FFF;
+	float:left;
+	font-family:tahoma;
+	font-size:20px;
+	font-weight:bold;
+	line-height:34px;
+	border: 3px solid #000;
+	background-color: #000;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-repeat: no-repeat;
+}
+.deal_time_second {
+	width:42px;
+	height:34px;
+	color:#FFF;
+	float:left;
+	font-family:tahoma;
+	font-size:20px;
+	font-weight:bold;
+	line-height:34px;
+	border: 3px solid #000;
+	background-color: #000;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-repeat: no-repeat;
+}
+
+
+.deal_time_blank{
+	padding:5px;
+	float: left;
+	font-family:tahoma;
+	font-size:20px;
+	font-weight:bold;
+}
+
+
+
+
+
+
+
 /* Starter CSS for Flyout Menu */
 #cssmenu,
 #cssmenu ul,

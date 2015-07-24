@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<meta charset="utf-8" />
 	<title>Easy Auction 직거래</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body_style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
@@ -66,11 +66,18 @@
 
 	<div id="wrap">
 		<div id="top">
-			<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 		<br/>
 		
 		<div id="map_view" class="mapview"></div>
+		
+		
+		<br/>
+		
+		<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
 		
 	</div><!-- div wrap 끝 -->
 </body>

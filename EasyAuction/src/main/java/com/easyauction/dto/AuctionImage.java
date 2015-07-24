@@ -7,7 +7,9 @@ public class AuctionImage {
 	private	String	aucImgName;
 	private	Date	aucImgRegdate;
 	private	int	aucNo;
-	private	int	arpTagetNo;
+
+	
+	
 	public int getAucImgNo() {
 		return aucImgNo;
 	}
@@ -32,12 +34,7 @@ public class AuctionImage {
 	public void setAucNo(int aucNo) {
 		this.aucNo = aucNo;
 	}
-	public int getArpTagetNo() {
-		return arpTagetNo;
-	}
-	public void setArpTagetNo(int arpTagetNo) {
-		this.arpTagetNo = arpTagetNo;
-	}
+
 	
 	
 	
