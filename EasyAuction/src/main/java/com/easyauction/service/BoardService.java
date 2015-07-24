@@ -16,4 +16,6 @@ public interface BoardService {
  Board getPhotoViewByBoardNo(int bdNo);
  void insertComment(BoardComment boardComment);
  List<BoardComment> getCommentByBoardNo(int bdNo);
+ List<Board> getfreeBoardList();
+
 }

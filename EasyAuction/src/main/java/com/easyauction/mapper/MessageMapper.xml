@@ -8,15 +8,15 @@
 <mapper namespace="com.easyauction.mapper.MessageMapper">
 
 	<sql id="messagecolumns">
-		msgNo,
-		msgSenderDelete,
-		msgReceiverDelete,
-		msgContent,
-		msgTitle,
-		msgDate,
-		msgSenger,
-		msgReceiver,
-		msgReadCheck
+		MSGNO,
+		MSGSENDERDELETE,
+		MSGRECEIVERDELETE,
+		MSGCONTENT,
+		MSGTITLE,
+		MSGDATE,
+		MSGSENDER,
+		MSGRECEIVER,
+		MSGREADCHECK
 		</sql>
 <!-- mybatis-config.xml에 alias으로 Dto로 정의 해두면 resultType="Member" 접근 가능 함.  
 	만약  resultMap로 설정했을경우 resultMap="Member"로 접근 -->
@@ -26,6 +26,79 @@
 		AND 
 		mbPasswd = #{mbPasswd}
 	</select>  -->
-	
-	
+<!-- <select id="getMsgReceiveList" parameterType="String" resultType="Message">
+		SELECT 
+	   		<include refid="messagecolumns" />
+	   	FROM
+	   	(			
+	   		SELECT
+	   			rownum idx, s.* 
+	   		FROM
+	   		(			   
+	   			SELECT
+		   			<include refid="messagecolumns" />
+		   		FROM 
+		   			Message 
+		   		WHERE MSGRECEIVERDELETE = 0 AND MSGRECEIVER Like #{mbId} 
+		   		ORDER BY 
+		   			msgNo DESC
+	   		) s	   
+	   	)
+	   	WHERE 
+	   		idx &amp; 0 AND idx &lt; 10
+</select> -->
+<select id="getMsgReceiveList" parameterType="String" resultType="Message">
+	   			SELECT 
+	   				<include refid="messagecolumns" /> 
+		   		FROM 
+		   			Message 
+		   		WHERE MSGRECEIVERDELETE = 0 AND MSGRECEIVER Like #{mbId} 
+		   		ORDER BY 
+		   			msgNo DESC
+</select>
+<select id="getMsgSenderList" parameterType="String" resultType="Message">
+	   			SELECT 
+	   				<include refid="messagecolumns" /> 
+		   		FROM 
+		   			Message 
+		   		WHERE MSGSENDERDELETE = 0 AND MSGSENDER Like #{mbId} 
+		   		ORDER BY 
+		   			msgNo DESC
+</select>
+<select id="getMsgBymsgNo" parameterType="integer" resultType="Message">
+	   			SELECT 
+	   				<include refid="messagecolumns" /> 
+		   		FROM 
+		   			Message 
+		   		WHERE MSGSENDERDELETE = 0 AND MSGNO = #{msgNo} 
+</select>
+
+<insert id="setSendMessage" 
+		parameterType="Message">
+			INSERT INTO Message (
+			MSGNO,
+			MSGCONTENT,
+			MSGTITLE,
+			MSGSENDER,
+			MSGRECEIVER
+		) VALUES (
+			SEQUENCEMESSAGENO.nextval, 
+			#{msgContent},
+			#{msgTitle},
+			#{msgSender},
+			#{msgReceiver})
+</insert>
+<update id="deleteMsgBymsgNo" parameterType="hashMap">
+	update Message set 
+	<choose>
+		<when test="pageId == sendmessages">
+			MSGSENDERDELETE = 1
+		</when>
+		<otherwise>
+			MSGRECEIVERDELETE = 1
+		</otherwise>
+	</choose>
+	WHERE msgNo = #{ msgNo }
+</update>
+
 </mapper>

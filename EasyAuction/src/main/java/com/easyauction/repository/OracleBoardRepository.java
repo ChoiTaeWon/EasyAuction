@@ -64,4 +64,9 @@ public class OracleBoardRepository implements BoardRepository{
 	public List<BoardComment> getCommentByBoardNo(int bdNo){
 		return boardMapper.getCommentByBoardNo(bdNo);
 	}
+	@Override
+	public List<Board> getfreeBoardList() {
+		List<Board> boards = boardMapper.getfreeBoardList();
+		return boards;
+	}
 }

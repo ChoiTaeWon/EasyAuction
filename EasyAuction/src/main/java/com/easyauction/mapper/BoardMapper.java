@@ -16,9 +16,13 @@ public interface BoardMapper {
 	
 	void insertPhotoImage(BoardImage boardImage);
 	
+
 	void insertComment(BoardComment boardComment);
 
 	List<Board> getPhotoList();
+	
+	List<Board> getfreeBoardList();
+	
 
 	Board getPhotoViewByBoardNo(int bdNo);
 	

@@ -22,5 +22,7 @@ public interface BoardRepository {
 	void insertComment(BoardComment boardComment);
 	List<BoardComment> getCommentByBoardNo(int bdNo);
 	
+	
+	List<Board> getfreeBoardList();
 
 }

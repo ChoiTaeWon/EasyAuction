@@ -37,11 +37,9 @@ public class MyBoardService implements BoardService{
 	public void insertPhotoImage(BoardImage boardImage){
 		boardRepository.insertPhotoImage(boardImage);
 	}
-
 	
 	public List<Board> getPhotoList(){
 		List<Board> photos = boardRepository.getPhotoList();
-		
 		return photos;
 	}
 	public Board getPhotoViewByBoardNo(int bdNo){
@@ -53,5 +51,11 @@ public class MyBoardService implements BoardService{
 	public List<BoardComment> getCommentByBoardNo(int bdNo){
 		return boardRepository.getCommentByBoardNo(bdNo);
 	}
+	
+	public List<Board> getfreeBoardList(){
+		List<Board> boards = boardRepository.getfreeBoardList();
+		return boards;
+	}
+
 
 }
