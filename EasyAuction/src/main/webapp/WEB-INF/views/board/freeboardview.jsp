@@ -145,10 +145,10 @@
 							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
 						</tr>
 						
-						  <td>
+						  <!-- <td>
 						  <input type="button" value="수정" style='height:25px;' onclick="location.href='updatefreeboardcomment.action';"/>
 						  <input type="button" value="삭제" style='height:25px;' onclick="location.href='deletedfreeboardcomment.action';"/>
-						  </td>
+						  </td> -->
 						
 					</table>
 				</form>
