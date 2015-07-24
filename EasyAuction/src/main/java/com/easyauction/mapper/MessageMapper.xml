@@ -91,7 +91,7 @@
 <update id="deleteMsgBymsgNo" parameterType="hashMap">
 	update Message set 
 	<choose>
-		<when test="pageId == sendmessages">
+		<when test="pageId == 'sendmessages'">
 			MSGSENDERDELETE = 1
 		</when>
 		<otherwise>
@@ -100,5 +100,15 @@
 	</choose>
 	WHERE msgNo = #{ msgNo }
 </update>
+<update id="setReadMsgBymsgNo" parameterType="integer">
+	update Message set MSGREADCHECK = 1	WHERE msgNo = #{ msgNo }
+</update>
+<select id="getMessageCountBymbId" parameterType="String" resultType="integer">
+	   			SELECT 
+	   				COUNT(*) 
+		   		FROM 
+		   			Message 
+		   		WHERE MSGRECEIVER = #{mbId} AND MSGREADCHECK = 0
+</select>
 
 </mapper>

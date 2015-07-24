@@ -44,6 +44,34 @@
 				"width=700,height=500,titlebar=no");
 		})
 	})
+	$(function(){
+		var mbId = '${loginuser.mbId}';
+		if(mbId != null && mbId.length > 0){
+		var time = 1000;           //1초 * 60 * 60
+		setInterval("ajaxmessgecount()", time);
+		}
+	})
+	function ajaxmessgecount(mbId){
+		var mbId = '${loginuser.mbId}';
+		$.ajax({
+			url : "/easyauction/ajax/messagecheck.action?mbId=" + mbId,
+			async : true,
+			data : {},
+			method : "GET",
+			success : function(result, status, xhr) {
+				if (result != 0){
+					$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
+				} else {
+					$("#message").attr("src", "/easyauction/resources/images/ico_mail.gif");
+				}
+				
+			},
+			error : function(xhr, status, ex) {
+				alert(status+ex);
+			}
+		})
+		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
+	}
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
 				<tr>
@@ -52,13 +80,8 @@
 									<tr>
 										<%-- <c:choose><c:when test="${ sessionScope.loginuser ne null }"> --%>
 							                <td class="smfont3">${ loginuser.mbName }
-							                <%-- <c:when test=""> --%>
-							                	뉴메일이있을때
-												<img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow(${loginuser.mbId});">
-							               	<%-- </c:when><c:otherwise> --%>
-							               		없을때
-							               		<%-- <img src="/easyauction/resources/images/ico_mail.gif" onclick="javascript:messageshow(${loginuser.mbId});"></td> --%>
-							               		<img src="/easyauction/resources/images/ico_mail.gif" id="message"></td>
+							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
+							               		</td>
 							               	<%-- </c:otherwise> --%>
 							                <td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>

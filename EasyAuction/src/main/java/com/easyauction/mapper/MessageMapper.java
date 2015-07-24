@@ -19,7 +19,11 @@ public interface MessageMapper {
 
 	void setSendMessage(Message message);
 
-	void deleteMsgBymsgNo(int msgNo, String pageId);
+	void deleteMsgBymsgNo(HashMap<String, String> params);
+
+	void setReadMsgBymsgNo(int msgNo);
+
+	int getMessageCountBymbId(String mbId);
 	
 
 }

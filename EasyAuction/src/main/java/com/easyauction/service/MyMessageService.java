@@ -40,5 +40,15 @@ public class MyMessageService implements MessageService {
 	public void deleteMsgBymsgNo(int msgNo, String pageId) {
 		msgrepo.deleteMsgBymsgNo(msgNo, pageId);
 	}
+	@Override
+	public void setReadMsgBymsgNo(int msgNo) {
+		msgrepo.setReadMsgBymsgNo(msgNo);
+		
+	}
+	@Override
+	public int getMessageCountBymbId(String mbId) {
+		int mssagecount = msgrepo.getMessageCountBymbId(mbId);
+		return mssagecount;
+	}
 
 }
