@@ -36,5 +36,12 @@ public class OracleMemberRepository implements MemberRepository {
 		int result= memberMapper.getCountByMemberId(mbId);
 		return result;
 	}
+
+
+	@Override
+	public Member getMemberById(String mbId) {
+		Member member = memberMapper.getMemberById(mbId);
+		return member;
+	}
 	
 }

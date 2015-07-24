@@ -20,4 +20,6 @@ public interface MemberService {
 
 	public int getCountByMemberId(String mbId);
 
+	public Member getMemberById(String mbId);
+
 }

@@ -2,6 +2,7 @@ package com.project.easyauction;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,6 +55,14 @@ public class AccountController {
 			req.getSession().setAttribute("loginuser", member);
 		}
 		return mav; 
+	}
+	
+	@RequestMapping(value="logout.action", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+			
+		session.removeAttribute("loginuser");
+		
+		return "redirect:/home.action";
 	}
 
 }

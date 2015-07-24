@@ -66,4 +66,25 @@ public class MyBoardService implements BoardService{
 	public Board getFreeBoardViewByBoardNo(int bdNo) {
 		return boardRepository.getFreeBoardViewByBoardNo(bdNo);
 	}
+
+	@Override
+	public Board getGongjiBoardViewByBoardNo(int bdNo) {
+		return boardRepository.getGongjiBoardViewByBoardNo(bdNo);
+	}
+	
+	public void insertFreeBoardComment(BoardComment boardComment){
+		boardRepository.insertFreeBoardComment(boardComment);
+	}
+	
+	public void insertGongjiBoardComment(BoardComment boardComment){
+		boardRepository.insertGongjiBoardComment(boardComment);
+	}
+	
+	public void updateFreeBoardComment(BoardComment boardComment){
+		boardRepository.updateFreeBoardComment(boardComment);
+	}
+	
+	public void deletedFreeBoardComment(BoardComment boardComment){
+		boardRepository.deletedFreeBoardComment(boardComment);
+	}
 }

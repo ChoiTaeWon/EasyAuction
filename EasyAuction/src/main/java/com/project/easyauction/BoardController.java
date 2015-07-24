@@ -53,17 +53,41 @@ public class BoardController {
 		return mav;
 	}
 	
-/*	@RequestMapping(value="comment.action", method=RequestMethod.POST)
-	public String insertComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
+	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
 		boardComment.setBcWriter(writer);
 		System.out.println(bdNo + "/" + content + "/" +writer);
 		
-		boardService.insertComment(boardComment);
+		boardService.insertFreeBoardComment(boardComment);
 		return "redirect:/board/freeboardview.action?bdno="+bdNo;
-	}*/
+	}
+	
+	@RequestMapping(value="updatefreeboardcomment.action", method=RequestMethod.POST)
+	public String updateFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+		BoardComment boardComment = new BoardComment();
+		boardComment.setBdNo(bdNo);
+		boardComment.setBcContent(content);
+		boardComment.setBcWriter(writer);
+		System.out.println(bdNo + "/" + content + "/" +writer);
+		
+		boardService.insertFreeBoardComment(boardComment);
+		return "redirect:/board/freeboardview.action?bdno="+bdNo;
+	}
+	
+	@RequestMapping(value="deletedfreeboardcomment.action", method=RequestMethod.POST)
+	public String deletedFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+		BoardComment boardComment = new BoardComment();
+		boardComment.setBdNo(bdNo);
+		boardComment.setBcContent(content);
+		boardComment.setBcWriter(writer);
+		System.out.println(bdNo + "/" + content + "/" +writer);
+		
+		boardService.insertFreeBoardComment(boardComment);
+		return "redirect:/board/freeboardview.action?bdno="+bdNo;
+	}
 	
 	@RequestMapping(value = "freeboardregister.action", method = RequestMethod.GET)
 	public String freeboardregister() {
@@ -95,19 +119,30 @@ public class BoardController {
 		return mav;
 	}
 	
-	/*@RequestMapping(value = "gongjiview.action", method = RequestMethod.GET)
+	@RequestMapping(value = "gongjiview.action", method = RequestMethod.GET)
 	public ModelAndView gongjiviewList(@RequestParam("bdno")int bdNo) {
 		System.out.println(bdNo);
 		Board view = boardService.getGongjiBoardViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
 		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("board/freeboardview");
+		mav.setViewName("board/gongjiview");
 		mav.addObject("view", view);
 		
 		return mav;
-	}*/
+	}
+	
+	@RequestMapping(value="gongjiboardcomment.action", method=RequestMethod.POST)
+	public String insertGongjiBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+		BoardComment boardComment = new BoardComment();
+		boardComment.setBdNo(bdNo);
+		boardComment.setBcContent(content);
+		boardComment.setBcWriter(writer);
+		System.out.println(bdNo + "/" + content + "/" +writer);
+		
+		boardService.insertComment(boardComment);
+		return "redirect:/board/gongjiview.action?bdno="+bdNo;
+	}
 	
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.GET)
 	public String gongjiregister() {

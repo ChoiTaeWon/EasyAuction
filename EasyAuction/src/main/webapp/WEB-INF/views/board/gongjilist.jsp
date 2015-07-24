@@ -87,7 +87,7 @@
 				<tr>
 					<td align="center" width="50" class="smfont">${board.bdNo}</td>
 					<td width="1"></td>
-					<td height='32' class="smfont" align="center"><div style="padding-left:10px;"><a href='/easyauction/board/gongjiview.action'>${board.bdTitle}</div></td>
+					<td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/gongjiview.action?bdno=${ board.bdNo }">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>

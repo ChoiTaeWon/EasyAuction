@@ -30,7 +30,15 @@ public interface BoardService {
 
 	Board getFreeBoardViewByBoardNo(int bdNo);
 
-	
+	Board getGongjiBoardViewByBoardNo(int bdNo);
 
+	void insertFreeBoardComment(BoardComment boardComment);
+	
+	void insertGongjiBoardComment(BoardComment boardComment);
+
+	void updateFreeBoardComment(BoardComment boardComment);
+	
+	void deletedFreeBoardComment(BoardComment boardComment);
+	
 }
 

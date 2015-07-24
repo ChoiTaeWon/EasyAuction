@@ -13,4 +13,6 @@ public interface MemberMapper {
 
 	int getCountByMemberId(String mbId);
 
+	Member getMemberById(String mbId);
+
 }
