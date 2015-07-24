@@ -62,11 +62,23 @@
 	
 	
 	
-	<select id="getAuctionImageByBoardNo" resultMap="auctionImageResult" parameterType="int">
+	<select id="getAuctionImageByAuctionNo" resultMap="auctionImageResult" parameterType="int">
 		select aucimgno, aucimgname, aucno
 		from AUCTIONIMAGE
 		where aucno = #{ aucNo }
 	</select>
+	
+	
+	
+	
+	<select id="getAuctionList" resultMap="auctionResult" parameterType="int">
+		select  aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate,auctype, aucwriter, aucadtext
+		from AUCTION
+		order By
+		aucno DESC
+	</select>
+	
 	
 	
 	

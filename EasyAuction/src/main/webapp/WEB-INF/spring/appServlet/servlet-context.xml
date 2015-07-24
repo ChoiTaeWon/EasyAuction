@@ -21,8 +21,9 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 	<context:component-scan base-package="com.project.easyauction" />
-	<context:component-scan base-package="com.easyauction.service" />
+	
 	
 	<!-- multipart 형식의 요청이 발생하면 요청 데이터를 일차적으로 처리할 빈 등록 -->
 	<beans:bean id="multipartResolver"

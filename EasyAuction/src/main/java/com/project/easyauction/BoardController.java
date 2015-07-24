@@ -71,14 +71,20 @@ public class BoardController {
 		return "board/freeboardregister";
 	}
 	
+
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public String photoviewList() {
+	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
+		System.out.println(bdNo);
+		Board view = boardService.getPhotoViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
 		
-
-		return "board/photoview";
-	}	
-
-	
+		mav.setViewName("board/photoview");
+		mav.addObject("view", view);
+		
+		return mav;
+	}
 	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
 	public ModelAndView gongjiList() {
@@ -167,19 +173,7 @@ public class BoardController {
 		return mav;
 		
 	}
-	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
-		System.out.println(bdNo);
-		Board view = boardService.getPhotoViewByBoardNo(bdNo);
-		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
-		view.setComments(comments);
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("board/photoview");
-		mav.addObject("view", view);
-		
-		return mav;
-	}
+	
 
 	@RequestMapping(value="comment.action", method=RequestMethod.POST)
 	public String insertComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){

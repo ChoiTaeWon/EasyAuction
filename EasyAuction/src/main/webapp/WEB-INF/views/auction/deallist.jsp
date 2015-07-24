@@ -63,8 +63,8 @@
 			</table>
 			
 			
-			
- <%for(int i=0; i<10;i++){ %> 
+<c:forEach var="auction" items="${ auctions }">			
+ <c:if test="${ auction.aucType eq false }">
 			<table class="href_link" style="width: 955px;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td valign=top align=center> 
@@ -74,30 +74,58 @@
 									<div style="position:relative; z-index:0;">
 										<div style="position:absolute; left:0px; top:0px; z-index:0;"></div>
 									</div>
+									<c:forEach var="image" items="${ auction.auctionImage }">
 									<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action'>
-											<img src="/easyauction/resources/images/qwerqwerqwer.jpg" style="width:140px; height:120px;" align="absmiddle" ></a>
+											<img src="/easyauction/resources/imagefile/${ image.aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
 									</div>
+									</c:forEach>
 								</td>
 	
 								<td style="padding-left:10px; text-align:left">
-									<a href='showdeal.action'>물품 명</a>
+									<a href='showdeal.action'>
+									<c:choose>
+											<c:when test="${ auction.aucState eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucState eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
+											<c:otherwise>에러 상태</c:otherwise>
+										</c:choose>
+									</a>
 									<div style="padding-top:5px;"></div>
 									<font class="smfont"></font>
 									<div style="padding-top:5px;"></div> 
-									<p>제목 제목 </p>  
+									<p>${ auction.aucAdText }</p>  
 								</td>
 		
 								<td width="145" align="right" style="padding-right:5px;">
-									<b><font id="list_now_price">5,000,000</font> 원</b>
+									<b><font id="list_now_price">현재 가격</font> 원</b>
 									<div style="padding-top:5px;"></div>
-									<b>시작가격  5,000 원</b>
+									<b>시작가격  ${auction.aucStartPrice} 원</b>
 								</td>
 		
 								<td width="120" align="center">
 									<!-- <img src=img/ico_baesong_free.gif alt='무료배송' border=0 align=absmiddle>
 									<div style="padding-top:5px;"></div>  
 									<img src=img/new_product_icon.gif border=0 align=absmiddle alt='새제품'> -->
-									<b>대기 중</b>									
+									<b>
+										<c:choose>
+											<c:when test="${ auction.aucState eq 0 }">경매 시작 전</c:when>
+											<c:when test="${ auction.aucState eq 1 }">경매 중</c:when>
+											<c:when test="${ auction.aucState eq 2 }">경매 마감</c:when>
+											<c:otherwise>에러 상태</c:otherwise>
+										</c:choose>
+									</b>									
 								</td>
 		
 								<td width="70" align="center">
@@ -121,7 +149,8 @@
 					</td>
 				</tr>
 			</table>
- <% } %> 
+	</c:if>
+</c:forEach>
 		
 		</div><!-- viewlist div -->
 		
