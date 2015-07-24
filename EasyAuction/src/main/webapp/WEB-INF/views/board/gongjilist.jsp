@@ -87,7 +87,7 @@
 				<tr>
 					<td align="center" width="50" class="smfont">${board.bdNo}</td>
 					<td width="1"></td>
-					<td height='32' class="smfont" align="center">			<div style="padding-left:10px;">${board.bdTitle}</div></td>
+					<td height='32' class="smfont" align="center"><div style="padding-left:10px;"><a href='/easyauction/board/gongjiview.action'>${board.bdTitle}</div></td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>
@@ -112,7 +112,7 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><td align="right"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
+				<td align="right"><a href="/easyauction/board/gongjiregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/gongji.action'><img src="/easyauction/resources/images/list1.png"></A></td>
 			</tr>
 			</table>
 			

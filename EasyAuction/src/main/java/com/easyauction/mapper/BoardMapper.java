@@ -8,9 +8,9 @@ import com.easyauction.dto.BoardImage;
 
 public interface BoardMapper {
 	
-	int insertFreeboard(Board board);
+	int insertFreeBoard(Board board);
 
-	int insertGongjiboard(Board board);
+	int insertGongjiBoard(Board board);
 	
 	int insertPhoto(Board board);
 	
@@ -20,10 +20,14 @@ public interface BoardMapper {
 
 	List<Board> getPhotoList();
 	
-	List<Board> getfreeBoardList();
+	List<Board> getFreeBoardList();
+	
+	List<Board> getGongjiList();
 
 	Board getPhotoViewByBoardNo(int bdNo);
 	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
+	
+	Board getFreeBoardViewByBoardNo(int bdNo);
 	
 }

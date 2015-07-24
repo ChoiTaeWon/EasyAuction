@@ -8,9 +8,9 @@ import com.easyauction.dto.BoardImage;
 
 public interface BoardService {
 	
-	void insertFreeboard(Board board);
+	void insertFreeBoard(Board board);
 	
-	void insertGongjiboard(Board board);
+	void insertGongjiBoard(Board board);
 	
 	void insertPhoto(Board board);
  
@@ -18,12 +18,18 @@ public interface BoardService {
  
 	List<Board> getPhotoList();
 	
-	List<Board> getfreeBoardList();
-
+	List<Board> getFreeBoardList();
+	
 	Board getPhotoViewByBoardNo(int bdNo);
 	
 	void insertComment(BoardComment boardComment);
 	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
+	
+	List<Board> getGongjiList();
+
+	Board getFreeBoardViewByBoardNo(int bdNo);
+
+	
 
 }
