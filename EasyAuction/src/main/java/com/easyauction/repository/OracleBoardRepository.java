@@ -23,14 +23,14 @@ public class OracleBoardRepository implements BoardRepository{
 	
 	@Override
 	public int insertFreeboard(Board board) {
-		int bdNo = boardMapper.insertFreeboard(board);
+		int bdNo = boardMapper.insertFreeBoard(board);
 		
 		return bdNo;		
 	}
 
 	@Override
-	public int insertGongjiboard(Board board) {
-		int bdNo = boardMapper.insertGongjiboard(board);
+	public int insertGongjiBoard(Board board) {
+		int bdNo = boardMapper.insertGongjiBoard(board);
 		
 		return bdNo;		
 	}
@@ -65,8 +65,20 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getCommentByBoardNo(bdNo);
 	}
 	@Override
-	public List<Board> getfreeBoardList() {
-		List<Board> boards = boardMapper.getfreeBoardList();
+	public List<Board> getFreeBoardList() {
+		List<Board> boards = boardMapper.getFreeBoardList();
 		return boards;
 	}
+
+	@Override
+	public List<Board> getGongjiList() {
+		List<Board> boards = boardMapper.getGongjiList();
+		return boards;
+	}
+
+	@Override
+	public Board getFreeBoardViewByBoardNo(int bdNo) {
+		return boardMapper.getFreeBoardViewByBoardNo(bdNo);
+	}
+	
 }
