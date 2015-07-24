@@ -32,5 +32,13 @@ public class MyMessageService implements MessageService {
 		return message;
 	
 	}
+	@Override
+	public void setSendMessage(Message message) {
+		msgrepo.setSendMessage(message);
+	}
+	@Override
+	public void deleteMsgBymsgNo(int msgNo, String pageId) {
+		msgrepo.deleteMsgBymsgNo(msgNo, pageId);
+	}
 
 }

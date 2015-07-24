@@ -8,6 +8,9 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/messagestyles.css"/>
 	<!-- <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/styles.css"/> -->
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <!-- 쪽지 해더 -->

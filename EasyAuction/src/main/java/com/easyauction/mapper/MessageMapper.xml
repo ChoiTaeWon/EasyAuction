@@ -72,4 +72,33 @@
 		   			Message 
 		   		WHERE MSGSENDERDELETE = 0 AND MSGNO = #{msgNo} 
 </select>
+
+<insert id="setSendMessage" 
+		parameterType="Message">
+			INSERT INTO Message (
+			MSGNO,
+			MSGCONTENT,
+			MSGTITLE,
+			MSGSENDER,
+			MSGRECEIVER
+		) VALUES (
+			SEQUENCEMESSAGENO.nextval, 
+			#{msgContent},
+			#{msgTitle},
+			#{msgSender},
+			#{msgReceiver})
+</insert>
+<update id="deleteMsgBymsgNo" parameterType="hashMap">
+	update Message set 
+	<choose>
+		<when test="pageId == sendmessages">
+			MSGSENDERDELETE = 1
+		</when>
+		<otherwise>
+			MSGRECEIVERDELETE = 1
+		</otherwise>
+	</choose>
+	WHERE msgNo = #{ msgNo }
+</update>
+
 </mapper>

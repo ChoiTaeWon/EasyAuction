@@ -11,17 +11,15 @@
 $(function(){
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
-		alert(id);
-		alert('${loginuser.mbId}');
-		var mbId = '${loginuser.mbId}';
+		var mbId = '${mbId}';
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
 
 $(function(){
-		$("#receiver").blur(function(event) {
-			var mbId = $("#receiver").val();
+		$("#msgReceiver").blur(function(event) {
+			var mbId = $("#msgReceiver").val();
 			alert(mbId);
 			$.ajax({
 				url : "/easyauction/ajax/membercheck.action?mbId=" + mbId,
@@ -32,7 +30,7 @@ $(function(){
 					alert(result);
 					if (result != 1){
 						alert("유효하지 않는 아이디");
-						$("#receiver").val('').focus();
+						$("#msgReceiver").val('').focus();
 						$("#checkresult").text("등록되지않은 아이디 입니다.").css({ color : "red" });
 					} else {
 						$("#checkresult").text("");
@@ -61,7 +59,7 @@ $(function(){
 </div>
 <!-- 쪽지 해더 -->
 <!-- 쪽지 제목 및 내용 -->
-<form action="sendmessge.action" method="post">
+<form action="sendmessage.action" id="send" method="post">
 <table cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 			<td height="2" bgcolor="#227405"></td>
@@ -69,16 +67,16 @@ $(function(){
 		<tr>
 			<td height="27" bgcolor="#F9F9F9">
 		<tr>
-
-<td>제목<br /><input align="right" type="text" id='title' name='title' style="width:100%;" /><br /></td>
+<input type="hidden" id="msgSender" name="msgSender" value="${ mbId }"/>
+<td>제목<br /><input align="right" type="text" id='msgTitle' name='msgTitle' style="width:100%;" /><br /></td>
 </tr>
 <tr>
-<td>받는사람<br /><input align="right" type="text" id='receiver' name='receiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
+<td>받는사람<br /><input align="right" type="text" id='msgReceiver' name='msgReceiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
 </tr>
 <tr>
 <td>
 내용
-<textarea id='content' name='content' style="width:100%;height:250px;"></textarea></td>
+<textarea id='msgContent' name='msgContent' style="width:100%;height:250px;"></textarea></td>
 </tr>
 </table>
 <div align="center">

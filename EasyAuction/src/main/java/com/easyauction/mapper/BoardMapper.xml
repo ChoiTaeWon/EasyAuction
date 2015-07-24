@@ -16,6 +16,7 @@
 		<result column="bdreportingcount" property="bdReportingCount" />
 		<result column="bdblindcheck" property="bdBlindCheck" />
 		<collection property="boardImage" column="bdno" select="getImageByBoardNo" />
+		<collection property="comments" column="bdno" select="getCommentByBoardNo" />
 	</resultMap>
 	
 	<resultMap type="boardImage" id="imageResult">
@@ -23,6 +24,14 @@
 		<result column="bdimgname" property="bdImgName" />
 		<result column="bdno" property="bdNo" />
 		<result column="bdimgregdate" property="bdImgRegdate" />
+	</resultMap>
+	
+	<resultMap type="boardComment" id="commentResult">
+		<id column="bcno" property="bcNo" />
+		<result column="bccontent" property="bcContent" />
+		<result column="bdno" property="bdNo" />
+		<result column="bcwriter" property="bcWriter" />
+		<result column="bcregdate" property="bcRegdate" />
 	</resultMap>
 	
 	<insert id="insertFreeboard" parameterType="Board" >
@@ -54,6 +63,11 @@
 			VALUES(SEQUENCEBORADIMG.nextVal, #{ bdImgName }, #{ bdNo })
 	</insert>
 	
+	<insert id="insertComment" parameterType="BoardComment">
+		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
+			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
+	</insert>
+	
 	<select id="getPhotoList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
@@ -74,6 +88,18 @@
 		select bdimgno, bdimgname, bdno
 		from BOARDIMAGE
 		where bdno = #{ bdNo }
+	</select>
+ 	<select id="getPhotoViewByBoardNo" resultMap="boardResult" parameterType="int">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		where bdno = #{ bdNo }
+	</select>
+	<select id="getCommentByBoardNo" resultMap="commentResult" parameterType="int">
+		SELECT
+			bcno, bccontent, bdno, bcwriter, bcregdate
+		FROM BOARDCOMMENT
+		where bdno = #{ bdNo }				
 	</select>
 	
 </mapper>
