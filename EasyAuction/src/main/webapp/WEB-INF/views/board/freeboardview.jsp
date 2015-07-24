@@ -66,13 +66,13 @@
 				 <div style="padding:3px;"></div>
 				 <table width="100%">
 				 	<tr height="26">
-				 	  <td align="left" style="padding-left:10px;"><b><a href="#">제목</a></b></td>
+				 	  <td align="left" style="padding-left:10px;"><b><a href="#">${board.bdTitle}</a></b></td>
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">회원명</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">등록일</td>
+				 	  <td width="90" align="center">${board.bdRegdate}</td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">조회수</td>
+				 	  <td align="center" width="40">${board.bdReadCount}</td>
 				 	</tr>
 				    <tr>
 						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>

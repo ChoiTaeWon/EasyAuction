@@ -39,6 +39,7 @@
 					
 			<div class="registerauction">
 				<form action="dealregister.action" method="POST" enctype="multipart/form-data" id='regiform' name="auction" style="margin:0;">
+								<input type=hidden name="aucWriter" value="${ loginuser.mbId }">
 								
 								<!-- 상단 이미지  -->
 								

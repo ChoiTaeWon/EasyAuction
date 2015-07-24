@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="//code.jquery.com/jquery-1.11.3.js"></script>
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -36,41 +35,10 @@
 		      elem.click(); 
 		   }
 	 } 
-	$(function(){
-		$("#message").click(function(event) {
-			alert('${loginuser.mbId}');
-			var mbId = '${loginuser.mbId}';
-			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
+	
+	function messageshow(mbId) {
+		window.open("/easyauction/message/receivemessages.action?" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
-		})
-	})
-	$(function(){
-		var mbId = '${loginuser.mbId}';
-		if(mbId != null && mbId.length > 0){
-		var time = 1000;           //1초 * 60 * 60
-		setInterval("ajaxmessgecount()", time);
-		}
-	})
-	function ajaxmessgecount(mbId){
-		var mbId = '${loginuser.mbId}';
-		$.ajax({
-			url : "/easyauction/ajax/messagecheck.action?mbId=" + mbId,
-			async : true,
-			data : {},
-			method : "GET",
-			success : function(result, status, xhr) {
-				if (result != 0){
-					$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
-				} else {
-					$("#message").attr("src", "/easyauction/resources/images/ico_mail.gif");
-				}
-				
-			},
-			error : function(xhr, status, ex) {
-				alert(status+ex);
-			}
-		})
-		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
 	}
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
@@ -80,8 +48,12 @@
 									<tr>
 										<%-- <c:choose><c:when test="${ sessionScope.loginuser ne null }"> --%>
 							                <td class="smfont3">${ loginuser.mbName }
-							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
-							               		</td>
+							                <%-- <c:when test=""> --%>
+							                	뉴메일이있을때
+												<img src="/easyauction/resources/images/ico_mail_on.gif" onclick="javascript:messageshow(${loginuser.mbId});">
+							               	<%-- </c:when><c:otherwise> --%>
+							               		없을때
+							               		<img src="/easyauction/resources/images/ico_mail.gif" onclick="javascript:messageshow(${loginuser.mbId});"></td>
 							               	<%-- </c:otherwise> --%>
 							                <td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/member/view.action?${loginuser.mbId}">마이페이지</a></td>
@@ -121,7 +93,7 @@
 									<li class="smfont10"><a href="#">경매 2</a></li>
 									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>
-									<li class="smfont10"><a href="/easyauction/auction/auction.action">경매 ㄱㄱ</a></li>
+									<li class="smfont10"><a href="/easyauction/deal/deal.action">경매 ㄱㄱ</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
 								</ul>
 							

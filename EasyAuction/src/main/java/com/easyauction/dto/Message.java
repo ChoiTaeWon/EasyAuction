@@ -10,9 +10,10 @@ public class Message {
 	private String msgContent;
 	private String msgTitle;
 	private Date msgDate;
-	private String msgSenger;
+	private String msgSender;
 	private String msgReceiver;
 	private boolean msgReadCheck;
+	
 	
 	
 	public int getMsgNo() {
@@ -21,16 +22,16 @@ public class Message {
 	public void setMsgNo(int msgNo) {
 		this.msgNo = msgNo;
 	}
-	public Boolean getMsgSenderDelete() {
+	public boolean isMsgSenderDelete() {
 		return msgSenderDelete;
 	}
-	public void setMsgSenderDelete(Boolean msgSenderDelete) {
+	public void setMsgSenderDelete(boolean msgSenderDelete) {
 		this.msgSenderDelete = msgSenderDelete;
 	}
-	public Boolean getMsgReceiverDelete() {
+	public boolean isMsgReceiverDelete() {
 		return msgReceiverDelete;
 	}
-	public void setMsgReceiverDelete(Boolean msgReceiverDelete) {
+	public void setMsgReceiverDelete(boolean msgReceiverDelete) {
 		this.msgReceiverDelete = msgReceiverDelete;
 	}
 	public String getMsgContent() {
@@ -51,11 +52,11 @@ public class Message {
 	public void setMsgDate(Date msgDate) {
 		this.msgDate = msgDate;
 	}
-	public String getMsgSenger() {
-		return msgSenger;
+	public String getMsgSender() {
+		return msgSender;
 	}
-	public void setMsgSenger(String msgSenger) {
-		this.msgSenger = msgSenger;
+	public void setMsgSender(String msgSender) {
+		this.msgSender = msgSender;
 	}
 	public String getMsgReceiver() {
 		return msgReceiver;
@@ -69,7 +70,5 @@ public class Message {
 	public void setMsgReadCheck(boolean msgReadCheck) {
 		this.msgReadCheck = msgReadCheck;
 	}
-	
-	
 	
 }

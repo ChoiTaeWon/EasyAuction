@@ -18,4 +18,6 @@ public interface MemberService {
 
 	public Member getMemberByIdAndPasswd(String mbId, String mbPasswd);
 
+	public int getCountByMemberId(String mbId);
+
 }

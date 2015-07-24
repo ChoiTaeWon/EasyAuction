@@ -11,5 +11,6 @@ public interface MemberMapper {
 
 	Member getMemberByIdAndPasswd(HashMap<String, String> params);
 
+	int getCountByMemberId(String mbId);
 
 }
