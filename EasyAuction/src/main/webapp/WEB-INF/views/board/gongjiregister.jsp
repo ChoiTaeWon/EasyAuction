@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>자유게시판</title>
+<title>공지사항게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
@@ -33,13 +33,13 @@
 					<!-- 오른쪽 위 자유게시판 -->
 					<td align="left">&nbsp;</td>
 								  
-					<td align="right"><a href='/easyauction/board/gonji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								 	  <a href='/easyauction/board/gonji.action'><img src='/easyauction/resources/images/gonjismall.png'></a>
+					<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								 	  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
 					</td>
 				</tr>
 			</table>
 
-			<form method='post' action='gonjiregister.action' enctype="multipart/form-data">
+			<form method='post' action='gongjiregister.action' enctype="multipart/form-data">
 			<input type=hidden name='mode' value='add_ok'>
 			<input type=hidden name='tb' value='board_knowhow'>
 			<input type=hidden name='bbs_num' value=''>
@@ -96,7 +96,7 @@
 						<tr>
 							<td align=center> 
 								<input type=image value='등록' src='/easyauction/resources/images/gaib.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-					 			<a href='freeboard.action';><img src='/easyauction/resources/images/listlist.png' BORDER=0 width="70" height="30"></A>
+					 			<a href='gongji.action';><img src='/easyauction/resources/images/listlist.png' BORDER=0 width="70" height="30"></A>
 							</td>
 						</tr>
 						</table>

@@ -117,6 +117,7 @@ public class AuctionController {
 						"/" + auction.getAucEndDate() + 
 						"/" + auction.getAucStartPrice() + 
 						"/" + auction.getAucDetail() + 
+						"/" + auction.getAucWriter() + 
 						"/" + auctionImage.getAucImgName()
 					);
 

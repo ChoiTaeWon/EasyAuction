@@ -22,13 +22,13 @@ public class MyBoardService implements BoardService{
 	}
 	
 	@Override
-	public void insertFreeboard(Board board) {
+	public void insertFreeBoard(Board board) {
 		boardRepository.insertFreeboard(board);		
 	}
 
 	@Override
-	public void insertGongjiboard(Board board) {
-		boardRepository.insertGongjiboard(board);		
+	public void insertGongjiBoard(Board board) {
+		boardRepository.insertGongjiBoard(board);		
 	}
 	
 	public void insertPhoto(Board board){
@@ -52,10 +52,18 @@ public class MyBoardService implements BoardService{
 		return boardRepository.getCommentByBoardNo(bdNo);
 	}
 	
-	public List<Board> getfreeBoardList(){
-		List<Board> boards = boardRepository.getfreeBoardList();
+	public List<Board> getFreeBoardList(){
+		List<Board> boards = boardRepository.getFreeBoardList();
+		return boards;
+	}
+	@Override
+	public List<Board> getGongjiList() {
+		List<Board> boards = boardRepository.getGongjiList();
 		return boards;
 	}
 
-
+	@Override
+	public Board getFreeBoardViewByBoardNo(int bdNo) {
+		return boardRepository.getFreeBoardViewByBoardNo(bdNo);
+	}
 }

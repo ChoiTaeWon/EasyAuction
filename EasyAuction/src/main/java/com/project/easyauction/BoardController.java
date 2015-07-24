@@ -33,23 +33,37 @@ public class BoardController {
 	@RequestMapping(value = "freeboard.action", method = RequestMethod.GET)
 	public ModelAndView freeboardList() {
 		ModelAndView mav = new ModelAndView();
-		List<Board> boards = boardService.getfreeBoardList();
-		
-//		for(int i=0; i< boards.size(); i++){
-//			System.out.println(boards);
-//		}
-		
+		List<Board> boards = boardService.getFreeBoardList();
 		mav.setViewName("board/freeboardlist");
 		mav.addObject("boards", boards);
 		return mav;
-		
 	}
 	
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
-	public String freeboardview() {
+	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo) {
+		System.out.println(bdNo);
+		Board view = boardService.getFreeBoardViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
 		
-		return "board/freeboardview";
+		mav.setViewName("board/freeboardview");
+		mav.addObject("view", view);
+		
+		return mav;
 	}
+	
+/*	@RequestMapping(value="comment.action", method=RequestMethod.POST)
+	public String insertComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+		BoardComment boardComment = new BoardComment();
+		boardComment.setBdNo(bdNo);
+		boardComment.setBcContent(content);
+		boardComment.setBcWriter(writer);
+		System.out.println(bdNo + "/" + content + "/" +writer);
+		
+		boardService.insertComment(boardComment);
+		return "redirect:/board/freeboardview.action?bdno="+bdNo;
+	}*/
 	
 	@RequestMapping(value = "freeboardregister.action", method = RequestMethod.GET)
 	public String freeboardregister() {
@@ -60,27 +74,77 @@ public class BoardController {
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
 	public String photoviewList() {
 		
+
 		return "board/photoview";
 	}	
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.GET)
 	public String photoregister() {
 		
-		return "board/photoregister";
+
+		Board board = new Board();
+		board.setBdWriter(id);
+		board.setBdTitle(title);
+		board.setBdContent(content);
+		System.out.println(id+"/"+title+"/"+content);
+		boardService.insertFreeBoard(board);
+		MultipartFile file = req.getFile("img");//요청 데이터에서 파일 정보 추출
+		if (file != null && file.getSize() > 0) {
+			
+			String fileName = file.getOriginalFilename();//파일이름 읽어서 변수에 저장
+			if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
+				//C:\ABC\DEF\xyz.txt -> xyz.txt
+				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+			}
+			BoardImage boardImage = new BoardImage();
+			boardImage.setBdImgName(fileName);
+			boardImage.setBdNo(board.getBdNo());
+			
+			boardService.insertPhotoImage(boardImage);
+			
+			//파일을 디스크에 저장
+			try {
+				FileOutputStream ostream = 
+					new FileOutputStream(new File(path, boardImage.getBdImgName()));
+				InputStream istream = file.getInputStream();
+				while (true) {
+					int data = istream.read();
+					if (data == -1) break;
+					ostream.write(data);
+				}
+				istream.close();
+				ostream.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		return "redirect:/board/freeboard.action";
 	}
 	
 	
 	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
-	public String gongjiList() {
-		
-		return "board/gongjilist";
+	public ModelAndView gongjiList() {
+		ModelAndView mav = new ModelAndView();
+		List<Board> boards = boardService.getGongjiList();
+		mav.setViewName("board/gongjilist");
+		mav.addObject("boards", boards);
+		return mav;
 	}
 	
-	@RequestMapping(value = "gongjiview.action", method = RequestMethod.GET)
-	public String gongjiview() {
+	/*@RequestMapping(value = "gongjiview.action", method = RequestMethod.GET)
+	public ModelAndView gongjiviewList(@RequestParam("bdno")int bdNo) {
+		System.out.println(bdNo);
+		Board view = boardService.getGongjiBoardViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
 		
-		return "board/gongjiview";
-	}
+		mav.setViewName("board/freeboardview");
+		mav.addObject("view", view);
+		
+		return mav;
+	}*/
 	
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.GET)
 	public String gongjiregister() {
@@ -101,7 +165,7 @@ public class BoardController {
 		board.setBdTitle(title);
 		board.setBdContent(content);
 		System.out.println(id+"/"+title+"/"+content);
-		boardService.insertGongjiboard(board);
+		boardService.insertGongjiBoard(board);
 		MultipartFile file = req.getFile("img");//요청 데이터에서 파일 정보 추출
 		if (file != null && file.getSize() > 0) {
 			
