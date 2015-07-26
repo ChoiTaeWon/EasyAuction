@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 	<title>Easy Auction 게시글 보기</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="/easyauction/resources/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="/easyauction/resources/js/jquery.js"></script>
 </head>
 <script type="text/javascript">
 
@@ -44,9 +48,47 @@
 		}
 		newtime = window.setTimeout("getTime();", 1000); 
 	}													
-
+	
 </script>
 
+<script>
+$(function(){
+	var bidderId = $("#loginuserId").val();
+	var auctionNo = ${ auction.aucNo };
+	
+	
+	$('#doIpchal').on({
+		click : function(event){
+ 			$.ajax({
+				url: "/easyauction/ajax/insertBiddingPrice.action",
+				async : false,
+				type : "GET",
+				data : {
+					mbId : bidderId,
+					aucNo : auctionNo
+				},
+				success: function(result){
+					if(result == 1){
+						alert( result + "입찰되었습니다.");
+					}
+					else{
+						alert("입찰에 실패했습니다.");
+					}
+	           	
+	        	},
+	        	error : function() {
+					alert('입찰 실패');
+				}
+			});  
+			alert("asdfasdf");
+		}
+	});
+	   
+});
+</script>
+
+	    
+	    
 <body>
 
 	<div id="wrap">
@@ -56,6 +98,7 @@
 		<br/>
 		
 		<div id="dealdetail"><!--  dealdetail div-->
+			<input type="hidden" value="${ loginuser.mbId }" id="loginuserId">
 				<table style="width:960px; border:1px solid #DEDEDE; background-color:#F8F8F8;">
 					<tr>
 						<td style="padding:15px;">
@@ -63,17 +106,43 @@
 								<table style="width:100%; border:1px solid #DEDEDE; background-color:#FFF;">
 									<tr>
 										<td style="padding:10px 0 10px 10px">
-											<b>경매번호 : 
-												<font color="#565DD3">No. 4&nbsp;</font> 
-												<font class="detail_product_name">[코코홀릭] 화이트 스톤 뱅글</font> 비키니 악세서리, 화이트스톤
+											<b>경매번호 :
+												<font color="#565DD3">No.  ${ auction.aucNo }&nbsp;</font> 
+												<font >
+												<c:choose>
+													<c:when test="${ auction.aucState eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucState eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
+													<c:otherwise>에러 상태</c:otherwise>
+												</c:choose>
+												</font> 
 											</b>
 										</td>
+										
+										
+										<!-- 신고 하기  -->
 										<td align="right" style="padding-right:10px;">
 											<img src="/easyauction/resources/images/btn_auction_report.gif" alt='쪽지신고하기' title='쪽지신고하기' 
-											align='absmiddle' onclick="window.open('happy_report.php?report_post=','happy_report','width=350,height=350');" 
+											align='absmiddle' id="btn_auction_report"
 											style='cursor:pointer; vertical-align:middle;'/> 
+											<!-- onclick="window.open('happy_report.php?report_post=','happy_report','width=350,height=350');" -->
 											
 										</td>
+										
+										
+										
 									</tr>
 								</table>
 						
@@ -85,36 +154,28 @@
 										<td width="300">
 											<table>
 												<tr>
+													
 													<td style="border:1px solid #DEDEDE;">
-														<div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div>
-														<div ID="ITEM11" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM2" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM3" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM4" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM5" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM6" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM7" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM8" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM9" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-														<div ID="ITEM10" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+														<%-- <c:forEach var="image" items="${ auction.aucImgName }"> --%>
+															<%-- <c:forEach var="image" items="images"> --%>
+															<div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div>
+															<div ID="ITEM2" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM3" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM4" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM5" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM6" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM7" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM8" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM9" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM10" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<div ID="ITEM11" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															<%-- </c:forEach> --%>	
+														<%-- </c:forEach> --%>	
 													</td>
+													
 												</tr>
 												<tr>
 													<td style="padding-top:10px;width:100%;">
-														<!-- <div style="padding-top:5;padding-left:1;">
-																	<script type="text/javascript">printSWF("", "flash_swf/detail_smimg.swf?img=<img src="" onclick="javascript:Selection('11');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="./upload/2011/07/07/1310019510-86-1_N_7_56x56_100_2_.jpg" onclick="javascript:Selection('2');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="./upload/2011/07/07/1310019510-55-2_N_7_56x56_100_2_.jpg" onclick="javascript:Selection('3');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('4');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('5');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('6');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('7');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('8');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('9');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>|
-																	<img src="img/no_detail_img_icon.gif" onclick="javascript:Selection('10');" width='56' height='56' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;'>&imggap=5&Width=55&Height=55&bgcolor=DEDEDE", "303", "58", "transparent", "#FFFFFF");
-																	</script>
-														     </div> -->
-														
 														<img src="/easyauction/resources/images/qwerqwerqwer.jpg" onclick="javascript:Selection('2');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
 														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('3');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
 														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('4');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
@@ -134,8 +195,7 @@
 														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #DEDEDE;">
-													</td>
+													<td align="left" height="25" style="width:50px; border:1px solid #DEDEDE;">판매자 : ${ auction.aucWriter }</td>
 												</tr>
 												
 											</table>
@@ -150,14 +210,26 @@
 													<table width="270px;" align="center">
 														<tr height="40px;">
 															<td width="72"><img src="/easyauction/resources/images/ico_now_price.gif" title="현재가격"></td>
-															<td width="178" align="right">0</font> 원</td>
+															<td width="178" align="right"> 
+															<c:choose>
+																<c:when test="${ auction.countBidders <= 1 }"><b>입찰 대기 중</b></c:when>
+																<c:otherwise><b><font id="list_now_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value="${ auction.bidding.bidPrice }" /></font> 원</b>
+																</c:otherwise>
+															</c:choose>
+															</td>
 														</tr>
 														<tr>
 															<td colspan="2" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); x-repeat; width:100%; height:2px;"></td>
 														</tr>
 														<tr height="40px;">
 															<td width="72"><img src="/easyauction/resources/images/ico_nakchal.gif" title="예상낙찰자"></td>
-															<td width="178" align="right">qwer</td>
+															<td width="178" align="right">
+															<c:choose>
+																<c:when test="${ auction.countBidders <= 1 }"><b>입찰자 없음</b></c:when>
+																<c:otherwise><b><font id="list_now_price"> ${ auction.bidding.mbId } </font></b></c:otherwise>
+															</c:choose>
+															
+															</td>
 														</tr>
 														<tr>
 															<td colspan="2" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); x-repeat; width:100%; height:2px;"></td>
@@ -236,9 +308,7 @@
 												<table width="250" align="center">
 													<tr align="center">
 														<td>
-															<a href=view_bid.php?num=4&category=47r09&option=baro>
-																<img src='/easyauction/resources/images/btn_doipchar.gif' border="0" align='middle'>
-															</a>
+															<img id="doIpchal" src='/easyauction/resources/images/btn_doipchar.gif' border="0" align='middle'>
 														</td>
 													</tr>
 												</table>
@@ -261,111 +331,29 @@
 																<tr>
 																	<td align="left" height="25">시작가</td>
 																	<td>:</td>
-																	<td align="right">1,000 원</td>
+																	<td align="right"><b>${ auction.aucStartPrice }</b></td>
 																</tr>
-																<tr>
-																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
-																</tr>
-																
-																<tr>
-																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
-																</tr>
-																<tr>
-																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
-																</tr>
-															
-																<tr>
-																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
-																</tr>
-																<tr>
+																<!-- <tr>
 																	<td align="left" height="40">경매기간</td>
 																	<td>:</td>
 																	<td align="right" class="smfont" style="line-height:17px;">2011-07-07 15:18:32 <br> <font style="color:#C10000; font-weight:bold;">~ 2015-07-22 17:06:24</font></td>
-																</tr>
+																</tr> -->
 																<tr>
 																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 																</tr>
 																
-																
-																								<!--<tr>
-																									<td align="left" height="25">남은시간</td>
-																									<td>:</td>
-																									<td align="right"><SCRIPT LANGUAGE='JavaScript'>
-																			var day_detail, hour_detail, min_detail, sec_detail;
-																			
-																			function Timer(restTime)
-																			{
-																				day_detail = Math.floor(restTime/86400);
-																				restHour = restTime%86400;
-																				hour_detail = Math.floor(restHour/3600);
-																				restMin = restHour%3600;
-																				min_detail = Math.floor(restMin/60);
-																				sec_detail = Math.floor(restMin%60);
-																				Timer1();
-																			}
-																			
-																			function Timer1()
-																			{
-																				//일:0 시간:0 분:0 초:0 이라면 종료메세지 출력
-																				if( (sec_detail == 0 && min_detail == 0 && hour_detail == 0 && day_detail == 0) || 85554 <= '0' )
-																				{
-																					document.getElementById('counter').value = '경매종료';
-																					return;
-																				}
-																				else
-																				{
-																					document.getElementById('counter').value = day_detail + '일 ' + hour_detail + '시간 ' + min_detail + '분 ' + sec_detail + '초 ';
-																				}
-																			
-																			
-																				//1초식 감소 하다가 -1이되면 1분을 뺀다은 초를 59초로 초기화
-																				sec_detail=sec_detail-1;
-																				if(sec_detail == -1)
-																				{
-																					sec_detail = 59;
-																					min_detail = min_detail-1;
-																				}
-																			
-																				//1분씩 감소 하다가 -1이되면 1시간을 뺀다음 분을 59분으로 초기화
-																				if(min_detail == -1)
-																				{
-																					min_detail=59;
-																					hour_detail = hour_detail - 1;
-																				}
-																			
-																				//1시간씩 감소 하다가 -1이되면 1일을 뺀다음 날짜 초기화
-																				if(hour_detail == -1)
-																				{
-																					hour_detail = 23;
-																					day_detail = day_detail - 1;
-																				}
-																			
-																				//1초당 한번씩 timer1()을 호출하여 실행
-																				window.setTimeout('Timer1()',1000);
-																			}
-																			
-																			
-																			</SCRIPT>
-																			
-																			<input type="text" id="counter" name="counter" readonly style="width:130px;background-color:#F0F0F0; border-style:none;color:#000;font-family:돋움;font-weight:bold;font-size:12px;">
-																			
-																			</td>
-																								</tr>
-																								<tr>
-																									<td colspan="3" style="background:url(img/bg_detail_info_line_02.gif); width:100%; height:2px;"></td>
-																								</tr>-->
 																<tr>
-																	<td align="left" height="25">판매수량</td>
+																	<td align="left" height="25">경매 시작 시간</td>
 																	<td>:</td>
-																	<td align="right">3개  <font color="#999999">(구매가능 최대수량:2개)</td>
+																	<td align="right"><b><fmt:formatDate value="${ auction.aucStartDate }" pattern="yyyy-MM-dd HH:mm:ss" /></b></td>
 																</tr>
 																<tr>
 																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 																</tr>
 																<tr>
-																	<td align="left" height="25">남은수량</td>
+																	<td align="left" height="25">경매 마감 시간</td>
 																	<td>:</td>
-																	<td align="right">3 개</td>
+																	<td align="right"><font style="color:#C10000; font-weight:bold;"><fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-MM-dd HH:mm:ss" /></font></td>
 																</tr>
 																<tr>
 																	<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
@@ -373,7 +361,7 @@
 																<tr>
 																	<td align="left" height="25">입찰수</td>
 																	<td>:</td>
-																	<td align="right">2 건 </td>
+																	<td align="right"><b><span id="countBidders">${ auction.countBidders -1 }</span></b></td>
 																</tr>
 																</table>
 														</td>
@@ -454,6 +442,85 @@
 	
 	</div><!-- div wrap 끝 -->
 	
+<%-- 	
+	
+<script type="text/javascript">
+	
+$(function() {
+	
+	//다이얼로그 생성 - 표시
+	var reportDialog = $('#reportContent').dialog({
+		autoOpen : false,
+		modal : true,
+		buttons : {
+			login : doReport,
+			cancel : function() {						
+				reportDialog.dialog("close");
+			}
+		},
+		close : function() {
+			$('#reportText').val('');
+		}
+	});
+	
+	$("#btn_auction_report").click(function(event) {
+		reportDialog.dialog("open");
+		
+		event.preventDefault();
+	});
+				
+	//로그인 요청 처리
+	function doReport() {
+		
+		$.ajax({
+			url : "/easyauction/ajax/auctionReporting.action",	
+			async : false,
+			type : "post",
+			data : {
+				reporter : $("#reporter").val(),
+				targetAuctionNo : $("#targetAuctionNo").val(),
+				reportText : $("#reportText").val
+			},
+			success : function(result) {
+				if (result == 0) {	
+					alert("게시글이 신고 되었습니다.");
+				
+					/* $("#notloggedin").css("display", "none");
+					$("#mid").text($("#memberid").val());							
+					$("#loggedin").css("display", "block"); */
+					reportDialog.dialog('close');
+				} else {
+					alert('게시글 신고 실패');
+				}
+			},
+			error : function() {
+				alert('게시글 신고 실패');
+			}
+		});
+		
+		event.preventDefault();
+	}
+	
+});
+
+
+			
+	
+
+					
+</script>		
+		
+		
+		<div id="reportContent" title="게시글 신고하기" style="display: none">	        
+	        <label for="reporter">신고자</label>
+	        <input id="reporter" type="text" value="${ loginuser.mbId }"/>
+	        <label for="targetAuctionNo">신고할 게시글</label>
+	        <input id="targetAuctionNo" type="text" value="${ auction.aucNo }">${auction.aucItemName}</input>
+	        <label for="reportText">신고 사유</label>
+	        <textarea id="reportText" rows="3" cols="5"></textarea>
+	    </div>
+	     --%>
+	    
 </body>
 </html>
 

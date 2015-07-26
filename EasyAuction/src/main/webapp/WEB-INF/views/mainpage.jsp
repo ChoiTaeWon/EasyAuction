@@ -162,9 +162,9 @@
 			
 	</div><!-- AAAAAA 끝 -->
 	
-	<br/><br/><br/><br/><br/><br/>
-	<div style="width: 960px;height:600px;border: 1px solid">
- 		  		
+	
+	<div style="width:100%;border: 1px solid">
+ 		  	<div>	
  		  		<table style="width:100%;" >
 					<tr>
 						<td>
@@ -220,8 +220,8 @@
 						</td>
 					</tr>
 				</table>
-
-		</div>
+			</div>
+		</div><!-- 진행중인 경매 전체 div -->
 
 
 

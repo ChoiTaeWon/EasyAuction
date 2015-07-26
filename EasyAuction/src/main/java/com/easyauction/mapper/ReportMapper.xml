@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.easyauction.mapper.ReportMapper">
+  
+  <resultMap type="BoardReporting" id="reportResult">
+		<id column="brpno" property="brpNo" />
+		<result column="brpcontent" property="brpContent" />
+		<result column="brpdate" property="brpDate" />
+		<result column="brptargetno" property="brpTargetNo" />
+		<result column="brprepoter" property="brpRepoter" />
+  </resultMap>
+  
+  	<insert id="insert" parameterType="BoardReporting">
+		INSERT INTO AUCTIONIMAGE(brpno, brptargetno, brprepoter, brpcontent)
+			VALUES(SEQUENCEBORADREPOTINGNO.nextVal, #{ aucTargetNo }, #{ brpRepoter }, #{ brpContent })
+	</insert> 
+	
+  
+  
+  
+  
+  
+  
+  
+  
+  </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
+import com.easyauction.dto.Bidding;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardImage;
 import com.easyauction.repository.AuctionRepository;
@@ -45,7 +46,17 @@ public class MyAuctionService implements AuctionService{
 		
 		return auctionRepository.getAuctionList();
 	}
-	
+
+
+
+	@Override
+	public Auction getAuctionDetailByAuctionNo(int aucNo) {
+		// TODO Auto-generated method stub
+		return auctionRepository.getAuctionDetailByAuctionNo(aucNo);
+	}
+
+
+
 
 
 }

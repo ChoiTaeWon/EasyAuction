@@ -21,7 +21,7 @@ public class Auction {
 	private	int aucReadCount;
 	private	String aucWriter;
 	private String aucAdText;
-	
+///////////////////////////////////////////////////////////////////////////
 	private List<AuctionImage> auctionImage;
 	public List<AuctionImage> getAuctionImage() {
 		return auctionImage;
@@ -30,9 +30,24 @@ public class Auction {
 		this.auctionImage = auctionImage;
 	}
 	
-	
-	
-	
+/////////////////////////////////////////////////////////////////////////////	
+	private Bidding bidding;
+	public Bidding getBidding() {
+		return bidding;
+	}
+	public void setBidding(Bidding bidding) {
+		this.bidding = bidding;
+	}
+///////////////////////////////////////////////////////////////////////////
+	private int countBidders;
+	public int getCountBidders() {
+		return countBidders;
+	}
+	public void setCountBidders(int countBidders) {
+		this.countBidders = countBidders;
+	}
+/////////////////////////////////////////////////////////////////////////
+
 	public int getAucNo() {
 		return aucNo;
 	}

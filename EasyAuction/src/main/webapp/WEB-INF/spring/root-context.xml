@@ -63,4 +63,17 @@
 			value="com.easyauction.mapper.AuctionMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
 	</bean>	
+	<bean id="biddingMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+			value="com.easyauction.mapper.BiddingMapper" />
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+		<bean id="reportMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+			value="com.easyauction.mapper.ReportMapper" />
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean>	
 </beans>

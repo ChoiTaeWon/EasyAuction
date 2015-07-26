@@ -6,7 +6,7 @@ public class Bidding {
 	private	boolean	bidGetterCheck;
 	private	int	aucNo;
 	private	int	bidPrice;
-	private	String mbNo;
+	private	String mbId;
 	private	Date bidDate;
 	
 	public int getBidNo() {
@@ -27,18 +27,20 @@ public class Bidding {
 	public void setAucNo(int aucNo) {
 		this.aucNo = aucNo;
 	}
+
+	public String getMbId() {
+		return mbId;
+	}
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
+	}
 	public int getBidPrice() {
 		return bidPrice;
 	}
 	public void setBidPrice(int bidPrice) {
 		this.bidPrice = bidPrice;
 	}
-	public String getMbNo() {
-		return mbNo;
-	}
-	public void setMbNo(String mbNo) {
-		this.mbNo = mbNo;
-	}
+
 	public Date getBidDate() {
 		return bidDate;
 	}
