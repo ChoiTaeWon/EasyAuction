@@ -28,6 +28,7 @@
 		<mapper resource="com/easyauction/mapper/AuctionMapper.xml" />
 		<mapper resource="com/easyauction/mapper/BiddingMapper.xml" />
 		<mapper resource="com/easyauction/mapper/ReportMapper.xml" />
+		<mapper resource="com/easyauction/mapper/AdminMapper.xml" />
 	</mappers> 
 
 </configuration>
