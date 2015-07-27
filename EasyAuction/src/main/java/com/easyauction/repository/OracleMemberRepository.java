@@ -50,5 +50,11 @@ public class OracleMemberRepository implements MemberRepository {
 		memberMapper.setRegisterMember(member);
 		
 	}
+
+
+	@Override
+	public void setEditMember(Member member) {
+		memberMapper.setEditMember(member);
+	}
 	
 }

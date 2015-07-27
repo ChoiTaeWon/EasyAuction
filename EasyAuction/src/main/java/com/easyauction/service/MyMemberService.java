@@ -34,5 +34,10 @@ public class MyMemberService implements MemberService {
 	public void setRegisterMember(Member member) {
 		mbrepo.setRegisterMember(member);
 	}
+	@Override
+	public void setEditMember(Member member) {
+		mbrepo.setEditMember(member);
+		
+	}
 
 }

@@ -24,4 +24,6 @@ public interface MemberService {
 
 	public void setRegisterMember(Member member);
 
+	public void setEditMember(Member member);
+
 }

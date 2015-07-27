@@ -86,6 +86,38 @@
 			#{ mbName },
 			#{ mbEmail }
 		)
-</insert> 
+</insert>
+<update id="setEditMember" parameterType="Member">
+	UPDATE member SET 
+		<if test="mbPasswd != null and mbPasswd != ''">
+		mbPasswd	=	#{ mbPasswd },
+		</if>
+		<if test="mbAddress1 != null">
+		mbAddress1	=	#{ mbAddress1 },
+		</if>
+		<if test="mbAddress2 != null">
+		mbAddress2	=	#{ mbAddress2 },
+		</if>
+		<if test="mbPhone1 != null and mbPasswd != ''">
+		mbPhone1	=	#{ mbPhone1 },
+		</if>
+		<if test="mbPhone2 != null">
+		mbPhone2	=	#{ mbPhone2 },
+		</if>
+		<if test="mbGender == true">
+		mbGender	=	'0',
+		</if>
+		<if test="mbGender == false">
+		mbGender	=	'1',
+		</if>
+		<if test="mbBirthDate != null">
+		mbBirthDate	=	#{ mbBirthDate },
+		</if>
+		<if test="mbName != null">
+		mbName	=	#{ mbName },
+		</if>
+		mbEmail	=	#{ mbEmail }
+	WHERE mbId = #{ mbId }
+</update>
 	
 </mapper>

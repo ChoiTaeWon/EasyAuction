@@ -17,4 +17,6 @@ public interface MemberMapper {
 
 	void setRegisterMember(Member member);
 
+	void setEditMember(Member member);
+
 }

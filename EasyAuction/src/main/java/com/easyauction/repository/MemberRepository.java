@@ -16,4 +16,6 @@ public interface MemberRepository {
 
 	void setRegisterMember(Member member);
 
+	void setEditMember(Member member);
+
 }

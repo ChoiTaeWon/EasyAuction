@@ -70,5 +70,19 @@ public class MemberController {
 		
 		return "member/mypage";
 	}
+	@RequestMapping(value = "edit.action", method = RequestMethod.POST)
+	public ModelAndView memberEdit(//MultipartHttpServletRequest req,//form을 맴버 객체로 받기위해서 써야함
+			Member member) {
+		if(member.getMbPasswd()!=null && member.getMbPasswd().length() > 0){
+			member.setMbPasswd(Util.getHashedString(member.getMbPasswd(), "SHA-1"));
+		}
+		mbsvc.setEditMember(member);
+		Member member1 = mbsvc.getMemberById(member.getMbId());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/membereditviewform");
+		mav.addObject("member", member1);
+		
+		return mav; 
+	}
 
 }
