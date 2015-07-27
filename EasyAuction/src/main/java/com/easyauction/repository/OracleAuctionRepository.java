@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
+import com.easyauction.dto.Bidding;
 import com.easyauction.dto.Board;
 import com.easyauction.mapper.AuctionMapper;
 
@@ -49,5 +50,15 @@ public class OracleAuctionRepository implements AuctionRepository{
 		
 		return auctionMapper.getAuctionList();
 	}
+
+
+	@Override
+	public Auction getAuctionDetailByAuctionNo(int aucNo) {
+		
+		return auctionMapper.getAuctionDetailByAuctioNo(aucNo);
+	}
+
+
+
 
 }

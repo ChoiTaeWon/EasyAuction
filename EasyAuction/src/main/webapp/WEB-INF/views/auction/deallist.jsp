@@ -64,7 +64,7 @@
 			
 			
 <c:forEach var="auction" items="${ auctions }">			
- <c:if test="${ auction.aucType eq false }">
+ <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }">
 			<table class="href_link" style="width: 955px;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td valign=top align=center> 
@@ -75,30 +75,30 @@
 										<div style="position:absolute; left:0px; top:0px; z-index:0;"></div>
 									</div>
 									<c:forEach var="image" items="${ auction.auctionImage }">
-									<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action'>
+									<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action?aucno=${ auction.aucNo }'>
 											<img src="/easyauction/resources/imagefile/${ image.aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
 									</div>
 									</c:forEach>
 								</td>
 	
 								<td style="padding-left:10px; text-align:left">
-									<a href='showdeal.action'>
+									<a href='showdeal.action?aucno=${ auction.aucNo }'>
 									<c:choose>
-											<c:when test="${ auction.aucState eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
-											<c:when test="${ auction.aucState eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
+											<c:when test="${ auction.aucCategory eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
 											<c:otherwise>에러 상태</c:otherwise>
 										</c:choose>
 									</a>
@@ -109,7 +109,11 @@
 								</td>
 		
 								<td width="145" align="right" style="padding-right:5px;">
-									<b><font id="list_now_price">현재 가격</font> 원</b>
+									<c:choose>
+									<c:when test="${ auction.countBidders <= 1 }"><b>입찰자 없음</b></c:when>
+									<c:otherwise><b><font id="list_now_price">${ auction.bidding.bidPrice }</font> 원</b></c:otherwise>
+									</c:choose>
+									
 									<div style="padding-top:5px;"></div>
 									<b>시작가격  ${auction.aucStartPrice} 원</b>
 								</td>
@@ -129,20 +133,21 @@
 								</td>
 		
 								<td width="70" align="center">
-									<b>0 건</b> 
+									<b>${ auction.countBidders -1 } 건</b> 
 								</td>
 		
 								<td width="180" align="center">
-									<div class="tenwon_time_list" id="main_ex_8_time_27">
-										<div class="tenwon_time_list_day" style="display:none;" id="main_ex_8_time_27_day"></div>
-										<div class="tenwon_time_list_day_icon" style="display:none;" id="main_ex_8_time_27_dayicon"></div>
-										<div class="tenwon_time_list_day_no" id="main_ex_8_time_27_day_no"></div>
-										<div class="tenwon_time_list_day_icon_no" id="main_ex_8_time_27_dayicon_no"></div>
-										<div class="tenwon_time_list_hour" id="main_ex_8_time_27_hour">00</div>
-										<div class="tenwon_time_list_minutes" id="main_ex_8_time_27_minutes">00</div>
-										<div class="tenwon_time_list_second" id="main_ex_8_time_27_second">00</div>
+									
+									<div style="width: 180px;height: 30px;border: 2px solid">
+											<div class="deal_time_list_hour" id="counter1"></div>
+											<div class="deal_time_list_blank">:</div> 
+											<div class="deal_time_list_minutes" id="counter2"></div>
+											<div class="deal_time_list_blank">:</div>
+											<div class="deal_time_list_second" id="counter3"></div>
+											
 									</div>
-									<a href="showdeal.action"><img src="/easyauction/resources/images/btn_ipchal_basic.gif" border="0" align="absmiddle" alt="일반경매입찰"></a>
+									<div style="padding-top: 5px"></div>
+									<a href="showdeal.action?aucno=${ auction.aucNo }"><img src="/easyauction/resources/images/btn_ipchal_basic.gif" border="0" align="absmiddle" alt="일반경매입찰"></a>
 								</td>
 							</tr>
 							</table>

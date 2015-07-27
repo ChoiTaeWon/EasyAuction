@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.easyauction.mapper.BiddingMapper">
+	<resultMap type="Bidding" id="biddingResult">
+ 		<id column="bidno" property="bidNo" />
+		<result column="bidgettercheck" property="bidGetterCheck" />
+		<result column="aucno" property="aucNo" />
+		<result column="bidprice" property="bidPrice" />
+		<result column="mbid" property="mbId" />
+		<result column="biddate" property="bidDate" />
+	</resultMap>
+	
+<!-- 	
+	<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" /> 
+	<resultMap type="auctionImage" id="auctionImageResult">
+		<id column="aucimgno" property="aucImgNo"/>
+		<result column="aucimgname" property="aucImgName" />
+		<result column="aucno" property="aucNo" />
+		<result column="aucimgregdate" property="aucImgRegdate" />
+	</resultMap> -->
+	
+ 	<sql id="biddingcolumns">
+			 bidno, bidgettercheck,aucno,
+			 bidprice,mbid,biddate
+	</sql> 
+
+
+
+	<select id="getBiddingListByAuctionNo" resultMap="biddingResult" parameterType="int">
+		select <include refid="biddingcolumns"></include>
+		from bidding
+		where aucno = #{ aucNo }
+	</select>
+
+	<select id="getExceptBidder" resultMap="biddingResult" parameterType="int">
+		select bidprice, mbid
+		from bidding
+		where aucno = #{ aucNo } and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
+	</select> 
+	
+	<select id="getCountBidders" resultType="int" parameterType="int">
+		select count(*) from bidding where aucno= #{aucNo}
+	</select>
+	
+
+ 	<insert id="insertBiddingPrice" parameterType="Bidding" >
+	  <selectKey keyProperty="bidNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEBIDNO.currval from dual
+	  </selectKey>
+		INSERT INTO 
+		bidding(bidno, mbid, bidprice, aucno)  
+		VALUES(
+		       SEQUENCEBIDNO.nextVal, #{mbId}, (select max(bidprice) from bidding where aucno= #{aucNo}) + 1000, #{aucNo} 
+		 	   )
+	</insert> 
+	
+	<insert id="insertFirstBidding" parameterType="Bidding">
+		INSERT INTO 
+		bidding(bidno, mbid, bidprice, aucno)  
+		VALUES(
+		       SEQUENCEBIDNO.nextVal, #{mbId}, #{bidPrice}, #{aucNo} 
+		 	   )
+	</insert>
+	
+	
+	<select id="getBiddingByBidNo" resultMap="biddingResult" parameterType="int">
+		select <include refid="biddingcolumns"></include>
+		from bidding
+		where bidno = #{ bidNo }
+	</select>
+	
+	
+	
+</mapper>

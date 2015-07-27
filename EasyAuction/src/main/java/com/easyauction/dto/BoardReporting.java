@@ -2,12 +2,14 @@ package com.easyauction.dto;
 
 import java.util.Date;
 
-public class BoardRepoting {
+public class BoardReporting {
 	private	int	brpNo;
 	private	String	brpContent;
 	private	Date	brpDate;
 	private	int	brpTargetNo;
 	private	String	brpRepoter;
+	
+	
 	public int getBrpNo() {
 		return brpNo;
 	}

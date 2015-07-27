@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 
-	/* 	$(function(){
+		$(function(){
 			$("#doregistdeal").on({ 
 				//이벤트 이름 : 호출할 함수
 				click : function(event) {
@@ -20,12 +20,9 @@
 					
 				}
 			});
-		});  */
+		}); 
 			
-		
-	function sub() {
-		document.getElementById("regiform").submit();
-	}
+
 </script>
 
 
@@ -374,8 +371,8 @@
 								<div style="padding:10px;"></div>
 								
 								<div align="center" style="width:960px;">
-									<!-- <input id="doregistdeal" type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'> -->
-										<input type="button" value="등록" id="gogo" onclick="javascript:sub();">
+									<input id="doregistdeal" type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'>
+										<!-- <input type="button" value="등록" id="gogo" onclick="javascript:sub();"> -->
 									
 									 <img src='/easyauction/resources/images/btn_resetregister.gif'  border='0'>
 								 
