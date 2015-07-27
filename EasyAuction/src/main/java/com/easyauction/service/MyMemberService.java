@@ -30,5 +30,9 @@ public class MyMemberService implements MemberService {
 		Member member = mbrepo.getMemberById(mbId);
 		return member;
 	}
+	@Override
+	public void setRegisterMember(Member member) {
+		mbrepo.setRegisterMember(member);
+	}
 
 }

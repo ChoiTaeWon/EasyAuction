@@ -43,5 +43,12 @@ public class OracleMemberRepository implements MemberRepository {
 		Member member = memberMapper.getMemberById(mbId);
 		return member;
 	}
+
+
+	@Override
+	public void setRegisterMember(Member member) {
+		memberMapper.setRegisterMember(member);
+		
+	}
 	
 }

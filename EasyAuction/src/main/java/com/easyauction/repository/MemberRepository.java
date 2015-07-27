@@ -14,4 +14,6 @@ public interface MemberRepository {
 
 	Member getMemberById(String mbId);
 
+	void setRegisterMember(Member member);
+
 }

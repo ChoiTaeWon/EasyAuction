@@ -15,4 +15,6 @@ public interface MemberMapper {
 
 	Member getMemberById(String mbId);
 
+	void setRegisterMember(Member member);
+
 }
