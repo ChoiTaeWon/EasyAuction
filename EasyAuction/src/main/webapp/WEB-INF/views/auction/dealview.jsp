@@ -12,7 +12,6 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="/easyauction/resources/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="/easyauction/resources/js/jquery.js"></script>
 </head>
 <style>
 	        /* #dialog { font-size: 62.5% } */
@@ -60,14 +59,15 @@
 	
 </script>
 
-<script>
-/* $(function(){
+<script  type="text/javascript">
+ $(function(){
 	var bidderId = $("#loginuserId").val();
 	var auctionNo = ${ auction.aucNo };
 	
 	$('#doIpchal').on({
-		click : function(event){
-			var event;
+		
+	click :function(event){
+			var e;
 			$.ajax({
 				url : "/easyauction/ajax/selectLastBidder.action",
 				async : false,
@@ -78,11 +78,11 @@
 				},
 				success : function(result){
 					if(result == 0){
-						event = 0;
+						e = 0;
 						alert(event + " : event 값");
 						alert("입찰 가능 상태");
 					}else{
-						event = 1;
+						e = 1;
 						alert("방금 입찰하셨습니다.");
 					}
 				},
@@ -91,7 +91,7 @@
 				}
 			});
 			
-			if(event == 0){
+			if(e == 0){
 				$.ajax({
 					url: "/easyauction/ajax/insertBiddingPrice.action",
 					async : false,
@@ -101,17 +101,13 @@
 						aucNo : auctionNo
 					},
 					success: function(result){
-						
 						if(result != null){
-							if(bidderId == result.mbId){
-								alert( result.mbId + " : 입찰되었습니다.");
-							}else{
 							alert( result.mbId + " : 입찰되었습니다.");
 							$("#refreshMbId").empty();
 							$("#refreshMbId").html("<b><font id='list_now_price'>"+ result.mbId +"</font></b>");
 							$("#refreshBidPrice").empty();
 							$("#refreshBidPrice").html("<b><font id='list_now_price'>"+ result.bidPrice +"</font> 원</b>"); 
-							}
+							
 						}
 						else{
 							alert("입찰에 실패했습니다.");
@@ -126,9 +122,9 @@
 		}
 	});
 	   
-}); */
+}); 
 
-$(function(){
+/* $(function(){
 	var bidderId = $("#loginuserId").val();
 	var auctionNo = ${ auction.aucNo };
 	
@@ -168,7 +164,7 @@ $(function(){
 			
 		}
 	});
-});	
+});	 */
 </script>
 
 
@@ -403,7 +399,7 @@ $(function(){
 												<table width="250" align="center">
 													<tr align="center">
 														<td>
-															<img id="doIpchal" src='/easyauction/resources/images/btn_doipchar.gif' border="0" align='middle'>
+															<img id="doIpchal" src='/easyauction/resources/images/btn_doipchar.gif' border="0" align='middle'/>
 														</td>
 													</tr>
 												</table>
@@ -538,8 +534,8 @@ $(function(){
 	</div><!-- div wrap 끝 -->
 	
  	
-<%-- 	
-<script type="text/javascript">
+	
+ <script type="text/javascript">
 	
 $(function() {
 	
@@ -599,7 +595,7 @@ $(function() {
 });
 
 					
-</script>		
+</script>	 
 		
 		
 		<div id="reportContent" title="게시글 신고하기" style="display: none">	        
@@ -610,7 +606,7 @@ $(function() {
 	        <label for="reportText">신고 사유</label>
 	        <textarea id="reportText" rows="3" cols="5"></textarea>
 	    </div>
-	    --%>
+	    
 
 </body>
 </html>

@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="//code.jquery.com/jquery-1.11.3.js"></script>
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -43,12 +42,12 @@
 			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
 		})
-	})
-	$(function(){
+
+
 		var mbId = '${loginuser.mbId}';
 		if(mbId != null && mbId.length > 0){
-		var time = 1000 * 60 * 60;           //1초 * 60 * 60
-		setInterval("ajaxmessgecount()", time);
+			var time = 1000 * 60 * 60;           //1초 * 60 * 60
+			setInterval("ajaxmessgecount()", time);
 		}
 	})
 	function ajaxmessgecount(mbId){
@@ -67,10 +66,10 @@
 				
 			},
 			error : function(xhr, status, ex) {
-				/* alert(status+ex); */
+				//alert(status+ex); 
 			}
 		})
-		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif");
+		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif"); 
 	}
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
