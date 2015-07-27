@@ -3,6 +3,7 @@ package com.project.easyauction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.Util;
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.service.MemberService;
 
@@ -66,9 +68,16 @@ public class MemberController {
 		return mav; 
 	}
 	@RequestMapping(value = "viewmypage.action", method = RequestMethod.GET)
-	public String viewMypage() {
+	public ModelAndView viewMypage(String mbId) {
 		
-		return "member/mypage";
+		List<Auction> auctions = mbsvc.getMyAuctionListBymbId(mbId);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mypage");
+		mav.addObject("auctions", auctions);
+		mav.addObject("mbId", mbId);
+		
+		
+		return mav;
 	}
 	@RequestMapping(value = "edit.action", method = RequestMethod.POST)
 	public ModelAndView memberEdit(//MultipartHttpServletRequest req,//form을 맴버 객체로 받기위해서 써야함

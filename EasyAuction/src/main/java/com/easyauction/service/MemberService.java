@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.mapper.MemberMapper;
 
@@ -25,5 +26,7 @@ public interface MemberService {
 	public void setRegisterMember(Member member);
 
 	public void setEditMember(Member member);
+
+	public List<Auction> getMyAuctionListBymbId(String mbId);
 
 }

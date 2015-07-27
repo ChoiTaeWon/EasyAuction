@@ -127,30 +127,36 @@
 </tr>
 </table>
 <table>
+<c:forEach var="auction" items="${ auctions }">			
+ <%-- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }"> --%>
 <tr>
 	<td bgcolor="#FFFFFF" height="30" align="center" class="smfont">
 
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" height="80">
 		<tr>
 			<td width="18" align="center"></td>
-			<td align="left" class="smfont" width="120">2015-07-22 17:06:24</td>
+			<td align="left" class="smfont" width="120">${ auction.aucRegdate }</td>
 
-
+			<c:forEach var="image" items="${ auction.auctionImage }">
 			<td class="smfont" width="50" height="50" style="padding-left:5px;;">
-				<a href='#'><img src="#" width="50" height="40"></a>
+				<a href='showdeal.action?aucno=${ auction.aucNo }'>
+				<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="50" height="40"></a>
 			</td>
-			<td class="smfont" width="274" style="padding-left:5px;" align='left'><a href='./view.php?num=4&tb=&count=1&category=47r09&pg=1'>화이트 스톤 뱅글</a></td>
+			</c:forEach>
+			<td class="smfont" width="274" style="padding-left:5px;" align='left'>
+			<a href='./view.php?num=4&tb=&count=1&category=47r09&pg=1'>${ auction.aucTitle }</a></td>
 
 			<td class="smfont" width="120">
 
 			<table width="110">
 			<tr>
-				<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_01.gif" title="낙찰가" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right"><font color="#000"><b>1,100원</b></font></td>
+				<td style="padding-bottom:2px;">
+				<img src="/easyauction/resources/images/ico_price_01.gif" title="낙찰가" align="absmiddle"></td>
+				<td style="padding-bottom:2px;" align="right"><font color="#000"><b><%-- ${ auction.bidding.bidPrice } --%> 원</b></font></td>
 			</tr>
 			<tr>
 				<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_02.gif" title="입찰자" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right">2명</td>
+				<td style="padding-bottom:2px;" align="right">2 건</td>
 			</tr>
 			<tr>
 				<td><img src="/easyauction/resources/images/ico_price_03.gif" title="배송비" align="absmiddle"></td>
@@ -164,6 +170,8 @@
 
 			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div></td>
 		</tr>
+		<%-- </c:if> --%>
+		</c:forEach>
 		</table>
 <!-- 줄 -->
 <table width="100%">

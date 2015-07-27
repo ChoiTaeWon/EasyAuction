@@ -83,7 +83,7 @@
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
 							                <td class="smfont3">│</td>
-											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?mbId=${loginuser.mbId}">마이페이지</a></td>
 											<td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/account/logout.action"><img src="/easyauction/resources/images/btn_logout.gif"></a></td>
 							          </c:when><c:otherwise>
