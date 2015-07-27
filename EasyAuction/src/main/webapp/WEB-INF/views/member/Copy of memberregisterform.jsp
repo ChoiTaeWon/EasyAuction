@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="form" 
+	uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,24 +48,30 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById("postcode1").value = data.postcode1;
 						document.getElementById("postcode2").value = data.postcode2;
-						document.getElementById("mbAddress1").value = fullAddr;
+						document.getElementById("address1").value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("mbAddress2").focus();
+						document.getElementById("address2").focus();
 					}
 				}).open();
 	}
-
+	function loadHandler(){
+		<% String id = (String)request.getAttribute("failedid"); %>
+		<%if(id != null){ %>
+			alert('로그인실패');
+			document.getElementById("id").value = '<%= id%>';
+		<%} %>
+	}
 $(function(){
 	$('#myButton').click(function(){
-		$('#regiform').submit();
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		alert('되나');
+		$('#member_register').submit();
 	})
 })
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
-<body>
+<body onload="loadHandler();">
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -94,7 +102,7 @@ $(function(){
 							<div style="padding: 5px;"></div> <!--구분-->
 
 
-							<form action="/easyauction/member/register.action" method="POST" enctype="multipart/form-data" id='regiform' name="member">
+							<form:form action="register.action" method="post" id="member_register" modelAttribute="member">
 
 								<div style="width: 100%; border: 1px dashed #565dd3;">
 									<div style="margin: 10px;">
@@ -107,7 +115,7 @@ $(function(){
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
-															<input type="text" id="mbId" name="mbId" />
+															<form:input type="text" id="memberId" path="mbId" />
 															<br />
 														</tr>
 													</table>
@@ -115,41 +123,42 @@ $(function(){
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드</td>
-												<td><input type='passwd' id='mbPasswd' name="mbPasswd" /></td>
+												<td><form:input type='passwd' id='passwd' path="mbPasswd" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드
 													확인</td>
-												<td><input type="passwd" id='passwd1' /></td>
+												<td><input type="text" id='passwd1' /></td>
 
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이름</td>
-												<td><input type="text" id="mbName" name="mbName" /></td>
+												<td><form:input type="text" name="memberName"
+													id="memberName" path="mbName" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   성별</td>
 												<td>
-												<input type="radio" value='1' checked="checked" name="mbGender"/>남자&nbsp; 
-												<input type="radio" value='0' name="mbGender"/>여자&nbsp;
+												<form:radiobutton value='1' checked="checked" path="mbGender"/>남자&nbsp; 
+												<form:radiobutton value='0' path="mbGender"/>여자&nbsp;
 												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이메일</td>
-												<td><input type='text' id='mbEmail' name="mbEmail" /></td>
+												<td><form:input type='text' id='mbEmail' path="mbEmail" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   전화번호
 												</td>
-												<td><input type='text' name='mbPhone1' id='mbPhone1' name='mbPhone1' /></td>
+												<td><form:input type='text' name='mbPhone1' id='mbPhone1' path='mbPhone1' /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   휴대폰</td>
-												<td><input type='text' name='mbPhone2' id='mbPhone2' name='mbPhone2'/></td>
+												<td><form:input type='text' name='mbPhone2' id='mbPhone2' path='mbPhone2'/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   생년월일</td>
-												<td><input type='DATE' name='mbBirthDate' id='mbBirthDate' />
+												<td><form:input type='date' name='mbBirthdate' id='mbBirthdate' path="mbBirthdate" />
 												</td>
 											</tr>
 											<tr>
@@ -159,8 +168,8 @@ $(function(){
 													 - 
 													<input type="text"id="postcode2" name="postcode2" style='width: 80px'>
 													<input type="button" onclick="daumPostcode()"value="우편번호 찾기" style='height: 25px'><br> 
-													<input type="text" id="mbAddress1" placeholder="주소" style='width: 280px' name="mbAddress1"/><br /> 
-													<input type="text" id="mbAddress2" placeholder="상세주소" style='width: 280px' name="mbAddress2"/>
+													<form:input type="text" id="mbAddress1" placeholder="주소" style='width: 280px' path="mbAddress1"/><br /> 
+													<form:input type="text" id="mbAddress2" placeholder="상세주소" style='width: 280px' path="mbAddress2"/>
 													<span id="guide" style="color: #999"></span>
 													<div style="padding: 5px;"></div>
 													<div style="padding: 5px;"></div>
@@ -171,7 +180,7 @@ $(function(){
 										<div style="padding: 5px;"></div>
 								</div>
 								</div>
-								</form>
+								</form:form>
 						</td>
 					</tr>
 										<div style="padding: 5px;"></div>

@@ -29,7 +29,7 @@
 		mbPhone1,
 		mbPhone2,
 		mbGender,
-		mbBirthdate,
+		mbBirthDate,
 		mbGrade,
 		mbReportingCount,
 		mbName,
@@ -44,13 +44,13 @@
 		SELECT * FROM member 
 	</select> -->
 	
-	<select id="getMemberByIdAndPasswd" resultType="Member">
+<select id="getMemberByIdAndPasswd" resultType="Member">
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
 		mbPasswd = #{mbPasswd}
-	</select>  
+</select>  
 <select id="getCountByMemberId" parameterType="String" resultType="integer">
 		SELECT Count(*) 
 		FROM member 
@@ -60,6 +60,32 @@
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId}
-</select>  
+</select>
+<insert id="setRegisterMember" parameterType="Member">
+	INSERT INTO Member(
+			mbId,
+			mbPasswd,
+			mbAddress1,
+			mbAddress2,
+			mbPhone1,
+			mbPhone2,
+			mbGender,
+			mbBirthDate,
+			mbName,
+			mbEmail
+		)
+		VALUES(
+			#{ mbId },
+			#{ mbPasswd },
+			#{ mbAddress1 },
+			#{ mbAddress2 },
+			#{ mbPhone1 },
+			#{ mbPhone2 },
+			#{ mbGender },
+			#{ mbBirthDate },
+			#{ mbName },
+			#{ mbEmail }
+		)
+</insert> 
 	
 </mapper>

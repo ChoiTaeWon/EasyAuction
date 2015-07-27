@@ -22,4 +22,6 @@ public interface MemberService {
 
 	public Member getMemberById(String mbId);
 
+	public void setRegisterMember(Member member);
+
 }
