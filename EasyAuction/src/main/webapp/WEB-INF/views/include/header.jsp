@@ -47,7 +47,7 @@
 	$(function(){
 		var mbId = '${loginuser.mbId}';
 		if(mbId != null && mbId.length > 0){
-		var time = 1000;           //1초 * 60 * 60
+		var time = 1000 * 60 * 60;           //1초 * 60 * 60
 		setInterval("ajaxmessgecount()", time);
 		}
 	})
