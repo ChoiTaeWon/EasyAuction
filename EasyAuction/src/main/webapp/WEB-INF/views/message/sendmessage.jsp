@@ -10,9 +10,10 @@
 <script type="text/javascript">
 $(function(){
 	$("li").click(function(event) {
+		var pageId = '${pageId}';
 		var id = $(this).attr("id");
 		var mbId = '${mbId}';
-		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
+		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId  + "&pageId=" + pageId;
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
@@ -68,7 +69,7 @@ $(function(){
 <td>제목<br /><input align="right" type="text" id='msgTitle' name='msgTitle' style="width:100%;" /><br /></td>
 </tr>
 <tr>
-<td>받는사람<br /><input align="right" type="text" id='msgReceiver' name='msgReceiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
+<td>받는사람<br /><input align="right" type="text" id='msgReceiver' value="${receiver ne null ? receiver : ""}" name='msgReceiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
 </tr>
 <tr>
 <td>

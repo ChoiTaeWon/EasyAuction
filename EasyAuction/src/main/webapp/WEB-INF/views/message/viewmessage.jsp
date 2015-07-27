@@ -10,13 +10,24 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
+		var mbId = '${mbId}';
+		var pageId = '${pageId}';
+		alert(pageId);
+		var receiver = '${ message.msgSender }';
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
-		var mbId = '${mbId}';
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
+	$("#reply").click(function() {
+		location.href="/easyauction/message/sendmessage.action?mbId=" + mbId + "&receiver=" + receiver;
+	})
+	$("#list").click(function() {
+		location.href="/easyauction/message/" + pageId + ".action?mbId=" + mbId;
+		
+	})
 })
+
 </script>
 </head>
 <body>

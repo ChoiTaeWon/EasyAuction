@@ -116,7 +116,7 @@
 						<tr>
 							<td style="width: 60%;height:30px;">
 								<ul class="main_top_menu">
-									<li class="smfont10"><a href="#">경매 1</a></li>
+									<li class="smfont10"><a href="/easyauction/admin/memberlist.action">관리자</a></li>
 									<li class="smfont10"><a href="#">경매 2</a></li>
 									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
 									<li class="smfont10"><a href="#">고객센터</a></li>

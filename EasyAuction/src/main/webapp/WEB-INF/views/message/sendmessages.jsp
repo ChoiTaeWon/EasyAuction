@@ -10,11 +10,12 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
+	var pageId = 'sendmessages';
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
 		var mbId = '${mbId}';
-		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId + "&pageId=" + pageId;
+		event.preventDefault('a');//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
 function deletemessage(msgNo){
@@ -84,7 +85,7 @@ function deletemessage(msgNo){
 <c:when test="${ messages ne null && fn:length(messages) > 0 }">
 <c:forEach var="message" items="${ messages }">
 	<tr height='25'>
-		<td style='padding-left:5px'><a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }&mbId=${mbId}"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">${ message.msgTitle }</font></a></td>
+		<td style='padding-left:5px'><a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }&mbId=${mbId}&pageId=${pageId}"><img src="/easyauction/resources/images/icon_mess_2.gif" border="0" align="absmiddle"><font color="#888888">${ message.msgTitle }</font></a></td>
 		<td width='81' align='center'><font color="#888888">${ message.msgReceiver }</font></td>
 		<td width='101' align='center'><font color="#888888">${ message.msgDate }</font></td>
 		<td width='61' align='center'><img src="/easyauction/resources/images/bt_mess_del.gif" border="0" align="absmiddle" onclick="deletemessage(${ message.msgNo });"></td>
