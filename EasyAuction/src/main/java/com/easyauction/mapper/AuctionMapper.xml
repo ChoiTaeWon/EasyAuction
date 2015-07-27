@@ -32,7 +32,7 @@
 		<result column="aucno" property="aucNo" />
 		<result column="aucimgregdate" property="aucImgRegdate" />
 	</resultMap>
-	
+
 	<sql id="auctioncolumns">
 			 aucno, auctitle, aucstartdate, aucenddate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, 
@@ -80,7 +80,16 @@
 	</select>
 	
 	
+	<select id="getAuctionDetailByAuctioNo" resultMap="auctionResult" parameterType="int">
+		select  aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate,auctype, aucwriter, aucadtext
+		from AUCTION
+		where aucno = #{ aucNo }
+	</select>
+	
+
 	
 	
+
 	
 </mapper>
