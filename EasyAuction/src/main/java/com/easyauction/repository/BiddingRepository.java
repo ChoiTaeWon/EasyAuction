@@ -8,8 +8,6 @@ public interface BiddingRepository {
 
 	List<Bidding> getBiddingListByAuctionNo(int aucNo);
 
-	Bidding getExceptBidder(int aucNo);
-
 	int getCountBidders(int aucNo);
 
 	void insertBiddingPrice(Bidding bidding);
@@ -17,5 +15,7 @@ public interface BiddingRepository {
 	Bidding getBiddingByBidNo(int bidNo);
 
 	void insertFirstBidding(Bidding bidding);
+
+	String getLastBidder(int aucNo);
 
 }

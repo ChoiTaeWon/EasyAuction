@@ -9,10 +9,19 @@
 	<title>Easy Auction 게시글 보기</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="/easyauction/resources/js/jquery-ui.js"></script>
 	<script type="text/javascript" src="/easyauction/resources/js/jquery.js"></script>
 </head>
+<style>
+	        /* #dialog { font-size: 62.5% } */
+	        #dialog input[type], label {
+	            margin-bottom: 12px; 
+	            padding: .4em; 
+	            width: 95%;
+	        }
+</style>
 <script type="text/javascript">
 
 	function getTime() { 
@@ -52,14 +61,81 @@
 </script>
 
 <script>
+/* $(function(){
+	var bidderId = $("#loginuserId").val();
+	var auctionNo = ${ auction.aucNo };
+	
+	$('#doIpchal').on({
+		click : function(event){
+			var event;
+			$.ajax({
+				url : "/easyauction/ajax/selectLastBidder.action",
+				async : false,
+				type : "GET",
+				data : {
+					mbId : bidderId,
+					aucNo : auctionNo
+				},
+				success : function(result){
+					if(result == 0){
+						event = 0;
+						alert(event + " : event 값");
+						alert("입찰 가능 상태");
+					}else{
+						event = 1;
+						alert("방금 입찰하셨습니다.");
+					}
+				},
+				error : function (){
+					alert("입찰 가능 상태 확인 에러.");
+				}
+			});
+			
+			if(event == 0){
+				$.ajax({
+					url: "/easyauction/ajax/insertBiddingPrice.action",
+					async : false,
+					type : "GET",
+					data : {
+						mbId : bidderId,
+						aucNo : auctionNo
+					},
+					success: function(result){
+						
+						if(result != null){
+							if(bidderId == result.mbId){
+								alert( result.mbId + " : 입찰되었습니다.");
+							}else{
+							alert( result.mbId + " : 입찰되었습니다.");
+							$("#refreshMbId").empty();
+							$("#refreshMbId").html("<b><font id='list_now_price'>"+ result.mbId +"</font></b>");
+							$("#refreshBidPrice").empty();
+							$("#refreshBidPrice").html("<b><font id='list_now_price'>"+ result.bidPrice +"</font> 원</b>"); 
+							}
+						}
+						else{
+							alert("입찰에 실패했습니다.");
+						}
+		           	
+		        	},
+		        	error : function() {
+						alert('입찰 실패');
+					}
+				});
+			}
+		}
+	});
+	   
+}); */
+
 $(function(){
 	var bidderId = $("#loginuserId").val();
 	var auctionNo = ${ auction.aucNo };
 	
-	
 	$('#doIpchal').on({
 		click : function(event){
- 			$.ajax({
+			
+			$.ajax({
 				url: "/easyauction/ajax/insertBiddingPrice.action",
 				async : false,
 				type : "GET",
@@ -68,8 +144,17 @@ $(function(){
 					aucNo : auctionNo
 				},
 				success: function(result){
-					if(result != "error"){
-						alert( result + "입찰되었습니다.");
+					
+					if(result != null){
+						if(bidderId == result.mbId){
+							alert( result.mbId + " : 입찰되었습니다.");
+						}else{
+						alert( result.mbId + " : 입찰되었습니다.");
+						$("#refreshMbId").empty();
+						$("#refreshMbId").html("<span><b><font id='list_now_price'>"+ result.mbId +"</font></b></span>");
+						$("#refreshBidPrice").empty();
+						$("#refreshBidPrice").html("<span><b><font id='list_now_price'>"+ result.bidPrice +"</font> 원</b></span>"); 
+						}
 					}
 					else{
 						alert("입찰에 실패했습니다.");
@@ -79,14 +164,21 @@ $(function(){
 	        	error : function() {
 					alert('입찰 실패');
 				}
-			});  
-			alert("asdfasdf");
+			});
+			
 		}
 	});
-	   
-});
+});	
 </script>
 
+
+<!-- <script type="text/javascript">
+	$(window).ready(function(){
+		var mbId = ${ auction.bidding.mbId };
+		$("#refreshMbId").attr("value", mbId);
+	});
+
+</script> -->
 	    
 	    
 <body>
@@ -213,7 +305,10 @@ $(function(){
 															<td width="178" align="right"> 
 															<c:choose>
 																<c:when test="${ auction.countBidders <= 1 }"><b>입찰 대기 중</b></c:when>
-																<c:otherwise><b><font id="list_now_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value="${ auction.bidding.bidPrice }" /></font> 원</b>
+																<c:otherwise>
+																	<div id="refreshBidPrice">
+																		<b><font id="list_now_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value="${ auction.bidding.bidPrice }" /></font> 원</b>
+																	</div>
 																</c:otherwise>
 															</c:choose>
 															</td>
@@ -226,7 +321,7 @@ $(function(){
 															<td width="178" align="right">
 															<c:choose>
 																<c:when test="${ auction.countBidders <= 1 }"><b>입찰자 없음</b></c:when>
-																<c:otherwise><b><font id="list_now_price"> ${ auction.bidding.mbId } </font></b></c:otherwise>
+																<c:otherwise><div id="refreshMbId"><b><font id="list_now_price">${ auction.bidding.mbId }</font></b></div></c:otherwise>
 															</c:choose>
 															
 															</td>
@@ -442,8 +537,8 @@ $(function(){
 	
 	</div><!-- div wrap 끝 -->
 	
+ 	
 <%-- 	
-	
 <script type="text/javascript">
 	
 $(function() {
@@ -503,10 +598,6 @@ $(function() {
 	
 });
 
-
-			
-	
-
 					
 </script>		
 		
@@ -519,8 +610,8 @@ $(function() {
 	        <label for="reportText">신고 사유</label>
 	        <textarea id="reportText" rows="3" cols="5"></textarea>
 	    </div>
-	     --%>
-	    
+	    --%>
+
 </body>
 </html>
 

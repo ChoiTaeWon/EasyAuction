@@ -132,8 +132,8 @@ public class AjaxController {
 	
 	@RequestMapping(value="insertBiddingPrice.action", method = RequestMethod.GET)
 	@ResponseBody
-	public String doBidding(String mbId, int aucNo){
-		String errorMessage="error";
+	public Bidding doBidding(String mbId, int aucNo){
+		
 		Bidding bidding = new Bidding();
 		bidding.setMbId(mbId);
 		bidding.setAucNo(aucNo);
@@ -147,12 +147,34 @@ public class AjaxController {
 		bidding = biddingService.getBiddingByBidNo(bidding.getBidNo());
 		
 		//System.out.println("returnId :" + bidding.getMbId());
-		
-		if(bidding.getMbId().length() > 0){
+		/*if(bidding.getMbId().length() > 0){
 			return mbId;
+		}*/
+		
+		return bidding;
+	}
+	
+	@RequestMapping(value="selectLastBidder.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int selectLastBidder(String mbId, int aucNo) {
+		int result = 0;
+		
+		String lastBidder = biddingService.getLastBidder(aucNo);
+		System.out.println("마지막 낙찰자  :" + lastBidder);
+		
+		if(mbId.equals(lastBidder)){
+			System.out.println(result+1);
+			return result+1;
+			//같으면 1; 에러
+		}else{
+			System.out.println(result);
+			return result;	
 		}
 		
-		return errorMessage;
+		
 	}
+	
+	
+	
 
 }

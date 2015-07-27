@@ -26,12 +26,6 @@ public class OracleBiddingRepository implements BiddingRepository{
 	}
 
 	@Override
-	public Bidding getExceptBidder(int aucNo) {
-		// TODO Auto-generated method stub
-		return biddingMapper.getExceptBidder(aucNo);
-	}
-
-	@Override
 	public int getCountBidders(int aucNo) {
 		// TODO Auto-generated method stub
 		return biddingMapper.getCountBidders(aucNo);
@@ -53,6 +47,12 @@ public class OracleBiddingRepository implements BiddingRepository{
 	public void insertFirstBidding(Bidding bidding) {
 		// TODO Auto-generated method stub
 		biddingMapper.insertFirstBidding(bidding);
+	}
+
+	@Override
+	public String getLastBidder(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingMapper.getLastBidder(aucNo);
 	}
 	
 	
