@@ -10,11 +10,12 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
+	var pageId = 'receivemessages';
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
 		var mbId = '${mbId}';
-		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId + "&pageId=" + pageId;
+		event.preventDefault('a');//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
 function deletemessage(msgNo){
@@ -89,7 +90,7 @@ function deletemessage(msgNo){
 		<img src="/easyauction/resources/images/icon_new.gif" border="0" align="absmiddle"/>
 		</c:if>
 		&nbsp;&nbsp;
-		<a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }&mbId=${mbId}">
+		<a href="/easyauction/message/viewmessage.action?msgNo=${ message.msgNo }&mbId=${mbId}&pageId=${pageId}">
 		<font color="#888888">
 		${ message.msgTitle }</font></a>
 		</td>
