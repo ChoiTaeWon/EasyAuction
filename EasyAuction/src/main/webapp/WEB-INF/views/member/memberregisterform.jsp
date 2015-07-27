@@ -56,7 +56,54 @@
 
 $(function(){
 	$('#myButton').click(function(){
+		var formArray = $('#regiform input');
+		/* var formArray = $('#regiform input[value = ""]');
+		if (formArray.length > 0) {
+			alert('test');
+			return;
+		} */
+		var mbPasswd = $('#mbPasswd').val();
+		var passwd1 = $('#passwd1').val();
+		if(mbPasswd != passwd1){
+			alert("패스워드가 일치하지않습니다");
+			$('#passwd1').val("");
+			$('#passwd1').focus();
+			return;
+		}
+		for(var key in formArray){
+			if(formArray[key].value == "") {
+				var id = '#'+ formArray[key].id;
+				alert("필수 입력요소입니다");
+				$(id).focus();
+				return;
+			}
+			
+		}
+		
 		$('#regiform').submit();
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	})
+	$("#mbId").blur(function(event) {
+		var mbId = $("#mbId").val();
+		$.ajax({
+			url : "/easyauction/ajax/membercheck.action?mbId=" + mbId,
+			async : true,
+			data : {},
+			method : "GET",
+			success : function(result, status, xhr) {
+				if (result != 0){
+					alert("이미 등록된 아이디입니다.");
+					$("#mbId").val('').focus();
+					$("#checkresult").text("사용중인아이디").css({ color : "red" });
+				} else {
+					$("#checkresult").text("");
+				}
+				
+			},
+			error : function(xhr, status, ex) {
+				alert(status+ex);
+			}
+		})
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
 })
@@ -107,7 +154,7 @@ $(function(){
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
-															<input type="text" id="mbId" name="mbId" />
+															<input type="text" id="mbId" name="mbId" /><span id="checkresult"></span>
 															<br />
 														</tr>
 													</table>
@@ -115,12 +162,12 @@ $(function(){
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드</td>
-												<td><input type='passwd' id='mbPasswd' name="mbPasswd" /></td>
+												<td><input type="password" id='mbPasswd' name="mbPasswd" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드
 													확인</td>
-												<td><input type="passwd" id='passwd1' /></td>
+												<td><input type="password" id='passwd1' /><span></span></td>
 
 											</tr>
 											<tr>
