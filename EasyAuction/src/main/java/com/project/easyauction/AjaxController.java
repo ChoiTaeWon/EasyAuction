@@ -132,8 +132,8 @@ public class AjaxController {
 	
 	@RequestMapping(value="insertBiddingPrice.action", method = RequestMethod.GET)
 	@ResponseBody
-	public int doBidding(String mbId, int aucNo){
-		int result = 0;
+	public String doBidding(String mbId, int aucNo){
+		String errorMessage="error";
 		Bidding bidding = new Bidding();
 		bidding.setMbId(mbId);
 		bidding.setAucNo(aucNo);
@@ -149,12 +149,10 @@ public class AjaxController {
 		//System.out.println("returnId :" + bidding.getMbId());
 		
 		if(bidding.getMbId().length() > 0){
-			return result+1;
+			return mbId;
 		}
 		
-		
-		
-		return result;
+		return errorMessage;
 	}
 
 }

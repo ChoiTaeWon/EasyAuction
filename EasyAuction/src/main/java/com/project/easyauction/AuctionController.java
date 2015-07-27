@@ -127,7 +127,7 @@ public class AuctionController {
 	               //입찰 초기값 삽입
 	               	Bidding bidding = new Bidding();
 					bidding.setAucNo(auction.getAucNo());
-					bidding.setBidPrice(0);
+					bidding.setBidPrice(auction.getAucStartPrice());
 					bidding.setMbId("admin");
 					biddingService.insertFirstBidding(bidding);
 	               

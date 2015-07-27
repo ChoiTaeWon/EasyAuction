@@ -68,7 +68,7 @@ $(function(){
 					aucNo : auctionNo
 				},
 				success: function(result){
-					if(result == 1){
+					if(result != "error"){
 						alert( result + "입찰되었습니다.");
 					}
 					else{
@@ -110,21 +110,21 @@ $(function(){
 												<font color="#565DD3">No.  ${ auction.aucNo }&nbsp;</font> 
 												<font >
 												<c:choose>
-													<c:when test="${ auction.aucState eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
-													<c:when test="${ auction.aucState eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
+													<c:when test="${ auction.aucCategory eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
 													<c:otherwise>에러 상태</c:otherwise>
 												</c:choose>
 												</font> 
