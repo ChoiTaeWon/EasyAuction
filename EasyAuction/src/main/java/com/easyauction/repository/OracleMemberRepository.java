@@ -65,5 +65,13 @@ public class OracleMemberRepository implements MemberRepository {
 		List<Auction> auctions = memberMapper.getMyAuctionListBymbId(mbId);
 		return auctions;
 	}
+
+
+	@Override
+	public HashMap<String, Object> getCountMyAuctionBymbId(String mbId) {
+			HashMap<String, Object> countList = memberMapper.getCountMyAuctionBymbId(mbId);
+		return countList;
+	}
+
 	
 }

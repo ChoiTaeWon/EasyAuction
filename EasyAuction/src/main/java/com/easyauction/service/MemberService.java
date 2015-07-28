@@ -29,4 +29,7 @@ public interface MemberService {
 
 	public List<Auction> getMyAuctionListBymbId(String mbId);
 
+	HashMap<String, Object> getCountMyAuctionBymbId(String mbId);
+
+
 }

@@ -3,6 +3,7 @@ package com.project.easyauction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,11 +72,12 @@ public class MemberController {
 	public ModelAndView viewMypage(String mbId) {
 		
 		List<Auction> auctions = mbsvc.getMyAuctionListBymbId(mbId);
+		HashMap<String, Object> countList = mbsvc.getCountMyAuctionBymbId(mbId);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/mypage");
 		mav.addObject("auctions", auctions);
 		mav.addObject("mbId", mbId);
-		
+		mav.addObject("countList", countList);
 		
 		return mav;
 	}
@@ -94,4 +96,12 @@ public class MemberController {
 		return mav; 
 	}
 
+	@RequestMapping(value = "email.action", method = RequestMethod.GET)
+	public ModelAndView emailform(String locationurl) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/emailpasswd");
+		mav.addObject("locationurl", locationurl);
+		return mav; 
+	}
 }

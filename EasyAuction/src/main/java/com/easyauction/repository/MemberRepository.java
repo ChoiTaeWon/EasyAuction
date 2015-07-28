@@ -1,5 +1,6 @@
 package com.easyauction.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,8 @@ public interface MemberRepository {
 	void setEditMember(Member member);
 
 	List<Auction> getMyAuctionListBymbId(String mbId);
+
+	HashMap<String, Object> getCountMyAuctionBymbId(String mbId);
+
 
 }

@@ -139,8 +139,8 @@
 		<result column="aucreadcount" property="aucReadCount" />
 		<result column="aucwriter" property="aucWriter" />
 		<result column="aucadtext" property="aucAdText" />
-<!-- 		<association property="countBidders" column="aucno" select="getCountBidders" />
-		<association property="bidding" column="aucno" select="getBiddingInfoByAucNo" /> -->
+ 		<association property="countBidders" column="aucno" select="getCountBidders" />
+		<association property="bidding" column="aucno" select="getBiddingInfoByAucNo" />
 		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
 	</resultMap>
 	
@@ -159,15 +159,21 @@
 		<result column="mbid" property="mbId" />
 		<result column="biddate" property="bidDate" />
 	</resultMap>
-<!-- 	<select id="getCountBidders" resultType="int" parameterType="int">
-		select count(*) from bidding where aucno= #{aucNo}
-	</select> -->
 	<sql id="auctioncolumns">
 			 aucno, auctitle, aucstartdate, aucenddate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, 
 			 aucfinalprice, aucstate, aucregdate, aucreportingcount,
 			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext
 	</sql>
+ 	
+ 	<select id="getCountBidders" resultType="int" parameterType="int">
+		select count(*) from bidding where aucno= #{aucNo}
+	</select>
+	<select id="getBiddingInfoByAucNo" resultMap="biddingResult" parameterType="int">
+		select bidprice, mbid
+		from bidding
+		where aucno = #{ aucNo } and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
+	</select>
 	
 	<select id="getAuctionImageByAuctionNo" resultMap="auctionImageResult" parameterType="int">
 		select aucimgno, aucimgname, aucno
@@ -183,7 +189,22 @@
 		order By
 		aucno DESC
 	</select>
+<!-- 	<resultMap id="countResultMap" type="java.util.HashMap">
+		  <result property="auclistcount" column="auclistcount"/>
+		  <result property="aucstate0" column="aucstate0"/>
+		  <result property="aucstate1" column="aucstate1"/>
+		  <result property="aucstate2" column="aucstate2"/>
+	</resultMap> -->
+
 	
+ 	<select id="getCountMyAuctionBymbId" resultType="hashmap" parameterType="String">
+		select 
+			(select count(*) from AUCTION Where aucwriter = #{ mbId }) auclistcount,
+			(select count(*) from AUCTION Where aucstate = 0 and aucwriter = #{ mbId }) aucstate0,
+			(select count(*) from AUCTION Where aucstate = 1 and aucwriter = #{ mbId }) aucstate1, 
+			(select count(*) from AUCTION Where aucstate = 2 and aucwriter = #{ mbId }) aucstate2 
+		from dual
+	</select>
 	
 	
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
