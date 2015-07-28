@@ -9,37 +9,52 @@
 <title>회원리스트</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	
-    <link rel="stylesheet" href="/easyauction/resources/js/css/ui-redmond/jquery-ui.css" />
-    <link rel="stylesheet" href="/easyauction/resources/js/css/ui.jqgrid.css" />		
+	<link rel="stylesheet" media="screen" href="/easyauction/resources/js/css/ui.jqgrid.css" />
+    <link rel="stylesheet" media="screen" href="/easyauction/resources/js/css/ui-redmond/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-    <script type="text/javascript" src="/easyauction/resources/js/jquery.jqGrid.min.js"></script>
-    <script type="text/javascript" src="/easyauction/resources/js/i18n/grid.locale-kr.js"></script>
+    <script type="text/javascript" src="/easyauction/resources/js/jquery.jqGrid.src.js"></script>
+    <script type="text/javascript" src="/easyauction/resources/js/i18n/grid.locale-en.js"></script>
     <script type="text/javascript"> 
-        $(document).ready(function () {
+        $(function () {
             $("#jqGrid").jqGrid({
-                url: 'data.json',
-                mtype: "GET",
+                url: 'memberlist.action',
+                mtype: "POST",
                 datatype: "json",
+                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','관리자툴'],
                 colModel: [
-                    { label: '회원번호', name: '', key: true, width: 75 },
- 					{ label: '아이디', name: '', width: 150 },
-                    { label: '회원명', name: '', width: 150 },
-                    { label: '성별', name: '', width: 75 },
-                    { label: '이메일', name: '', width: 150 },
-                    { label: '연락처', name: '', width: 150 },
-                    
+                    { name: 'mbId', index:'mbId', key: true, width: 80 },
+ 					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
+ 					{ name: 'mbEmail', index:'mbEmail', width: 150 },
+                    { name: 'mbName', index:'mbName', width: 100 },
+                    { name: 'mbGender', index:'mbGender', width: 75, formatter: function(cellValue,options,rowObject){
+                        if(cellValue == false) {
+                        	return '<font color="blue">'+'남자'+'</font>';
+                        }else if(cellValue == true){
+                        	return '<font color="#FF3399">'+'여자'+'</font>';
+                        }
+                    }},
+                    { name: 'mbRegdate', index:'mbRegdate', width: 150, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
+                    { name: 'adminTool', width: 150 }
                 ],
+                loadError : function(xhr, status, error) {
+                	console.log(error);
+                },
+                loadComplete: function() {
+                    $("tr.jqgrow:even").css("background", "#ffffff");
+                    $("tr.jqgrow:odd").css("background", "#E6E6E6");
+                    //$("tr.jqgrow:odd").addClass('myAltRowClass');
+                },
 				loadonce:true, // just for demo purpose
                 width: 730,
-                height: 250,
+                height: 500,
                 rowNum: 20,
 				rowList:[20,25,50],
-				sortname: 'OrderDate',
+				sortname: 'mbRegdate',
                 pager: "#jqGridPager",
-				viewrecords: true,
+				viewrecords: true
             });
 			$("#jqGrid").jqGrid("navGrid","#jqGridPager",{add:false, edit:false, del:false});
+			
         });
     </script>
 </head>

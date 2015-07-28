@@ -6,5 +6,33 @@
   
 <!-- namespace : 패키지명.클래스이름 을 논리적으로 선언 -->
 <mapper namespace="com.easyauction.mapper.AdminMapper">
+	<resultMap id="memberResult" type="Member">
+			<id column="mbid" property="mbId" />
+			<result column="mbaddress1" property="mbAddress1" />
+			<result column="mbaddress2" property="mbAddress2" />
+			<result column="mbphone1" property="mbPhone1" />
+			<result column="mbphone2" property="mbPhone2" />
+			<result column="mbgender" property="mbGender" />
+			<result column="mbbirthDate" property="mbBirthDate" />
+			<result column="mbgrade" property="mbGrade" />
+			<result column="mbreportingCount" property="mbReportingCount" />
+			<result column="mbname" property="mbName" />
+			<result column="mbgrant" property="mbGrant" />
+			<result column="mbdelete" property="mbDelete" />
+			<result column="mbregdate" property="mbRegdate" />
+			<result column="mbemail" property="mbEmail" />
+	</resultMap> 
+	<sql id="membercolumns">
+		mbId, mbAddress1, mbAddress2, mbPhone1, mbPhone2,
+		mbGender, mbBirthdate, mbGrade, mbReportingCount, mbName,
+		mbGrant, mbDelete, mbRegdate, mbEmail
+	</sql>	
 	
+	<select id="getMemberList" resultMap="memberResult">
+		SELECT <include refid="membercolumns" />
+		FROM MEMBER
+		where mbgrant = 0
+		ORDER BY
+		  mbregdate desc
+	</select>
 </mapper>
