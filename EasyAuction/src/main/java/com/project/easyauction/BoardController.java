@@ -118,12 +118,13 @@ public class BoardController {
 		return "redirect:/board/updatefreeboard.action?boardno="+bdno+"&pageno="+ pageno;
 	}
 	
-	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.GET)
-	public String updateComment(int pageno, int bdno, int bcno, @ModelAttribute BoardComment boardcomment) {
+	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
+	public String updateFreeBoardComment(int pageno, int bdno, int bcno, @ModelAttribute BoardComment boardcomment) {
 
 		boardService.updateFreeBoardComment(boardcomment);
 		return "redirect:/board/freeboardview.action?bdno="+bdno+"&bcno="+bcno+"&pageno="+ pageno;
 	}
+	
 	
 	@RequestMapping(value="deletefreeboard.action", method= RequestMethod.GET)
 	public String deletefreeboard(int bdno, int pageno) {

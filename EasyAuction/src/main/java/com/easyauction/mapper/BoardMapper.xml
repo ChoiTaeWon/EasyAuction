@@ -202,7 +202,7 @@
 			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
 	
-	<update id="updateFreeBoardComment" parameterType="hashMap">
+	<update id="updateFreeBoardComment" parameterType="BoardComment">
  	UPDATE 
  		boardcomment
  	SET 
