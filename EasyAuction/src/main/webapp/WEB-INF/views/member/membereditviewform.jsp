@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 <!-- 다음 주소관련 function 시작 -->
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	function daumPostcode() {
@@ -48,13 +49,30 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById("postcode1").value = data.postcode1;
 						document.getElementById("postcode2").value = data.postcode2;
-						document.getElementById("address1").value = fullAddr;
+						document.getElementById("mbAddress1").value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("address2").focus();
+						document.getElementById("mbAddress2").focus();
 					}
 				}).open();
 	}
+	$(function(){
+		$('#backmypage').click(function(){
+			var mbId = '${ loginuser.mbId }';//''<-- 문자열로 받아야한다 안그러면 변수로 인식 에러뜸 is not defined
+			location.href="/easyauction/member/viewmypage.action?mbId=" + mbId;
+		})
+		$('#modify').click(function(){
+			var mbPasswd = $('#mbPasswd').val();
+			var passwd1 = $('#passwd1').val();
+			if(mbPasswd != passwd1){
+				alert("패스워드가 일치하지않습니다");
+				$('#passwd1').val("");
+				$('#passwd1').focus();
+				return;
+			}
+			$('#editform').submit();
+		})
+	})
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
@@ -93,7 +111,7 @@
 							<div style="padding: 5px;"></div> <!--구분-->
 
 
-							<form action="view.action" method="post" name="member_register" modelAttribute="member">
+							<form action="edit.action" method="post" name="member" id="editform">
 
 								<div style="width: 100%; border: 1px dashed #565dd3;">
 									<div style="margin: 10px;">
@@ -105,31 +123,34 @@
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
+														 	<td>
+														 		<input type="hidden" name="mbId" value="${ member.mbId }" />
 															${ member.mbId }
+															</td>
 														</tr>
 													</table>
 												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드</td>
-												<td><input type='passwd' name='mbPasswd' id='passwd'></td>
+												<td><input type="password" name='mbPasswd' id='mbPasswd'></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">패스워드
 													확인</td>
-												<td><input type="passwd" id='passwd1' /></td>
+												<td><input type="password" id='passwd1' /></td>
 
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">이름</td>
 												<td><input type="text" name="mbName"
-													id="memberName" value="${ member.mbName }" /></td>
+													id="mbName" value="${ member.mbName }" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">성별</td>
 												<td>
-													<input type=radio id=genderm name='mbGender' checked='${member.mbGender eq true ? checked : ""}'>남자&nbsp; 
-													<input type=radio id=genderf name='mbGender' checked='${member.mbGender eq true ? "" : checked}'>여자&nbsp;
+													<input type="radio" id="genderm" name='mbGender' value='0' ${member.mbGender eq true ? "checked='checked'" : "" } >남자&nbsp; 
+													<input type="radio" id="genderf" name='mbGender' value='1' ${member.mbGender eq false ? "checked='checked'" : "" }>여자&nbsp;
 												</td>
 											</tr>
 											<tr>
@@ -139,15 +160,17 @@
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">전화번호
 												</td>
-												<td><input type='text' name='mbPhone1' id='phone1' value="${ member.mbPhone1 }"/></td>
+												<td><input type='text' name='mbPhone1' id='mbPhone1' value="${ member.mbPhone1 }"/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">휴대폰</td>
-												<td><input type='text' name='mbPhone2' id='phone2' value="${ member.mbPhone2 }"/></td>
+												<td><input type='text' name='mbPhone2' id='mbPhone2' value="${ member.mbPhone2 }"/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">생년월일</td>
-												<td><input type='date' name='mbBirthDate' id='birthdate' value="${ member.mbBirthDate }"/>
+												<td>
+												<fmt:formatDate var="mbbd" type="date" pattern="yyyy-MM-dd" value="${ member.mbBirthDate }" />
+												<input type='date' name='mbBirthDate' id='mbBirthDate' value="${ mbbd }"/>
 												</td>
 											</tr>
 											<tr>
@@ -156,8 +179,8 @@
 												<td><input type="text" id="postcode1" name="postcode1" style='width: 80px' readonly="readonly"> - 
 													<input type="text" id="postcode2" name="postcode2" style='width: 80px' readonly="readonly">
 													<input type="button" onclick="daumPostcode()" value="우편번호 찾기" style='height: 25px'><br> 
-													<input type="text" id="address1" name="mbAddress1" placeholder="주소" style='width: 280px' readonly="readonly" value="${ member.mbAddress1 }"><br /> 
-													<input type="text" id="address2" name="mbAddress2" placeholder="상세주소" style='width: 280px' value="${ member.mbAddress2 }">
+													<input type="text" id="mbAddress1" name="mbAddress1" placeholder="주소" style='width: 280px' readonly="readonly" value="${ member.mbAddress1 }"><br /> 
+													<input type="text" id="mbAddress2" name="mbAddress2" placeholder="상세주소" style='width: 280px' value="${ member.mbAddress2 }">
 													<span id="guide" style="color: #999"></span>
 													
 													<div style="padding: 5px;"></div>
@@ -166,6 +189,9 @@
 											</tr>
 										</table>
 										<div style="padding: 5px;"></div>
+								</div>
+								</div>
+								</form>
 						</td>
 					</tr>
 					<div style="padding: 5px;"></div>
@@ -173,8 +199,8 @@
 				<div style="padding: 5px;"></div>
 				<div align="center">
 				<div style="padding: 5px;"></div>
-				<img src="/easyauction/resources/images/btn_my_modify.gif" onclick="javascript:updateMember();" />
-				<img src="/easyauction/resources/images/member_mod_backpage_btn.gif" />
+				<img src="/easyauction/resources/images/btn_my_modify.gif" id="modify"/>
+				<img src="/easyauction/resources/images/member_mod_backpage_btn.gif" id="backmypage"/>
 		</div>
 		<!-- 줄 -->
 		

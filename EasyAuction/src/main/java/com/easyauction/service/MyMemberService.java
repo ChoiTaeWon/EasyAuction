@@ -1,9 +1,13 @@
 package com.easyauction.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.repository.MemberRepository;
 
@@ -29,6 +33,31 @@ public class MyMemberService implements MemberService {
 	public Member getMemberById(String mbId) {
 		Member member = mbrepo.getMemberById(mbId);
 		return member;
+	}
+	@Override
+	public void setRegisterMember(Member member) {
+		mbrepo.setRegisterMember(member);
+	}
+	@Override
+	public void setEditMember(Member member) {
+		mbrepo.setEditMember(member);
+		
+	}
+	@Override
+	public List<Auction> getMyAuctionListBymbId(String mbId) {
+		List<Auction> auctions = mbrepo.getMyAuctionListBymbId(mbId);
+		
+		return auctions;
+	}
+	@Override
+	public HashMap<String, Object> getCountMyAuctionBymbId(String mbId) {
+		HashMap<String, Object> countList = mbrepo.getCountMyAuctionBymbId(mbId);
+		return countList;
+	}
+	@Override
+	public List<Auction> getGetterAuctionListBymbId(String mbId) {
+		List<Auction> getauctions = mbrepo.getGetterAuctionListBymbId(mbId);
+		return getauctions;
 	}
 
 }

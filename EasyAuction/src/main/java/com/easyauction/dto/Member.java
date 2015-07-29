@@ -2,6 +2,8 @@ package com.easyauction.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Member {
 	
 	private String mbId;
@@ -17,6 +19,7 @@ public class Member {
 	private String mbName;
 	private boolean mbGrant;
 	private boolean mbDelete;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
 	private Date mbRegdate;
 	private String mbEmail;
 	

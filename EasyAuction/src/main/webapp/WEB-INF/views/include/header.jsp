@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -43,11 +42,15 @@
 			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
 		})
+		$(".findMember").click(function(event){
+			$(location).attr('href','/easyauction/member/email.action?locationurl=' + $(this).attr('id'));
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		})
 	})
 	$(function(){
 		var mbId = '${loginuser.mbId}';
 		if(mbId != null && mbId.length > 0){
-		var time = 1000;           //1초 * 60 * 60
+		var time = 1000 * 60 * 60;           //1초 * 60 * 60
 		setInterval("ajaxmessgecount()", time);
 		}
 	})
@@ -83,7 +86,7 @@
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
 							                <td class="smfont3">│</td>
-											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?mbId=${loginuser.mbId}">마이페이지</a></td>
 											<td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/account/logout.action"><img src="/easyauction/resources/images/btn_logout.gif"></a></td>
 							          </c:when><c:otherwise>
@@ -91,9 +94,9 @@
 										<td class="smfont3">│</td>
 										<td><a href="/easyauction/member/register.action">회원가입</a></td>
 										<td class="smfont3">│</td>
-										<td><a href="#">아이디찾기</a></td>
+										<td><a href="#" class="findMember" id="findmbId">아이디찾기</a></td>
 										<td class="smfont3">│</td>
-										<td><a href="#">비밀번호찾기</a></td>
+										<td><a href="#" class="findMember" id="findPasswd">비밀번호찾기</a></td>
 										<td class="smfont3">│</td>
 										<td><a href="#">상품평보기</a></td>
 							         </c:otherwise></c:choose>

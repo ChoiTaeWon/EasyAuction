@@ -76,7 +76,7 @@
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">${ view.bdDate }</td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">${ view.bdReportingCount }</td>
+				 	  <td align="center" width="40">${ view.bdReadCount }</td>
 				 	 <%--  <td width="1"></td>
 				 	  <td align="center" width="40">${ view.bdBlindCheck }</td> --%>
 				 	</tr>
