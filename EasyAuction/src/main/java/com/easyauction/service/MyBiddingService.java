@@ -30,10 +30,6 @@ public class MyBiddingService implements BiddingService{
 		return biddingRepository.getBiddingListByAuctionNo(aucNo);
 	}
 	@Override
-	public Bidding getExceptBidder(int aucNo) {
-		return biddingRepository.getExceptBidder(aucNo);
-	}
-	@Override
 	public int getCountBidders(int aucNo) {
 		// TODO Auto-generated method stub
 		return biddingRepository.getCountBidders(aucNo);
@@ -52,6 +48,22 @@ public class MyBiddingService implements BiddingService{
 		 biddingRepository.insertFirstBidding(bidding);
 		
 	}
+	@Override
+	public String getLastBidder(int aucNo) {
+		return biddingRepository.getLastBidder(aucNo);
+	}
+	@Override
+	public List<Bidding> getIpchalList(int bidNo, int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingRepository.getIpchalList(bidNo, aucNo);
+	}
+
+	@Override
+	public int getMaxBiddingNo(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingRepository.getMaxBiddingNo(aucNo);
+	}
+	
 	
 	
 	

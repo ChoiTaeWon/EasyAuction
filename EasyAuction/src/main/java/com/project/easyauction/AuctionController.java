@@ -67,6 +67,9 @@ public class AuctionController {
 		return mav;
 	}
 	
+	
+	
+	
 	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
 	public ModelAndView detailView(@RequestParam("aucno") int aucNo) {
 		Auction auction = auctionService.getAuctionDetailByAuctionNo(aucNo);
@@ -78,6 +81,10 @@ public class AuctionController {
 		/*mav.addObject("bidding", bidding);*/
 		return mav;
 	}
+	
+	
+	
+	
 	
 	//경매글 등록!
 	@RequestMapping(value = "dealregister.action", method = RequestMethod.GET)

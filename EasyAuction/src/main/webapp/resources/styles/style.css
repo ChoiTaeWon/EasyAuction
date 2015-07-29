@@ -29,6 +29,11 @@ li:HOVER {
 	background-color:#e5e5e5;
 }
 
+ #reportContent input[type], label {
+	 margin-bottom: 12px; 
+	 padding: .4em; 
+	 width: 95%;
+   }
 
 
 
