@@ -34,6 +34,9 @@
 		<result column="bcregdate" property="bcRegdate" />
 	</resultMap>
 	
+	<sql id="boardcolumns">
+		bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck </sql>
+	
 	<insert id="insertFreeBoard" parameterType="Board" >
 	  <selectKey keyProperty="bdNo" order="AFTER" resultType="int" >
 	  	select SEQUENCEBORADNO.currval from dual
@@ -76,21 +79,84 @@
 			bdno DESC
 	</select>
 	
-	<select id="getFreeBoardList" resultMap="boardResult">
-		SELECT
-			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
-		FROM Board
-		ORDER BY 
-			bdno DESC
+	<select id="getFreeBoardList" parameterType="hashMap" resultMap="boardResult">
+ 	SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+ 	FROM 
+ 		(
+ 			SELECT 
+ 				rownum idx, s.*
+ 			FROM (
+ 				SELECT 
+ 					bdno, bdtype, bdcontent, bdwriter, bdtitle,
+ 					bdreadcount, bddate, bdreportingcount, bdblindcheck
+				FROM 
+					board
+ 				ORDER BY 
+ 					bdno DESC
+ 				)s	
+ 		)
+ 	WHERE
+ 		idx &gt;= #{ first } AND idx &lt; #{ last }
+ 	</select>
+	
+	<select id="getFreeBoardSearchList" parameterType="hashMap" resultMap="boardResult">
+		SELECT <include refid="boardcolumns" />
+			FROM board
+		<trim prefix="where" prefixOverrides="AND | OR">
+				<if test="search == 'bdNo'">
+					bdNo LIKE '%'|| #{searchdata} ||'%'
+				</if>
+				<if test="search == 'bdWriter'">
+					AND bdWriter LIKE '%'|| #{searchdata} ||'%'
+				</if>
+				<if test="search == 'bdTitle'">
+					AND bdTitle LIKE '%'||  #{searchdata} ||'%'
+				</if>
+
+		</trim>
+		ORDER BY bdno DESC
 	</select>
 	
-	<select id="getGongjiList" resultMap="boardResult">
-		SELECT
-			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
-		FROM Board
-		ORDER BY 
-			bdno DESC
+	<select id="getGongjiBoardSearchList" parameterType="hashMap" resultMap="boardResult">
+		SELECT <include refid="boardcolumns" />
+			FROM board
+		<trim prefix="where" prefixOverrides="AND | OR">
+				<if test="search == 'bdNo'">
+					bdNo LIKE '%'|| #{searchdata} ||'%'
+				</if>
+				<if test="search == 'bdWriter'">
+					AND bdWriter LIKE '%'|| #{searchdata} ||'%'
+				</if>
+				<if test="search == 'bdTitle'">
+					AND bdTitle LIKE '%'||  #{searchdata} ||'%'
+				</if>
+
+		</trim>
+		ORDER BY bdno DESC
 	</select>
+	
+	<select id="getGongjiList" parameterType="hashMap" resultMap="boardResult">
+ 	SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+ 	FROM 
+ 		(
+ 			SELECT 
+ 				rownum idx, s.*
+ 			FROM (
+ 				SELECT 
+ 					bdno, bdtype, bdcontent, bdwriter, bdtitle,
+ 					bdreadcount, bddate, bdreportingcount, bdblindcheck
+				FROM 
+					board
+ 				ORDER BY 
+ 					bdno DESC
+ 				)s	
+ 		)
+ 	WHERE
+ 		idx &gt;= #{ first } AND idx &lt; #{ last }
+ 	</select>
+	
 	
 	<select id="getImageByBoardNo" resultMap="imageResult" parameterType="int">
 		select bdimgno, bdimgname, bdno
@@ -136,43 +202,56 @@
 			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
 	
-	<select id="UpdateFreeBoardComment" parameterType="BoardComment">
-		UPDATE board SET 
-		bc_content = #{bcContent},
-		bd_no = #{bdNo},
-		bc_writer = #{bcWriter} WHERE bc_no = #{bcNo}
-	</select>
+	<update id="updateFreeBoardComment" parameterType="hashMap">
+ 	UPDATE 
+ 		boardcomment
+ 	SET 
+ 		bccontent = #{ bccontent } 
+  	 WHERE bcno = #{ bcNo }
+ 	</update> 
+ 	
+   <delete id="deleteFreeBoardComment" parameterType="int">
+   DELETE 
+   FROM
+   		boardcomment 
+   WHERE 
+   		bcno = #{ bcNo }
+   </delete>
+   
+	<select id="getFreeBoardCount" parameterType="String" resultType="int">
+ 	SELECT 
+ 	COUNT (bdno)
+ 	FROM 
+ 		board
+ 	</select>
 	
-	<update id="DeletedFreeBoardComment" parameterType="integer">
-	DELETE FROM BOARD WHERE BOARD_NO = #{boardNo}
+	<!--  게시글 수정 (편집)?   -->
+ 	<update id="updateFreeBoard"  parameterType="board">
+ 	UPDATE 
+ 		board
+ 	SET bdtitle = #{ bdtitle } , bdcontent = #{ bdcontent }
+ 	WHERE bdno = #{ bdno }
+ 	</update> 
+ 	
+ 	<!--  게시판 글 blindcheck기능-->
+	<update id="deleteFreeBoard" parameterType="int" >
+	UPDATE BOARD SET BDBLINDCHECK = '1' WHERE bdno = #{ bdno }
 	</update>
 	
-	<!--
-	<select id="getMemberSearchListBySomething" parameterType="Member"
-		resultMap="memberResult">
-		SELECT <include refid="membercolumns" />
-			FROM member
-		<trim prefix="where" prefixOverrides="AND | OR">
-				<if test="memberNo != 0">
-					MEMBER_NO LIKE '%'|| #{memberNo} ||'%'
-				</if>
-				<if test="memberId != null">
-					AND MEMBER_ID LIKE '%'|| #{memberId} ||'%'
-				</if>
-				<if test="memberName != null">
-					AND MEMBER_NAME LIKE '%'||  #{memberName} ||'%'
-				</if>
-
-		</trim>
-		ORDER BY Member_No DESC
-	</select>
-	
-	<select id="getMemberCountById"
-		parameterType="string"
-		resultType="integer">
-		SELECT COUNT(member_id) 
-		FROM member 
-		WHERE member_id = #{memberId}
+	<update id="updateFreeBoardReadCount" parameterType="int" >
+	   UPDATE
+	   		board
+	   SET bdreadcount = bdreadcount + 1
+	   		
+	   WHERE bdno = #{ bdno }
+   </update>
+   
+   <!-- <select id="getBoard" resultMap="boardResult">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+		FROM Board
+		ORDER BY 
+			bdno DESC
 	</select> -->
 	
 </mapper>

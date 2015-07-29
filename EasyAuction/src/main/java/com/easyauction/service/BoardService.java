@@ -1,5 +1,6 @@
 package com.easyauction.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Board;
@@ -18,7 +19,7 @@ public interface BoardService {
  
 	List<Board> getPhotoList();
 	
-	List<Board> getFreeBoardList();
+	List<Board> getFreeBoardList(int first, int last);
 	
 	Board getPhotoViewByBoardNo(int bdNo);
 	
@@ -26,7 +27,7 @@ public interface BoardService {
 	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
 	
-	List<Board> getGongjiList();
+	List<Board> getGongjiList(int first, int last);
 
 	Board getFreeBoardViewByBoardNo(int bdNo);
 
@@ -38,7 +39,21 @@ public interface BoardService {
 
 	void updateFreeBoardComment(BoardComment boardComment);
 	
-	void deletedFreeBoardComment(BoardComment boardComment);
+	void deleteFreeBoardComment(int bcNo);
 	
+	List<Board> getFreeBoardSearchList(String search, String searchdata);
+
+	List<Board> getGongjiBoardSearchList(String search, String searchdata);
+
+	void deleteFreeBoard(int bdno);
+
+	void updateFreeBoard(Board board);
+
+	int getFreeBoardCommentCount();
+
+	int getFreeBoardCount();
+	
+	void updateFreeBoardReadCount(int bdNo);
+
 }
 

@@ -1,5 +1,6 @@
 package com.easyauction.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,14 +66,22 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getCommentByBoardNo(bdNo);
 	}
 	@Override
-	public List<Board> getFreeBoardList() {
-		List<Board> boards = boardMapper.getFreeBoardList();
+	public List<Board> getFreeBoardList(int first, int last) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", first);
+		params.put("last", last);
+	
+		List<Board> boards = boardMapper.getFreeBoardList(params);
 		return boards;
 	}
-
+	
 	@Override
-	public List<Board> getGongjiList() {
-		List<Board> boards = boardMapper.getGongjiList();
+	public List<Board> getGongjiList(int first, int last) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("first", first);
+		params.put("last", last);
+		
+		List<Board> boards = boardMapper.getGongjiList(params);
 		return boards;
 	}
 
@@ -102,7 +111,52 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 	
 	@Override
-	public void deletedFreeBoardComment(BoardComment boardComment) {
-		boardMapper.deletedFreeBoardComment(boardComment);
+	public void deleteFreeBoardComment(int bcNo) {
+		boardMapper.deleteFreeBoardComment(bcNo);
 	}
+
+	@Override
+	public List<Board> getFreeBoardSearchList(String search, String searchdata) {
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("search", search);
+		params.put("searchdata", searchdata);
+		List<Board> boards = boardMapper.getFreeBoardSearchList(params);
+		return boards;
+	}
+	
+	@Override
+	public List<Board> getGongjiBoardSearchList(String search, String searchdata) {
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("search", search);
+		params.put("searchdata", searchdata);
+		List<Board> boards = boardMapper.getGongjiBoardSearchList(params);
+		return boards;
+	}
+
+	@Override
+	public int getFreeBoardCount() {
+		return boardMapper.getFreeBoardCount();
+	}
+	
+	@Override
+	public int getFreeBoardCommentCount() {
+		return boardMapper.getFreeBoardCommentCount();
+	}
+	
+	@Override
+	public void deleteFreeBoard(int bdNo) {
+		boardMapper.deleteFreeBoard(bdNo);
+	}
+
+	@Override
+	public void updateFreeBoard(Board board) {
+		boardMapper.updateFreeBoard(board);
+	}
+
+	@Override
+	public void updateFreeBoardReadCount(int bdNo) {
+		boardMapper.updateFreeBoardReadCount(bdNo);
+		
+	}
+
 }

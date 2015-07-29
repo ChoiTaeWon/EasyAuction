@@ -8,6 +8,7 @@
 <title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
 	<div id="wrap"> <!-- A 시작 -->
@@ -94,12 +95,12 @@
 						<tr><td height="5"></td></tr>
 						<tr><td height="5"></td></tr>
 						<tr>			
-							<td colspan="2">
-								<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-								<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-									 <a href='freeboard.action'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
-								</td>
-							</tr>
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
+				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
+				</td>
+			</tr>
 							</table>
 						</tr>
 						</table>
