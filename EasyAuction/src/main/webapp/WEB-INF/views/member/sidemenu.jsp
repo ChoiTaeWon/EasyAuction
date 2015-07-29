@@ -18,30 +18,22 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/viewmypage.action?mbId=${ mbId }" class="bbs_menu_name">마이페이지</b>
+		           <b><a href="/easyauction/member/viewmypage.action?mbId=${ loginuser.mbId }" class="bbs_menu_name">마이페이지</b>
 		         </a>
 		       </td>
 		       <tr>
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action?mbId=${ mbId }" class="bbs_menu_name">내 경매물품</b>
+		           <b><a href="/easyauction/member/viewmyauctionpage.action?mbId=${ loginuser.mbId }" class="bbs_menu_name">내 경매물품</b>
 		         </a>
 		       </td>
 		       </tr>
 		       <tr>
-<!-- 		       <td style="padding-top: 10px">
-		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
-		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action" class="bbs_menu_name">진행중인경매</b>
-		         </a>
-		       </td>
-		       </tr> -->
-		       <tr>
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action?mbId=${ mbId }" class="bbs_menu_name">낙찰된 경매</b>
+		           <b><a href="/easyauction/member/viewmygetauctionpage.action?mbId=${ loginuser.mbId }" class="bbs_menu_name">낙찰된 경매</b>
 		         </a>
 		       </td>
 		       <tr>
@@ -52,6 +44,14 @@
 		         </a>
 		       </td>
 		      </tr>
+		      <tr>
+	       		<td style="padding-top: 10px">
+		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
+		         <a href="#" onFocus="this.blur();">
+		           <b><a href="/easyauction/member/deletemember.action" class="bbs_menu_name">회원탈퇴</b>
+		         </a>
+		       	</td>
+		       </tr>
 		     </table>
 		    </td>
 		   </tr>
