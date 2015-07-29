@@ -119,6 +119,20 @@
 		mbEmail	=	#{ mbEmail }
 	WHERE mbId = #{ mbId }
 </update>
+<select id="getCountByMemberEmail" parameterType="String" resultType="integer">
+		SELECT Count(*) 
+		FROM member 
+		WHERE mbEmail = #{ email } 
+		<if test="mbId != ''">
+		WHERE mbId = #{mbId} 
+		</if>
+		<if test="mbPasswd != ''">
+		WHERE mbPasswd = #{mbPasswd}
+		</if>
+</select>
+
+
+
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <resultMap type="Auction" id="auctionResult">

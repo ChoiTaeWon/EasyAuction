@@ -59,5 +59,10 @@ public class MyMemberService implements MemberService {
 		List<Auction> getauctions = mbrepo.getGetterAuctionListBymbId(mbId);
 		return getauctions;
 	}
+	@Override
+	public int getCountByMemberEmail(String mbId, String email, String mbPasswd) {
+		int result = mbrepo.getCountByMemberEmail(mbId, email, mbPasswd);
+		return result;
+	}
 
 }

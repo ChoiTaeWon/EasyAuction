@@ -8,12 +8,32 @@
 <script type="text/javascript">
 $(function(){
 	if('${ locationurl }' == 'findPasswd'){
-		var html = "<td width='60'>아이디</td><td><input name='mbId' type='text' class='input_style1' tabindex='2' style='width:200px;'></td>"
+		var html = "<td width='60'>아이디</td><td><input name='mbId' id='target1' type='text' class='input_style1' tabindex='2' style='width:200px;'></td>"
 		$('#target').append(html);
 	}else if('${ locationurl }' == 'findmbId'){
-		var html = "<td width='60'>비밀번호</td><td><input name='mbPasswd' type='password' class='input_style1' tabindex='2' style='width:200px;'></td>"
+		var html = "<td width='60'>비밀번호</td><td><input name='mbPasswd' id='target1' type='password' class='input_style1' tabindex='2' style='width:200px;'></td>"
 			$('#target').append(html);
 	}
+	$("#target1").blur(function(event) {
+		alert('asdfasdf');
+		$.ajax({
+			url : "/easyauction/ajax/membercheckbyemail.action?email=" + $("#email").val() + "&target1=" + $("#target1").val() + "&locationurl=" + '${ locationurl }',
+			async : true,
+			data : {},
+			method : "GET",
+			success : function(result, status, xhr) {
+				if (result == 0){
+					alert("입력하신 정보의 회원정보가 없습니다.");
+				} else {
+					
+				}
+				
+			},
+			error : function(xhr, status, ex) {
+				alert(status+ex);
+			}
+		})
+	})
 });
 </script>
 
@@ -37,7 +57,7 @@ $(function(){
 	
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
 <!--폼시작-->
-<FORM action="email.action" id='formsubmit' method="post">
+<!-- <FORM action="email.action" id='form' method="post"> -->
 <tr>
 	<td bgcolor="#f7f7f7" style="padding:20px;" align="center">
 
@@ -49,7 +69,7 @@ $(function(){
 				<tr>
 					<td width="60">Email 주소</td>
 					<td>
-					<input name="email" type="text" class="input_style1" tabindex="1" style="width:200px;">
+					<input name="email" id='email' type="text" class="input_style1" tabindex="1" style="width:200px;">
 					</td>
 				</tr>
 				<tr><td height="3"></td></tr>
@@ -67,7 +87,7 @@ $(function(){
 			<input width="100" type="image" id="formsubmit" src="/easyauction/resources/images/btn_findpassorid.png">
 			</td>
 		</tr>
-		</form>
+		<!-- </form> -->
 		</table>
 
 

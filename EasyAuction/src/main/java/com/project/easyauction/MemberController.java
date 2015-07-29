@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -128,13 +129,21 @@ public class MemberController {
 			String recipient = email;
 			String subject = "";
 			String body = "";
-			if(mbId != null){
-				String newmbpasswd = "";
+			if(locationurl.equals("findPasswd")){
+				Random rnd = new Random();
+				StringBuffer newmbpasswd = new StringBuffer();
+				for (int i = 0; i < 20; i++) {
+					if (rnd.nextBoolean()) {
+						newmbpasswd.append((char) ((int) (rnd.nextInt(26)) + 97));
+					} else {
+						newmbpasswd.append((rnd.nextInt(10)));
+					}
+				}
 				subject = "easyacution 비밀번호 찾기 결과";
-				body = "비밀번호는 저장되지 않으니 새임시 비밀번호를 보내드립니다.<br />" + newmbpasswd;
+				body = "새임시 비밀번호<br />" + newmbpasswd;
 			}else{
 				subject = "easyacution 아이디 찾기 결과";
-				body = mbId;
+				body = "당신의 아이디는  <b>" + mbId + "</b> 입니다.";
 			}
 			
 
