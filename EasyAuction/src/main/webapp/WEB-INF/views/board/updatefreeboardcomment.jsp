@@ -7,35 +7,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>공지사항게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
 	<script type="text/javascript">
-	function listsearch() {
-		var search = document.getElementById('search').value;
-		var searchdata = document.getElementById('searchdata').value;
-		 var re = /^[0-9]+$/;
-	
-		 if(search == 'bdtitle'&&!re.test(searchdata)){
-				alert("제목을 입력하세요");
-				searchdata.focus();
-				return;
-				
-			}else if(searchdata.length==0){
-				alert("내용을 입력하세요");
-				searchdata.focus();
-				return;
-			}
-		
-		document.getElementById('listsearch').submit();
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	function doSubmit() {
+		document.getElementById("updatefreeboardcomment").submit();
 	}
+	
 	</script>
 </head>
-
-<body>
+	<body>
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -53,7 +36,7 @@
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
 			<tr>
-				<td style="padding-left:25px;"><img src="/easyauction/resources/images/gongjimain.png"></td>
+				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>
 			</table>
 			
@@ -64,8 +47,8 @@
 				<!-- 오른쪽 위 자유게시판 아이콘 이미지-->
 				<td align="left">&nbsp;</td>
 								  
-				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
 				</td>
 			</tr>
 			</table>
@@ -80,6 +63,8 @@
 						<!-- 리스트 위의 타이틀 -->
 						<table width="100%">
 							<tr>
+								<!-- <td align="center" class="smfont" width="50"><font color="#666666">번호</font></td>
+								<td width="1" bgcolor="#e6e6e6"></td> -->
 								<td align="center" class="smfont"><font color="#666666">제목</font></td>
 								<td width="1" bgcolor="#e6e6e6"></td>
 								<td align="center" class="smfont" width="90"><font color="#666666">작성자</font></td>
@@ -104,8 +89,10 @@
 				<td>
 				<table width="100%" height="30">
 				<c:forEach var="board" items="${ boards }">
-				<c:if test="${ board.bdType eq 1 }">
+				<c:if test="${ board.bdType eq 2 }">
 				<tr>
+					<%-- <td align="center" width="50" class="smfont">${board.bdNo}</td>
+					<td width="1"></td> --%>
 					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
@@ -126,49 +113,29 @@
 			<!-- 검색폼 위의 내용 시작 -->
 			<div style="padding:3px;"></div>
 
-			<!-- 리스트 아래 글쓰기와 목록 -->
-			<table width="100%">
-			<tr>
-				<td align="right"><a href="/easyauction/board/gongjiregister.action">
-								  <img src="/easyauction/resources/images/write.png"></a>&nbsp;
-								  <a href='/easyauction/board/gongji.action'>
-								  <img src="/easyauction/resources/images/list1.png"></a>
-				</td>
-			</tr>
-			</table>
-			<!-- 검색폼 위의 내용 끝 -->
-			
-			<!-- 페이지 번호 -->
-			<div style="text-align:center">
-			${pager}
-			</div>
-			
-			<!-- 검색폼 // 시작 -->
-			
-			<table align="center">
-			<form id="listsearch" action="gongjiboardsearch.action" method="post">
-				<td height='30' border='0' align='center' valign='middle'>
-					<!-- <input type='radio' name='search' value='bdno' checked> 번호 -->
-					<input type='radio' id="search" name='search' value='bdTitle' checked> 제목
-					<input type='radio' id="search" name='search' value='bdWriter'> 작성자
-					<input style='width:135px;height:18px' type="text" name="searchdata" id="searchdata" />
-					<!-- <input type="button" value='검색' style='height: 25px;margin-right:600px; ' onclick="listsearch();" /> -->
-					<td align="left" onclick="javascript:listsearch();" ><img src="/easyauction/resources/images/search1.png"></a>
-				</td>
-			</form>
-			</table>
-			</td>
-			</tr>
-			</table>
-			</div>
-			<!-- 검색폼 끝 -->
-			
-			</div><!-- list 끝 -->
-		</div>
-	</div> <!-- A 끝 -->
-	<%-- <div id="footer">
-			<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</div> --%>
-</body>
+			<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
+						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
+						<!-- 댓글 옆 수정 삭제 -->
+						<td align="right">
+						<a href="javascript:doSubmit();"><img src='/easyauction/resources/images/sujung.png'></a>
+						<!--<a href='/easyauction/board/updatefreeboard.action'><img src='/easyauction/resources/images/sujung.png'></a> -->
+					    <a href='/easyauction/board/deletefreeboard.action'><img src='/easyauction/resources/images/delete.png'></a>
+						</td>
+						
+						</td>
+						<td width='50'></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
+					</tr>
+				</table>
+		    </div>
+		</div>   	
+	
+	</div>
+	</div>
 
+</body>
 </html>

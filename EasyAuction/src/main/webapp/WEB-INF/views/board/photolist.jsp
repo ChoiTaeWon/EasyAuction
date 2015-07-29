@@ -9,6 +9,7 @@
 <title>포토 후기 게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
 	<div id="wrap"> <!-- A 시작 -->
@@ -98,6 +99,10 @@
 						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
 					</tr>
 				 </table>
+				<%--  <div style="text-align:center">
+				${pager}
+				</div> --%>
+				 
 				<!-- 검색폼 // 시작 -->
 				<table width="100%" align="center">
 				<form  method='post' action='photoregister.action'>
