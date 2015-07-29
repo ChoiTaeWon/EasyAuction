@@ -783,6 +783,7 @@ button.ui-button::-moz-focus-inner {
 	padding: .2em .2em 0;
 }
 .ui-tabs .ui-tabs-nav li {
+	font-size: 13px;
 	list-style: none;
 	float: left;
 	position: relative;
@@ -812,7 +813,7 @@ button.ui-button::-moz-focus-inner {
 .ui-tabs .ui-tabs-panel {
 	display: block;
 	border-width: 0;
-	padding: 1em 1.4em;
+	padding: 5px ;
 	background: none;
 }
 .ui-tooltip {

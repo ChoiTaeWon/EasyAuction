@@ -8,6 +8,7 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 <!-- 다음 주소관련 function 시작 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script>
 	function daumPostcode() {
 		new daum.Postcode(
@@ -45,25 +46,71 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById("postcode1").value = data.postcode1;
 						document.getElementById("postcode2").value = data.postcode2;
-						document.getElementById("address1").value = fullAddr;
+						document.getElementById("mbAddress1").value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("address2").focus();
+						document.getElementById("mbAddress2").focus();
 					}
 				}).open();
 	}
-	function loadHandler(){
-		<% String id = (String)request.getAttribute("failedid"); %>
-		<%if(id != null){ %>
-			alert('로그인실패');
-			document.getElementById("id").value = '<%= id%>';
-		<%} %>
-	}
 
+$(function(){
+	$('#myButton').click(function(){
+		var formArray = $('#regiform input');
+		/* var formArray = $('#regiform input[value = ""]');
+		if (formArray.length > 0) {
+			alert('test');
+			return;
+		} */
+		var mbPasswd = $('#mbPasswd').val();
+		var passwd1 = $('#passwd1').val();
+		if(mbPasswd != passwd1){
+			alert("패스워드가 일치하지않습니다");
+			$('#passwd1').val("");
+			$('#passwd1').focus();
+			return;
+		}
+		for(var key in formArray){
+			if(formArray[key].value == "") {
+				var id = '#'+ formArray[key].id;
+				alert("필수 입력요소입니다");
+				$(id).focus();
+				return;
+			}
+			
+		}
+		
+		$('#regiform').submit();
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	})
+	$("#mbId").blur(function(event) {
+		var mbId = $("#mbId").val();
+		$.ajax({
+			url : "/easyauction/ajax/membercheck.action?mbId=" + mbId,
+			async : true,
+			data : {},
+			method : "GET",
+			success : function(result, status, xhr) {
+				if (result != 0){
+					alert("이미 등록된 아이디입니다.");
+					$("#mbId").val('').focus();
+					$("#checkresult").text("사용중인아이디").css({ color : "red" });
+				} else {
+					$("#checkresult").text("");
+				}
+				
+			},
+			error : function(xhr, status, ex) {
+				alert(status+ex);
+			}
+		})
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	})
+})
 </script>
 <!-- 다음 주소관련 function 끝 -->
 </head>
-<body onload="loadHandler();">
+<body>
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -94,20 +141,20 @@
 							<div style="padding: 5px;"></div> <!--구분-->
 
 
-							<FORM action="register.action" method="post" name="member_register">
+							<form action="/easyauction/member/register.action" method="POST" enctype="multipart/form-data" id='regiform' name="member">
 
 								<div style="width: 100%; border: 1px dashed #565dd3;">
 									<div style="margin: 10px;">
 
 										<table width="100%" border="0" cellspacing="0" cellpadding="0"
 											style="border-top: 1px solid #ededed;border-bottom: 1px solid #ededed;">
-											<div style="padding: 5px;"></div>
+											<div style="padding: 5px;" ></div>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   아이디</td>
 												<td>
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tr>
-															<input type="text" id="memberId" name="memberId" />
+															<input type="text" id="mbId" name="mbId" /><span id="checkresult"></span>
 															<br />
 														</tr>
 													</table>
@@ -115,56 +162,53 @@
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드</td>
-												<td><input type='passwd' name='passwd' id='passwd'></td>
+												<td><input type="password" id='mbPasswd' name="mbPasswd" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   패스워드
 													확인</td>
-												<td><input type="text" id='passwd1' /></td>
+												<td><input type="password" id='passwd1' /><span></span></td>
 
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이름</td>
-												<td><input type="text" name="memberName"
-													id="memberName" /></td>
+												<td><input type="text" id="mbName" name="mbName" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   성별</td>
-												<td><input type=radio id=genderm name='gender'
-													value='1' checked="checked">남자&nbsp; <input
-													type=radio id=genderf name='gender' value='0'>여자
-													&nbsp;</td>
+												<td>
+												<input type="radio" value='1' checked="checked" name="mbGender"/>남자&nbsp; 
+												<input type="radio" value='0' name="mbGender"/>여자&nbsp;
+												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   이메일</td>
-												<td><input type='text' name='memberEmail'></td>
+												<td><input type='text' id='mbEmail' name="mbEmail" /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   전화번호
 												</td>
-												<td><input type='text' name='phone1' id='phone1' /></td>
+												<td><input type='text' name='mbPhone1' id='mbPhone1' name='mbPhone1' /></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   휴대폰</td>
-												<td><input type='text' name='phone2' id='phone2' /></td>
+												<td><input type='text' name='mbPhone2' id='mbPhone2' name='mbPhone2'/></td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   생년월일</td>
-												<td><input type='date' name='birthdate' id='birthdate' />
+												<td><input type='DATE' name='mbBirthDate' id='mbBirthDate' />
 												</td>
 											</tr>
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   주소</td>
-												<td><input type="text" id="postcode1" name="postcode1"
-													style='width: 80px'> - <input type="text"
-													id="postcode2" name="postcode2" style='width: 80px'>
-													<input type="button" onclick="daumPostcode()"
-													value="우편번호 찾기" style='height: 25px'><br> <input
-													type="text" id="address1" name="memberAddress1"
-													placeholder="주소" style='width: 280px'><br /> <input
-													type="text" id="address2" name="memberAddress2"
-													placeholder="상세주소" style='width: 280px'><span
-													id="guide" style="color: #999"></span>
+												<td>
+													<input type="text" id="postcode1" name="postcode1"style='width: 80px'>
+													 - 
+													<input type="text"id="postcode2" name="postcode2" style='width: 80px'>
+													<input type="button" onclick="daumPostcode()"value="우편번호 찾기" style='height: 25px'><br> 
+													<input type="text" id="mbAddress1" placeholder="주소" style='width: 280px' name="mbAddress1"/><br /> 
+													<input type="text" id="mbAddress2" placeholder="상세주소" style='width: 280px' name="mbAddress2"/>
+													<span id="guide" style="color: #999"></span>
 													<div style="padding: 5px;"></div>
 													<div style="padding: 5px;"></div>
 													</td>
@@ -172,13 +216,15 @@
 											</tr>
 										</table>
 										<div style="padding: 5px;"></div>
+								</div>
+								</div>
+								</form>
 						</td>
 					</tr>
-					<div style="padding: 5px;"></div>
+										<div style="padding: 5px;"></div>
 				</table>
 				<div style="padding: 5px;"></div>
-				<tr><td><img src="" /></td></tr>
-	</div>
+				<tr align="center"><td><a href="#" id="myButton">회원가입</a></td></tr>
 </table>
 <!-- 푸터  -->
 <div id="footer">

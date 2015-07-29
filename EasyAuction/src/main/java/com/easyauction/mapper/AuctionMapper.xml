@@ -23,6 +23,8 @@
 		<result column="aucreadcount" property="aucReadCount" />
 		<result column="aucwriter" property="aucWriter" />
 		<result column="aucadtext" property="aucAdText" />
+		<association property="countBidders" column="aucno" select="getCountBidders" />
+		<association property="bidding" column="aucno" select="getBiddingInfoByAucNo" />
 		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
 	</resultMap>
 	
@@ -32,6 +34,17 @@
 		<result column="aucno" property="aucNo" />
 		<result column="aucimgregdate" property="aucImgRegdate" />
 	</resultMap>
+
+
+	<resultMap type="Bidding" id="biddingResult">
+ 		<id column="bidno" property="bidNo" />
+		<result column="bidgettercheck" property="bidGetterCheck" />
+		<result column="aucno" property="aucNo" />
+		<result column="bidprice" property="bidPrice" />
+		<result column="mbid" property="mbId" />
+		<result column="biddate" property="bidDate" />
+	</resultMap>
+
 
 	<sql id="auctioncolumns">
 			 aucno, auctitle, aucstartdate, aucenddate, 
@@ -50,9 +63,11 @@
 	  	select SEQUENCEAUCTIONNO.currval from dual
 	  </selectKey>
 		INSERT INTO auction(aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
-			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter)  
-		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, #{aucStartDate},#{aucEndDate},#{aucItemName},
-		       #{aucCategory},#{aucAdText},#{aucDetail},#{aucStartPrice},#{aucWriter})
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter )  
+		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, 
+		       		  #{aucStartDate},#{aucEndDate},
+		       		  #{aucItemName}, #{aucCategory},#{aucAdText},#{aucDetail},
+		     		  #{aucStartPrice},#{aucWriter})
 	</insert> 
 	
 	<insert id="insertAuctionPhotoImage" parameterType="auctionImage">
@@ -88,8 +103,22 @@
 	</select>
 	
 
+	<update id="updateAuctionReportCount" parameterType="int">
+	    update auction 
+   		set aucreportingcount = (select aucreportingcount from auction where aucno= #{ aucNo }) +1
+   		where aucno = #{ aucNo };
+	</update>
+
+	<select id="getBiddingInfoByAucNo" resultMap="biddingResult" parameterType="int">
+		select bidprice, mbid
+		from bidding
+		where aucno = #{ aucNo } and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
+	</select>
 	
-	
+	<select id="getCountBidders" resultType="int" parameterType="int">
+		select count(*) from bidding where aucno= #{aucNo}
+	</select>
+
 
 	
 </mapper>

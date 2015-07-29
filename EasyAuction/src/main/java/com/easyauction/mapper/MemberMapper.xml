@@ -29,7 +29,7 @@
 		mbPhone1,
 		mbPhone2,
 		mbGender,
-		mbBirthdate,
+		mbBirthDate,
 		mbGrade,
 		mbReportingCount,
 		mbName,
@@ -44,13 +44,13 @@
 		SELECT * FROM member 
 	</select> -->
 	
-	<select id="getMemberByIdAndPasswd" resultType="Member">
+<select id="getMemberByIdAndPasswd" resultType="Member">
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
 		mbPasswd = #{mbPasswd}
-	</select>  
+</select>  
 <select id="getCountByMemberId" parameterType="String" resultType="integer">
 		SELECT Count(*) 
 		FROM member 
@@ -60,6 +60,132 @@
 		SELECT <include refid="membercolumns" />
 		FROM member 
 		WHERE mbId = #{mbId}
-</select>  
+</select>
+<insert id="setRegisterMember" parameterType="Member">
+	INSERT INTO Member(
+			mbId,
+			mbPasswd,
+			mbAddress1,
+			mbAddress2,
+			mbPhone1,
+			mbPhone2,
+			mbGender,
+			mbBirthDate,
+			mbName,
+			mbEmail
+		)
+		VALUES(
+			#{ mbId },
+			#{ mbPasswd },
+			#{ mbAddress1 },
+			#{ mbAddress2 },
+			#{ mbPhone1 },
+			#{ mbPhone2 },
+			#{ mbGender },
+			#{ mbBirthDate },
+			#{ mbName },
+			#{ mbEmail }
+		)
+</insert>
+<update id="setEditMember" parameterType="Member">
+	UPDATE member SET 
+		<if test="mbPasswd != null and mbPasswd != ''">
+		mbPasswd	=	#{ mbPasswd },
+		</if>
+		<if test="mbAddress1 != null">
+		mbAddress1	=	#{ mbAddress1 },
+		</if>
+		<if test="mbAddress2 != null">
+		mbAddress2	=	#{ mbAddress2 },
+		</if>
+		<if test="mbPhone1 != null and mbPasswd != ''">
+		mbPhone1	=	#{ mbPhone1 },
+		</if>
+		<if test="mbPhone2 != null">
+		mbPhone2	=	#{ mbPhone2 },
+		</if>
+		<if test="mbGender == true">
+		mbGender	=	'0',
+		</if>
+		<if test="mbGender == false">
+		mbGender	=	'1',
+		</if>
+		<if test="mbBirthDate != null">
+		mbBirthDate	=	#{ mbBirthDate },
+		</if>
+		<if test="mbName != null">
+		mbName	=	#{ mbName },
+		</if>
+		mbEmail	=	#{ mbEmail }
+	WHERE mbId = #{ mbId }
+</update>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<resultMap type="Auction" id="auctionResult">
+		<id column="aucno" property="aucNo" />
+		<result column="auctitle" property="aucTitle" />
+		<result column="aucstartdate" property="aucStartDate" />
+		<result column="aucenddate" property="aucEndDate" />
+		<result column="aucitemname" property="aucItemName" />
+		<result column="auccategory" property="aucCategory" />
+		<result column="aucdetail" property="aucDetail" />
+		<result column="aucstartprice" property="aucStartPrice" />
+		<result column="aucfinalprice" property="aucFinalPrice" />
+		<result column="aucstate" property="aucState" />
+		<result column="aucregdate" property="aucRegdate" />
+		<result column="aucreportingcount" property="aucReportingCount" />
+		<result column="aucblindcheck" property="aucBlindCheck" />
+		<result column="auctype" property="aucType" />
+		<result column="aucreadcount" property="aucReadCount" />
+		<result column="aucwriter" property="aucWriter" />
+		<result column="aucadtext" property="aucAdText" />
+<!-- 		<association property="countBidders" column="aucno" select="getCountBidders" />
+		<association property="bidding" column="aucno" select="getBiddingInfoByAucNo" /> -->
+		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
+	</resultMap>
+	
+	<resultMap type="auctionImage" id="auctionImageResult">
+		<id column="aucimgno" property="aucImgNo"/>
+		<result column="aucimgname" property="aucImgName" />
+		<result column="aucno" property="aucNo" />
+		<result column="aucimgregdate" property="aucImgRegdate" />
+	</resultMap>
+
+	<resultMap type="Bidding" id="biddingResult">
+ 		<id column="bidno" property="bidNo" />
+		<result column="bidgettercheck" property="bidGetterCheck" />
+		<result column="aucno" property="aucNo" />
+		<result column="bidprice" property="bidPrice" />
+		<result column="mbid" property="mbId" />
+		<result column="biddate" property="bidDate" />
+	</resultMap>
+<!-- 	<select id="getCountBidders" resultType="int" parameterType="int">
+		select count(*) from bidding where aucno= #{aucNo}
+	</select> -->
+	<sql id="auctioncolumns">
+			 aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, 
+			 aucfinalprice, aucstate, aucregdate, aucreportingcount,
+			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext
+	</sql>
+	
+	<select id="getAuctionImageByAuctionNo" resultMap="auctionImageResult" parameterType="int">
+		select aucimgno, aucimgname, aucno
+		from AUCTIONIMAGE
+		where aucno = #{ aucNo }
+	</select>
+	
+	<select id="getMyAuctionListBymbId" resultMap="auctionResult" parameterType="String">
+		select aucno, auctitle, aucstartdate, aucenddate, aucregdate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate, auctype, aucwriter, aucadtext
+		from AUCTION 
+		Where aucwriter Like #{ mbId } 
+		order By
+		aucno DESC
+	</select>
+	
+	
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	
 </mapper>

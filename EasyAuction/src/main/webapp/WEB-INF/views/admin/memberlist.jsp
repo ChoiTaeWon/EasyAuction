@@ -12,10 +12,12 @@
 	<link rel="stylesheet" media="screen" href="/easyauction/resources/js/css/ui.jqgrid.css" />
     <link rel="stylesheet" media="screen" href="/easyauction/resources/js/css/ui-redmond/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="/easyauction/resources/js/jquery.jqGrid.src.js"></script>
     <script type="text/javascript" src="/easyauction/resources/js/i18n/grid.locale-en.js"></script>
     <script type="text/javascript"> 
         $(function () {
+        	$("#tabs").tabs();
             $("#jqGrid").jqGrid({
                 url: 'memberlist.action',
                 mtype: "POST",
@@ -34,7 +36,7 @@
                         }
                     }},
                     { name: 'mbRegdate', index:'mbRegdate', width: 150, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
-                    { name: 'adminTool', width: 150 }
+                    { name: 'mbId', width: 150, formatter: imageTool, search: false }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -45,7 +47,7 @@
                     //$("tr.jqgrow:odd").addClass('myAltRowClass');
                 },
 				loadonce:true, // just for demo purpose
-                width: 730,
+                width: 710,
                 height: 500,
                 rowNum: 20,
 				rowList:[20,25,50],
@@ -54,8 +56,12 @@
 				viewrecords: true
             });
 			$("#jqGrid").jqGrid("navGrid","#jqGridPager",{add:false, edit:false, del:false});
-			
         });
+		function imageTool(cellValue,options,rowObject){
+			var pat = "<a href='/easyauction/admin/message.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_03.gif'></a><div style='padding-top:2px;'></div>";
+			var pat2 = "<a href='/easyauction/admin/editview.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a href='/easyauction/admin/editview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
+			return pat + pat2;
+		};      
     </script>
 </head>
 <body>
@@ -70,8 +76,30 @@
 		</div><!-- 사이드메뉴 끝 -->
 	</div>
 		<div style="width: 730px; float:right;"><!-- list -->
+			<table width="100%">
+			 <tr>
+			  <td align="center"><a href="#"><img width="728" src="/easyauction/resources/images/admin_image.png"></td>
+			 </tr>
+			</table>
+		<div style="padding:5px;"></div>
+			<table width="100%">
+			 <tr height="30">
+				<td align="left">&nbsp;</td>
+				<td align="right"><img src='/easyauction/resources/images/ico_home.gif'>관리자 페이지</td>
+			 </tr>
+			</table>
+		<div id="tabs">
+		  <ul>
+   			<li><a href="#tabs-1">전체회원리스트</a></li>
+    		<li><a href="#tabs-2">신고된회원리스트</a></li>
+ 		 </ul>
+		<div id="tabs-1">	
 		 <table id="jqGrid"></table>
-   		 <div id="jqGridPager"></div>    
+   		 <div id="jqGridPager"></div>
+   		</div>
+   		<div id="tabs-2">
+   		</div>    
+   		</div>
 		</div><!-- list 끝 -->
 	</div>
 </body>

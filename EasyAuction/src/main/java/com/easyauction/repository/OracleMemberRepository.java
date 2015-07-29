@@ -1,11 +1,13 @@
 package com.easyauction.repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.mapper.MemberMapper;
 
@@ -42,6 +44,26 @@ public class OracleMemberRepository implements MemberRepository {
 	public Member getMemberById(String mbId) {
 		Member member = memberMapper.getMemberById(mbId);
 		return member;
+	}
+
+
+	@Override
+	public void setRegisterMember(Member member) {
+		memberMapper.setRegisterMember(member);
+		
+	}
+
+
+	@Override
+	public void setEditMember(Member member) {
+		memberMapper.setEditMember(member);
+	}
+
+
+	@Override
+	public List<Auction> getMyAuctionListBymbId(String mbId) {
+		List<Auction> auctions = memberMapper.getMyAuctionListBymbId(mbId);
+		return auctions;
 	}
 	
 }

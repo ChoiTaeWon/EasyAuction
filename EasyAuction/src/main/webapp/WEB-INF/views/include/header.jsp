@@ -46,7 +46,7 @@
 	$(function(){
 		var mbId = '${loginuser.mbId}';
 		if(mbId != null && mbId.length > 0){
-		var time = 1000;           //1초 * 60 * 60
+		var time = 1000 * 60 * 60;           //1초 * 60 * 60
 		setInterval("ajaxmessgecount()", time);
 		}
 	})
@@ -82,7 +82,7 @@
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
 							                <td class="smfont3">│</td>
-											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?${loginuser.mbId}">마이페이지</a></td>
+											<td class="smfont3"><a href="/easyauction/member/viewmypage.action?mbId=${loginuser.mbId}">마이페이지</a></td>
 											<td class="smfont3">│</td>
 											<td class="smfont3"><a href="/easyauction/account/logout.action"><img src="/easyauction/resources/images/btn_logout.gif"></a></td>
 							          </c:when><c:otherwise>

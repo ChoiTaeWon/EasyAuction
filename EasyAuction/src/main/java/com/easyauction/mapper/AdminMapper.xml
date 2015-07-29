@@ -31,7 +31,7 @@
 	<select id="getMemberList" resultMap="memberResult">
 		SELECT <include refid="membercolumns" />
 		FROM MEMBER
-		where mbgrant = 0
+		where mbgrant = 0 and mbdelete = 0
 		ORDER BY
 		  mbregdate desc
 	</select>
