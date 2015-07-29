@@ -18,4 +18,8 @@ public interface BiddingRepository {
 
 	String getLastBidder(int aucNo);
 
+	List<Bidding> getIpchalList(int bidNo, int aucNo);
+
+	int getMaxBiddingNo(int aucNo);
+
 }

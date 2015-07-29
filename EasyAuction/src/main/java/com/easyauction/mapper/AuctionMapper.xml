@@ -102,9 +102,9 @@
 	
 
 	<update id="updateAuctionReportCount" parameterType="int">
-	    update auction 
+	     update auction 
    		set aucreportingcount = (select aucreportingcount from auction where aucno= #{ aucNo }) +1
-   		where aucno = #{ aucNo };
+   		where aucno =#{ aucNo }
 	</update>
 	
 	
@@ -118,5 +118,9 @@
 		select count(*) from bidding where aucno= #{aucNo}
 	</select>
 
+<!-- 	<update id="updateReportingCount" parameterType="int">
+		update auction set aucreportingcount= (select aucreportingcount from auction where aucno = #{aucNo}) +1 where aucno= #{aucNo};	
+	</update> -->
+ 
 	
 </mapper>

@@ -18,6 +18,8 @@ public interface AuctionRepository {
 
 	Auction getAuctionDetailByAuctionNo(int aucNo);
 
+	void updateAuctionReportCount(int aucNo);
+
 
 	
 	

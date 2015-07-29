@@ -52,6 +52,18 @@ public class MyBiddingService implements BiddingService{
 	public String getLastBidder(int aucNo) {
 		return biddingRepository.getLastBidder(aucNo);
 	}
+	@Override
+	public List<Bidding> getIpchalList(int bidNo, int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingRepository.getIpchalList(bidNo, aucNo);
+	}
+
+	@Override
+	public int getMaxBiddingNo(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingRepository.getMaxBiddingNo(aucNo);
+	}
+	
 	
 	
 	

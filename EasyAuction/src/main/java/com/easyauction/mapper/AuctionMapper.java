@@ -11,6 +11,7 @@ public interface AuctionMapper {
 	void insertAuctionPhotoImage(AuctionImage auctionImage);
 	List<Auction> getAuctionList();
 	Auction getAuctionDetailByAuctioNo(int aucNo);
+	void updateAuctionReportCount(int aucNo);
 	
 	
 }

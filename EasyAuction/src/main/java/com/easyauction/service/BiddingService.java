@@ -18,5 +18,9 @@ public interface BiddingService {
 
 	String getLastBidder(int aucNo);
 
+	List<Bidding> getIpchalList(int bidNo, int aucNo);
+
+	int getMaxBiddingNo(int aucNo);
+
 
 }
