@@ -1,14 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+		
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$('.myAuctionView').click(function(){
+		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('id'));
+	})
+})
 
+
+</script>
 </head>
-
 <body>
 <div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
@@ -29,14 +40,18 @@
 <!-- 마이페이지 이미지 -->
 <div style="padding:10px;"></div>
 <!--경매 진행 단계-->
-
+<div style="padding:10px;"></div>
 <table cellspacing="0" cellpadding="0" width="730" align="center" height="95">
 <tr>
 	<td width="152">
-		<div class="dongurimom">
+		<div class="dongurimom" id="state1">
 			<table align="center" width="100%">
 			<tr>
-				<td class="donguri"><a onFocus="this.blur();" href="my_buy_view.php?stats=0"><font class="smfont8">경매 진행중<font color="#960000">[1]</font></font></a></td>
+				<td class="donguri">
+					<font class="smfont8">경매 진행중
+					<font color="#960000">[${ countList.AUCSTATE0 }]</font>
+					</font>
+				</td>
 			</tr>
 			<tr>
 				<td align="center" class="smfont" style="color: #6e6e6e; padding-top:10px">
@@ -53,7 +68,11 @@
 		<div class="dongurimom">
 			<table align="center" width="100%">
 			<tr>
-				<td class="donguri"><a onFocus="this.blur();" href="my_buy_view.php?stats=1"><font class="smfont8">입금요망<font color="#960000">[0]</font></font></a></td>
+				<td class="donguri">
+				<font class="smfont8">입금요망
+				<font color="#960000">[${ countList.AUCSTATE1 }]</font>
+				</font>
+				</td>
 			</tr>
 			<tr>
 				<td align="center" class="smfont" style="color: #6e6e6e; padding-top:10px">
@@ -69,7 +88,10 @@
 		<div class="dongurimom">
 			<table align="center" width="100%">
 			<tr>
-				<td class="donguri"><a onFocus="this.blur();" href="my_buy_view.php?stats=4"><font class="smfont8">배송중/구매결정<font color="#960000">[0]</font></font></a></td>
+				<td class="donguri">
+				<font class="smfont8">배송중/구매결정
+				<font color="#960000">[${ countList.AUCSTATE2 }]</font></font>
+				</td>
 			</tr>
 			<tr>
 				<td align="center" class="smfont" style="color: #6e6e6e; padding-top:10px">
@@ -85,7 +107,10 @@
 		<div class="dongurimom">
 			<table align="center" width="100%">
 			<tr>
-				<td class="donguri"><a onFocus="this.blur();" href="my_buy_view.php?stats=6"><font class="smfont8">구매완료<font color="#960000">[0]</font></font></a></td>
+				<td class="donguri">
+				<font class="smfont8">구매완료
+				<font color="#960000"><%-- [${ countList.AUCSTATE3 }] --%></font></font>
+				</td>
 			</tr>
 			<tr>
 				<td align="center" class="smfont" style="color: #6e6e6e; padding-top:10px">
@@ -99,12 +124,16 @@
 </tr>
 </table>
 <!--  경매 진행 단계  -->
+<div style="padding:10px;"></div>
 <!-- 경매 진행중  -->
 <div style="padding:5px;"></div>
 <table style="width:100%; height:28px; border:1px solid #5561d7; background : linear-gradient( to bottom, #DAD9FF, #565dd3 );">
 	<tr>
-		<td align="left" style="padding-left:10px;"><b><img src="/easyauction/resources/images/ico_arrow_06.png"><font color="white">&nbsp;경매 진행중</td>
-		<td style="width:598px; height:32px;" align="right"><b><font color="#FEEF00">[1]</font><font class="smfont3"></b>건의 진행중 물품이 있습니다.</font></td>
+		<td align="left" style="padding-left:10px;"><b><img src="/easyauction/resources/images/ico_arrow_06.png">
+		<font color="white">&nbsp;내 경매 물품 목록</td>
+		<td style="width:508px; height:32px;" align="right"><b>
+		<font color="#FEEF00">[${ countList.AUCLISTCOUNT }]</font><font class="smfont3"></b>건의 진행중 물품이 있습니다.</font>
+		</td>
 	</tr>
 </table>
 
@@ -127,51 +156,76 @@
 </tr>
 </table>
 <table>
-<c:forEach var="auction" items="${ auctions }">			
- <%-- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }"> --%>
 <tr>
 	<td bgcolor="#FFFFFF" height="30" align="center" class="smfont">
 
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" height="80">
-		<tr>
-			<td width="18" align="center"></td>
-			<td align="left" class="smfont" width="120">${ auction.aucRegdate }</td>
-
+		<c:choose>
+		<c:when test="${ auctions ne null && fn:length(auctions) > 0 }">
+		<%-- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }"> --%>
+		<c:forEach var="auction" items="${ auctions }">			
+		<tr class="myAuctionView" id="${ auction.aucNo }">
+			<!-- <td width="18" align="center"></td> -->
+			<td align="center" class="smfont" width="139">
+			<fmt:formatDate var="aucenddate" type="date" pattern="yyyy-MM-dd" value="${ auction.aucEndDate }" />
+			${ aucenddate }
+			</td>
 			<c:forEach var="image" items="${ auction.auctionImage }">
-			<td class="smfont" width="50" height="50" style="padding-left:5px;;">
-				<a href='showdeal.action?aucno=${ auction.aucNo }'>
+			<td class="smfont" width="50" height="50" style="padding-left:5px;">
+				<%-- <a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'> --%>
 				<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="50" height="40"></a>
 			</td>
 			</c:forEach>
-			<td class="smfont" width="274" style="padding-left:5px;" align='left'>
-			<a href='./view.php?num=4&tb=&count=1&category=47r09&pg=1'>${ auction.aucTitle }</a></td>
+			<td class="smfont" width="285" style="padding-left:5px;" align='left'>
+			${ auction.aucTitle }</td>
 
 			<td class="smfont" width="120">
 
 			<table width="110">
 			<tr>
 				<td style="padding-bottom:2px;">
-				<img src="/easyauction/resources/images/ico_price_01.gif" title="낙찰가" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right"><font color="#000"><b><%-- ${ auction.bidding.bidPrice } --%> 원</b></font></td>
+				<img src="/easyauction/resources/images/ico_price_01.png" title="최고입찰가" align="absmiddle"></td>
+				<td style="padding-bottom:2px;" align="right"><font color="#000"><b>${ auction.bidding.bidPrice } 원</b></font></td>
 			</tr>
 			<tr>
-				<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_02.gif" title="입찰자" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right">2 건</td>
+				<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_02.png" title="입찰자" align="absmiddle"></td>
+				<td style="padding-bottom:2px;" align="right">${ auction.countBidders -1 } 건</td>
 			</tr>
-			<tr>
+<!-- 		<tr>
 				<td><img src="/easyauction/resources/images/ico_price_03.gif" title="배송비" align="absmiddle"></td>
 				<td align="right">착불</td>
-			</tr>
+			</tr> -->
 			</table>
-
 			</td>
-
-			<td align="center" class="smfont" width="62"><img src=/easyauction/resources/images/view_stats0.gif alt='진행중'> <div style="padding:2px;"></div></td>
-
-			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div></td>
+			<td align="center" class="smfont" width="62">
+				<c:choose>
+					<c:when test="${ auction.aucState eq 0 }">
+					<img src="/easyauction/resources/images/view_stats0.png" alt="경매전">
+					</c:when>
+					<c:when test="${ auction.aucState eq 1 }">
+					<img src="/easyauction/resources/images/view_stats1.png" alt="경매중">
+					</c:when>
+					<c:when test="${ auction.aucState eq 2 }">
+					<img src="/easyauction/resources/images/view_stats2.png" alt="경매 마감">
+					</c:when>
+					<c:otherwise>에러 상태</c:otherwise>
+				</c:choose>
+				</td>
+			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
+			<!-- 나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div> -->
+			</td>
 		</tr>
-		<%-- </c:if> --%>
 		</c:forEach>
+		<%-- </c:if> --%>
+		</c:when>
+		<c:otherwise>
+		<tr>
+			<td>
+			<p align=center><br><font style='font-size:11px;color:gray' align=center>경매 진행중인 상품이 없습니다.</font><br><br></p>
+			</td>
+		</tr>
+		</c:otherwise>
+		</c:choose>
 		</table>
 <!-- 줄 -->
 <table width="100%">

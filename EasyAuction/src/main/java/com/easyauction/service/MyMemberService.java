@@ -1,5 +1,6 @@
 package com.easyauction.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,11 @@ public class MyMemberService implements MemberService {
 		List<Auction> auctions = mbrepo.getMyAuctionListBymbId(mbId);
 		
 		return auctions;
+	}
+	@Override
+	public HashMap<String, Object> getCountMyAuctionBymbId(String mbId) {
+		HashMap<String, Object> countList = mbrepo.getCountMyAuctionBymbId(mbId);
+		return countList;
 	}
 
 }
