@@ -73,9 +73,11 @@ public class MemberController {
 		
 		List<Auction> auctions = mbsvc.getMyAuctionListBymbId(mbId);
 		HashMap<String, Object> countList = mbsvc.getCountMyAuctionBymbId(mbId);
+		List<Auction> getauctions = mbsvc.getGetterAuctionListBymbId(mbId);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/mypage");
 		mav.addObject("auctions", auctions);
+		mav.addObject("getauctions", getauctions);
 		mav.addObject("mbId", mbId);
 		mav.addObject("countList", countList);
 		

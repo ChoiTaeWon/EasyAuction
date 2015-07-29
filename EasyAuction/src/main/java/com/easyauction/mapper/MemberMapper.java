@@ -25,4 +25,6 @@ public interface MemberMapper {
 
 	HashMap<String, Object> getCountMyAuctionBymbId(String mbId);
 
+	List<Auction> getGetterAuctionListBymbId(String mbId);
+
 }

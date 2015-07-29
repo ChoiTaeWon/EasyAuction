@@ -15,6 +15,26 @@ $(function(){
 	$('.myAuctionView').click(function(){
 		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('id'));
 	})
+	$('#photoreview').click(function(){
+		function post_to_url(path, params, method) {
+		    method = method || "post"; // Set method to post by default, if not specified.
+		 
+		    // The rest of this code assumes you are not using a library.
+		    // It can be made less wordy if you use one.
+		    var form = document.createElement("form");
+		    form.setAttribute("method", method);
+		    form.setAttribute("action", path);
+		 
+		    for (var key in params) {
+		        var hiddenField = document.createElement("input");
+		        hiddenField.setAttribute("type", "hidden");
+		        hiddenField.setAttribute("name", key);
+		        hiddenField.setAttribute("value", $(this).attr('alt'));
+		 
+		        form.appendChild(hiddenField);
+		    }
+		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('alt'));
+	})
 })
 
 
@@ -163,7 +183,7 @@ $(function(){
 		<c:choose>
 		<c:when test="${ auctions ne null && fn:length(auctions) > 0 }">
 		<%-- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }"> --%>
-		<c:forEach var="auction" items="${ auctions }">			
+		<c:forEach var="auction" items="${ auctions }">
 		<tr class="myAuctionView" id="${ auction.aucNo }">
 			<!-- <td width="18" align="center"></td> -->
 			<td align="center" class="smfont" width="139">
@@ -234,14 +254,16 @@ $(function(){
 </tr>
 </table>
 <!-- 줄 -->
-<!-- 구매완료 내역 -->
+<!-- 낙찰완료 내역 -->
 
 	<div style="padding:10px;"></div>
 
 
 	<table style="width:100%; height:28px; border:1px solid #5561d7; background : linear-gradient( to bottom, #DAD9FF, #565dd3 );">
 	<tr>
-		<td align="left" style="padding-left:10px;"><b><img src="/easyauction/resources/images/ico_arrow_06.png" title=""><font color="white">&nbsp; 구매완료 경매내역</td>
+		<td align="left" style="padding-left:10px;"><b>
+		<img src="/easyauction/resources/images/ico_arrow_06.png" title="">
+		<font color="white">&nbsp; 낙찰완료 경매내역</td>
 	</tr>
 	</table>
 
@@ -255,21 +277,34 @@ $(function(){
 		<td style="width:1px; background-color:#DEDEDE;"></td>
 		<td align="center" class="smfont" width="75">낙찰가격</font></td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="30">수량</font></td>
+		<td align="center" class="smfont" width="75">판매자</font></td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="75">경매상태</font></td>
-		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="75">판매정보</font></td>
+		<td align="center" class="smfont" width="105">포토후기남기기</font></td>
 	</tr>
 	</table>
-	<table width="100%">
-		<tr>
-			<td>
-			<p align=center><br><font style='font-size:11px;color:gray' align=center>구매중인 상품이 없습니다.</font><br><br></p>
-			</td>
-		</tr>
+	
+	<table style="width:100%; height:25px; border:1px solid #DEDEDE;">
+	<c:choose>
+		<c:when test="${ getauctions ne null && fn:length(getauctions) > 0 }">
+			<c:forEach var="auction" items="${ getauctions }">
+					<tr class="myAuctionView" id="${ auction.aucNo }" height="25px">
+						<td align="center" class="smfont" width="110">${ auction.aucNo }</td>
+						<td align="center" class="smfont" width="360">${ auction.aucTitle }</td>
+						<td align="center" class="smfont" width="75">${ auction.aucFinalPrice }</td>
+						<td align="center" class="smfont" width="75">${ auction.aucWriter }</td>
+						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
+					</tr>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<tr>
+				<td>
+				<p align=center><br><font style='font-size:11px;color:gray' align=center>낙찰된 상품이 없습니다.</font><br><br></p>
+				</td>
+			</tr>
+		</c:otherwise>
+	</c:choose>
 	</table>
-
 	<div style="padding-top:20px;"></div>
 <!-- 줄 -->
 <table width="100%">
@@ -278,7 +313,7 @@ $(function(){
 </tr>
 </table>
 <!-- 줄 -->
-<!-- 구매완료 내역 -->
+<!-- 낙찰완료 내역 -->
 </td>
 </tr>
 </table>
