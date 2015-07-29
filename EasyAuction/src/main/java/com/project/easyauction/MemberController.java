@@ -5,6 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -100,10 +107,62 @@ public class MemberController {
 
 	@RequestMapping(value = "email.action", method = RequestMethod.GET)
 	public ModelAndView emailform(String locationurl) {
-		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/member/emailpasswd");
 		mav.addObject("locationurl", locationurl);
+	
+		return mav; 
+	}
+	@RequestMapping(value = "email.action", method = RequestMethod.POST)
+	public ModelAndView emailsend(String locationurl, String email, String mbId, String mbPasswd) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mainpage");
+		mav.addObject("locationurl", locationurl);
+		
+		if(email != null){
+			String host = "smtp.gmail.com";
+			String username = "emilykeilyn3@gmail.com";
+			String password = "zxcv123zxcv123";
+
+			// 메일 내용
+			String recipient = email;
+			String subject = "";
+			String body = "";
+			if(mbId != null){
+				String newmbpasswd = "";
+				subject = "easyacution 비밀번호 찾기 결과";
+				body = "비밀번호는 저장되지 않으니 새임시 비밀번호를 보내드립니다.<br />" + newmbpasswd;
+			}else{
+				subject = "easyacution 아이디 찾기 결과";
+				body = mbId;
+			}
+			
+
+			// properties 설정
+			Properties props = new Properties();
+			props.put("mail.smtps.auth", "true");
+			// 메일 세션
+			Session session = Session.getDefaultInstance(props);
+			MimeMessage msg = new MimeMessage(session);
+
+			try {
+				// 메일 관련
+				msg.setSubject(subject);
+				msg.setContent(body, "text/html; charset=utf-8");
+				msg.setFrom(new InternetAddress(username));
+				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+						recipient));
+
+				// 발송 처리
+				Transport transport = session.getTransport("smtps");
+				transport.connect(host, username, password);
+				transport.sendMessage(msg, msg.getAllRecipients());
+				transport.close();
+			} catch (Exception e) {
+
+			}
+		}
+		
 		return mav; 
 	}
 	@RequestMapping(value = "viewmygetauctionpage.action", method = RequestMethod.GET)
