@@ -7,18 +7,14 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
-	if(${ locationurl } == 'findPasswd'){
-		$("#span1").text('아이디');
-		$("#span2").text('이메일');
-		
-	} else if(${ locationurl } == 'findmbId'){
-		$("#span1").text('이메일');
-		$("#span2").text('비밀번호');
-		$("#target2").attr('type', 'password');
-		
-		
+	if('${ locationurl }' == 'findPasswd'){
+		var html = "<td width='60'>아이디</td><td><input name='mbId' type='text' class='input_style1' tabindex='2' style='width:200px;'></td>"
+		$('#target').append(html);
+	}else if('${ locationurl }' == 'findmbId'){
+		var html = "<td width='60'>비밀번호</td><td><input name='mbPasswd' type='password' class='input_style1' tabindex='2' style='width:200px;'></td>"
+			$('#target').append(html);
 	}
-})
+});
 </script>
 
 </head>
@@ -51,25 +47,24 @@ $(function(){
 
 				<table align="center" width="100%">
 				<tr>
-					<td width="100"><span id="span1"></span></td>
+					<td width="60">Email 주소</td>
 					<td>
-					<input name="target1" type="text" class="input_style1" tabindex="1" style="width:130px;">
+					<input name="email" type="text" class="input_style1" tabindex="1" style="width:200px;">
 					</td>
 				</tr>
 				<tr><td height="3"></td></tr>
-				<tr>
-					<td width="100"><span id="span2"></span></td>
-					<td>
-					<input name="target2" id="target2" type="text" class="input_style1" tabindex="2" style="width:130px;">
-					</td>
+				<tr id="target">
+					
 				</tr>
 				</table>
 
 			</td>
-			<td style="padding-left:10px;"><input type="image" name="formimage1" src="/easyauction/resources/images/btn_login02.gif" onclick="document.getElementById('formsubmit').submit();" align="absmiddle" border="0" tabindex="3"></td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<br /><br /><br />
+			<td colspan="2" style="padding-left:10px;" align="center">
+			<br /><br /><br />
+			<input width="100" type="image" id="formsubmit" src="/easyauction/resources/images/btn_findpassorid.png">
 			</td>
 		</tr>
 		</form>

@@ -73,5 +73,12 @@ public class OracleMemberRepository implements MemberRepository {
 		return countList;
 	}
 
+
+	@Override
+	public List<Auction> getGetterAuctionListBymbId(String mbId) {
+		List<Auction> getauctions = memberMapper.getGetterAuctionListBymbId(mbId);
+		return getauctions;
+	}
+
 	
 }

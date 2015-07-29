@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<div style='float: left;'>
+<div style='float: left;' class='herf_link'>
 <table style="border-collapse: collapse; width: 216px;"><!-- 사이드메뉴 헤더 -->
 	<tr>
 		<td><a href="#" onFocus="this.blur();"><img src="/easyauction/resources/images/tit_community.gif" title="커뮤니티"></a></td>
@@ -25,7 +25,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action" class="bbs_menu_name">경매진행상황</b>
+		           <b><a href="/easyauction/member/viewmyauctionpage.action?mbId=${ loginuser.mbId }" class="bbs_menu_name">내 경매물품</b>
 		         </a>
 		       </td>
 		       </tr>
@@ -33,15 +33,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action" class="bbs_menu_name">진행중인경매</b>
-		         </a>
-		       </td>
-		       </tr>
-		       <tr>
-		       <td style="padding-top: 10px">
-		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
-		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/member/view.action" class="bbs_menu_name">낙찰된 경매</b>
+		           <b><a href="/easyauction/member/viewmygetauctionpage.action?mbId=${ loginuser.mbId }" class="bbs_menu_name">낙찰된 경매</b>
 		         </a>
 		       </td>
 		       <tr>
@@ -52,6 +44,14 @@
 		         </a>
 		       </td>
 		      </tr>
+		      <tr>
+	       		<td style="padding-top: 10px">
+		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
+		         <a href="#" onFocus="this.blur();">
+		           <b><a href="/easyauction/member/deletemember.action" class="bbs_menu_name">회원탈퇴</b>
+		         </a>
+		       	</td>
+		       </tr>
 		     </table>
 		    </td>
 		   </tr>

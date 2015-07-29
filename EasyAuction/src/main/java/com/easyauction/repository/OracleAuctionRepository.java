@@ -59,6 +59,13 @@ public class OracleAuctionRepository implements AuctionRepository{
 	}
 
 
+	@Override
+	public void updateAuctionReportCount(int aucNo) {
+		// TODO Auto-generated method stub
+		auctionMapper.updateAuctionReportCount(aucNo);
+	}
+
+
 
 
 }

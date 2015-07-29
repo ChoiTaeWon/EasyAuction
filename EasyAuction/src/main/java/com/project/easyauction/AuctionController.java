@@ -4,6 +4,7 @@ package com.project.easyauction;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +67,9 @@ public class AuctionController {
 		return mav;
 	}
 	
+	
+	
+	
 	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
 	public ModelAndView detailView(@RequestParam("aucno") int aucNo) {
 		Auction auction = auctionService.getAuctionDetailByAuctionNo(aucNo);
@@ -77,6 +81,10 @@ public class AuctionController {
 		/*mav.addObject("bidding", bidding);*/
 		return mav;
 	}
+	
+	
+	
+	
 	
 	//경매글 등록!
 	@RequestMapping(value = "dealregister.action", method = RequestMethod.GET)
@@ -91,7 +99,13 @@ public class AuctionController {
 	   //public String dodealRegist(Auction auction) {
 	      //가상경로를 물리경로로 변환하는 기능을 가진 객체 반환
 	            ServletContext application = req.getSession().getServletContext();
-	                  
+	            try {
+	            	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	            	auction.setAucStartDate(dateFormat.parse(req.getParameter("aucStartDate1")));
+	            	auction.setAucEndDate(dateFormat.parse(req.getParameter("aucEndDate1")));
+	            } catch (ParseException e) {
+	            	e.printStackTrace();
+	            }
 	            System.out.println(auction.getAucNo() +
 	                  "/" + auction.getAucTitle() +
 	                  "/" + auction.getAucCategory() + 

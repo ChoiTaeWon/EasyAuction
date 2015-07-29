@@ -1,7 +1,7 @@
 package com.project.easyauction;
 
 
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
+import com.easyauction.dto.BoardReporting;
+import com.easyauction.service.AuctionService;
 import com.easyauction.service.BiddingService;
 import com.easyauction.service.MemberService;
 import com.easyauction.service.MessageService;
@@ -20,6 +23,8 @@ import com.easyauction.service.ReportService;
 @Controller
 @RequestMapping(value = "ajax")
 public class AjaxController {
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	private MemberService mbgsvc;
 	@Autowired
@@ -51,6 +56,16 @@ public class AjaxController {
 		this.biddingService = biddingService;
 	}
 	
+	private AuctionService auctionService;
+	@Autowired
+	@Qualifier(value="auctionService")
+	public void setAuctionService(AuctionService auctionService) {
+		this.auctionService = auctionService;
+	}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+	
 
 	@RequestMapping(value="membercheck.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
@@ -73,67 +88,12 @@ public class AjaxController {
 	}
 	
 	
-/*	@RequestMapping(value="auctionReporting.action", method = RequestMethod.POST)
-	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
-	public int auctionReport(String reporter, int targetAuctionNo, String reportText) {
-		
-		System.out.println("repoter : " + reporter
-						 + "targetAuctionNo : " + targetAuctionNo
-						 +	"reportText : " + reportText);
-		//reportService.insertAuctionReportContent();
-	
-			Member member = null;
-		if(id != null && passwd != null) {
-			passwd = Util.getHashedString(passwd, "SHA-1");
-			
-			//2. 데이터 처리 (데이터베이스에서 데이터 조회 - Dao 객체를 호출해서 처리)		
-			MemberDao dao = new MemberDao();
-			member = dao.getMemberByIdAndPasswd(id, passwd);
-		}
-		
-		response.setContentType("text/plain;charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		
-		//3. 결과 응답 (여기서는 목록 페이지 요청)
-		if (member != null) {//로그인 성공한 경우
-			//로그인 처리 -> 세션 또는 쿠키에 로그인 데이터 저장 (여기서는 세션)
-			HttpSession session = request.getSession();
-			session.setAttribute("loginuser", member);//로그인 처리
-			
-			writer.print("success");
-			
-		} else {//로그인 실패한 경우
-			writer.print("fail");
-		}
-		
-		
-		
-		int result = 0;
-		
-		
-		
-		return result;
-	}*/
-	
-	
-	
-/*	@RequestMapping(value="insertBiddingPrice.action", method = RequestMethod.POST)
-	@ResponseBody
-	public String doBidding(String mbId, int aucNo){
-		String returnId = null;
-		Bidding bidding = new Bidding();
-		bidding.setMbId(mbId);
-		bidding.setAucNo(aucNo);
-		
-		returnId = biddingService.insertBiddingPrice(bidding);
-		
-		return returnId;
-	}*/
-	
+
+	//입찰하기 
 	@RequestMapping(value="insertBiddingPrice.action", method = RequestMethod.GET)
 	@ResponseBody
-	public String doBidding(String mbId, int aucNo){
-		String errorMessage="error";
+	public Bidding doBidding(String mbId, int aucNo){
+		
 		Bidding bidding = new Bidding();
 		bidding.setMbId(mbId);
 		bidding.setAucNo(aucNo);
@@ -147,12 +107,116 @@ public class AjaxController {
 		bidding = biddingService.getBiddingByBidNo(bidding.getBidNo());
 		
 		//System.out.println("returnId :" + bidding.getMbId());
-		
-		if(bidding.getMbId().length() > 0){
+		/*if(bidding.getMbId().length() > 0){
 			return mbId;
+		}*/
+		
+		return bidding;
+	}
+	
+	//가장 마지막 입찰자 가져오기
+	@RequestMapping(value="selectLastBidder.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int selectLastBidder(String mbId, int aucNo) {
+		int result = 0;
+		
+		String lastBidder = biddingService.getLastBidder(aucNo);
+		System.out.println("마지막 낙찰자  :" + lastBidder);
+		
+		if(mbId.equals(lastBidder)){
+			System.out.println(result+1);
+			return result+1;
+			//같으면 1; 에러
+		}else{
+			System.out.println(result);
+			return result;	
 		}
 		
-		return errorMessage;
+		
 	}
+	
+	//
+	@RequestMapping(value="auctionReporting.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int auctionReporting(String reporter, int targetAuctionNo, String reportText) {
+		
+		int result = 0;
+		
+		AuctionReporting auctionReporting = new AuctionReporting();
+		auctionReporting.setArpRepoter(reporter);
+		auctionReporting.setArpTagetNo(targetAuctionNo);
+		auctionReporting.setArpContent(reportText);
+		
+		System.out.println("신고하기 내용" + "////" + reporter +"////" +targetAuctionNo +"////" +reportText );
+		reportService.insertAuctionReportingByTargetNo(auctionReporting);
+		
+		System.out.println("리턴된 brpno" + auctionReporting.getArpNo());
+		
+		if(auctionReporting.getArpNo() > 0){
+			auctionService.updateAuctionReportCount(targetAuctionNo);
+			System.out.println("updateAuctionReportCount했음");
+			return result;
+		}
+		else{
+			return result+1;
+		}
+		
+	}
+	
+	@RequestMapping(value="selectRepoterCheck.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int selectRepoterCheck(String mbId, int aucNo) {
+		
+		int result = 0;
+		
+		int repoterCheck = reportService.getResultReportCheck(mbId, aucNo);
+		
+		if(repoterCheck > 0){
+			System.out.println("이전에 신고한 이력이 있음");
+			//1 반환
+			return result+1;
+		}
+		else{
+			//0 반환
+			return result;
+		}
+		
+	}
+	
+	
+	
+	
+	@RequestMapping(value="selectIpchalList.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Bidding> selectIpchalList(int bidNo, int aucNo) {
+		
+		List<Bidding> biddingList = biddingService.getIpchalList(bidNo, aucNo);
+		
+		
+		if(biddingList != null){
+			System.out.println("입찰리스트 반환했음");
+			return biddingList;
+		}
+		else{
+			return null;
+		}
+		
+	}
+	
+	
+	@RequestMapping(value="selectMaxBiddingNo.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int selectMaxBiddingNo(int aucNo) {
+		
+		int bidNoResult = biddingService.getMaxBiddingNo(aucNo);
+		
+		
+		return bidNoResult;
+	}
+	
+	
+	
+	
+	
 
 }

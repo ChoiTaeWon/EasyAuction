@@ -40,6 +40,7 @@ public class AuctionReporting {
 	public void setArpTagetNo(int arpTagetNo) {
 		this.arpTagetNo = arpTagetNo;
 	}
+	
 
 	
 	

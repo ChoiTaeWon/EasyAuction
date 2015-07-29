@@ -31,5 +31,7 @@ public interface MemberService {
 
 	HashMap<String, Object> getCountMyAuctionBymbId(String mbId);
 
+	public List<Auction> getGetterAuctionListBymbId(String mbId);
+
 
 }

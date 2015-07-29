@@ -6,24 +6,29 @@
   
   <mapper namespace="com.easyauction.mapper.ReportMapper">
   
-  <resultMap type="BoardReporting" id="reportResult">
-		<id column="brpno" property="brpNo" />
-		<result column="brpcontent" property="brpContent" />
-		<result column="brpdate" property="brpDate" />
-		<result column="brptargetno" property="brpTargetNo" />
-		<result column="brprepoter" property="brpRepoter" />
-  </resultMap>
   
-  	<insert id="insert" parameterType="BoardReporting">
-		INSERT INTO AUCTIONIMAGE(brpno, brptargetno, brprepoter, brpcontent)
-			VALUES(SEQUENCEBORADREPOTINGNO.nextVal, #{ aucTargetNo }, #{ brpRepoter }, #{ brpContent })
+   <resultMap type="AuctionReporting" id="AuctionReportResult">
+		<id column="arpno" property="arpNo" />
+		<result column="arpcontent" property="arpContent" />
+		<result column="arpdate" property="arpDate" />
+		<result column="arprepoter" property="arpRepoter" />
+		<result column="arptagetno" property="arpTagetNo" />
+  </resultMap>
+
+  
+  	<insert id="insertAuctionReportingByTargetNo" parameterType="AuctionReporting">
+	  	<selectKey keyProperty="arpNo" order="AFTER" resultType="int" >
+		  	select SEQUENCEAUCTIONREPORTINGNO.currVal from dual
+		</selectKey>
+		INSERT INTO auctionreporting(arpno, arptagetno, arprepoter, arpcontent)
+			VALUES(SEQUENCEAUCTIONREPORTINGNO.nextVal, #{ arpTagetNo }, #{ arpRepoter }, #{ arpContent })
 	</insert> 
 	
   
   
-  
-  
-  
+  	<select id="getResultReportCheck" resultType="int" parameterType="hashMap">
+  		select count(*) from auctionreporting where arprepoter = #{ mbId } and arptagetno= #{ aucNo }
+  	</select>
   
   
   

@@ -35,6 +35,7 @@
 		<result column="aucimgregdate" property="aucImgRegdate" />
 	</resultMap>
 
+
 	<resultMap type="Bidding" id="biddingResult">
  		<id column="bidno" property="bidNo" />
 		<result column="bidgettercheck" property="bidGetterCheck" />
@@ -43,6 +44,7 @@
 		<result column="mbid" property="mbId" />
 		<result column="biddate" property="bidDate" />
 	</resultMap>
+
 
 	<sql id="auctioncolumns">
 			 aucno, auctitle, aucstartdate, aucenddate, 
@@ -102,12 +104,11 @@
 	
 
 	<update id="updateAuctionReportCount" parameterType="int">
-	    update auction 
+	     update auction 
    		set aucreportingcount = (select aucreportingcount from auction where aucno= #{ aucNo }) +1
-   		where aucno = #{ aucNo };
+   		where aucno =#{ aucNo }
 	</update>
-	
-	
+
 	<select id="getBiddingInfoByAucNo" resultMap="biddingResult" parameterType="int">
 		select bidprice, mbid
 		from bidding
@@ -118,5 +119,9 @@
 		select count(*) from bidding where aucno= #{aucNo}
 	</select>
 
+<!-- 	<update id="updateReportingCount" parameterType="int">
+		update auction set aucreportingcount= (select aucreportingcount from auction where aucno = #{aucNo}) +1 where aucno= #{aucNo};	
+	</update> -->
+ 
 	
 </mapper>

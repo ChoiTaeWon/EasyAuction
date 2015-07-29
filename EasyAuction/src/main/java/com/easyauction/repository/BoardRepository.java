@@ -1,5 +1,6 @@
 package com.easyauction.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Board;
@@ -24,9 +25,9 @@ public interface BoardRepository {
 	
 	List<BoardComment> getCommentByBoardNo(int bdNo);
 	
-	List<Board> getFreeBoardList();
+	List<Board> getFreeBoardList(int first , int last);
 	
-	List<Board> getGongjiList();
+	List<Board> getGongjiList(int first , int last);
 
 	Board getFreeBoardViewByBoardNo(int bdNo);
 	
@@ -38,6 +39,19 @@ public interface BoardRepository {
 	
 	void updateFreeBoardComment(BoardComment boardComment);
 	
-	void deletedFreeBoardComment(BoardComment boardComment);
+	void deleteFreeBoardComment(int bcNo);
+	
+	List<Board> getFreeBoardSearchList(String search, String searchdata);
 
+	List<Board> getGongjiBoardSearchList(String search, String searchdata);
+	
+	int getFreeBoardCount();
+	
+	void deleteFreeBoard(int bdno);
+	
+	void updateFreeBoard(Board board);
+
+	int getFreeBoardCommentCount();
+	
+	void updateFreeBoardReadCount(int bdNo);
 }

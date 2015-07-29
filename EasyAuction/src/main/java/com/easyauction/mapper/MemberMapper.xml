@@ -185,7 +185,7 @@
 		select aucno, auctitle, aucstartdate, aucenddate, aucregdate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate, auctype, aucwriter, aucadtext
 		from AUCTION 
-		Where aucwriter Like #{ mbId } 
+		Where aucwriter = #{ mbId } 
 		order By
 		aucno DESC
 	</select>
@@ -205,6 +205,16 @@
 			(select count(*) from AUCTION Where aucstate = 2 and aucwriter = #{ mbId }) aucstate2 
 		from dual
 	</select>
+	<select id="getGetterAuctionListBymbId" resultType="Auction" parameterType="String">
+		select aucno, auctitle, aucenddate, aucfinalprice, aucstate, aucwriter 
+		from AUCTION 
+		Where aucgetter = #{ mbId } 
+		order By
+		aucno DESC
+	</select>
+	
+	
+	
 	
 	
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

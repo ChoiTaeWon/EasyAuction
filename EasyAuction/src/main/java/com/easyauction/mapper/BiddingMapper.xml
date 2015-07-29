@@ -36,11 +36,11 @@
 		where aucno = #{ aucNo }
 	</select>
 
-	<select id="getExceptBidder" resultMap="biddingResult" parameterType="int">
+<!-- 	<select id="getExceptBidder" resultMap="biddingResult" parameterType="int">
 		select bidprice, mbid
 		from bidding
 		where aucno = #{ aucNo } and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
-	</select> 
+	</select>  -->
 	
 	<select id="getCountBidders" resultType="int" parameterType="int">
 		select count(*) from bidding where aucno= #{aucNo}
@@ -73,6 +73,17 @@
 		where bidno = #{ bidNo }
 	</select>
 	
+	<select id="getLastBidder" resultType="String" parameterType="int">
+	 select mbid from bidding where aucno = #{aucNo} and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
+	</select>
 	
+	
+	<select id="getIpchalList" resultMap="biddingResult" parameterType="hashMap">
+  		select  <include refid="biddingcolumns"></include> from bidding where aucno = #{ aucNo } and bidno >= #{ bidNo }
+  	</select>
+  
+	<select id="getMaxBiddingNo" resultType="int" parameterType="int">
+		select max(bidno) from bidding where aucno = #{ aucNo }
+	</select>
 	
 </mapper>

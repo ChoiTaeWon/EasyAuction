@@ -1,5 +1,9 @@
 package com.easyauction.repository;
 
-public interface AdminRepository {
+import java.util.List;
 
+import com.easyauction.dto.Member;
+
+public interface AdminRepository {
+	List<Member> getMemberList();
 }
