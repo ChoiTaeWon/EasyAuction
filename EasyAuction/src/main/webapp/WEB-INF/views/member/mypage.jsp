@@ -12,11 +12,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
-	$('.myAuctionView').click(function(){
-		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('id'));
-	})
 	$('#photoreview').click(function(){
-		function post_to_url(path, params, method) {
+		/* function post_to_url(path, params, method) {
 		    method = method || "post"; // Set method to post by default, if not specified.
 		 
 		    // The rest of this code assumes you are not using a library.
@@ -31,9 +28,15 @@ $(function(){
 		        hiddenField.setAttribute("name", key);
 		        hiddenField.setAttribute("value", $(this).attr('alt'));
 		 
-		        form.appendChild(hiddenField);
-		    }
-		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('alt'));
+		        form.appe ndChild(hiddenField);
+		    }*/
+		$(location).attr('href','/easyauction/board/photoregister.action?mbId=' + '${ mbId }');
+		    /* $(this).attr('alt') */
+	    event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	    event.stopPropagation();//버블링 업 막아줌
+	})
+	$('.myAuctionView').click(function(){
+		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('id'));
 	})
 })
 
