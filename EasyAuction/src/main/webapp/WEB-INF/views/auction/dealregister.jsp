@@ -6,10 +6,12 @@
 	
 	<meta charset="utf-8" />
 	<title>Easy Auction 경매 등록</title>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/js/css/ui-lightness/jquery-ui-1.10.3.custom.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
+<link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
+<script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
 <script type="text/javascript">
 
 		$(function(){
@@ -17,10 +19,10 @@
 				//이벤트 이름 : 호출할 함수
 				click : function(event) {
 					$("#regiform").submit();
-					
 				}
 			});
-		}); 
+		 	 $('.datetimepicker').appendDtpicker({'locale':'ko'});
+		});
 			
 
 </script>
@@ -139,7 +141,7 @@
 															src="./js/time_calrendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
 														</iframe> -->
 														
-														 <input type="date" name="aucStartDate"></input>
+														<input type="text" name="aucStartDate1" class="datetimepicker"></input>
 														<font class="product_add_red"> 상품판매 시작일시를 좌측의 달력아이콘을 클릭하여 선택해주세요</font>
 															
 															
@@ -157,10 +159,11 @@
 												
 												<!-- 입찰 마감 일시 -->
 												<tr height="60">
-													<td width="150" style="background-color:#F6F6F6;"><img src="/easyauction/resources/images/ico_dot.gif" style="margin-left:10px;margin-right: 10px;" align="absmiddle"> <b>입찰마감일시</b></td>
+													<td width="150" style="background-color:#F6F6F6;">
+													<img src="/easyauction/resources/images/ico_dot.gif" style="margin-left:10px;margin-right: 10px;" align="absmiddle"> <b>입찰마감일시</b></td>
 													<td width="800" style="padding-left:10px;">
 															
-															<input type="date" name="aucEndDate"></input>
+															<input type="text" name="aucEndDate1" class="datetimepicker"></input>
 															<font> 상품판매 마감일시를 좌측의 달력아이콘을 클릭하여 선택해주세요</font>
 															<!-- <iframe width=188 height=166 name="gToday:datetime:agenda.js:gfPop:plugins_time.js" id="gToday:datetime:agenda.js:gfPop:plugins_time.js" src="./js/time_calrendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
 															</iframe>
