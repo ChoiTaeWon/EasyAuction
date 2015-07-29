@@ -28,5 +28,7 @@ public interface MemberRepository {
 
 	List<Auction> getGetterAuctionListBymbId(String mbId);
 
+	int getCountByMemberEmail(String mbId, String email, String mbPasswd);
+
 
 }

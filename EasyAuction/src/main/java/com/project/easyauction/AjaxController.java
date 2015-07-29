@@ -76,6 +76,22 @@ public class AjaxController {
 		
 		return result;
 	}
+	@RequestMapping(value="membercheckbyemail.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int membercheck1(String email,String locationurl,String target1) {
+		int result = 0;
+		String mbId = "", mbPasswd = "";
+		if(locationurl.equals("findPasswd")){
+			mbId = target1;
+		}else{
+			mbPasswd = target1;
+		}
+		result = mbgsvc.getCountByMemberEmail(mbId, email, mbPasswd);
+		
+		return result;
+	}
+	
+	
 	
 	@RequestMapping(value="messagecheck.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요

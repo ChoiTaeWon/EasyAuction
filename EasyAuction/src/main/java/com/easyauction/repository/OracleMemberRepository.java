@@ -80,5 +80,12 @@ public class OracleMemberRepository implements MemberRepository {
 		return getauctions;
 	}
 
+
+	@Override
+	public int getCountByMemberEmail(String mbId, String email, String mbPasswd) {
+		int result = memberMapper.getCountByMemberEmail(mbId, email, mbPasswd);
+		return result;
+	}
+
 	
 }
