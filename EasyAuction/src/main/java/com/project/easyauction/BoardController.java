@@ -149,7 +149,7 @@ public class BoardController {
 		
 		return "board/gongjiregister";
 	}
-
+	
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.POST)
 	public String gongjiregisterEdit(MultipartHttpServletRequest req, String id, String title, String content) {
 		//가상경로를 물리경로로 변환하는 기능을 가진 객체 반환
@@ -222,6 +222,10 @@ public class BoardController {
 		return "redirect:/board/photoview.action?bdno="+bdNo;
 	}
 	
+	@RequestMapping(value="photoregister.action", method = RequestMethod.GET)
+	public String photoregister(){
+		return "board/photoregister";
+	}
 
 	@RequestMapping(value = "photoregister.action", method = RequestMethod.POST)
 	public String photoregisterEdit(MultipartHttpServletRequest req, String id, String title, String content) {

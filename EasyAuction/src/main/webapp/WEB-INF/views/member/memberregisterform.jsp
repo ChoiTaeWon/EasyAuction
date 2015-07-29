@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,9 +56,10 @@
 	}
 
 $(function(){
+	
 	$('#myButton').click(function(){
-		var formArray = $('#regiform input');
-		/* var formArray = $('#regiform input[value = ""]');
+		/*var formArray = $('#regiform input');
+		 var formArray = $('#regiform input[value = ""]');
 		if (formArray.length > 0) {
 			alert('test');
 			return;
@@ -70,7 +72,14 @@ $(function(){
 			$('#passwd1').focus();
 			return;
 		}
-		for(var key in formArray){
+		$('#regiform input').each(function(index){
+			if($(this).val() == "") {
+				alert("필수 입력요소입니다");
+				$(this).focus();
+				return;
+			}
+		});
+		/* for(var key in formArray){
 			if(formArray[key].value == "") {
 				var id = '#'+ formArray[key].id;
 				alert("필수 입력요소입니다");
@@ -78,8 +87,7 @@ $(function(){
 				return;
 			}
 			
-		}
-		
+		} */
 		$('#regiform').submit();
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
@@ -177,8 +185,8 @@ $(function(){
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">   성별</td>
 												<td>
-												<input type="radio" value='1' checked="checked" name="mbGender"/>남자&nbsp; 
-												<input type="radio" value='0' name="mbGender"/>여자&nbsp;
+												<input type="radio" value='0' checked="checked" name="mbGender"/>남자&nbsp; 
+												<input type="radio" value='1' name="mbGender"/>여자&nbsp;
 												</td>
 											</tr>
 											<tr>

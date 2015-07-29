@@ -3,6 +3,8 @@ package com.project.easyauction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.Util;
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.service.MemberService;
 
@@ -66,9 +69,77 @@ public class MemberController {
 		return mav; 
 	}
 	@RequestMapping(value = "viewmypage.action", method = RequestMethod.GET)
-	public String viewMypage() {
+	public ModelAndView viewMypage(String mbId) {
 		
-		return "member/mypage";
+		List<Auction> auctions = mbsvc.getMyAuctionListBymbId(mbId);
+		HashMap<String, Object> countList = mbsvc.getCountMyAuctionBymbId(mbId);
+		List<Auction> getauctions = mbsvc.getGetterAuctionListBymbId(mbId);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mypage");
+		mav.addObject("auctions", auctions);
+		mav.addObject("getauctions", getauctions);
+		mav.addObject("mbId", mbId);
+		mav.addObject("countList", countList);
+		
+		return mav;
+	}
+	@RequestMapping(value = "edit.action", method = RequestMethod.POST)
+	public ModelAndView memberEdit(//MultipartHttpServletRequest req,//form을 맴버 객체로 받기위해서 써야함
+			Member member) {
+		if(member.getMbPasswd()!=null && member.getMbPasswd().length() > 0){
+			member.setMbPasswd(Util.getHashedString(member.getMbPasswd(), "SHA-1"));
+		}
+		mbsvc.setEditMember(member);
+		Member member1 = mbsvc.getMemberById(member.getMbId());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/membereditviewform");
+		mav.addObject("member", member1);
+		
+		return mav; 
 	}
 
+	@RequestMapping(value = "email.action", method = RequestMethod.GET)
+	public ModelAndView emailform(String locationurl) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/emailpasswd");
+		mav.addObject("locationurl", locationurl);
+		return mav; 
+	}
+	@RequestMapping(value = "viewmygetauctionpage.action", method = RequestMethod.GET)
+	public ModelAndView viewmygetauctionpage(String mbId) {
+		
+		HashMap<String, Object> countList = mbsvc.getCountMyAuctionBymbId(mbId);
+		List<Auction> getauctions = mbsvc.getGetterAuctionListBymbId(mbId);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mygetauctionpage");
+		mav.addObject("getauctions", getauctions);
+		mav.addObject("mbId", mbId);
+		mav.addObject("countList", countList);
+		
+		return mav;
+	}
+	@RequestMapping(value = "viewmyauctionpage.action", method = RequestMethod.GET)
+	public ModelAndView viewmyauctionpage(String mbId) {
+		
+		List<Auction> auctions = mbsvc.getMyAuctionListBymbId(mbId);
+		HashMap<String, Object> countList = mbsvc.getCountMyAuctionBymbId(mbId);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/myauctionpage");
+		mav.addObject("auctions", auctions);
+		mav.addObject("mbId", mbId);
+		mav.addObject("countList", countList);
+		return mav;
+	}
+	@RequestMapping(value = "deletemember.action", method = RequestMethod.GET)
+	public String deletememberform(String mbId, String confim) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(confim.equals("yes")){
+		
+		return "redirect:/home.action";
+		}
+		return "member/deletemember";
+	}
+	
 }

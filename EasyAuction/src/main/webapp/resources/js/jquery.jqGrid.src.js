@@ -5725,7 +5725,7 @@ $.fn.jqFilter = function( arg ) {
 		ops : [],
 		operands : null,
 		numopts : ['eq','ne', 'lt', 'le', 'gt', 'ge', 'nu', 'nn', 'in', 'ni'],
-		stropts : ['eq', 'ne', 'bw', 'bn', 'ew', 'en', 'cn', 'nc', 'nu', 'nn', 'in', 'ni'],
+		stropts : ['cn'],
 		strarr : ['text', 'string', 'blob'],
 		groupOps : [{ op: "AND", text: "AND" },	{ op: "OR",  text: "OR" }],
 		groupButton : true,
