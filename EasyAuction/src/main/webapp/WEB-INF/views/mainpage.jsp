@@ -31,6 +31,9 @@
 		 });
 		 
 		 $(function(){
+			 if('${ locationurl }' != ''){
+				 alert('이메일을 발송했습니다. 확인해주세요');
+			 }
 				 $("#gonggi_top").on({ 
 						//이벤트 이름 : 호출할 함수
 						mouseover : function(event) {

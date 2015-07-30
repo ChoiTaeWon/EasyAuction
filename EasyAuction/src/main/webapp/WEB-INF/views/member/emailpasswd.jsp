@@ -58,13 +58,9 @@ $(function(){
 	<!--폼시작-->
 <FORM action="email.action" id='form' method="post">
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
-<<<<<<< HEAD
 
 <input type="hidden" name="locationurl" value="${ locationurl }" />
-=======
-<!--폼시작-->
-<!-- <FORM action="email.action" id='form' method="post"> -->
->>>>>>> branch 'master' of https://github.com/ChoiTaeWon/EasyAuction.git
+
 <tr>
 	<td bgcolor="#f7f7f7" style="padding:20px;" align="center">
 
@@ -94,11 +90,6 @@ $(function(){
 			<input width="100" type="image" id="formsubmit" src="/easyauction/resources/images/btn_findpassorid.png">
 			</td>
 		</tr>
-<<<<<<< HEAD
-
-=======
-		<!-- </form> -->
->>>>>>> branch 'master' of https://github.com/ChoiTaeWon/EasyAuction.git
 		</table>
 
 
