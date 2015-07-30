@@ -14,8 +14,7 @@ $(function(){
 		var html = "<td width='60'>비밀번호</td><td><input name='mbPasswd' id='target1' type='password' class='input_style1' tabindex='2' style='width:200px;'></td>"
 			$('#target').append(html);
 	}
-	$("#target1").blur(function(event) {
-		alert('asdfasdf');
+	$("#formsubmit").click(function(event) {
 		$.ajax({
 			url : "/easyauction/ajax/membercheckbyemail.action?email=" + $("#email").val() + "&target1=" + $("#target1").val() + "&locationurl=" + '${ locationurl }',
 			async : true,
@@ -25,7 +24,7 @@ $(function(){
 				if (result == 0){
 					alert("입력하신 정보의 회원정보가 없습니다.");
 				} else {
-					
+					$('#form').submit();
 				}
 				
 			},
@@ -33,6 +32,8 @@ $(function(){
 				alert(status+ex);
 			}
 		})
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+			event.stopPropagation();//버블링 업 막아줌
 	})
 });
 </script>
@@ -54,10 +55,11 @@ $(function(){
 <tr>
 	<td align="center">
 	<div style="padding:20px;"></div>
-	
+	<!--폼시작-->
+<FORM action="email.action" id='form' method="post">
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
-<!--폼시작-->
-<!-- <FORM action="email.action" id='form' method="post"> -->
+
+<input type="hidden" name="locationurl" value="${ locationurl }" />
 <tr>
 	<td bgcolor="#f7f7f7" style="padding:20px;" align="center">
 
@@ -87,7 +89,7 @@ $(function(){
 			<input width="100" type="image" id="formsubmit" src="/easyauction/resources/images/btn_findpassorid.png">
 			</td>
 		</tr>
-		<!-- </form> -->
+
 		</table>
 
 
@@ -96,7 +98,7 @@ $(function(){
 	</td>
 </tr>
 </table>
-
+		</form>
 <div style="padding:20px;"></div>
 
 </td>

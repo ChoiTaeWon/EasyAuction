@@ -80,7 +80,7 @@
 		}
 	}
 	$(function(){
-		if('${ failedid }'!= null ){
+		if('${ failedid }'!= '' ){
 			alert('아이디와 비밀번호를 확인해 주십시오');
 		}
 		

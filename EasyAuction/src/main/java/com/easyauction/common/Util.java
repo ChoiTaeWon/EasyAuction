@@ -71,4 +71,37 @@ public class Util {
         return name + "_" + index + ext;
     }
 
+/*	public static String getHashedString(StringBuffer source,
+			String algorithm) {
+		byte[] hashedData = getHashedData(source, algorithm);
+
+		if (hashedData == null)
+			return null;
+
+		String hashedString = "";
+		for (int i = 0; i < hashedData.length; i++) {
+			String hexString = Integer
+					.toHexString((int) hashedData[i] & 0x000000ff);
+			if (hexString.length() < 2)
+				hexString = "0" + hexString;
+
+			hashedString += hexString;
+		}
+
+		return hashedString;
+	}
+
+	private static byte[] getHashedData(StringBuffer source, String algorithm) {
+	byte[] hashedData = null;
+			
+			try {
+				MessageDigest md = MessageDigest.getInstance(algorithm);
+				hashedData = md.digest(source.toString().getBytes());
+			} catch (NoSuchAlgorithmException ex) {	
+				hashedData = null;
+			}
+			
+			return hashedData;
+	}*/
+
 }

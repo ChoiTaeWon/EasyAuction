@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.easyauction.common.Util;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
@@ -84,7 +85,7 @@ public class AjaxController {
 		if(locationurl.equals("findPasswd")){
 			mbId = target1;
 		}else{
-			mbPasswd = target1;
+			mbPasswd = Util.getHashedString(target1, "SHA-1");
 		}
 		result = mbgsvc.getCountByMemberEmail(mbId, email, mbPasswd);
 		

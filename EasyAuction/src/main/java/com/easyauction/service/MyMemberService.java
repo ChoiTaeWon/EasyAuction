@@ -64,5 +64,10 @@ public class MyMemberService implements MemberService {
 		int result = mbrepo.getCountByMemberEmail(mbId, email, mbPasswd);
 		return result;
 	}
+	@Override
+	public Member getMemberByEmail(String email, String mbId, String mbPasswd) {
+		Member member = mbrepo.getMemberByEmail(mbId, email, mbPasswd);
+		return member;
+	}
 
 }

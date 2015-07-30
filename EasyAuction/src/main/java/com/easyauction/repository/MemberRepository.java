@@ -30,5 +30,7 @@ public interface MemberRepository {
 
 	int getCountByMemberEmail(String mbId, String email, String mbPasswd);
 
+	Member getMemberByEmail(String mbId, String email, String mbPasswd);
+
 
 }
