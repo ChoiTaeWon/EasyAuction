@@ -270,7 +270,21 @@ public class AjaxController {
 	}
 	
 	
-	
+	@RequestMapping(value="selectIpchalListByBtn.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Bidding> selectIpchalList(int aucNo) {
+		
+		List<Bidding> biddingLists = biddingService.getBiddingListByAuctionNo(aucNo);
+		if(biddingLists != null){
+			/*for(Bidding bidList : biddingLists){
+				System.out.println(bidList.getBidNo() + "&&" + bidList.getBidPrice() + "&&" + bidList.getMbId());
+			}*/
+			return biddingLists;
+		}else{
+			return null;
+		}
+		
+	}
 	
 	
 

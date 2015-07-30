@@ -34,6 +34,7 @@
 		select <include refid="biddingcolumns"></include>
 		from bidding
 		where aucno = #{ aucNo }
+		order by bidno DESC
 	</select>
 
 <!-- 	<select id="getExceptBidder" resultMap="biddingResult" parameterType="int">
