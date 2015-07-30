@@ -120,7 +120,7 @@ public class MemberController {
 		mav.setViewName("/mainpage");
 		mav.addObject("locationurl", locationurl);
 		if(mbPasswd != null){
-			Util.getHashedString(mbPasswd, "SHA-1");
+			mbPasswd = Util.getHashedString(mbPasswd, "SHA-1");
 		}
 		Member member = mbsvc.getMemberByEmail(email, mbId, mbPasswd);
 		
@@ -144,7 +144,7 @@ public class MemberController {
 					}
 				}
 				subject = "easyacution 비밀번호 찾기 결과";
-				body = "새 임시 비밀번호<br />" + newmbpasswd;
+				body = "새 임시 비밀번호<br /> <b>" + newmbpasswd + "</b>";
 				
 				member.setMbPasswd(Util.getHashedString(newmbpasswd.toString(), "SHA-1"));
 				mbsvc.setEditMember(member);
