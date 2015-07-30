@@ -9,6 +9,14 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#formsubmit').click(function(){
+			$('#sujung').submit();
+			
+		})
+	})
+	</script>
 </head>
 <body>
 	<div id="wrap"> <!-- A 시작 -->
@@ -68,30 +76,41 @@
 					</tr>		
 				 </table>
 				 <div style="padding:3px;"></div>
+				 <form method="post" action="updatefreeboard.action" id="sujung">
 				 <table width="100%">
 				 	<tr height="26">
-				 	  <td align="left" style="padding-left:10px;"><b>${ view.bdTitle }</b></td>
+				 	  <b><input type="hidden" name="bdno" value=${ view.bdNo } /></b></td>
+				 	  <td width="1">
+				 	  <input type="hidden" name="pageno" value=${ pageno } />
+				 	  
+				 	  <td align="left" name="bdtitle" style="padding-left:10px;"><b>${ view.bdTitle }</b></td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">${ view.bdWriter }</td>
+				 	  <td width="90" align="center" name="bdwriter" >${ view.bdWriter }</td>
 				 	  <td width="1"></td>
-				 	  <td width="90" align="center">${ view.bdDate }</td>
+				 	  <td width="90" align="center" name="bddate" >${ view.bdDate }</td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">${ view.bdReadCount }</td>
-				 	 <%--  <td width="1"></td>
-				 	  <td align="center" width="40">${ view.bdBlindCheck }</td> --%>
+				 	  <td align="center" width="40" name="bdcount" >${ view.bdReadCount }</td>
+				 	 
 				 	</tr>
-				 	
+				 	</form>
 				 	<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
+						<td align="left" style="padding-left:10px;">
+				 	 	<%-- <b><input type="text" name="title" value=${ comment.bcContent } /></b><font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td> --%>
+						
+						
 						<!-- 내용 옆 수정 삭제 -->
-						<td align="right"><a href='/easyauction/board/updatefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+						<td align="right">
+						<img src='/easyauction/resources/images/sujung.png' id="formsubmit">
+						<a href='/easyauction/board/freeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
 						</td>
 						
 						</td>
-						<td width='50'></td>
+						<td width='50'>
+						</td>
+						
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
@@ -111,7 +130,7 @@
 								 </c:forEach>
 								</tr>
 								<tr>
-								  <td>${ view.bdContent }</td>
+								  <b><input type="text" name="content" value=${ view.bdContent } /></b></td>
 								</tr>
 							</table>
 							</div>
@@ -119,9 +138,17 @@
 						</td>
 					</tr>
 				 </table>
+				 
+				 <!-- 내용 바로 밑의 밑줄 -->
+				 <table width="100%" border="0">
+					<tr>
+						<td height="2px" bgcolor="#EBEBEB"></td>
+					</tr>
+				 </table>
+				 
 				 <div style="padding:3px;"></div>
 				<!-- 댓글 // 시작 -->
-				<table width="100%" border="0">
+				<!-- <table width="100%" border="0">
 					<tr>
 						<td height="2px" bgcolor="#EBEBEB"></td>
 					</tr>
@@ -131,36 +158,10 @@
 					<tr>
 						<td height="2px"  bgcolor="#EBEBEB"></td>
 					</tr>
-				</table>
+				</table> -->
 				
-				<c:forEach var="comment" items="${ view.comments }">
-				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
-					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
-						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
-						<!-- 댓글 옆 수정 삭제 -->
-						<td align="right"><a href='/easyauction/board/updatefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
-						</td>
-						
-						</td>
-						<td width='50'></td>
-					</tr>
-					<tr>
-						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
-					</tr>
-				</table>
 				
-				</c:forEach>
-				<form action='freeboardcomment.action?bdno=${ view.bdNo }' method='post'>
-					<input type="hidden" value="${ view.bdWriter }" name="writer" >
-					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
-						<tr>
-							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
-							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
-						</tr>
-					</table>
-				</form>
+				
 				<!-- 댓글 // 끝 -->
 			</div><!-- list 끝 -->
 		</div>

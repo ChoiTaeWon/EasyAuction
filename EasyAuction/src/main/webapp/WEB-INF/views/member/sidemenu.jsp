@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<div style='float: left;'>
+<div style='float: left;' class='herf_link'>
 <table style="border-collapse: collapse; width: 216px;"><!-- 사이드메뉴 헤더 -->
 	<tr>
 		<td><a href="#" onFocus="this.blur();"><img src="/easyauction/resources/images/tit_community.gif" title="커뮤니티"></a></td>

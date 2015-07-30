@@ -11,6 +11,28 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+	<script type="text/javascript">
+	function listsearch() {
+		var search = document.getElementById('search').value;
+		var searchdata = document.getElementById('searchdata').value;
+		 var re = /^[0-9]+$/;
+	
+		if(search == 'bdtitle'&&!re.test(searchdata)){
+			alert("제목을 입력하세요");
+			searchdata.focus();
+			return;
+			
+		}else if(searchdata.length==0){
+			alert("내용을 입력하세요");
+			searchdata.focus();
+			return;
+		}
+		
+		document.getElementById('listsearch').submit();
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	}
+	</script>
 </head>
 
 <body>
@@ -26,7 +48,7 @@
 			
 			<div style="width: 730px; float:right;"><!-- list -->
 			
-			<!--내용-->
+			<!--리스트 위의 맨위 이미지-->
 			<div id="contents_wrap">
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
@@ -39,7 +61,7 @@
 			
 			<table width="100%">
 			<tr height="30">
-				<!-- 오른쪽 위 자유게시판 -->
+				<!-- 오른쪽 위 자유게시판 아이콘 이미지-->
 				<td align="left">&nbsp;</td>
 								  
 				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
@@ -55,11 +77,9 @@
 				<tr>
 					<td height="26" bgcolor="#f8f8f8">
 					
+						<!-- 리스트 위의 타이틀 -->
 						<table width="100%">
-						<!-- 추천빼기 -->
 							<tr>
-								<td align="center" class="smfont" width="50"><font color="#666666">번호</font></td>
-								<td width="1" bgcolor="#e6e6e6"></td>
 								<td align="center" class="smfont"><font color="#666666">제목</font></td>
 								<td width="1" bgcolor="#e6e6e6"></td>
 								<td align="center" class="smfont" width="90"><font color="#666666">작성자</font></td>
@@ -86,16 +106,12 @@
 				<c:forEach var="board" items="${ boards }">
 				<c:if test="${ board.bdType eq 2 }">
 				<tr>
-					<td align="center" width="50" class="smfont">${board.bdNo}</td>
-					<td width="1"></td>
-					<td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
+					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>
-					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdDate}</div></td>
+					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdDate }</div>
 					<td width="1"></td>
-					<%-- <td 			class="smfont" align="center" width="90"><div style="padding-left:10px;"><fmt:formatDate value="${ board.bdDate }" pattern="yyyy-MM-dd" /></td>
-				 	<td width="1"></td> --%>
 					<td 			class="smfont" align="center" width="40"><div style="padding-left:10px;">${board.bdReadCount}</div></td>
 					<td width="1"></td>
 				</tr>
@@ -113,45 +129,50 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/freeboardregister.action"><img src="/easyauction/resources/images/write.png"></a>&nbsp;<a href='/easyauction/board/freeboard.action'><img src="/easyauction/resources/images/list1.png"></A></td>
-			</tr>
-			</table>
-			
-			<!-- 페이지 번호 -->
-			<table width="100%">
-			<tr>
-				<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
-			</tr>
-			</table>
-			<!-- 검색폼 위의 내용 끝 -->
-			
-			<!-- 검색폼 // 시작 -->
-			<table width="56%" align="center">
-			<form  method='post' action='./bbs_list.php'>
-			<input type=hidden name='num' value=''>
-			<input type=hidden name='action' value='search'>
-			<input type=hidden name='tb' value='board_free'>
-			
-			<tr>
-				<td height='30' border='0' align='center' valign='middle'>
-					<input type='radio' name='search' value='bbs_title' checked> 제목
-					<input type='radio' name='search' value='bbs_name'> 이름
-					<input type='radio' name='search' value='bbs_review'> 내용
-					<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-					<!-- <input type='image' src='/easyauction/resources/images/search.png' border="0" value='검색' align='absmiddle'> -->
-					<td align="left"><a href="/easyauction/board/register.action"><img src="/easyauction/resources/images/search1.png"></a>
+				<td align="right"><a href="/easyauction/board/freeboardregister.action">
+								  <img src="/easyauction/resources/images/write.png"></a>&nbsp;
+								  <a href='/easyauction/board/freeboard.action'>
+								  <img src="/easyauction/resources/images/list1.png"></a>
 				</td>
 			</tr>
+			</table>
+			
+			<!-- 검색폼 위의 내용 끝 -->
+			
+			<!-- 페이지 번호 -->
+			<div style="text-align:center">
+			${pager}
+			</div>
+	
+	 		<!-- 검색폼 // 시작 -->
+			<table align="center">
+			<form id="listsearch" action="freeboardsearch.action" method="post">
+				<td height='30' border='0' align='center' valign='middle'>
+					<!-- <input type='radio' name='search' value='bdno' checked> 번호 -->
+					<input type='radio' id="search" name='search' value='bdTitle' checked> 제목
+					<input type='radio' id="search" name='search' value='bdWriter'> 작성자
+					<input style='width:135px;height:18px' type="text" name="searchdata" id="searchdata" />
+					<!-- <input type="button" value='검색' style='height: 25px;margin-right:600px; ' onclick="listsearch();" /> -->
+					<td align="left" onclick="javascript:listsearch();" ><img src="/easyauction/resources/images/search1.png"></a>
+				</td>
 			</form>
 			</table>
+			</td>
+			</tr>
+			</table>
+			</div>
 			<!-- 검색폼 끝 -->
 			
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->
-	<%-- <div id="footer">
-			<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</div> --%>
 </body>
+
+	<!-- 
+	<div style="border:solid 1px;padding:5px;text-align:right">
+		[ TOTAL : <%= application.getAttribute("bdReadCount") %> ]
+		[ CURRENT : <%= application.getAttribute("bdReadCount") %> ]
+	</div>
+	 -->
 
 </html>

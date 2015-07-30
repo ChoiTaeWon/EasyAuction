@@ -8,6 +8,7 @@
 <title>공지사항게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
 	<div id="wrap"> <!-- A 시작 -->

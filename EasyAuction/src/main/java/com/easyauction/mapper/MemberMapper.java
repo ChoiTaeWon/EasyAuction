@@ -27,4 +27,8 @@ public interface MemberMapper {
 
 	List<Auction> getGetterAuctionListBymbId(String mbId);
 
+	int getCountByMemberEmail(HashMap<String, String> params);
+
+	Member getMemberByEmail(HashMap<String, String> params);
+
 }

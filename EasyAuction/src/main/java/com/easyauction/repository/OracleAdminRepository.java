@@ -23,4 +23,12 @@ public class OracleAdminRepository implements AdminRepository{
 	public List<Member> getMemberList(){
 		return adminMapper.getMemberList();
 	}
+	
+	public void setMemberDelete(String mbId){
+		adminMapper.setMemberDelete(mbId);
+	}
+	
+	public List<Member> getMemberDeleteList(){
+		return adminMapper.getMemberDeleteList();
+	}
 }

@@ -5,6 +5,7 @@
 <head>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <script language="javascript" src="js/happy_open.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -21,7 +22,8 @@
 </table>
 <table width="700" align="center" style="border:1px solid #DEDEDE;">
 <tr>
-	<td align="center"><SCRIPT language="JavaScript">
+	<td align="center">
+	<SCRIPT language="JavaScript">
 
 	function CheckForm(theForm)
 	{
@@ -77,6 +79,14 @@
 			document.happy_member_login_form.auto_login_use.checked = false;
 		}
 	}
+	$(function(){
+		if('${ failedid }'!= '' ){
+			alert('아이디와 비밀번호를 확인해 주십시오');
+		}
+		
+	})
+	
+	
 </SCRIPT>
 <div style="padding:15px;"></div>
 

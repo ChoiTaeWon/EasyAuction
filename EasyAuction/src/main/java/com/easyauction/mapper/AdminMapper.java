@@ -10,5 +10,6 @@ import com.easyauction.dto.Member;
  */
 public interface AdminMapper {
 	List<Member> getMemberList();
-
+	void setMemberDelete(String mbId);
+	List<Member> getMemberDeleteList();
 }
