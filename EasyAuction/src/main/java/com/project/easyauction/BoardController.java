@@ -88,7 +88,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, 
+										@RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
@@ -111,11 +112,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="updatefreeboard.action", method= RequestMethod.POST)
-	public String updatefreeboard2(int bdno, int pageno, Board board) {
+	public String updatefreeboard2(int bdNo, int pageNo, Board board) {
 
 		boardService.updateFreeBoard(board);
 		
-		return "redirect:/board/updatefreeboard.action?boardno="+bdno+"&pageno="+ pageno;
+		return "redirect:/board/freeboardview.action?bdno="+bdNo+"&pageno="+ pageNo;
 	}
 	
 	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
@@ -422,17 +423,5 @@ public class BoardController {
 		return mav;
 		
 	}
-	
-	/*@RequestMapping(value = "freeboardcount.action", method = RequestMethod.GET)
-	public String freeboardcountList() {
-		
-		return "board/freeboardlist";
-	}*/
-	
-	/*@RequestMapping(value = "freeboardcommentcount.action", method = RequestMethod.GET)
-	public String freeboardcommentcountList() {
-		
-		return "board/freeboardview";
-	}*/
 }
 

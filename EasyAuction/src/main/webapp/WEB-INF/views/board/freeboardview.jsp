@@ -150,16 +150,14 @@
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
 					</tr>
 				</table>
-				
 				</c:forEach>
-				<form action='freeboardcomment.action?bdno=${ view.bdNo }' method='post'>
+				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
 					<input type="hidden" value="${ view.bdWriter }" name="writer" >
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
 							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
 						</tr>
-					</table>
 				</form>
 				<!-- 댓글 // 끝 -->
 			</div><!-- list 끝 -->

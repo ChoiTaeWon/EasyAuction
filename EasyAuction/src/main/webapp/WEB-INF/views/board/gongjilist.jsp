@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>공지사항게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -18,16 +18,16 @@
 		var searchdata = document.getElementById('searchdata').value;
 		 var re = /^[0-9]+$/;
 	
-		 if(search == 'bdtitle'&&!re.test(searchdata)){
-				alert("제목을 입력하세요");
-				searchdata.focus();
-				return;
-				
-			}else if(searchdata.length==0){
-				alert("내용을 입력하세요");
-				searchdata.focus();
-				return;
-			}
+		if(search == 'bdtitle'&&!re.test(searchdata)){
+			alert("제목을 입력하세요");
+			searchdata.focus();
+			return;
+			
+		}else if(searchdata.length==0){
+			alert("내용을 입력하세요");
+			searchdata.focus();
+			return;
+		}
 		
 		document.getElementById('listsearch').submit();
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
@@ -65,7 +65,7 @@
 				<td align="left">&nbsp;</td>
 								  
 				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+								  <a href='/easyauction/board/.action'><img src='/easyauction/resources/images/small.png'></a>
 				</td>
 			</tr>
 			</table>
@@ -106,7 +106,7 @@
 				<c:forEach var="board" items="${ boards }">
 				<c:if test="${ board.bdType eq 1 }">
 				<tr>
-					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
+					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/gongjiview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>
@@ -136,15 +136,15 @@
 				</td>
 			</tr>
 			</table>
+			
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 페이지 번호 -->
 			<div style="text-align:center">
 			${pager}
 			</div>
-			
-			<!-- 검색폼 // 시작 -->
-			
+	
+	 		<!-- 검색폼 // 시작 -->
 			<table align="center">
 			<form id="listsearch" action="gongjiboardsearch.action" method="post">
 				<td height='30' border='0' align='center' valign='middle'>
@@ -166,9 +166,13 @@
 			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->
-	<%-- <div id="footer">
-			<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</div> --%>
 </body>
+
+	<!-- 
+	<div style="border:solid 1px;padding:5px;text-align:right">
+		[ TOTAL : <%= application.getAttribute("bdReadCount") %> ]
+		[ CURRENT : <%= application.getAttribute("bdReadCount") %> ]
+	</div>
+	 -->
 
 </html>
