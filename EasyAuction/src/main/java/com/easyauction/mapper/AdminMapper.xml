@@ -35,4 +35,17 @@
 		ORDER BY
 		  mbregdate desc
 	</select>
+	<update id="setMemberDelete" parameterType="String">
+	   UPDATE member set
+	   	mbdelete = 1
+	   where mbid = #{ mbId }
+	</update>
+	<select id="getMemberDeleteList" resultMap="memberResult">
+		SELECT <include refid="membercolumns" />
+		FROM MEMBER
+		where mbgrant = 0 and mbdelete = 1
+		ORDER BY
+		  mbregdate desc
+	</select>
+	
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.easyauction.common.Util;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
@@ -76,6 +77,22 @@ public class AjaxController {
 		
 		return result;
 	}
+	@RequestMapping(value="membercheckbyemail.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int membercheck1(String email,String locationurl,String target1) {
+		int result = 0;
+		String mbId = "", mbPasswd = "";
+		if(locationurl.equals("findPasswd")){
+			mbId = target1;
+		}else{
+			mbPasswd = Util.getHashedString(target1, "SHA-1");
+		}
+		result = mbgsvc.getCountByMemberEmail(mbId, email, mbPasswd);
+		
+		return result;
+	}
+	
+	
 	
 	@RequestMapping(value="messagecheck.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요

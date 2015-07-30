@@ -80,5 +80,27 @@ public class OracleMemberRepository implements MemberRepository {
 		return getauctions;
 	}
 
+
+	@Override
+	public int getCountByMemberEmail(String mbId, String email, String mbPasswd) {
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("email", email);
+		params.put("mbId", mbId);
+		params.put("mbPasswd", mbPasswd);
+		int result = memberMapper.getCountByMemberEmail(params);
+		return result;
+	}
+
+
+	@Override
+	public Member getMemberByEmail(String mbId, String email, String mbPasswd) {
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("email", email);
+		params.put("mbId", mbId);
+		params.put("mbPasswd", mbPasswd);
+		Member member = memberMapper.getMemberByEmail(params);
+		return member;
+	}
+
 	
 }

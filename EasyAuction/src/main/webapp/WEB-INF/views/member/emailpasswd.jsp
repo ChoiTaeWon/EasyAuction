@@ -7,18 +7,35 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
-	if(${ locationurl } == 'findPasswd'){
-		$("#span1").text('아이디');
-		$("#span2").text('이메일');
-		
-	} else if(${ locationurl } == 'findmbId'){
-		$("#span1").text('이메일');
-		$("#span2").text('비밀번호');
-		$("#target2").attr('type', 'password');
-		
-		
+	if('${ locationurl }' == 'findPasswd'){
+		var html = "<td width='60'>아이디</td><td><input name='mbId' id='target1' type='text' class='input_style1' tabindex='2' style='width:200px;'></td>"
+		$('#target').append(html);
+	}else if('${ locationurl }' == 'findmbId'){
+		var html = "<td width='60'>비밀번호</td><td><input name='mbPasswd' id='target1' type='password' class='input_style1' tabindex='2' style='width:200px;'></td>"
+			$('#target').append(html);
 	}
-})
+	$("#formsubmit").click(function(event) {
+		$.ajax({
+			url : "/easyauction/ajax/membercheckbyemail.action?email=" + $("#email").val() + "&target1=" + $("#target1").val() + "&locationurl=" + '${ locationurl }',
+			async : true,
+			data : {},
+			method : "GET",
+			success : function(result, status, xhr) {
+				if (result == 0){
+					alert("입력하신 정보의 회원정보가 없습니다.");
+				} else {
+					$('#form').submit();
+				}
+				
+			},
+			error : function(xhr, status, ex) {
+				alert(status+ex);
+			}
+		})
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+			event.stopPropagation();//버블링 업 막아줌
+	})
+});
 </script>
 
 </head>
@@ -38,10 +55,12 @@ $(function(){
 <tr>
 	<td align="center">
 	<div style="padding:20px;"></div>
-	
+	<!--폼시작-->
+<FORM action="email.action" id='form' method="post">
 <table align="center" cellpadding="0" cellspacing="1" width="560" bgcolor="#ebebeb">
-<!--폼시작-->
-<FORM action="email.action" id='formsubmit' method="post">
+
+<input type="hidden" name="locationurl" value="${ locationurl }" />
+
 <tr>
 	<td bgcolor="#f7f7f7" style="padding:20px;" align="center">
 
@@ -51,28 +70,26 @@ $(function(){
 
 				<table align="center" width="100%">
 				<tr>
-					<td width="100"><span id="span1"></span></td>
+					<td width="60">Email 주소</td>
 					<td>
-					<input name="target1" type="text" class="input_style1" tabindex="1" style="width:130px;">
+					<input name="email" id='email' type="text" class="input_style1" tabindex="1" style="width:200px;">
 					</td>
 				</tr>
 				<tr><td height="3"></td></tr>
-				<tr>
-					<td width="100"><span id="span2"></span></td>
-					<td>
-					<input name="target2" id="target2" type="text" class="input_style1" tabindex="2" style="width:130px;">
-					</td>
+				<tr id="target">
+					
 				</tr>
 				</table>
 
 			</td>
-			<td style="padding-left:10px;"><input type="image" name="formimage1" src="/easyauction/resources/images/btn_login02.gif" onclick="document.getElementById('formsubmit').submit();" align="absmiddle" border="0" tabindex="3"></td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<br /><br /><br />
+			<td colspan="2" style="padding-left:10px;" align="center">
+			<br /><br /><br />
+			<input width="100" type="image" id="formsubmit" src="/easyauction/resources/images/btn_findpassorid.png">
 			</td>
 		</tr>
-		</form>
 		</table>
 
 
@@ -81,7 +98,7 @@ $(function(){
 	</td>
 </tr>
 </table>
-
+		</form>
 <div style="padding:20px;"></div>
 
 </td>
