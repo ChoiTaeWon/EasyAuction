@@ -58,6 +58,10 @@ li:HOVER {
 
 .smfont10 {font-size:20px; color:#FFF; letter-spacing:1px; font-weight:bold; font-family:맑은 고딕; }
 
+.smfont11 {font-size:20px; color:#000; letter-spacing:1px; font-weight:bold; font-family:맑은 고딕; }
+
+.smfont12 { font-size:15px; color:#6a6a6a; font-weight:bold; font-family:맑은 고딕;  align:absmiddle; border:0; style-margin: 0 10px 0 10px; height:32px; }
+
 #list_now_price { font-size:14pt; color:#000000; font-family:tahoma ;}
 #list_start_price { color:#000000;font-weight:bold; font-family:tahoma ;}
 
@@ -132,7 +136,7 @@ li:HOVER {
 	letter-spacing:-1px;
 }
 .deal_time_day {
-	width:41px;
+	width:42px;
 	height:35px;
 	font-family:tahoma;
 	font-size:12px;
@@ -141,8 +145,12 @@ li:HOVER {
 	color:#4d53cd;
 	line-height:35px;
 	text-align:center;
-	background:url(/img/rest_time_daydetail_on01.gif);
 	margin-right:5px;
+	background-color: grey;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 .deal_time_day_no {
 	width:%;
@@ -215,6 +223,26 @@ li:HOVER {
 
 
 /* ============================================================================ */
+.deal_time_list_day {
+	width:100%;
+	height:30px;
+	font-family:tahoma;
+	font-size:15px;
+	font-weight:bold;
+	float:left;
+	color:#000000;
+	line-height:35px;
+	text-align:center;
+	margin-right:5px;
+	background-color: #eeeeee;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5px;
+}
+
+
 .deal_time_list_hour {
 	width:34px;
 	height:26px;
