@@ -217,7 +217,8 @@ public class AjaxController {
 		reportService.insertMemberReportingBytargetmbId(memberReporting);
 		Member member = new Member();
 		member.setMbId(targetmbId);
-		mbgsvc.setEditMember(member);
+		//맴버 신고횟수 +1 해야함
+		//mbgsvc.setEditMember(member);
 		return result;
 	}
 		
