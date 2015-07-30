@@ -29,7 +29,26 @@
   	<select id="getResultReportCheck" resultType="int" parameterType="hashMap">
   		select count(*) from auctionreporting where arprepoter = #{ mbId } and arptagetno= #{ aucNo }
   	</select>
-  
-  
+  	
+  <insert id="insertMemberReportingBytargetmbId" parameterType="MemberReporting">
+
+		INSERT INTO MEMBERREPORTING
+		(
+			MRPNO,
+			MRPCONTENT,
+			MRPREPOTER,
+			MRPTARGET,
+		)
+			VALUES
+		(
+			SEQUENCEMEMBERREPORTINGNO.nextVal, 
+			#{ mrpContent }, 
+			#{ mrpRepoter }, 
+			#{ mrpTarget }, 
+		)
+	</insert>
+	<select id="getResultMemberReportCheck" resultType="int" parameterType="hashMap">
+  		select count(*) from MEMBERREPORTING where MRPREPOTER = #{ mbId } and MRPTARGET= #{ receiver }
+  	</select>
   
   </mapper>

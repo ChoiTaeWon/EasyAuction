@@ -35,5 +35,7 @@ public interface MemberService {
 
 	public int getCountByMemberEmail(String mbId, String email, String mbPasswd);
 
+	public Member getMemberByEmail(String email, String mbId, String mbPasswd);
+
 
 }

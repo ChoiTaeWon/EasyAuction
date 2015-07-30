@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.easyauction.common.Util;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
+import com.easyauction.dto.MemberReporting;
 import com.easyauction.service.AuctionService;
 import com.easyauction.service.BiddingService;
 import com.easyauction.service.MemberService;
@@ -84,7 +86,7 @@ public class AjaxController {
 		if(locationurl.equals("findPasswd")){
 			mbId = target1;
 		}else{
-			mbPasswd = target1;
+			mbPasswd = Util.getHashedString(target1, "SHA-1");
 		}
 		result = mbgsvc.getCountByMemberEmail(mbId, email, mbPasswd);
 		
@@ -151,7 +153,7 @@ public class AjaxController {
 		
 	}
 	
-	//
+	////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value="auctionReporting.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
 	public int auctionReporting(String reporter, int targetAuctionNo, String reportText) {
@@ -198,9 +200,46 @@ public class AjaxController {
 		}
 		
 	}
+	////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value="memberReporting.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int memberReporting(String reporter, String targetmbId, String reportText) {
+		
+		int result = 0;
+		
+		MemberReporting memberReporting = new MemberReporting();
+		memberReporting.setMrpRepoter(reporter);
+		memberReporting.setMrpTarget(targetmbId);
+		memberReporting.setMrpContent(reportText);
+		
+		System.out.println("신고하기 내용" + "////" + reporter +"////" +targetmbId +"////" +reportText );
+		reportService.insertMemberReportingBytargetmbId(memberReporting);
+		
+		return result;
+	}
+		
 	
-	
+	@RequestMapping(value="memberRepoterCheck.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int memberRepoterCheck(String mbId, String receiver) {
+		
+		int result = 0;
+		
+		int repoterCheck = reportService.getResultMemberReportCheck(mbId, receiver);
+		
+		if(repoterCheck > 0){
+			System.out.println("이전에 신고한 이력이 있음");
+			//1 반환
+			return result + 1;
+		}
+		else{
+			//0 반환
+			return result;
+		}
+		
+	}
+	////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping(value="selectIpchalList.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
@@ -231,7 +270,21 @@ public class AjaxController {
 	}
 	
 	
-	
+	@RequestMapping(value="selectIpchalListByBtn.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Bidding> selectIpchalList(int aucNo) {
+		
+		List<Bidding> biddingLists = biddingService.getBiddingListByAuctionNo(aucNo);
+		if(biddingLists != null){
+			/*for(Bidding bidList : biddingLists){
+				System.out.println(bidList.getBidNo() + "&&" + bidList.getBidPrice() + "&&" + bidList.getMbId());
+			}*/
+			return biddingLists;
+		}else{
+			return null;
+		}
+		
+	}
 	
 	
 
