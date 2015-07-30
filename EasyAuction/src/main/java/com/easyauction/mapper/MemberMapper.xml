@@ -119,6 +119,31 @@
 		mbEmail	=	#{ mbEmail }
 	WHERE mbId = #{ mbId }
 </update>
+<select id="getCountByMemberEmail" parameterType="hashmap" resultType="integer">
+		SELECT Count(*) 
+		FROM member 
+		WHERE mbEmail = #{ email } 
+		<if test="mbId != ''">
+		AND mbId = #{mbId} 
+		</if>
+		<if test="mbPasswd != ''">
+		AND mbPasswd = #{mbPasswd}
+		</if>
+</select>
+<select id="getMemberByEmail" parameterType="hashmap" resultType="Member">
+		SELECT <include refid="membercolumns" />
+		FROM member 
+		WHERE mbEmail = #{ email } 
+		<if test="mbId != null">
+		AND mbId = #{mbId} 
+		</if>
+		<if test="mbPasswd != null">
+		AND mbPasswd = #{mbPasswd}
+		</if>
+</select>
+
+
+
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <resultMap type="Auction" id="auctionResult">
@@ -185,7 +210,7 @@
 		select aucno, auctitle, aucstartdate, aucenddate, aucregdate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate, auctype, aucwriter, aucadtext
 		from AUCTION 
-		Where aucwriter Like #{ mbId } 
+		Where aucwriter = #{ mbId } 
 		order By
 		aucno DESC
 	</select>
@@ -205,6 +230,16 @@
 			(select count(*) from AUCTION Where aucstate = 2 and aucwriter = #{ mbId }) aucstate2 
 		from dual
 	</select>
+	<select id="getGetterAuctionListBymbId" resultType="Auction" parameterType="String">
+		select aucno, auctitle, aucenddate, aucfinalprice, aucstate, aucwriter 
+		from AUCTION 
+		Where aucgetter = #{ mbId } 
+		order By
+		aucno DESC
+	</select>
+	
+	
+	
 	
 	
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

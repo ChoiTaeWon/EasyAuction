@@ -1,5 +1,6 @@
 package com.easyauction.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Board;
@@ -20,9 +21,9 @@ public interface BoardMapper {
 
 	List<Board> getPhotoList();
 	
-	List<Board> getFreeBoardList();
+	List<Board> getFreeBoardList(HashMap<String, Object> params);
 	
-	List<Board> getGongjiList();
+	List<Board> getGongjiList(HashMap<String, Object> params);
 
 	Board getPhotoViewByBoardNo(int bdNo);
 	
@@ -40,6 +41,20 @@ public interface BoardMapper {
 	
 	void updateFreeBoardComment(BoardComment boardComment);
 	
-	void deletedFreeBoardComment(BoardComment boardComment);
+	void deleteFreeBoardComment(int bcNo);
 	
+	List<Board> getFreeBoardSearchList(HashMap<String, String> params);
+
+	List<Board> getGongjiBoardSearchList(HashMap<String, String> params);
+	
+	int getFreeBoardCount();
+	
+	int getFreeBoardCommentCount();
+	
+	void deleteFreeBoard(int bdno);
+	
+	void updateFreeBoard(Board board);
+	
+	void updateFreeBoardReadCount(int bdNo);
+
 }

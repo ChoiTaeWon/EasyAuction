@@ -8,8 +8,14 @@ public class MemberReporting {
 	private String mrpContent;
 	private Date mrpDate;
 	private String mrpRepoter;
-	private String mrpTarge;
+	private String mrpTarget;
 	
+	public String getMrpTarget() {
+		return mrpTarget;
+	}
+	public void setMrpTarget(String mrpTarget) {
+		this.mrpTarget = mrpTarget;
+	}
 	public int getMrpNo() {
 		return mrpNo;
 	}
@@ -34,12 +40,6 @@ public class MemberReporting {
 	public void setMrpRepoter(String mrpRepoter) {
 		this.mrpRepoter = mrpRepoter;
 	}
-	public String getMrpTarge() {
-		return mrpTarge;
-	}
-	public void setMrpTarge(String mrpTarge) {
-		this.mrpTarge = mrpTarge;
-	}
-	
+
 	
 }

@@ -83,5 +83,5 @@
 		<property name="mapperInterface" 
 			value="com.easyauction.mapper.AdminMapper" />
 		<property name="sqlSessionFactory" ref="sessionFactory" />
-	</bean>	
+	</bean>
 </beans>

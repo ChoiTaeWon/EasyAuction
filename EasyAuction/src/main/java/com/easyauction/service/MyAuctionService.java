@@ -57,6 +57,14 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public void updateAuctionReportCount(int aucNo) {
+		auctionRepository.updateAuctionReportCount(aucNo);
+		
+	}
+
+
+
 
 
 }

@@ -16,6 +16,10 @@ public interface AuctionService {
 
 	Auction getAuctionDetailByAuctionNo(int aucNo);
 
+	void updateAuctionReportCount(int aucNo);
+
+	
+
 	
 	
 }

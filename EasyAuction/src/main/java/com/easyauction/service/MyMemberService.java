@@ -54,5 +54,20 @@ public class MyMemberService implements MemberService {
 		HashMap<String, Object> countList = mbrepo.getCountMyAuctionBymbId(mbId);
 		return countList;
 	}
+	@Override
+	public List<Auction> getGetterAuctionListBymbId(String mbId) {
+		List<Auction> getauctions = mbrepo.getGetterAuctionListBymbId(mbId);
+		return getauctions;
+	}
+	@Override
+	public int getCountByMemberEmail(String mbId, String email, String mbPasswd) {
+		int result = mbrepo.getCountByMemberEmail(mbId, email, mbPasswd);
+		return result;
+	}
+	@Override
+	public Member getMemberByEmail(String email, String mbId, String mbPasswd) {
+		Member member = mbrepo.getMemberByEmail(mbId, email, mbPasswd);
+		return member;
+	}
 
 }

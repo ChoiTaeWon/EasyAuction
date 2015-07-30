@@ -26,5 +26,11 @@ public interface MemberRepository {
 
 	HashMap<String, Object> getCountMyAuctionBymbId(String mbId);
 
+	List<Auction> getGetterAuctionListBymbId(String mbId);
+
+	int getCountByMemberEmail(String mbId, String email, String mbPasswd);
+
+	Member getMemberByEmail(String mbId, String email, String mbPasswd);
+
 
 }

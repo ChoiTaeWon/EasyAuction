@@ -1,5 +1,6 @@
 package com.easyauction.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,6 @@ public class OracleBiddingRepository implements BiddingRepository{
 	}
 
 	@Override
-	public Bidding getExceptBidder(int aucNo) {
-		// TODO Auto-generated method stub
-		return biddingMapper.getExceptBidder(aucNo);
-	}
-
-	@Override
 	public int getCountBidders(int aucNo) {
 		// TODO Auto-generated method stub
 		return biddingMapper.getCountBidders(aucNo);
@@ -54,6 +49,31 @@ public class OracleBiddingRepository implements BiddingRepository{
 		// TODO Auto-generated method stub
 		biddingMapper.insertFirstBidding(bidding);
 	}
+
+	@Override
+	public String getLastBidder(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingMapper.getLastBidder(aucNo);
+	}
+
+	@Override
+	public List<Bidding> getIpchalList(int bidNo, int aucNo) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bidNo", bidNo);
+		params.put("aucNo", aucNo);
+		
+		return biddingMapper.getIpchalList(params);
+	}
+
+	@Override
+	public int getMaxBiddingNo(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingMapper.getMaxBiddingNo(aucNo);
+	}
+
+	
+
 	
 	
 	
