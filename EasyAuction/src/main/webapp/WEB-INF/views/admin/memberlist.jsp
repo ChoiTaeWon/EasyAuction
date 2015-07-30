@@ -22,21 +22,86 @@
                 url: 'memberlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','관리자툴'],
+                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수','관리자툴'],
                 colModel: [
                     { name: 'mbId', index:'mbId', key: true, width: 80 },
  					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
  					{ name: 'mbEmail', index:'mbEmail', width: 150 },
                     { name: 'mbName', index:'mbName', width: 100 },
-                    { name: 'mbGender', index:'mbGender', width: 75, formatter: function(cellValue,options,rowObject){
+                    { name: 'mbGender', index:'mbGender', width: 65, formatter: function(cellValue,options,rowObject){
                         if(cellValue == false) {
                         	return '<font color="blue">'+'남자'+'</font>';
                         }else if(cellValue == true){
                         	return '<font color="#FF3399">'+'여자'+'</font>';
                         }
                     }},
-                    { name: 'mbRegdate', index:'mbRegdate', width: 150, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
+                    { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
+                    { name: 'mbReportingCount', index: 'mbReportingCount', formatter: function(cellValue,options,rowObject){
+                    	if(cellValue >= 3){
+                    		return '<font color="red">'+cellValue+'회</font>';
+                    	}else {
+                    		return '<font color="black">'+cellValue+'회</font>';
+                    	}
+                    }, width: 100, align: 'right'},
                     { name: 'mbId', width: 150, formatter: imageTool, search: false }
+                ],
+                loadError : function(xhr, status, error) {
+                	console.log(error);
+                },
+                loadComplete: function() {
+                    $("tr.jqgrow:even").css("background", "#ffffff");
+                    $("tr.jqgrow:odd").css("background", "#E6E6E6");
+                    //$("tr.jqgrow:odd").addClass('myAltRowClass');
+                    
+                    $(".delete").click(function(event){
+        				
+        				//var data2 = $("#jqGrid").getCol('mbId');
+        				if(confirm("정말 삭제하시겠습니까?")){
+        					event.preventDefault();
+                            var data = $(this).attr('value');
+        					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
+        				}
+        				
+        			});		
+                },
+				loadonce:true, // just for demo purpose
+                width: 710,
+                height: 500,
+                rowNum: 20,
+				rowList:[20,25,50],
+		
+				sortname: 'mbRegdate',
+                pager: "#jqGridPager",
+				viewrecords: true
+            });
+			$("#jqGrid").jqGrid("navGrid","#jqGridPager",{add:false, edit:false, del:false});
+			
+            $("#deleteList").jqGrid({
+                url: 'memberdeletlist.action',
+                mtype: "POST",
+                datatype: "json",
+                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수','관리자툴'],
+                colModel: [
+                    { name: 'mbId', index:'mbId', key: true, width: 80 },
+ 					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
+ 					{ name: 'mbEmail', index:'mbEmail', width: 150 },
+                    { name: 'mbName', index:'mbName', width: 100 },
+                    { name: 'mbGender', index:'mbGender', width: 65, formatter: function(cellValue,options,rowObject){
+                        if(cellValue == false) {
+                        	return '<font color="blue">'+'남자'+'</font>';
+                        }else if(cellValue == true){
+                        	return '<font color="#FF3399">'+'여자'+'</font>';
+                        }
+                    }},
+                    { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
+                    { name: 'mbReportingCount', index: 'mbReportingCount', width: 100, formatter: function(cellValue,options,rowObject){
+                    	if(cellValue >= 3){
+                    		return '<font color="red">'+cellValue+'회</font>';
+                    	}else {
+                    		return '<font color="black">'+cellValue+'회</font>';
+                    	}
+                    }, align: 'right', formatoptions:{defaultValue:'0 회'} },
+                    { name: 'mbId', width: 150, search: false }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -52,16 +117,19 @@
                 rowNum: 20,
 				rowList:[20,25,50],
 				sortname: 'mbRegdate',
-                pager: "#jqGridPager",
+                pager: "#deleteListPager",
 				viewrecords: true
             });
-			$("#jqGrid").jqGrid("navGrid","#jqGridPager",{add:false, edit:false, del:false});
+			$("#deleteList").jqGrid("navGrid","#deleteListPager",{add:false, edit:false, del:false});
         });
 		function imageTool(cellValue,options,rowObject){
 			var pat = "<a href='/easyauction/admin/message.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_03.gif'></a><div style='padding-top:2px;'></div>";
-			var pat2 = "<a href='/easyauction/admin/editview.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a href='/easyauction/admin/editview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
+			var pat2 = "<a href='/easyauction/admin/memberview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a class='delete' href='#' value="+cellValue+"><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
+			
+			
 			return pat + pat2;
-		};      
+		}; 
+
     </script>
 </head>
 <body>
@@ -91,16 +159,22 @@
 		<div id="tabs">
 		  <ul>
    			<li><a href="#tabs-1">전체회원리스트</a></li>
-    		<li><a href="#tabs-2">신고된회원리스트</a></li>
+    		<li><a href="#tabs-2">삭제/탈퇴리스트</a></li>
  		 </ul>
 		<div id="tabs-1">	
 		 <table id="jqGrid"></table>
    		 <div id="jqGridPager"></div>
    		</div>
    		<div id="tabs-2">
+   		 <table id="deleteList"></table>
+   		 <div id="deleteListPager"></div>
    		</div>    
    		</div>
 		</div><!-- list 끝 -->
+		<div id="footer">
+			<c:import url="/WEB-INF/views/include/footer.jsp" />
+		</div>
+		<div style="width: 960px;">
 	</div>
 </body>
 </html>

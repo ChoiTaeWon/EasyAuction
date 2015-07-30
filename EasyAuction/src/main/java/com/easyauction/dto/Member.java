@@ -83,10 +83,10 @@ public class Member {
 	public void setMbGrade(int mbGrade) {
 		this.mbGrade = mbGrade;
 	}
-	public int getMbReprtiongCount() {
+	public int getMbReportingCount() {
 		return mbReportingCount;
 	}
-	public void setMbReportiongCount(int mbReportingCount) {
+	public void setMbReportingCount(int mbReportingCount) {
 		this.mbReportingCount = mbReportingCount;
 	}
 	public Boolean getMbGrant() {

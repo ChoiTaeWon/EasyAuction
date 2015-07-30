@@ -22,4 +22,12 @@ public class MyAdminService implements AdminService{
 	public List<Member> getMemberList(){
 		return adminRepository.getMemberList();
 	}
+	
+	public void setMemberDelete(String mbId){
+		adminRepository.setMemberDelete(mbId);
+	}
+	
+	public List<Member> getMemberDeleteList(){
+		return adminRepository.getMemberDeleteList();
+	}
 }
