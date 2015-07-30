@@ -61,7 +61,6 @@
                             var data = $(this).attr('value');
         					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
         				}
-        				
         			});		
                 },
 				loadonce:true, // just for demo purpose
@@ -123,12 +122,18 @@
 			$("#deleteList").jqGrid("navGrid","#deleteListPager",{add:false, edit:false, del:false});
         });
 		function imageTool(cellValue,options,rowObject){
-			var pat = "<a href='/easyauction/admin/message.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_03.gif'></a><div style='padding-top:2px;'></div>";
+			var pat = "<a href='#'><img src='/easyauction/resources/images/member_icon_03.gif' onclick='messageBtn(\""+cellValue+"\")'></a><div style='padding-top:2px;'></div>";
 			var pat2 = "<a href='/easyauction/admin/memberview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a class='delete' href='#' value="+cellValue+"><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
 			
 			
 			return pat + pat2;
 		}; 
+		function messageBtn(cellValue2) {
+			    
+				var loginuser = '${loginuser.mbId}';
+				window.open("/easyauction/message/sendmessage.action?mbId="+loginuser+"&receiver="+cellValue2, "쪽지함",
+					"width=700,height=500,titlebar=no");
+		};
 
     </script>
 </head>

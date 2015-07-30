@@ -62,14 +62,7 @@
 			location.href="/easyauction/admin/memberlist.action";
 		})
 		$('#modify').click(function(){
-			var mbPasswd = $('#mbPasswd').val();
-			var passwd1 = $('#passwd1').val();
-			if(mbPasswd != passwd1){
-				alert("패스워드가 일치하지않습니다");
-				$('#passwd1').val("");
-				$('#passwd1').focus();
-				return;
-			}
+			alert('dd');
 			$('#editform').submit();
 		})
 	})
@@ -97,6 +90,7 @@
 
 				<div style="padding: 5px;"></div>
 
+							<form action="memberedit.action" method="post" id="editform">
 				<table width="727px" align="center" cellpadding="0" cellspacing="1"
 					bgcolor="#dcdcdc">
 					<tr>
@@ -105,15 +99,13 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0"
 								align="center">
 								<tr>
-									<td style="padding-left: 5px;" height="20"
-										background="color: white"><b>일반회원 정보수정</b></td>
+									<td style="padding-left: 5px;" height="20"><b>일반회원 정보수정</b></td>
 								</tr>
 							</table>
 
 							<div style="padding: 5px;"></div> <!--구분-->
 
 
-							<form action="memberedit.action" method="post" name="member" id="editform" enctype="multipart/form-data">
 
 								<div style="width: 100%; border: 1px dashed #565dd3;">
 									<div style="margin: 10px;">
@@ -151,8 +143,8 @@
 											<tr>
 												<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif">성별</td>
 												<td>
-													<input type="radio" id="genderm" name='mbGender' value='0' ${member.mbGender eq true ? "checked='checked'" : "" } >남자&nbsp; 
-													<input type="radio" id="genderf" name='mbGender' value='1' ${member.mbGender eq false ? "checked='checked'" : "" }>여자&nbsp;
+													<input type="radio" id="mbGender" name='mbGender' value='0' ${member.mbGender eq true ? "checked='checked'" : "" } >남자&nbsp; 
+													<input type="radio" id="mbGender" name='mbGender' value='1' ${member.mbGender eq false ? "checked='checked'" : "" }>여자&nbsp;
 												</td>
 											</tr>
 											<tr>
@@ -189,11 +181,11 @@
 													</td>
 												
 											</tr>
-											<tr>
+<!-- 											<tr>
 											<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif"
 													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">등급</td>
 											<td>
-											  <select name="mbGrade">
+											  <select name="mbGrade" value="패밀리">
 											  	<option value="0">블랙</option>
 											  	<option value="1">패밀리</option>
 											  	<option value="6">브론즈</option>
@@ -204,16 +196,17 @@
 											  	<option value="31">프리미엄</option>
 											  </select>
 											</td>
-											</tr>
+											</tr> -->
 										</table>
 										<div style="padding: 5px;"></div>
 								</div>
 								</div>
-								</form>
+								
 						</td>
 					</tr>
 					<div style="padding: 5px;"></div>
 				</table>
+				</form>
 				<div style="padding: 5px;"></div>
 				<div align="center">
 				<div style="padding: 5px;"></div>

@@ -1,10 +1,15 @@
 package com.project.easyauction;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +32,14 @@ public class AdminController {
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
+	
+	@InitBinder
+	 public void initBinder(WebDataBinder binder) {
+
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	 dateFormat.setLenient(false);
+	 binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	 }
 	
 	@RequestMapping(value = "memberlist.action", method = RequestMethod.POST)
 	public @ResponseBody List<Member> dealList() {
@@ -59,6 +72,7 @@ public class AdminController {
 		memberService.setEditMember(member);
 		Member member1 = memberService.getMemberById(member.getMbId());
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("admin/membereditview");
 		mav.addObject("member", member1);
 		
