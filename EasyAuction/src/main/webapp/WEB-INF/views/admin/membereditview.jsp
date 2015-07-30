@@ -181,10 +181,10 @@
 													</td>
 												
 											</tr>
-<!-- 											<tr>
+ 											<tr>
 											<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif"
 													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">등급</td>
-											<td>
+<!-- 											<td>
 											  <select name="mbGrade" value="패밀리">
 											  	<option value="0">블랙</option>
 											  	<option value="1">패밀리</option>
@@ -196,7 +196,7 @@
 											  	<option value="31">프리미엄</option>
 											  </select>
 											</td>
-											</tr> -->
+											</tr>  -->
 										</table>
 										<div style="padding: 5px;"></div>
 								</div>
