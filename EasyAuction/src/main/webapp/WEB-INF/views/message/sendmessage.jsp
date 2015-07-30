@@ -45,6 +45,7 @@ $(function(){
 })
 
 </script>
+
 </head>
 <body>
 <!-- 쪽지 해더 -->
@@ -69,7 +70,7 @@ $(function(){
 <td>제목<br /><input align="right" type="text" id='msgTitle' name='msgTitle' style="width:100%;" /><br /></td>
 </tr>
 <tr>
-<td>받는사람<br /><input align="right" type="text" id='msgReceiver' value="${receiver ne null ? receiver : ""}" name='msgReceiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
+<td>받는사람<br /><input align="right" type="text" id='msgReceiver' value="${receiver ne null ? receiver : ''}" name='msgReceiver' style="width:100%;" /><span id="checkresult"></span><br /></td>
 </tr>
 <tr>
 <td>

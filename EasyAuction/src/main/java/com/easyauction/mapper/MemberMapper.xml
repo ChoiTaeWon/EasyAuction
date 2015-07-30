@@ -116,6 +116,9 @@
 		<if test="mbName != null">
 		mbName	=	#{ mbName },
 		</if>
+		<if test="mbGrade != null || mbGrade !=''">
+		mbGrade	=	#{ mbGrade },
+		</if>
 		mbEmail	=	#{ mbEmail }
 	WHERE mbId = #{ mbId }
 </update>
