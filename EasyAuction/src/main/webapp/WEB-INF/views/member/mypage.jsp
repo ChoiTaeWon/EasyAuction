@@ -9,7 +9,9 @@
 <head>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 <link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="/easyauction/resources/js/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#photoreview').click(function(){
@@ -38,11 +40,133 @@ $(function(){
 	$('.myAuctionView').click(function(){
 		$(location).attr('href','/easyauction/auction/showdeal.action?aucno=' + $(this).attr('id'));
 	})
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	$(function(){
+		$( ".btn_drop" ).click(function() {
+		     $(this).next().toggleClass("on");
+		     return false;
+		});
+		$('.dropselect').click(function(){
+			var strArray = $(this).attr('id').split('/');
+			var targetaction = strArray[1];
+			var receiver = strArray[0];
+			var mbId = '${ loginuser.mbId }';
+			if(targetaction=='sendmessage'){
+				window.open("/easyauction/message/sendmessage.action?mbId=" + mbId + "&receiver=" + receiver, "쪽지함",
+				"width=700,height=500,titlebar=no");
+			}else{
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				alert('신고하기');
+				
+				//html로 생성하지않고 페이지에 직접만들어놓고 value값 주입 할것이고 다이얼로그생성코드는 펑션밖에 ready에다가 옮길것임
+				var html =
+				"<div id='reportContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"     
+		        + "<label for='reporter'>신고자</label>"
+		        + "<input id='reporter' type='text' value='" + mbId + "'/>"
+		        + "<label for='targetmbId'>신고할 회원</label>"
+		        + "<input id='targetmbId' type='hidden' value='" + receiver + "' />"
+		        + "<label for='reportText'>신고 사유</label></br>"
+		        + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
+				
+				$('#dialogspot').append(html);
+				//신고하기 dialog 
+					var reportDialog = $('#reportContent').dialog({
+						autoOpen : false,
+						width : 550,
+						height : 400,
+						modal : true,
+						buttons : {
+							신고하기 : doReport,
+							취소 : function() {						
+								reportDialog.dialog("close");
+							}
+						},
+						close : function() {
+							$('#reportText').val('');
+						}
+					});
+				
+				reportDialog.dialog('open')
+					
+				//신고하기 버튼 클릭 시 신고이력 확인 절차	
+					$("#btn_auction_report").click(function(event) {
+						if(mbId != receiver){
+						$.ajax({
+							url : "/easyauction/ajax/memberRepoterCheck.action",
+							async : false,
+							type : "GET",
+							data : {
+								mbId : mbId,
+								mbId1 : receiver
+							},
+							success : function(result){
+								if(result == 0){
+									alert(event + " : event 값");
+									alert("신고 가능 상태");
+									reportDialog.dialog("open");
+								}else{
+									alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
+								}
+							},
+							error : function (){
+								alert("신고 가능 상태 확인 에러.");
+							}
+						});
+						}else{
+							alert("자신을 신고할 수는 없습니다. ");
+						}
+					});
+								
+				//신고 요청 처리
+						function doReport() {
+							
+							$.ajax({
+								url : "/easyauction/ajax/memberReporting.action",	
+								async : false,
+								type : "GET",
+								data : {
+									reporter : $("#reporter").val(),
+									targetmbId : $("#targetmbId").val(),
+									reportText : $("#reportText").val()
+									
+								},
+								success : function(result) {
+									alert(result + ' : result 값' );
+									
+									if (result == 0) {	
+										alert("회원이 신고 되었습니다.");
+										reportDialog.dialog('close');
+									} else {
+										alert('회원 신고 실패');
+									}
+									
+								},
+								error : function() {
+									alert('게시글 신고 실패 + 걍 아예 에러임 ');
+								}
+							});
+							
+						}
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////
+				event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+				event.stopPropagation();//버블링 업 막아줌
+			}
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+			event.stopPropagation();//버블링 업 막아줌
+		})
+	});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 })
 
 
 </script>
+
 </head>
+<table id="dialogspot">
+</table>
 <body>
 <div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
@@ -294,7 +418,19 @@ $(function(){
 						<td align="center" class="smfont" width="110">${ auction.aucNo }</td>
 						<td align="center" class="smfont" width="360">${ auction.aucTitle }</td>
 						<td align="center" class="smfont" width="75">${ auction.aucFinalPrice }</td>
-						<td align="center" class="smfont" width="75">${ auction.aucWriter }</td>
+						<td align="center" class="smfont" width="75">
+							                <!-- sdfhasdkjhfjksadlfjkshad -->
+											<div class="dropDown">
+											<a href="#" class="btn_drop">${ auction.aucWriter }</a>
+												<div class="dropBox">
+													<ul>
+														<li class="dropselect" id='${ auction.aucWriter }/sendmessage'>쪽지보내기</li>
+														<li class="dropselect" id='${ auction.aucWriter }/reporting'>신고하기</li>
+													</ul>
+												</div>
+											</div> 
+											<!-- sdfhasdkjhfjksadlfjkshad -->
+						</td>
 						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
 					</tr>
 			</c:forEach>

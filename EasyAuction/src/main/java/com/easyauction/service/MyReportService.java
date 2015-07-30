@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.BoardReporting;
+import com.easyauction.dto.MemberReporting;
 import com.easyauction.repository.ReportRepository;
 
 @Service("reportService")
@@ -31,7 +32,21 @@ public class MyReportService implements ReportService {
 		
 		return reportRepository.getResultReportCheck(mbId, aucNo);
 	}
-	
+
+
+	@Override
+	public void insertMemberReportingBytargetmbId(MemberReporting memberReporting) {
+		reportRepository.insertMemberReportingBytargetmbId(memberReporting);
+		
+	}
+
+
+	@Override
+	public int getResultMemberReportCheck(String mbId, String receiver) {
+		return reportRepository.getResultMemberReportCheck(mbId, receiver);
+	}
+
+
 	
 
 	

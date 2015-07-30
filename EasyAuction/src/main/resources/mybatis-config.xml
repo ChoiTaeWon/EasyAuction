@@ -16,8 +16,8 @@
 		<typeAlias type="com.easyauction.dto.AuctionImage" alias="auctionImage"/>
 		<typeAlias type="com.easyauction.dto.BoardComment" alias="boardComment"/>
 		<typeAlias type="com.easyauction.dto.Bidding" alias="Bidding"/>
-<!-- 		<typeAlias type="com.easyauction.dto.BoardReporting" alias="BoardReporting"/>
-		<typeAlias type="com.easyauction.dto.MemberReporting" alias="MemberReporting"/> -->
+<!-- 	<typeAlias type="com.easyauction.dto.BoardReporting" alias="BoardReporting"/> -->
+		<typeAlias type="com.easyauction.dto.MemberReporting" alias="MemberReporting"/>
 		<typeAlias type="com.easyauction.dto.AuctionReporting" alias="AuctionReporting"/>
 		
 	</typeAliases>
