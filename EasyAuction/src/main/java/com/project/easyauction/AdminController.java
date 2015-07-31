@@ -71,7 +71,7 @@ public class AdminController {
 		}else if(member.getMbGrade() >= 71 && member.getMbGrade() < 100){
 			member.setMbGrade(71);
 		}else{
-			member.setMbGrade(0);
+			member.setMbGrade(101);
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/membereditview");

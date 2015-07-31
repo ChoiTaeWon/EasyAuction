@@ -64,6 +64,8 @@
 		$('#modify').click(function(){
 			$('#editform').submit();
 		})
+		//$("#mbGrade option:eq(${ member.mbGrade })").attr("selected", "selected");
+		$("#mbGrade").val("${ member.mbGrade }");
 	})
 </script>
 <!-- 다음 주소관련 function 끝 -->
@@ -184,7 +186,7 @@
 											<td class="smfont4"><img src="/easyauction/resources/images/member_nemo_icon.gif"
 													align="absmiddle" border="0" style="margin: 0 10px 0 10px;">등급</td>
 											<td>
-											  <select name="mbGrade" value="${ member.mbGrade }">
+											  <select name="mbGrade" id="mbGrade">
 											  	<option value='0'>블랙</option>
 											  	<option value='1'>패밀리</option>
 											  	<option value='6'>브론즈</option>
