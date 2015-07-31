@@ -192,7 +192,7 @@
 											  	<option value='31'>골드</option>
 											  	<option value='51'>다이아몬드</option>
 											  	<option value='71'>VIP</option>
-											  	<option value='101'>프리미엄</option>
+											  	<option value='101'>P</option>
 											  </select>
 											</td>
 											</tr>
