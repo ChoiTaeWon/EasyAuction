@@ -37,7 +37,7 @@ public interface BoardService {
 	
 	void insertGongjiBoardComment(BoardComment boardComment);
 
-	void updateFreeBoardComment(BoardComment boardComment);
+	void updateFreeBoardComment(HashMap<String, Object> params);
 	
 	void deleteFreeBoardComment(int bcNo);
 	

@@ -129,8 +129,15 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/gongjiregister.action">
-								  <img src="/easyauction/resources/images/write.png"></a>&nbsp;
+				<td align="right">
+				<c:choose>
+				<c:when test="${ sessionScope.loginuser ne null && loginuser.mbGrant ne falses}">
+						<a href="/easyauction/board/gongjiregister.action">
+					    <img src="/easyauction/resources/images/write.png"></a>&nbsp;
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+				</c:choose>
 								  <a href='/easyauction/board/gongji.action'>
 								  <img src="/easyauction/resources/images/list1.png"></a>
 				</td>

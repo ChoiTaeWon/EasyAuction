@@ -96,8 +96,9 @@ public class MyBoardService implements BoardService{
 	}
 	
 	@Override
-	public void updateFreeBoardComment(BoardComment boardComment){
-		boardRepository.updateFreeBoardComment(boardComment);
+	public void updateFreeBoardComment(HashMap<String, Object> params) {
+		boardRepository.updateFreeBoardComment(params);
+		
 	}
 	
 	@Override
@@ -141,6 +142,8 @@ public class MyBoardService implements BoardService{
 	public void updateFreeBoardReadCount(int bdNo) {
 		boardRepository.updateFreeBoardReadCount(bdNo);
 	}
+
+	
 
 	
 }

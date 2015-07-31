@@ -202,11 +202,11 @@
 			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
 	
-	<update id="updateFreeBoardComment" parameterType="BoardComment">
+	<update id="updateFreeBoardComment" parameterType="hashMap">
  	UPDATE 
  		boardcomment
  	SET 
- 		bccontent = #{ bccontent } 
+ 		bccontent = #{ bcContent } 
   	 WHERE bcno = #{ bcNo }
  	</update> 
  	

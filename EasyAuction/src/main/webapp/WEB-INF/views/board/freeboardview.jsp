@@ -9,8 +9,65 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('.bcedit').click(function(event){
+			var bcno = $(this).attr('id').substr(1);//두번째 문자부터 끝까지 읽으세요
+		
+			$("#comment_row_view" + bcno).css("display", "none");
+			$("#comment_row_edit" + bcno).css("display", "block");
+			
+		})
+		
+		$('.bcedit_cancel').click(function(event){			
+			var bcno = $(this).attr('id').substr(1);
+			
+			$("#comment_row_view" + bcno).css("display", "block");
+			$("#comment_row_edit" + bcno).css("display", "none");
+		})
+		
+		$('.bcsujung').click(function(event){			
+			var bcNo = $(this).attr('id').substr(1);			
+			var bcContent = $("#bcContent" + bcNo).val();//수정하기 위해 입력한 내용
+			
+			//location.href="/easyauction/board/freeboard.action?bcno=" + bcno +"&bcontent=" + bcContent;
+			  $.ajax({
+				url : '/easyauction/board/updatefreeboardcomment.action',
+				type : "POST",
+				async : true,
+				data : {
+					bcNo : bcNo,
+					bcContent : bcContent
+					},
+				success : function(data) {
+					 if (data=="${success}") {
+						alert("d");
+						console.log(data);
+					}else{
+						$("#vc" + bcNo).text(bcContent);
+						$("#comment_row_view" + bcNo).css("display", "block");
+						$("#comment_row_edit" + bcNo).css("display", "none");
+					} 
+					console.log(data);
+				},
+				error : function(xhr, status, er) {
+					alert("error");
+				}
+			});
+			
+			/* $("#vc" + bcno).text(bcContent);
+			$("#comment_row_view" + bcno).css("display", "block");
+			$("#comment_row_edit" + bcno).css("display", "none"); */
+			 
+			
+		})
+	})
+	</script>
+	
 </head>
 <body>
+
 	<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -132,17 +189,39 @@
 						<td height="2px"  bgcolor="#EBEBEB"></td>
 					</tr>
 				</table>
-				
 				<c:forEach var="comment" items="${ view.comments }">
 				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
-					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
-						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
-						<!-- 댓글 옆 수정 삭제 -->
-						<td align="right"><a href='/easyauction/board/updatefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+					<tr id="comment_row_view${ comment.bcNo }" style="display: block">
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
+							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' />
+							<b>${ comment.bcWriter }</b>
 						</td>
-						
+						<td width='600' align='left' class="bccontent">
+							<span id="vc${ comment.bcNo }">${ comment.bcContent }</span>&nbsp;&nbsp;
+							<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
+						</td>
+						<!-- 댓글 옆 수정 삭제 -->
+						<td align="right">
+							<%-- <a href='/easyauction/board/updatefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'> --%>
+							<img src='/easyauction/resources/images/sujung.png' id="e${ comment.bcNo }" class='bcedit'><!-- </a> -->
+							<a href='/easyauction/board/deletefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'>
+								<img src='/easyauction/resources/images/delete.png'>
+							</a>
+						</td>
+						<td width='50'></td>
+					</tr>
+					<tr id="comment_row_edit${ comment.bcNo }" style="display:none">
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
+							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> 
+							<b>${ comment.bcWriter }</b>
+						</td>
+						<td width='600' align='left' class="bccontent">
+							<textarea name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
+						</td>
+						<!-- 댓글 옆 수정 삭제 -->
+						<td align="right">
+							<img src='/easyauction/resources/images/sujung.png' id='u${ comment.bcNo }' class="bcsujung">
+							<img src='/easyauction/resources/images/list.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
 						</td>
 						<td width='50'></td>
 					</tr>
@@ -151,13 +230,19 @@
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
-					<input type="hidden" value="${ view.bdWriter }" name="writer" >
+				<form action='comment.action' method='post'>
+					<input type="hidden" name="bdno" value="${ view.bdNo }" /> 
+					<input type="hidden" name="writer" value="${ view.bdWriter }" />
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
-							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
-							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
+							<td>
+								<textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea>
+							</td>
+							<td align=right  width=80>
+								<input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();" />
+							</td>
 						</tr>
+					</table>
 				</form>
 				<!-- 댓글 // 끝 -->
 			</div><!-- list 끝 -->
