@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -76,6 +74,7 @@
 		})
 		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif"); 
 	}
+
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
 				<tr>
@@ -84,6 +83,7 @@
 									<tr>
 										 <c:choose><c:when test="${ sessionScope.loginuser ne null }"> 
 							                <td class="smfont3">${ loginuser.mbName }
+ 
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
 							                <td class="smfont3">│</td>
