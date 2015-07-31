@@ -42,7 +42,6 @@
 					},
 				success : function(data) {
 					 if (data=="${success}") {
-						alert("d");
 						console.log(data);
 					}else{
 						$("#vc" + bcNo).text(bcContent);
@@ -55,12 +54,6 @@
 					alert("error");
 				}
 			});
-			
-			/* $("#vc" + bcno).text(bcContent);
-			$("#comment_row_view" + bcno).css("display", "block");
-			$("#comment_row_edit" + bcno).css("display", "none"); */
-			 
-			
 		})
 	})
 	</script>
