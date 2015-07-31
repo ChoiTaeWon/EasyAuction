@@ -22,8 +22,9 @@
                 url: 'memberlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수','관리자툴'],
+                colNames: ['등급','아이디','연락처','이메일','회원명','성별','가입일','신고횟수','관리자툴'],
                 colModel: [
+                    { name: 'mbGrade', index:'mbGrade', width: 70, formatter: gradeformat},
                     { name: 'mbId', index:'mbId', key: true, width: 80 },
  					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
  					{ name: 'mbEmail', index:'mbEmail', width: 150 },
@@ -42,7 +43,7 @@
                     	}else {
                     		return '<font color="black">'+cellValue+'회</font>';
                     	}
-                    }, width: 100, align: 'right'},
+                    }, width: 80, align: 'right'},
                     { name: 'mbId', width: 150, formatter: imageTool, search: false }
                 ],
                 loadError : function(xhr, status, error) {
@@ -61,7 +62,6 @@
                             var data = $(this).attr('value');
         					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
         				}
-        				
         			});		
                 },
 				loadonce:true, // just for demo purpose
@@ -80,13 +80,13 @@
                 url: 'memberdeletlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수','관리자툴'],
+                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수'],
                 colModel: [
                     { name: 'mbId', index:'mbId', key: true, width: 80 },
  					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
  					{ name: 'mbEmail', index:'mbEmail', width: 150 },
                     { name: 'mbName', index:'mbName', width: 100 },
-                    { name: 'mbGender', index:'mbGender', width: 65, formatter: function(cellValue,options,rowObject){
+                    { name: 'mbGender', index:'mbGender', width: 60, formatter: function(cellValue,options,rowObject){
                         if(cellValue == false) {
                         	return '<font color="blue">'+'남자'+'</font>';
                         }else if(cellValue == true){
@@ -94,14 +94,13 @@
                         }
                     }},
                     { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
-                    { name: 'mbReportingCount', index: 'mbReportingCount', width: 100, formatter: function(cellValue,options,rowObject){
+                    { name: 'mbReportingCount', index: 'mbReportingCount', formatter: function(cellValue,options,rowObject){
                     	if(cellValue >= 3){
                     		return '<font color="red">'+cellValue+'회</font>';
                     	}else {
                     		return '<font color="black">'+cellValue+'회</font>';
                     	}
-                    }, align: 'right', formatoptions:{defaultValue:'0 회'} },
-                    { name: 'mbId', width: 150, search: false }
+                    }, width: 100, align: 'right'}
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -123,12 +122,37 @@
 			$("#deleteList").jqGrid("navGrid","#deleteListPager",{add:false, edit:false, del:false});
         });
 		function imageTool(cellValue,options,rowObject){
-			var pat = "<a href='/easyauction/admin/message.action?mbid="+cellValue+"'><img src='/easyauction/resources/images/member_icon_03.gif'></a><div style='padding-top:2px;'></div>";
+			var pat = "<a href='#'><img src='/easyauction/resources/images/member_icon_03.gif' onclick='messageBtn(\""+cellValue+"\")'></a><div style='padding-top:2px;'></div>";
 			var pat2 = "<a href='/easyauction/admin/memberview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a class='delete' href='#' value="+cellValue+"><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
 			
 			
 			return pat + pat2;
 		}; 
+		function messageBtn(cellValue2) {
+			    
+				var loginuser = '${loginuser.mbId}';
+				window.open("/easyauction/message/sendmessage.action?mbId="+loginuser+"&receiver="+cellValue2, "쪽지함",
+					"width=700,height=500,titlebar=no");
+		};
+		function gradeformat(cellValue,options,rowObject){
+			if(cellValue == 0){
+				return '<font>블랙</font>';
+			}else if(cellValue >= 1 && cellValue <= 5){
+				return '<font>패밀리</font>';
+			}else if(cellValue >= 6 && cellValue <= 15){
+				return '<font>브론즈</font>';
+			}else if(cellValue >= 16 && cellValue <= 30){
+				return '<font>실버</font>';
+			}else if(cellValue >= 31 && cellValue <= 50){
+				return '<font>골드</font>';
+			}else if(cellValue >= 51 && cellValue <= 70){
+				return '<font>다이아몬드</font>';
+			}else if(cellValue >= 71 && cellValue <= 100){
+				return '<font>VIP</font>';
+			}else{
+				return '<font>프리미엄</font>';
+			}
+		};
 
     </script>
 </head>

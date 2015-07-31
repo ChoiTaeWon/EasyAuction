@@ -40,34 +40,7 @@ $(function(){
 					$('#reportText').val('');
 				}
 			});
-			//신고하기 버튼 클릭 시 신고이력 확인 절차	
-			$("#btn_auction_report").click(function(event) {
-				if(mbId != receiver){
-				$.ajax({
-					url : "/easyauction/ajax/memberRepoterCheck.action",
-					async : false,
-					type : "GET",
-					data : {
-						mbId : mbId,
-						mbId1 : receiver
-					},
-					success : function(result){
-						if(result == 0){
-							alert(event + " : event 값");
-							alert("신고 가능 상태");
-							reportDialog.dialog("open");
-						}else{
-							alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
-						}
-					},
-					error : function (){
-						alert("신고 가능 상태 확인 에러.");
-					}
-				});
-				}else{
-					alert("자신을 신고할 수는 없습니다. ");
-				}
-			});
+			
 			//신고 요청 처리
 			function doReport() {
 				
@@ -143,14 +116,35 @@ $(function(){
 				window.open("/easyauction/message/sendmessage.action?mbId=" + mbId + "&receiver=" + receiver, "쪽지함",
 				"width=700,height=500,titlebar=no");
 			}else{
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				alert('신고하기');
-				
-				//html로 생성하지않고 페이지에 직접만들어놓고 value값 주입 할것이고 다이얼로그생성코드는 펑션밖에 ready에다가 옮길것임
 				$('#reporter').attr('value', mbId);
 				$('#targetmbId').attr('value', receiver);
-				//다이얼로그 오픈
-				reportDialog.dialog('open');
+			
+				//신고하기 버튼 클릭 시 신고이력 확인 절차	
+					if(mbId != receiver){
+					$.ajax({
+						url : "/easyauction/ajax/memberRepoterCheck.action",
+						async : false,
+						type : "GET",
+						data : {
+							mbId : mbId,
+							receiver : receiver
+						},
+						success : function(result){
+							if(result == 0){
+								alert(event + " : event 값");
+								alert("신고 가능 상태");
+								reportDialog.dialog("open");
+							}else{
+								alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
+							}
+						},
+						error : function (){
+							alert("신고 가능 상태 확인 에러.");
+						}
+					});
+					}else{
+						alert("자신을 신고할 수는 없습니다. ");
+					}
 				
 				event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 				event.stopPropagation();//버블링 업 막아줌
@@ -159,7 +153,6 @@ $(function(){
 			event.stopPropagation();//버블링 업 막아줌
 		})
 	});
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 })
 

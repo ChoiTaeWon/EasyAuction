@@ -1,10 +1,15 @@
 package com.project.easyauction;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +33,14 @@ public class AdminController {
 	@Qualifier(value="memberService")
 	private MemberService memberService;
 	
+	@InitBinder
+	 public void initBinder(WebDataBinder binder) {
+
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	 dateFormat.setLenient(false);
+	 binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	 }
+	
 	@RequestMapping(value = "memberlist.action", method = RequestMethod.POST)
 	public @ResponseBody List<Member> dealList() {
 		List<Member> members = adminService.getMemberList();
@@ -43,7 +56,23 @@ public class AdminController {
 	@RequestMapping(value = "memberview.action", method = RequestMethod.GET)
 	public ModelAndView view(String mbId) {
 		Member member = memberService.getMemberById(mbId);
-		
+		if(member.getMbGrade() == 0){
+			member.setMbGrade(0);
+		}else if(member.getMbGrade() >= 1 && member.getMbGrade() < 5){
+			member.setMbGrade(1);
+		}else if(member.getMbGrade() >= 6 && member.getMbGrade() < 15){
+			member.setMbGrade(6);
+		}else if(member.getMbGrade() >= 16 && member.getMbGrade() < 30){
+			member.setMbGrade(16);
+		}else if(member.getMbGrade() >= 31 && member.getMbGrade() < 50){
+			member.setMbGrade(31);
+		}else if(member.getMbGrade() >= 51 && member.getMbGrade() < 70){
+			member.setMbGrade(51);
+		}else if(member.getMbGrade() >= 71 && member.getMbGrade() < 100){
+			member.setMbGrade(71);
+		}else{
+			member.setMbGrade(0);
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/membereditview");
 		mav.addObject("member", member);
@@ -59,6 +88,7 @@ public class AdminController {
 		memberService.setEditMember(member);
 		Member member1 = memberService.getMemberById(member.getMbId());
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("admin/membereditview");
 		mav.addObject("member", member1);
 		
