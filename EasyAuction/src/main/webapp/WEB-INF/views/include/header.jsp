@@ -15,7 +15,7 @@
 		   }
 		   // Google Chrome
 		   else if(window.chrome){
-		      alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+		      /* alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다."); */
 		      
 		   }
 		   // Firefox
@@ -120,11 +120,17 @@
 						<tr>
 							<td style="width: 60%;height:30px;">
 								<ul class="main_top_menu">
-									<li class="smfont10"><a href="/easyauction/admin/memberlist.action">관리자</a></li>
-									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
-									<li class="smfont10"><a href="/easyauction/auction/auction.action">경매 ㄱㄱ</a></li>
+									<li class="smfont10"><a href="/easyauction/auction/auction.action">일반경매</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
-									<li class="smfont10"><a href="#">이용안내</a></li>
+									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
+									<c:choose>
+									<c:when test="${ sessionScope.loginuser ne null && loginuser.mbGrant ne false }">
+									<li class="smfont10"><a href="/easyauction/admin/memberlist.action">관리자</a></li>
+									</c:when>
+									<c:otherwise></c:otherwise>
+									</c:choose>
+									
+									<!-- <li class="smfont10"><a href="#">이용안내</a></li> -->
 								</ul>
 							
 							</td>

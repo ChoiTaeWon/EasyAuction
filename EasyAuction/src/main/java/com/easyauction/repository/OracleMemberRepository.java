@@ -102,5 +102,12 @@ public class OracleMemberRepository implements MemberRepository {
 		return member;
 	}
 
+
+	@Override
+	public void setMemberReportingUpdate(String targetmbId) {
+		memberMapper.setMemberReportingUpdate(targetmbId);
+		
+	}
+
 	
 }

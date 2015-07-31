@@ -37,5 +37,7 @@ public interface MemberService {
 
 	public Member getMemberByEmail(String email, String mbId, String mbPasswd);
 
+	public void setMemberReportingUpdate(String targetmbId);
+
 
 }

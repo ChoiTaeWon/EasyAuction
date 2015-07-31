@@ -69,5 +69,10 @@ public class MyMemberService implements MemberService {
 		Member member = mbrepo.getMemberByEmail(mbId, email, mbPasswd);
 		return member;
 	}
+	@Override
+	public void setMemberReportingUpdate(String targetmbId) {
+		mbrepo.setMemberReportingUpdate(targetmbId);
+		
+	}
 
 }
