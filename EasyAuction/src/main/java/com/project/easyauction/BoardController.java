@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -88,7 +89,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, 
+										 @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
@@ -102,7 +104,6 @@ public class BoardController {
 	@RequestMapping(value = "updatefreeboard.action", method = RequestMethod.GET)
 	public ModelAndView updatefreeboard(int bdno, int pageno, Board board) {
 		Board board1 = boardService.getFreeBoardViewByBoardNo(bdno);
-		System.out.println(board1);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/updatefreeboard");
 		mav.addObject("view", board1);
@@ -111,19 +112,26 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="updatefreeboard.action", method= RequestMethod.POST)
-	public String updatefreeboard2(int bdno, int pageno, Board board) {
-
+	public String updatefreeboard2(int pageNo, Board board) {
+		System.out.println("aslkdlasdj");
 		boardService.updateFreeBoard(board);
 		
-		return "redirect:/board/updatefreeboard.action?boardno="+bdno+"&pageno="+ pageno;
+		return "redirect:/board/freeboardview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
 	}
 	
-	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.GET)
-	public String updateComment(int pageno, int bdno, int bcno, @ModelAttribute BoardComment boardcomment) {
-
-		boardService.updateFreeBoardComment(boardcomment);
-		return "redirect:/board/freeboardview.action?bdno="+bdno+"&bcno="+bcno+"&pageno="+ pageno;
+	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
+	public ModelAndView updateFreeBoardComment(int bcNo, String bcContent) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bcNo", bcNo);
+		params.put("bcContent", bcContent);
+		boardService.updateFreeBoardComment(params);
+		/*return "redirect:/board/freeboardview.action?bdno="+bdno+"&bcno="+bcno+"&pageno="+ pageno*/
+		ModelAndView mav = new ModelAndView();
+		String success = "success";
+		mav.addObject("success",success);
+		return mav;
 	}
+	
 	
 	@RequestMapping(value="deletefreeboard.action", method= RequestMethod.GET)
 	public String deletefreeboard(int bdno, int pageno) {
@@ -421,17 +429,5 @@ public class BoardController {
 		return mav;
 		
 	}
-	
-	/*@RequestMapping(value = "freeboardcount.action", method = RequestMethod.GET)
-	public String freeboardcountList() {
-		
-		return "board/freeboardlist";
-	}*/
-	
-	/*@RequestMapping(value = "freeboardcommentcount.action", method = RequestMethod.GET)
-	public String freeboardcommentcountList() {
-		
-		return "board/freeboardview";
-	}*/
 }
 
