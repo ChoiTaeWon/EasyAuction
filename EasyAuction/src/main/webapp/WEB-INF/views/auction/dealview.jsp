@@ -21,7 +21,8 @@
  			return;
  		}
 		now = new Date(); 
-		days = (dday - now) / 1000 / 60 / 60 / 24; 
+		//days = (dday - now) / 1000 / 60 / 60 / 24;
+		days = (now.getTime() - dday.getTime()) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days); 
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
 		hRound = Math.floor(hours); 
@@ -56,6 +57,7 @@
 	
 	 $(function(){
 		var aucState = ${auction.aucState};
+		var checkDate=null;
 
 		var startDate = "<fmt:formatDate value='${auction.aucStartDate}' pattern='yyyy-MM-dd HH:mm:ss' />";
 		var endDate = "<fmt:formatDate value='${auction.aucEndDate}' pattern='yyyy-MM-dd HH:mm:ss' />";
@@ -88,7 +90,7 @@
 			
 			$("#dayText").empty();
 			$("#dayText").html("경매 마감까지 남은 시간 :"); 
-			
+			checkDate = new Date(endYear, endMonth, endDay, endHour, endMinute, 00);
 			dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
 			getTime(endYear,endMonth,endDay,endHour, endMinute);
 			
@@ -100,6 +102,11 @@
 			alert(aucState);
 			
 		}
+		
+		if((checkDate-new Date())<0){
+			
+		}
+		
 	 });	
 	
 	
@@ -114,7 +121,7 @@ var aucWriter = null;
 var refreshTimer = null;
 var maxBiddNo= -1;
 var time = 1000 * 5; 
-
+var aucState = ${auction.aucState};
 
  $(function(){
 	  bidderId = $("#loginuserId").val();
@@ -206,36 +213,41 @@ var time = 1000 * 5;
 		}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //입찰하기 
+//if(aucState == 2){
 	$('#doIpchal').on({
 		click :function(event){
 				var e;
-				if(bidderId != aucWriter){
-					$.ajax({
-						url : "/easyauction/ajax/selectLastBidder.action",
-						async : false,
-						type : "GET",
-						data : {
-							mbId : bidderId,
-							aucNo : auctionNo
-						},
-						success : function(result){
-							if(result == 0){
-								e = 0;
-								alert(event + " : event 값");
-								alert("입찰 가능 상태");
-							}else{
-								e = 1;
-								alert("방금 입찰하셨습니다.");
-							}
-						},
-						error : function (){
-							alert("입찰 가능 상태 확인 에러.");
+				if(aucState == 1){
+						if(bidderId != aucWriter){
+							$.ajax({
+								url : "/easyauction/ajax/selectLastBidder.action",
+								async : false,
+								type : "GET",
+								data : {
+									mbId : bidderId,
+									aucNo : auctionNo
+								},
+								success : function(result){
+									if(result == 0){
+										e = 0;
+										alert(event + " : event 값");
+										alert("입찰 가능 상태");
+									}else{
+										e = 1;
+										alert("방금 입찰하셨습니다.");
+									}
+								},
+								error : function (){
+									alert("입찰 가능 상태 확인 에러.");
+								}
+								
+							});
+						}else{
+							alert("자신의 글에는 입찰 할 수 없습니다. ");
 						}
-						
-					});
 				}else{
-					alert("자신의 글에는 입찰 할 수 없습니다. ");
-				}
+					alert("입찰 불가능한 상태입니다.");
+				}		
 				
 				if(e == 0){
 					$.ajax({
@@ -274,7 +286,7 @@ var time = 1000 * 5;
 	
 			
 	});
-	
+
  
  	
  
@@ -287,12 +299,15 @@ var time = 1000 * 5;
 		height : 400,
 		modal : true,
 		buttons : {
-			닫기 : function() {						
+			닫기 : function() {		
+				$('#ipchalListTR').empty();				
+				$('#ipchalListTR').remove();
 				ipchalListDialog.dialog("close");
 			}
 		},
 		close : function() {
-			$('#ipchalListTR').empty();
+			$('#ipchalListTR').empty();	
+			$('#ipchalListTR').remove();
 		}
 	});
 	
@@ -311,7 +326,7 @@ var time = 1000 * 5;
 						var bidLength= biddingLists.length;
 						var html =null;
 						$.each(biddingLists, function(index, item){
-							html="<tr class='smfont12' style='width:100%;text-align: right;'><td style='width: 25%'>" 
+							html="<tr class='smfont12' style='width:100%;text-align: right;' id='ipchalListTR'><td style='width: 25%'>" 
 									+ (bidLength-index) + "번 </td><td style='width: 30%'>"
 									+ item.mbId + "</td><td style='width: 45%'>"+item.bidPrice + "원 </td></tr>";
 						
@@ -442,6 +457,7 @@ $(function(){
 	  
 	    
 <body>
+		
 		<div id="reportContent" title="게시글 신고하기" style="display: none;width: 300px;height: 250px">	        
 			        <label for="reporter">신고자</label>
 			        <input id="reporter" type="text" value="${ loginuser.mbId }" readonly="readonly"/>
@@ -640,7 +656,7 @@ $(function(){
 																		<table style="width: 100%;"  >
 																			<tr>
 																				<td align="center" style="padding:0;margin:0;">
-																					<img src="/easyauction/resources/images/clock_icon.png" style="padding:0;margin:0;width: 44px;height: 44px;">
+																					<img src="/easyauction/resources/images/clock_icon.png" style="padding-left:10px;margin:0;width: 44px;height: 44px;">
 																				</td>
 																				<td align="center">
 																						<div class="deal_time_blank"></div> 
@@ -762,7 +778,7 @@ $(function(){
 										<table style="border:1px solid #DFDFDF; width:100%;">
 										<tr>
 											<td style="padding:5px; background-color:#F0F0F0;" align="center">
-												<table id="biddinglist"  width="100%">
+												<table id="biddinglist" style="width: 100%;" >
 													<tr>
 														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 													</tr>
@@ -782,10 +798,10 @@ $(function(){
 										
 										<div style="padding:5px;"></div>
 										<!--실시간 입찰현황-->
-										<table style="border:1px solid #DFDFDF; width:100%;">
+										<table style="width:100%;">
 											<tr>
 												<td>
-													<img id="btn_realTime" class="js-realTime" src="/easyauction/resources/images/realTime_before_start.png" width="250">
+													<img id="btn_realTime" class="js-realTime" src="/easyauction/resources/images/realTime_before_start.png" width="100%">
 												</td>
 												<td>
 													
