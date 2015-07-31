@@ -39,6 +39,7 @@
 					 jQuery.Event('keypress', { keyCode : 68, which : 68, ctrlKey : true  })
 			  );
 		       */
+		       /* addEvent('keyup', { keyCode : 68, which : 68, ctrlKey : true  }).trigger('keyup'); */
 		      
 		   }
 		   // Firefox
@@ -58,9 +59,9 @@
 		   }
 	 } 
 	$(function(){
-		/* $(document).keyup(function(event) {
+		$(document).keyup(function(event) {
 			alert(event.keyCode + "/" + event.ctrlKey)
-		}); */
+		});
 		
 		$("#message").click(function(event) {
 			
