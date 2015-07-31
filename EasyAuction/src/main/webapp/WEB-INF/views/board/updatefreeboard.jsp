@@ -12,6 +12,7 @@
 	<script type="text/javascript">
 	$(function(){
 		$('#formsubmit').click(function(){
+			alert('수정하시겠습니까?');
 			$('#sujung').submit();
 			
 		})
@@ -52,119 +53,63 @@
 				</td>
 			</tr>
 				
-				<table width="100%">
-					<tr>
-						<td height="1" bgcolor="#e6e6e6"></td>
-					</tr>
-					<tr>
-						<td height="26" bgcolor="#f8f8f8">
-							<table width="100%">
-								<tr>
-									<td align="center" class="smfont"><font color="#666666">제목</font></td>
-									<td width="1" bgcolor="#e6e6e6"></td>
-									<td align="center" class="smfont" width="90"><font color="#666666">작성자</font></td>
-									<td width="1" bgcolor="#e6e6e6"></td>
-									<td align="center" class="smfont" width="90"><font color="#666666">작성일자</font></td>
-									<td width="1" bgcolor="#e6e6e회"></td>
-									<td align="center" class="smfont" width="40"><font color="#666666">조회</font></td>
-								</tr>
-							</table>
-						</td>		
-					</tr>
-					<tr>
-						<td height="1" bgcolor="#e6e6e6"></td>
-					</tr>		
-				 </table>
-				 <div style="padding:3px;"></div>
-				 <form method="post" action="updatefreeboard.action" id="sujung">
-				 <table width="100%">
-				 	<tr height="26">
-				 	  <b><input type="hidden" name="bdno" value=${ view.bdNo } /></b></td>
-				 	  <td width="1">
-				 	  <input type="hidden" name="pageno" value=${ pageno } />
-				 	  
-				 	  <td align="left" name="bdtitle" style="padding-left:10px;"><b>${ view.bdTitle }</b></td>
-				 	  <td width="1"></td>
-				 	  <td width="90" align="center" name="bdwriter" >${ view.bdWriter }</td>
-				 	  <td width="1"></td>
-				 	  <td width="90" align="center" name="bddate" >${ view.bdDate }</td>
-				 	  <td width="1"></td>
-				 	  <td align="center" width="40" name="bdcount" >${ view.bdReadCount }</td>
-				 	 
-				 	</tr>
-				 	</form>
-				 	<table border='0' width='100%' cellspacing='0' cellpadding='0'>
-					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
-						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
-						<td align="left" style="padding-left:10px;">
-				 	 	<%-- <b><input type="text" name="title" value=${ comment.bcContent } /></b><font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td> --%>
+				<form method='post' action='updatefreeboard.action' enctype="multipart/form-data" id="sujung" name='board'>
+				<input type=hidden name='bdNo' value='${ view.bdNo }'>
+				<input type=hidden name='pageNo' value='${ pageno }'>
+				 
+				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							<td height="1" bgcolor="#DEDEDE"></td>
+						</tr>
+						<tr height="30">
+							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp;게시물수정하기</td>
+						</tr>
+						<tr>
+							<td height="1" bgcolor="#DEDEDE"></td>
+						</tr>
+						</table>
+				
+						<div style="padding:1px;"></div>
+				 		
+						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+						<tr height="28">
+							<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
+							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='bdWriter' value=${ view.bdWriter } maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+						</tr>
+						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
+						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						
+						<tr height="28">
+							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>제목</td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input name='bdTitle' type='text'  value=${ view.bdTitle } style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='' size="70" maxlength="50"></td>
+						</tr>
+						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
+						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
+						<tr height="28">
+							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>내용</td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px; padding-top:5px"><textarea name="bdContent" cols="100" rows="20" style='font-size:12px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'>${ view.bdContent }</textarea></td>
+						</tr>
+						<tr><td height="5"></td></tr>
+						<tr><td height="5"></td></tr>
+						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
+						<tr><td height="5"></td></tr>
+						<tr><td height="5"></td></tr>
+						</table>
+					</td>
+				</tr>
 						
-						<!-- 내용 옆 수정 삭제 -->
-						<td align="right">
-						<img src='/easyauction/resources/images/sujung.png' id="formsubmit">
-						<a href='/easyauction/board/freeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
-						</td>
-						
-						</td>
-						<td width='50'>
-						</td>
-						
-					</tr>
-					<tr>
-						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
-					</tr>
+				<!-- 내용 옆 수정 삭제 -->
+				<td align="right">
+					<img src='/easyauction/resources/images/sujung.png' id="formsubmit">
+					<a href='/easyauction/board/freeboardview.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
+				</td>
+				
 				</table>
-				    <tr>
-						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>
-					</tr>
-					<tr>
-						<td style="padding:15 0 20 0;">
-						<div  id="ct" class="WYS" align="justify" style="font-size:12px; line-height:21px; border:0px solid red; word-break:break-all;">
-							<div style="border-bottom: red 0px solid; border-left: red 0px solid; line-height: 1.6; font-size: 14px; word-break: break-all; border-top: red 0px solid; border-right: red 0px solid" id="ct" align="justify"><br />
-							<table>
-								<tr>
-								 <c:forEach var="images" items="${ view.boardImage }">
-								  <td><img src="/easyauction/resources/imagefile/${ images.bdImgName }"><br /></td>
-								 </c:forEach>
-								</tr>
-								<tr>
-								  <b><input type="text" name="content" value=${ view.bdContent } /></b></td>
-								</tr>
-							</table>
-							</div>
-						</div>
-						</td>
-					</tr>
-				 </table>
-				 
-				 <!-- 내용 바로 밑의 밑줄 -->
-				 <table width="100%" border="0">
-					<tr>
-						<td height="2px" bgcolor="#EBEBEB"></td>
-					</tr>
-				 </table>
-				 
-				 <div style="padding:3px;"></div>
-				<!-- 댓글 // 시작 -->
-				<!-- <table width="100%" border="0">
-					<tr>
-						<td height="2px" bgcolor="#EBEBEB"></td>
-					</tr>
-					<tr>
-						<td height="20px" align="left" style="background-color:#F4F4F4;"><font color="">&nbsp;&nbsp;<img src="/easyauction/resources/images/ico_arrow_01.gif" width="9px" height="9px" border="0" align="absmiddle">&nbsp;&nbsp;comment</b></font></td>
-					</tr>
-					<tr>
-						<td height="2px"  bgcolor="#EBEBEB"></td>
-					</tr>
-				</table> -->
-				
-				
-				
-				<!-- 댓글 // 끝 -->
-			</div><!-- list 끝 -->
-		</div>
+				</form>
+			</table>
 	</div> <!-- A 끝 -->	
 </body>
 </html>
