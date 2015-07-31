@@ -14,6 +14,7 @@ import com.easyauction.common.Util;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
+import com.easyauction.dto.Member;
 import com.easyauction.dto.MemberReporting;
 import com.easyauction.service.AuctionService;
 import com.easyauction.service.BiddingService;
@@ -213,9 +214,11 @@ public class AjaxController {
 		memberReporting.setMrpTarget(targetmbId);
 		memberReporting.setMrpContent(reportText);
 		
-		System.out.println("신고하기 내용" + "////" + reporter +"////" +targetmbId +"////" +reportText );
 		reportService.insertMemberReportingBytargetmbId(memberReporting);
-		
+		Member member = new Member();
+		member.setMbId(targetmbId);
+		//맴버 신고횟수 +1 해야함
+		//mbgsvc.setEditMember(member);
 		return result;
 	}
 		

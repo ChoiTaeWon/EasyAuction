@@ -83,7 +83,10 @@
 		if('${ failedid }'!= '' ){
 			alert('아이디와 비밀번호를 확인해 주십시오');
 		}
-		
+		$(".findMember").click(function(event){
+			$(location).attr('href','/easyauction/member/email.action?locationurl=' + $(this).attr('id'));
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		})
 	})
 	
 	
@@ -132,7 +135,7 @@
 		<tr>
 			<td colspan="2">
 
-				<table border='0' style="margin-top:10px; margin-left:8px;">
+				<!-- <table border='0' style="margin-top:10px; margin-left:8px;">
 				<tr>
 					<td class="smfont" align="left">
 						<input type="checkbox" name="save" onclick="happy_member_autologin()" id="save_login" value=""  title="아이디저장" TabIndex="3" style="vertical-align:middle; margin-bottom:2px;"> <label for="save_login" style="color:#868686; letter-spacing:-1px;">아이디 저장</label>
@@ -141,7 +144,7 @@
 						<input type="checkbox" name="auto_login_use" id="auto_login_use" value="y" onClick="happy_member_auto_login_use()" style="vertical-align:middle; margin-bottom:2px;"> <label for="auto_login_use" style="color:#868686; letter-spacing:-1px;">자동로그인</label>
 					</td>
 				</tr>
-				</table>
+				</table> -->
 
 			</td>
 		</tr>
@@ -157,9 +160,9 @@
 		<tr>
 			<td class="smfont"><b><A HREF="/easyauction/member/register.action"><font color="#000000">회원가입</font></a></b></td>
 			<td width="30" align="center">ㅣ</td>
-			<td class="smfont"><a href=#">아이디찾기</font></a></td>
+			<td class="smfont"><a href="#" class="findMember" id="findmbId">아이디찾기</a></td>
 			<td width="30" align="center">ㅣ</td>
-			<td class="smfont"><A HREF="#">비밀번호 찾기</font></a></td>
+			<td class="smfont"><a href="#" class="findMember" id="findPasswd">비밀번호찾기</a></td>
 		</tr>
 		</table>
 	</td>

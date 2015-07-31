@@ -10,7 +10,8 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 </head>
 
-	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
   <script>
 	function initialize() {
 
@@ -70,7 +71,91 @@
 		</div>
 		<br/>
 		
+		<div style="width: 960px;float: left;padding: 0 0 0 0;margin: 0 0 0 0;">
+			<table style="width: 100%" >
+				<tr>
+					<td style="text-align:left;width: 95%">
+						<img src="/easyauction/resources/images/direct_deal_ko.png" style="width: 100px;height: 31px">
+						<img src="/easyauction/resources/images/direct_deal_en.png" style="width: 125px;height: 31px">
+					</td>
+				
+					<td style="text-align:center;width: 5%"><a href="dealregister.action">
+					<img  src="/easyauction/resources/images/write.png" style="padding-bottom: 5px"></a></td>
+				</tr>
+			</table>
+		</div>
+		
+		
 		<div id="map_view" class="mapview"></div>
+		
+	<br /><br/>
+		
+		
+		
+		<section id="wrapper">
+		    <article>
+		      <p>Finding your location: <span id="status">checking...</span></p>
+		    </article>
+		    
+			<script>
+					function success(position) {
+					  var s = document.querySelector('#status');
+					  
+					  if (s.className == 'success') {
+					    // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
+					    return;
+					  }
+					  
+					  s.innerHTML = "found you!";
+					  s.className = 'success';
+					  
+					  var mapcanvas = document.createElement('div');
+					  mapcanvas.id = 'mapcanvas';
+					  mapcanvas.style.height = '400px';
+					  mapcanvas.style.width = '950px';
+					    
+					  document.querySelector('article').appendChild(mapcanvas);
+					  
+					  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+					  var myOptions = {
+					    zoom: 15,
+					    center: latlng,
+					    mapTypeControl: false,
+					    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+					    mapTypeId: google.maps.MapTypeId.ROADMAP
+					  };
+					  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+					  
+					  var marker = new google.maps.Marker({
+					      position: latlng, 
+					      map: map, 
+					      title:"You are here! (at least within a "+position.coords.accuracy+" meter radius)"
+					  });
+					}
+					
+					function error(msg) {
+					  var s = document.querySelector('#status');
+					  s.innerHTML = typeof msg == 'string' ? msg : "failed";
+					  s.className = 'fail';
+					  
+					  // console.log(arguments);
+					}
+					
+					if (navigator.geolocation) {
+					  navigator.geolocation.getCurrentPosition(success, error);
+					} else {
+					  error('not supported');
+					}
+			
+			</script>
+		
+		</section>
+
+
+		
+		
+		
+		
 		
 		
 		<br/>
