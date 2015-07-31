@@ -11,8 +11,47 @@
 </head>
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+ /* $(function(){
+	var directList = [];
+	
+	$.ajax({
+		url : "easyauction/ajax/selectDirectDealList.action",
+		async : false,
+		type : "GET",
+		data : {
+			aucType : 1
+		},
+		success : function(directLists){
+			if(directLists != null){
+				$.each(directLists, function(index, item){
+					var obj = ({
+						
+					});
+				});
+					
+				
+			}else{
+				alert
+			}
+		},
+		error : function(){
+			alert("directLists 불러오기 에러");
+		}
+			
+		
+	});
+	 
+	 
+ }); */
+
+
+</script>
+
 	
   <script>
+  
 	function initialize() {
 
 		/*
