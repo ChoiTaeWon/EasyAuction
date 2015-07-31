@@ -137,17 +137,17 @@
 		function gradeformat(cellValue,options,rowObject){
 			if(cellValue == 0){
 				return '<font>블랙</font>';
-			}else if(cellValue >= 1 && cellValue < 5){
+			}else if(cellValue >= 1 && cellValue <= 5){
 				return '<font>패밀리</font>';
-			}else if(cellValue >= 6 && cellValue < 15){
+			}else if(cellValue >= 6 && cellValue <= 15){
 				return '<font>브론즈</font>';
-			}else if(cellValue >= 16 && cellValue < 30){
+			}else if(cellValue >= 16 && cellValue <= 30){
 				return '<font>실버</font>';
-			}else if(cellValue >= 31 && cellValue < 50){
+			}else if(cellValue >= 31 && cellValue <= 50){
 				return '<font>골드</font>';
-			}else if(cellValue >= 51 && cellValue < 70){
+			}else if(cellValue >= 51 && cellValue <= 70){
 				return '<font>다이아몬드</font>';
-			}else if(cellValue >= 71 && cellValue < 100){
+			}else if(cellValue >= 71 && cellValue <= 100){
 				return '<font>VIP</font>';
 			}else{
 				return '<font>프리미엄</font>';

@@ -56,7 +56,23 @@ public class AdminController {
 	@RequestMapping(value = "memberview.action", method = RequestMethod.GET)
 	public ModelAndView view(String mbId) {
 		Member member = memberService.getMemberById(mbId);
-		
+		if(member.getMbGrade() == 0){
+			member.setMbGrade(0);
+		}else if(member.getMbGrade() >= 1 && member.getMbGrade() < 5){
+			member.setMbGrade(1);
+		}else if(member.getMbGrade() >= 6 && member.getMbGrade() < 15){
+			member.setMbGrade(6);
+		}else if(member.getMbGrade() >= 16 && member.getMbGrade() < 30){
+			member.setMbGrade(16);
+		}else if(member.getMbGrade() >= 31 && member.getMbGrade() < 50){
+			member.setMbGrade(31);
+		}else if(member.getMbGrade() >= 51 && member.getMbGrade() < 70){
+			member.setMbGrade(51);
+		}else if(member.getMbGrade() >= 71 && member.getMbGrade() < 100){
+			member.setMbGrade(71);
+		}else{
+			member.setMbGrade(0);
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/membereditview");
 		mav.addObject("member", member);
