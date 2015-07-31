@@ -92,8 +92,8 @@ var newtime = null;
 			<table style="width: 100%" >
 				<tr>
 					<td style="text-align:left;width: 95%">
-						<img src="/easyauction/resources/images/deal_list.png" style="width: 125px;height: 31px">
-						<img src="/easyauction/resources/images/deal_list_eng.png" style="width: 125px;height: 31px">
+						<img src="/easyauction/resources/images/deal_list_ko.png" style="width: 90px;height: 31px">
+						<img src="/easyauction/resources/images/deal_list_en.png" style="width: 100px;height: 31px">
 					</td>
 				
 					<td style="text-align:center;width: 5%"><a href="dealregister.action">
@@ -240,7 +240,7 @@ var newtime = null;
 									<div style="width: 100%;height: 30px">
 										<c:choose>
 											<c:when test="${ auction.aucState eq 0 }">
-												<div class="deal_time_list_day">경매 시작까지 : <span id="dayText${ auction.aucNo }"></span></div>
+												<div class="deal_time_list_day">경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var startYear = ${ startYear };
