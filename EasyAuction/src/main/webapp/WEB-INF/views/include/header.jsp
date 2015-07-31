@@ -17,6 +17,29 @@
 		   else if(window.chrome){
 		      /* alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다."); */
 		      
+		      /* var keyboardEvent = document.createEvent("KeyboardEvent");
+		      var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+
+
+		      keyboardEvent[initMethod](
+		                         "keypress", // event type : keydown, keyup, keypress
+		                          true, // bubbles
+		                          true, // cancelable
+		                          window, // viewArg: should be window
+		                          true, // ctrlKeyArg
+		                          false, // altKeyArg
+		                          false, // shiftKeyArg
+		                          false, // metaKeyArg
+		                          68, // keyCodeArg : unsigned long the virtual key code, else 0
+		                          0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
+		      );
+		      document.dispatchEvent(keyboardEvent); */
+		      
+			  /* jQuery(document).trigger(
+					 jQuery.Event('keypress', { keyCode : 68, which : 68, ctrlKey : true  })
+			  );
+		       */
+		      
 		   }
 		   // Firefox
 		   else if (window.sidebar) // firefox 
@@ -35,8 +58,12 @@
 		   }
 	 } 
 	$(function(){
+		/* $(document).keyup(function(event) {
+			alert(event.keyCode + "/" + event.ctrlKey)
+		}); */
+		
 		$("#message").click(function(event) {
-			alert('${loginuser.mbId}');
+			
 			var mbId = '${loginuser.mbId}';
 			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
 				"width=700,height=500,titlebar=no");
@@ -120,6 +147,7 @@
 						<tr>
 							<td style="width: 60%;height:30px;">
 								<ul class="main_top_menu">
+									<li class="smfont10"><a href="/easyauction/board/gongji.action">공지사항</a></li>
 									<li class="smfont10"><a href="/easyauction/auction/auction.action">일반경매</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
 									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
