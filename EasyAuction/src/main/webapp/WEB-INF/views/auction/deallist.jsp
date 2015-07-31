@@ -164,11 +164,9 @@ var newtime = null;
 									<div style="position:relative; z-index:0;">
 										<div style="position:absolute; left:0px; top:0px; z-index:0;"></div>
 									</div>
-									<c:forEach var="image" items="${ auction.auctionImage }">
 										<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action?aucno=${ auction.aucNo }'>
-												<img src="/easyauction/resources/imagefile/${ image.aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
+												<img src="/easyauction/resources/imagefile/${ auction.auctionImage[0].aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
 										</div>
-									</c:forEach>
 								</td>
 	
 								<td style="padding-left:10px; text-align:left">
@@ -251,7 +249,7 @@ var newtime = null;
 													//var dday = new Date(startYear,startMonth,startDay,startHour, startMinute, 00);
 													var obj =  {
 														"id" : "${auction.aucNo}",
-														"dday" : new Date(startYear,startMonth,startDay,startHour, startMinute, 00)
+														"dday" : new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00)
 													};
 													ddaylist.push(obj);
 													//getTime(startYear,startMonth,startDay,startHour, startMinute, 00);
@@ -259,7 +257,7 @@ var newtime = null;
 												
 											</c:when>
 											<c:when test="${ auction.aucState eq 1 }">
-												<div class="deal_time_list_day" id="dayText">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span></div>
+												<div class="deal_time_list_day" id="dayText">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var endYear = ${ endYear };
@@ -269,7 +267,7 @@ var newtime = null;
 													var endMinute = ${ endMinute };
 													var obj =  {
 														"id" : "${auction.aucNo}",
-														"dday" : new Date(startYear,startMonth,startDay,startHour, startMinute, 00)
+														"dday" : new Date(endYear,Number(endMonth)-1,endDay,endHour, endMinute, 00)
 													};
 													ddaylist.push(obj);
 													//dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00);
