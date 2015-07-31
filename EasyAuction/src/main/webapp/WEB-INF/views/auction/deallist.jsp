@@ -164,11 +164,9 @@ var newtime = null;
 									<div style="position:relative; z-index:0;">
 										<div style="position:absolute; left:0px; top:0px; z-index:0;"></div>
 									</div>
-									<c:forEach var="image" items="${ auction.auctionImage }">
 										<div style="width:140px; border:1px solid #DEDEDE;"><a href='showdeal.action?aucno=${ auction.aucNo }'>
-												<img src="/easyauction/resources/imagefile/${ image.aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
+												<img src="/easyauction/resources/imagefile/${ auction.auctionImage[0].aucImgName }" style="width:140px; height:120px;" align="absmiddle" ></a>
 										</div>
-									</c:forEach>
 								</td>
 	
 								<td style="padding-left:10px; text-align:left">
