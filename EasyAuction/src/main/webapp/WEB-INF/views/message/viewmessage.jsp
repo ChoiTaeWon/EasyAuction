@@ -12,8 +12,10 @@
 $(function(){
 		var mbId = '${mbId}';
 		var pageId = '${pageId}';
-		alert(pageId);
 		var receiver = '${ message.msgSender }';
+		if(pageId == 'sendmessages'){
+			$('#reply').css("display", "none");
+		}
 	$("li").click(function(event) {
 		var id = $(this).attr("id");
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId;

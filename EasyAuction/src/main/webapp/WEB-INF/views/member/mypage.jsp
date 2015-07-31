@@ -19,7 +19,7 @@ $(function(){
         + "<label for='reporter'>신고자</label>"
         + "<input id='reporter' type='text' value=''/>"
         + "<label for='targetmbId'>신고할 회원</label>"
-        + "<input id='targetmbId' type='hidden' value='' />"
+        + "<input id='targetmbId' type='text' value='' />"
         + "<label for='reportText'>신고 사유</label></br>"
         + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
 

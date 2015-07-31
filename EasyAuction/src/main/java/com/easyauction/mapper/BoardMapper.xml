@@ -206,7 +206,7 @@
  	UPDATE 
  		boardcomment
  	SET 
- 		bccontent = #{ bccontent } 
+ 		bccontent = #{ bcContent } 
   	 WHERE bcno = #{ bcNo }
  	</update> 
  	
@@ -229,11 +229,13 @@
  	<update id="updateFreeBoard"  parameterType="board">
  	UPDATE 
  		board
- 	SET bdtitle = #{ bdtitle } , bdcontent = #{ bdcontent }
- 	WHERE bdno = #{ bdno }
+ 	SET bdtitle = #{ bdTitle } , bdcontent = #{ bdContent }
+ 	WHERE bdno = #{ bdNo }
  	</update> 
  	
  	<!--  게시판 글 blindcheck기능-->
+ 	<!-- 3회가 되면 블라인드처리가 되게 하려면 이곳에서 조건을 정해주어야 하나??
+ 	blind된 글은 jquery써서 못읽게 alert를 뜨게하기??? -->
 	<update id="deleteFreeBoard" parameterType="int" >
 	UPDATE BOARD SET BDBLINDCHECK = '1' WHERE bdno = #{ bdno }
 	</update>

@@ -146,8 +146,11 @@
 		AND mbPasswd = #{mbPasswd}
 		</if>
 </select>
-
-
+<update id="setMemberReportingUpdate" parameterType="String">
+	UPDATE member SET 
+		mbReportingCount = (select mbReportingCount from Member WHERE mbId= #{ targetmbId }) +1
+	WHERE mbId = #{ targetmbId }
+</update>
 
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

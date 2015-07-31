@@ -32,5 +32,7 @@ public interface MemberRepository {
 
 	Member getMemberByEmail(String mbId, String email, String mbPasswd);
 
+	void setMemberReportingUpdate(String targetmbId);
+
 
 }
