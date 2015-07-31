@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <script type="text/javascript"> 
 	var sidebarurl = "http://localhost:8081/easyauction"; // Change as required 
 	var sidebartitle = "이지옥션EasyAuction"; // Change as required 
@@ -17,7 +15,7 @@
 		   }
 		   // Google Chrome
 		   else if(window.chrome){
-		      alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+		      /* alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다."); */
 		      
 		   }
 		   // Firefox
@@ -76,6 +74,7 @@
 		})
 		$("#message").attr("src", "/easyauction/resources/images/ico_mail_on.gif"); 
 	}
+
  </script>
 			<table style="width:960px; height:40px; background-color:#565DD3;">
 				<tr>
@@ -84,6 +83,7 @@
 									<tr>
 										 <c:choose><c:when test="${ sessionScope.loginuser ne null }"> 
 							                <td class="smfont3">${ loginuser.mbName }
+ 
 							                	<img src="/easyauction/resources/images/ico_mail.gif" id="message" />
 							               		</td>
 							                <td class="smfont3">│</td>
@@ -120,12 +120,17 @@
 						<tr>
 							<td style="width: 60%;height:30px;">
 								<ul class="main_top_menu">
-									<li class="smfont10"><a href="/easyauction/admin/memberlist.action">관리자</a></li>
-									<li class="smfont10"><a href="#">경매 2</a></li>
-									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
-									<li class="smfont10"><a href="#">고객센터</a></li>
-									<li class="smfont10"><a href="/easyauction/auction/auction.action">경매 ㄱㄱ</a></li>
+									<li class="smfont10"><a href="/easyauction/auction/auction.action">일반경매</a></li>
 									<li class="smfont10"><a href="/easyauction/direct/directdeal.action">직거래경매</a></li>
+									<li class="smfont10"><a href="/easyauction/board/freeboard.action">커뮤니티</a></li>
+									<c:choose>
+									<c:when test="${ sessionScope.loginuser ne null && loginuser.mbGrant ne false }">
+									<li class="smfont10"><a href="/easyauction/admin/memberlist.action">관리자</a></li>
+									</c:when>
+									<c:otherwise></c:otherwise>
+									</c:choose>
+									
+									<!-- <li class="smfont10"><a href="#">이용안내</a></li> -->
 								</ul>
 							
 							</td>

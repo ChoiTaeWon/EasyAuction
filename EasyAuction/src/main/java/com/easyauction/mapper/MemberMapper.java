@@ -31,4 +31,6 @@ public interface MemberMapper {
 
 	Member getMemberByEmail(HashMap<String, String> params);
 
+	void setMemberReportingUpdate(String targetmbId);
+
 }

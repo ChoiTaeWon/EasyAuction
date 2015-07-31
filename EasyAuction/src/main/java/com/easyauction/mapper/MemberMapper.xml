@@ -116,7 +116,12 @@
 		<if test="mbName != null">
 		mbName	=	#{ mbName },
 		</if>
+		<if test="mbGrade != null and mbGrade != ''">
+		mbGrade	=	#{ mbGrade },
+		</if>
+		<if test="mbEmail != null and mbEmail != ''">
 		mbEmail	=	#{ mbEmail }
+		</if>
 	WHERE mbId = #{ mbId }
 </update>
 <select id="getCountByMemberEmail" parameterType="hashmap" resultType="integer">
@@ -141,8 +146,11 @@
 		AND mbPasswd = #{mbPasswd}
 		</if>
 </select>
-
-
+<update id="setMemberReportingUpdate" parameterType="String">
+	UPDATE member SET 
+		mbReportingCount = (select mbReportingCount from Member WHERE mbId= #{ targetmbId }) +1
+	WHERE mbId = #{ targetmbId }
+</update>
 
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
