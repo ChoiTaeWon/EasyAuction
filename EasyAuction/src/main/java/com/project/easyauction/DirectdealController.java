@@ -111,6 +111,7 @@ public class DirectdealController {
 	               if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
 	                  //C:\ABC\DEF\xyz.txt -> xyz.txt
 	                  fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+	                  System.out.println(fileName+ "ㅋㅋㅋㅋㅋㅋㅋ");
 	               }
 	               
 	               AuctionImage auctionImage = new AuctionImage();
