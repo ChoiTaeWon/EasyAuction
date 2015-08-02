@@ -393,15 +393,16 @@ $(function(){
 
 	<table style="width:100%; height:25px; border:1px solid #DEDEDE;">
 	<tr>
-		<td align="center" class="smfont" width="110">주문번호</font></td>
+		<td align="center" class="smfont" width="110">주문번호</td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="360">상품명</td>
+		<td align="center" class="smfont" width="255">상품명</td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="75">낙찰가격</font></td>
+		<td align="center" class="smfont" width="75">낙찰가격</td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="75">판매자</font></td>
+		<td align="center" class="smfont" width="75">판매자</td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="105">포토후기남기기</font></td>
+		<td align="center" class="smfont" width="105">포토후기남기기</td>
+		<td align="center" class="smfont" width="105">결제하기</td>
 	</tr>
 	</table>
 	
@@ -426,6 +427,7 @@ $(function(){
 											</div> 
 											<!-- sdfhasdkjhfjksadlfjkshad -->
 						</td>
+						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
 						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
 					</tr>
 			</c:forEach>
@@ -456,7 +458,7 @@ $(function(){
 <div id="footer">
 			<c:import url="/WEB-INF/views/include/footer.jsp" />
 		</div>
-<div style="width: 960px;">
+<div style="width: 960px;"></div>
 <!-- 푸터 끝 -->
 </body>
 </HTML>
