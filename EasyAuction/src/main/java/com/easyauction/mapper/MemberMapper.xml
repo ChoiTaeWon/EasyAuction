@@ -49,17 +49,17 @@
 		FROM member 
 		WHERE mbId = #{mbId} 
 		AND 
-		mbPasswd = #{mbPasswd}
+		mbPasswd = #{mbPasswd} AND mbDelete = 0
 </select>  
 <select id="getCountByMemberId" parameterType="String" resultType="integer">
 		SELECT Count(*) 
 		FROM member 
-		WHERE mbId = #{mbId} 
+		WHERE mbId = #{mbId} AND mbDelete = 0
 </select>
 <select id="getMemberById" resultType="Member">
 		SELECT <include refid="membercolumns" />
 		FROM member 
-		WHERE mbId = #{mbId}
+		WHERE mbId = #{mbId} AND mbDelete = 0
 </select>
 <insert id="setRegisterMember" parameterType="Member">
 	INSERT INTO Member(
@@ -127,9 +127,9 @@
 <select id="getCountByMemberEmail" parameterType="hashmap" resultType="integer">
 		SELECT Count(*) 
 		FROM member 
-		WHERE mbEmail = #{ email } 
+		WHERE mbEmail = #{ email } AND mbDelete = 0
 		<if test="mbId != ''">
-		AND mbId = #{mbId} 
+		AND mbId = #{mbId} AND mbDelete = 0 
 		</if>
 		<if test="mbPasswd != ''">
 		AND mbPasswd = #{mbPasswd}
@@ -138,7 +138,7 @@
 <select id="getMemberByEmail" parameterType="hashmap" resultType="Member">
 		SELECT <include refid="membercolumns" />
 		FROM member 
-		WHERE mbEmail = #{ email } 
+		WHERE mbEmail = #{ email }  AND mbDelete = 0 
 		<if test="mbId != null">
 		AND mbId = #{mbId} 
 		</if>
@@ -151,7 +151,11 @@
 		mbReportingCount = (select mbReportingCount from Member WHERE mbId= #{ targetmbId }) +1
 	WHERE mbId = #{ targetmbId }
 </update>
-
+<update id="setMemberDelete" parameterType="String">
+	UPDATE member SET 
+		mbDelete = '1' 
+	WHERE mbId = #{ mbId }
+</update>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <resultMap type="Auction" id="auctionResult">

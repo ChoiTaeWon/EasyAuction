@@ -59,9 +59,10 @@
 		   }
 	 } 
 	$(function(){
-		$(document).keyup(function(event) {
+		//사용자 입력 키값 읽기위한것
+		/* $(document).keyup(function(event) {
 			alert(event.keyCode + "/" + event.ctrlKey)
-		});
+		}); */
 		
 		$("#message").click(function(event) {
 			

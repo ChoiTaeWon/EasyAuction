@@ -74,5 +74,10 @@ public class MyMemberService implements MemberService {
 		mbrepo.setMemberReportingUpdate(targetmbId);
 		
 	}
+	@Override
+	public void setMemberDelete(String mbId) {
+		mbrepo.setMemberDelete(mbId);
+		
+	}
 
 }

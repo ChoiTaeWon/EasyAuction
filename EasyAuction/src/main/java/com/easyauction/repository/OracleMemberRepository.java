@@ -109,5 +109,12 @@ public class OracleMemberRepository implements MemberRepository {
 		
 	}
 
+
+	@Override
+	public void setMemberDelete(String mbId) {
+		memberMapper.setMemberDelete(mbId);
+		
+	}
+
 	
 }

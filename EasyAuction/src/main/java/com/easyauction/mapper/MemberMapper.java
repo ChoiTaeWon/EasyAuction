@@ -33,4 +33,6 @@ public interface MemberMapper {
 
 	void setMemberReportingUpdate(String targetmbId);
 
+	void setMemberDelete(String mbId);
+
 }

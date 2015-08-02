@@ -34,5 +34,7 @@ public interface MemberRepository {
 
 	void setMemberReportingUpdate(String targetmbId);
 
+	void setMemberDelete(String mbId);
+
 
 }

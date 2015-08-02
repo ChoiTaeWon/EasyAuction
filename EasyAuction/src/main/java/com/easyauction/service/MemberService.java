@@ -39,5 +39,7 @@ public interface MemberService {
 
 	public void setMemberReportingUpdate(String targetmbId);
 
+	public void setMemberDelete(String mbId);
+
 
 }
