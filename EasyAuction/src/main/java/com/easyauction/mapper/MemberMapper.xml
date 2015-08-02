@@ -243,13 +243,17 @@
 		from dual
 	</select>
 	<select id="getGetterAuctionListBymbId" resultType="Auction" parameterType="String">
-		select aucno, auctitle, aucenddate, aucfinalprice, aucstate, aucwriter 
+		select *  
 		from AUCTION 
-		Where aucgetter = #{ mbId } 
+		Where aucgetter = #{ mbId } and aucstate >= 3 
 		order By
 		aucno DESC
 	</select>
-	
+	<update id="setUpdateaAuctionState" parameterType="String">
+	UPDATE auction SET 
+		aucState = (select aucState from auction WHERE aucNo= #{ aucNo }) +1
+	WHERE aucNo = #{ aucNo }
+	</update>
 	
 	
 	

@@ -41,5 +41,7 @@ public interface MemberService {
 
 	public void setMemberDelete(String mbId);
 
+	public void setUpdateaAuctionState(int aucNo);
+
 
 }
