@@ -118,7 +118,7 @@
 						<img src="/easyauction/resources/images/direct_deal_en.png" style="width: 125px;height: 31px">
 					</td>
 				
-					<td style="text-align:center;width: 5%"><a href="dealregister.action">
+					<td style="text-align:center;width: 5%"><a href="directregister.action">
 					<img  src="/easyauction/resources/images/write.png" style="padding-bottom: 5px"></a></td>
 				</tr>
 			</table>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.easyauction.common.Util;
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
@@ -287,5 +288,16 @@ public class AjaxController {
 	}
 	
 	
-
+	
+	@RequestMapping(value="selectMainAuction.action", method = RequestMethod.POST)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Auction> selectMainAuction() {
+			List<Auction> auctionList = auctionService.getAuctionListByAucState();
+			
+			if(auctionList != null){
+				return auctionList;
+			}else{
+				return null;
+			}
+	}
 }

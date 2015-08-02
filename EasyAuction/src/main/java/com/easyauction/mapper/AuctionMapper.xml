@@ -70,6 +70,21 @@
 		     		  #{aucStartPrice},#{aucWriter})
 	</insert> 
 	
+	
+	<insert id="insertAuctionDirectDeal" parameterType="Auction" >
+	  <selectKey keyProperty="aucNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEAUCTIONNO.currval from dual
+	  </selectKey>
+		INSERT INTO auction(aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter, auctype )  
+		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, 
+		       		  #{aucStartDate},#{aucEndDate},
+		       		  #{aucItemName}, #{aucCategory},#{aucAdText},#{aucDetail},
+		     		  #{aucStartPrice},#{aucWriter}, 1)
+	</insert> 
+	
+	
+	
 	<insert id="insertAuctionPhotoImage" parameterType="auctionImage">
 		INSERT INTO AUCTIONIMAGE(aucimgno, aucimgname, aucno)
 			VALUES(SEQUENCEAUCTIONIMAGENO.nextVal, #{ aucImgName }, #{ aucNo })
@@ -119,9 +134,11 @@
 		select count(*) from bidding where aucno= #{aucNo}
 	</select>
 
-<!-- 	<update id="updateReportingCount" parameterType="int">
-		update auction set aucreportingcount= (select aucreportingcount from auction where aucno = #{aucNo}) +1 where aucno= #{aucNo};	
-	</update> -->
+	<select id="getAuctionListByAucState" resultMap="auctionResult">
+		select <include refid="auctioncolumns"></include>
+		from auction where aucstate = 1
+	</select>
+
  
 	
 </mapper>

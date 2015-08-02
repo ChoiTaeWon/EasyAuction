@@ -12,6 +12,8 @@ public interface AuctionMapper {
 	List<Auction> getAuctionList();
 	Auction getAuctionDetailByAuctioNo(int aucNo);
 	void updateAuctionReportCount(int aucNo);
+	List<Auction> getAuctionListByAucState();
+	void insertAuctionDirectDeal(Auction auction);
 	
 	
 }

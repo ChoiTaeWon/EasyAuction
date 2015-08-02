@@ -65,6 +65,20 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public List<Auction> getAuctionListByAucState() {
+		// TODO Auto-generated method stub
+		return auctionRepository.getAuctionListByAucState();
+	}
+
+
+
+	@Override
+	public void insertAuctionDirectDeal(Auction auction) {
+		auctionRepository.insertAuctionDirectDeal(auction);
+	}
+
+
 
 
 }
