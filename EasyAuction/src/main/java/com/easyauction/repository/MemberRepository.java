@@ -36,5 +36,7 @@ public interface MemberRepository {
 
 	void setMemberDelete(String mbId);
 
+	int setUpdateaAuctionState(int aucNo);
+
 
 }
