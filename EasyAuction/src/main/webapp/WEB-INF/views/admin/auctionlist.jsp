@@ -178,7 +178,7 @@
 			</table>
 		<div id="tabs">
 		  <ul>
-   			<li><a href="#tabs-1">경매리스트</a></li>
+   			<li><a href="#tabs-1">경매리스트1</a></li>
    			<li><a href="#tabs-2">신고받은경매</a></li>
  		 </ul>
 		<div id="tabs-1">	
