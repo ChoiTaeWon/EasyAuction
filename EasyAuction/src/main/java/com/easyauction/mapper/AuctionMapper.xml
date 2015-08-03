@@ -45,8 +45,24 @@
 		<result column="mbid" property="mbId" />
 		<result column="biddate" property="bidDate" />
 	</resultMap>
-
-
+	
+<!-- 	 <resultMap type="Member" id="memberResult">
+			<id column="mbId" property="mbId" />
+			<result column="mbAddress1" property="mbAddress1" />
+			<result column="mbAddress2" property="mbAddress2" />
+			<result column="mbPhone1" property="mbPhone1" />
+			<result column="mbPhone2" property="mbPhone2" />
+			<result column="mbGender" property="mbGender" />
+			<result column="mbBirthDate" property="mbBirthDate" />
+			<result column="mbGrade" property="mbGrade" />
+			<result column="mbReportingCount" property="mbReportingCount" />
+			<result column="mbName" property="mbName" />
+			<result column="mbGrant" property="mbGrant" />
+			<result column="mbDelete" property="mbDelete" />
+			<result column="mbRegdate" property="mbRegdate" />
+			<result column="mbEmail" property="mbEmail" />
+	</resultMap> 
+ -->
 	<sql id="auctioncolumns">
 			 aucno, auctitle, aucstartdate, aucenddate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, 
@@ -70,6 +86,21 @@
 		       		  #{aucItemName}, #{aucCategory},#{aucAdText},#{aucDetail},
 		     		  #{aucStartPrice},#{aucWriter})
 	</insert> 
+	
+	
+	<insert id="insertAuctionDirectDeal" parameterType="Auction" >
+	  <selectKey keyProperty="aucNo" order="AFTER" resultType="int" >
+	  	select SEQUENCEAUCTIONNO.currval from dual
+	  </selectKey>
+		INSERT INTO auction(aucno, auctitle, aucstartdate, aucenddate,  aucitemname,
+			auccategory, aucadtext, aucdetail, aucstartprice, aucwriter, auctype )  
+		       VALUES(SEQUENCEAUCTIONNO.nextVal, #{aucTitle}, 
+		       		  #{aucStartDate},#{aucEndDate},
+		       		  #{aucItemName}, #{aucCategory},#{aucAdText},#{aucDetail},
+		     		  #{aucStartPrice},#{aucWriter}, 1)
+	</insert> 
+	
+	
 	
 	<insert id="insertAuctionPhotoImage" parameterType="auctionImage">
 		INSERT INTO AUCTIONIMAGE(aucimgno, aucimgname, aucno)
@@ -120,6 +151,20 @@
 		select count(*) from bidding where aucno= #{aucNo}
 	</select>
 
+	<select id="getAuctionListByAucState" resultMap="auctionResult">
+		select <include refid="auctioncolumns"></include>
+		from auction where aucstate = 1
+	</select>
+
+	<select id="getAuctionListByAucType" resultMap="auctionResult">
+		select <include refid="auctioncolumns"></include>
+		from auction where auctype = 1
+	</select>
+ 	<select id="getAuctionListByAucWriter" resultMap="auctionResult" parameterType="String">
+ 		select <include refid="auctioncolumns"></include>
+ 		from auction where auctype = 1 and aucwriter = #{mbId}
+ 	</select>
+	
 <!-- 	<update id="updateReportingCount" parameterType="int">
 		update auction set aucreportingcount= (select aucreportingcount from auction where aucno = #{aucNo}) +1 where aucno= #{aucNo};	
 	</update> -->

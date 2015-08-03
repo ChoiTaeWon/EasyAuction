@@ -41,6 +41,8 @@ public interface MemberService {
 
 	public void setMemberDelete(String mbId);
 
+	public List<Member> getMemberAddressList();
+	
 	public void setUpdateaAuctionState(int aucNo);
 
 

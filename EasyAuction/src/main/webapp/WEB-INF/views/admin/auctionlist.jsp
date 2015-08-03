@@ -32,7 +32,7 @@
                     		return "일반";
                     	}
                     }},
- 					{ name: 'auctionImage', width: 80, search: false, align: 'center' },
+ 					{ name:'auctionImage', jsonmap: 'auctionImage.0.aucImgName', width: 80, search: false, align: 'center', formatter: imageRead },
  					{ name: 'aucTitle', width: 150, align: 'center' },
                     { name: 'aucCategory', width: 150, align: 'center', formatter: category },
                     { name: 'aucWriter', width: 90, align: 'center' },
@@ -57,6 +57,7 @@
         					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
         				}
         			});	 */	
+        			 var t = $("tr.jqgrow:odd td:nth(2)").text();
                 },
 				loadonce:true, // just for demo purpose
                 width: 780,
@@ -65,7 +66,7 @@
 				rowList:[20,25,50],
 				sortname: 'aucNo',
                 pager: "#auctionGridPager",
-				viewrecords: true
+				viewrecords: true,
             });
 			$("#auctionGrid").jqGrid("navGrid","#auctionGridPager",{add:false, edit:false, del:false});
 
@@ -83,7 +84,7 @@
                     		return "일반";
                     	}
                     }},
- 					{ name: 'auctionImage', width: 80, search: false, align: 'center' },
+ 					{ name: 'auctionImage', width: 80, search: false, align: 'center'},
  					{ name: 'aucTitle', width: 150, align: 'center' },
                     { name: 'aucCategory', width: 150, align: 'center', formatter: category },
                     { name: 'aucWriter', width: 90, align: 'center' },
@@ -131,6 +132,10 @@
         function blindComplte(cellValue,options,rowObject){
         	var pat3 = "<a href='/easyauction/admin/blind.action?aucNo="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
         	return pat3;
+        }
+        function imageRead(cellValue,options,rowObject){
+          var img = "<a href='/easyauction/auction/showdeal.action?aucno="+rowObject.aucNo+"'><img width=80 height=50 src='/easyauction/resources/imagefile/"+cellValue+"'></a>";	
+          return img;
         }
         function category(cellValue,options,rowObject){
         	if(cellValue == 1){return "의류/패션용품";}

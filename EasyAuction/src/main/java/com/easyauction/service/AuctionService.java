@@ -18,6 +18,14 @@ public interface AuctionService {
 
 	void updateAuctionReportCount(int aucNo);
 
+	List<Auction> getAuctionListByAucState();
+
+	void insertAuctionDirectDeal(Auction auction);
+
+	List<Auction> getAuctionListByAucType();
+
+	List<Auction> getAuctionListByAucWriter(String mbId);
+
 	
 
 	
