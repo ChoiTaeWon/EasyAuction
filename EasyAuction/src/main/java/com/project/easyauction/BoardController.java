@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -99,16 +100,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, 
-										 @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
 		boardComment.setBcWriter(writer);
-		System.out.println(bdNo + "/" + content + "/" +writer);
+		System.out.println(bdNo + "/" + content + "/" + writer);
 		
 		boardService.insertFreeBoardComment(boardComment);
-		return "redirect:/board/freeboardview.action?bdno="+bdNo;
+		return "redirect:/board/freeboardview.action?bdno="+bdNo+"&pageno="+pageno;
 	}
 	
 	@RequestMapping(value = "updatefreeboard.action", method = RequestMethod.GET)
@@ -130,18 +130,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
-	public ModelAndView updateFreeBoardComment(int bcNo, String bcContent) {
+	@ResponseBody
+	public String updateFreeBoardComment(int bcNo, String bcContent) {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("bcNo", bcNo);
 		params.put("bcContent", bcContent);
 		boardService.updateFreeBoardComment(params);
-		/*return "redirect:/board/freeboardview.action?bdno="+bdno+"&bcno="+bcno+"&pageno="+ pageno*/
-		ModelAndView mav = new ModelAndView();
-		String success = "success";
-		mav.addObject("success",success);
-		return mav;
+		return "success";
 	}
-	
 	
 	@RequestMapping(value="deletefreeboard.action", method= RequestMethod.GET)
 	public String deletefreeboard(int bdno, int pageno) {
@@ -286,7 +282,7 @@ public class BoardController {
 		boardComment.setBcWriter(writer);
 		System.out.println(bdNo + "/" + content + "/" +writer);
 		
-		boardService.insertComment(boardComment);
+		boardService.insertGongjiBoardComment(boardComment);
 		return "redirect:/board/gongjiview.action?bdno="+bdNo;
 	}
 	
