@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
 import com.easyauction.dto.Bidding;
@@ -99,23 +100,27 @@ public class DirectdealController {
 	                  "/" + auction.getAucWriter()
 	               );
 	            
-	            //가상경로 -> 물리경로
-	            String path = application.getRealPath("/resources/imagefile/");
-	            
-
 	            auctionService.insertAuctionDirectDeal(auction);
 	            MultipartFile file = req.getFile("aucImg");//요청 데이터에서 파일 정보 추출
 	            if (file != null && file.getSize() > 0) {
 	               
 	               String fileName = file.getOriginalFilename();//파일이름 읽어서 변수에 저장
+	              
 	               if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
 	                  //C:\ABC\DEF\xyz.txt -> xyz.txt
 	                  fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-	                  System.out.println(fileName+ "ㅋㅋㅋㅋㅋㅋㅋ");
+	                  
 	               }
 	               
+	             //가상경로 -> 물리경로
+	               String path = application.getRealPath("/resources/imagefile/");
+		           String savedName = Util.getUniqueFileName(path, fileName);
+	               
+	              
+	               
 	               AuctionImage auctionImage = new AuctionImage();
-	               auctionImage.setAucImgName(fileName);
+	               //auctionImage.setAucImgName(fileName);
+	               auctionImage.setAucImgName(savedName);
 	               auctionImage.setAucNo(auction.getAucNo());
 	               auctionService.insertAuctionPhotoImage(auctionImage);
 	               System.out.println("파일명 : "+auctionImage.getAucImgName());

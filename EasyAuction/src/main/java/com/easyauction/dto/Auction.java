@@ -47,7 +47,7 @@ public class Auction {
 		this.countBidders = countBidders;
 	}
 /////////////////////////////////////////////////////////////////////////
-
+	
 	public int getAucNo() {
 		return aucNo;
 	}

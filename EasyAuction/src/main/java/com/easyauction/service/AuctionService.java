@@ -22,6 +22,10 @@ public interface AuctionService {
 
 	void insertAuctionDirectDeal(Auction auction);
 
+	List<Auction> getAuctionListByAucType();
+
+	List<Auction> getAuctionListByAucWriter(String mbId);
+
 	
 
 	

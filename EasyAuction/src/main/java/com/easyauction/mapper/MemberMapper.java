@@ -35,4 +35,6 @@ public interface MemberMapper {
 
 	void setMemberDelete(String mbId);
 
+	List<Member> getMemberAddressList();
+
 }

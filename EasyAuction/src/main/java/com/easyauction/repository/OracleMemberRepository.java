@@ -116,5 +116,12 @@ public class OracleMemberRepository implements MemberRepository {
 		
 	}
 
+
+	@Override
+	public List<Member> getMemberAddressList() {
+		// TODO Auto-generated method stub
+		return memberMapper.getMemberAddressList();
+	}
+
 	
 }

@@ -41,5 +41,7 @@ public interface MemberService {
 
 	public void setMemberDelete(String mbId);
 
+	public List<Member> getMemberAddressList();
+
 
 }

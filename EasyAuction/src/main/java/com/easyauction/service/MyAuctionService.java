@@ -80,5 +80,20 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public List<Auction> getAuctionListByAucType() {
+		return auctionRepository.getAuctionListByAucType();
+	}
+
+
+
+	@Override
+	public List<Auction> getAuctionListByAucWriter(String mbId) {
+		// TODO Auto-generated method stub
+		return auctionRepository.getAuctionListByAucWriter(mbId);
+	}
+
+
+
 
 }

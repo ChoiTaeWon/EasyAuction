@@ -79,5 +79,9 @@ public class MyMemberService implements MemberService {
 		mbrepo.setMemberDelete(mbId);
 		
 	}
+	@Override
+	public List<Member> getMemberAddressList() {
+		return mbrepo.getMemberAddressList();
+	}
 
 }

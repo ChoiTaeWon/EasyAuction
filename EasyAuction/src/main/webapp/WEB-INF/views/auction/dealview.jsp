@@ -825,10 +825,10 @@ $(function(){
 		  													<table style="width: 270px">
 																	<tr>
 																	<td style="text-align: left;">
-																		<div id="dayText"></div> 
+																		<div class="dayText" id="dayText"></div> 
 																	</td>
 																	 <td style="text-align: right;">
-																		<div id="days1"></div>
+																		<div class="dayText" id="days1"></div>
 																	 </td>
 																</tr>
 															</table> 
@@ -954,20 +954,21 @@ $(function(){
 										<table style="background:url(/easyauction/resources/images/bg_realtime_title_bar.png); background-repeat:x-repeat; width:100%; height:28px; border:1px solid #828282;">
 										<tr>
 											<td class="detail_realtime_title">&nbsp;>&nbsp;실시간 입찰현황</td>
-											<td align="right" class="detail_realtime_title" id="realTimeCount">0명 참여 &nbsp;</td>
+											<td align="right" class="detail_realtime_title" id="realTimeCount"> &nbsp;</td>
 										</tr>
 										</table>
 										
 										<!--실시간 입찰현황 목록 -->
+										<div style="overflow-y:scroll;height: 200px">
 										<table style="border:1px solid #DFDFDF; width:100%;">
 										<tr>
 											<td style="padding:5px; background-color:#F0F0F0;" align="center">
 												<table id="biddinglist" style="width: 100%;" >
-													<tr>
+													<!-- <tr>
 														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 													</tr>
 													
-													<!-- 
+													
 													<tr>
 														<td>123456원&nbsp;qwerqwer&nbsp;시간</td>
 													</tr>
@@ -979,6 +980,7 @@ $(function(){
 												</table>
 											</td>
 										</table>
+										</div>
 										
 										<div style="padding:5px;"></div>
 										<!--실시간 입찰현황-->

@@ -35,7 +35,17 @@ li:HOVER {
 	 width: 95%;
    }
 
-
+ #panel {
+     position: absolute;
+     top: 5px;
+     left: 50%;
+     margin-left: -300px;
+     margin-top : 250px;
+     z-index: 5;
+     background-color: #fff;
+     padding: 5px;
+    border: 1px solid #999;
+}
 
 
 .smfont { font-size:11px; color:#5F5F5F; font-family:돋움;}
@@ -129,7 +139,12 @@ li:HOVER {
 }
 
 
+.dayText{
+	font-size: 15px;
+	font-weight: bold;
 
+	
+}
 
 /* ============================================================================ */
 .deal_time { 
