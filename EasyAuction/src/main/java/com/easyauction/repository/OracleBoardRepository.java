@@ -66,10 +66,11 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getCommentByBoardNo(bdNo);
 	}
 	@Override
-	public List<Board> getFreeBoardList(int first, int last) {
+	public List<Board> getFreeBoardList(int first, int last, int bdtype) {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("first", first);
 		params.put("last", last);
+		params.put("bdtype", bdtype);
 	
 		List<Board> boards = boardMapper.getFreeBoardList(params);
 		return boards;
@@ -117,10 +118,13 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 
 	@Override
-	public List<Board> getFreeBoardSearchList(String search, String searchdata) {
+	public List<Board> getFreeBoardSearchList(int first, int last, String search, String searchdata, int bdtype) {
 		HashMap<String, String> params= new HashMap<String, String>();
 		params.put("search", search);
 		params.put("searchdata", searchdata);
+		params.put("bdtype", bdtype+"");
+		params.put("first", first+"");
+		params.put("last", last+"");
 		List<Board> boards = boardMapper.getFreeBoardSearchList(params);
 		return boards;
 	}
@@ -135,8 +139,8 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 
 	@Override
-	public int getFreeBoardCount() {
-		return boardMapper.getFreeBoardCount();
+	public int getFreeBoardCount(int bdtype) {
+		return boardMapper.getFreeBoardCount(bdtype);
 	}
 	
 	@Override
@@ -158,6 +162,16 @@ public class OracleBoardRepository implements BoardRepository{
 	public void updateFreeBoardReadCount(int bdNo) {
 		boardMapper.updateFreeBoardReadCount(bdNo);
 		
+	}
+
+	@Override
+	public int getFreeBoardSearchCount(String search, String searchdata, int bdtype) {
+		HashMap<String, String> params= new HashMap<String, String>();
+		params.put("search", search);
+		params.put("searchdata", searchdata);
+		params.put("bdtype", bdtype+"");
+		
+		return boardMapper.getFreeBoardSearchCount(params);
 	}
 
 	

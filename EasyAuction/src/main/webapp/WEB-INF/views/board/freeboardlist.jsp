@@ -10,14 +10,15 @@
 <title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
 	<script type="text/javascript">
-	function listsearch() {
+	
+/* 	function listsearch() {
 		var search = document.getElementById('search').value;
 		var searchdata = document.getElementById('searchdata').value;
-		 var re = /^[0-9]+$/;
-	
+		var re = /^[0-9]+$/;
+		var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata;
 		if(search == 'bdtitle'&&!re.test(searchdata)){
 			alert("제목을 입력하세요");
 			searchdata.focus();
@@ -28,10 +29,33 @@
 			searchdata.focus();
 			return;
 		}
-		
+		//document.getElementById('listsearch').innerHTML = html;
+		$('#listsearch').append(html);
 		document.getElementById('listsearch').submit();
 		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
-	}
+	} */
+	$(function(){
+		$('#searchboard').click(function(){
+			var search = document.getElementById('search').value;
+			var searchdata = document.getElementById('searchdata').value;
+			var re = /^[0-9]+$/;
+			//var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata + "'/>";
+			if(search == 'bdtitle'&&!re.test(searchdata)){
+				alert("제목을 입력하세요");
+				searchdata.focus();
+				return;
+				
+			}else if(searchdata.length==0){
+				alert("내용을 입력하세요");
+				searchdata.focus();
+				return;
+			}
+			//document.getElementById('listsearch').innerHTML = html;
+			//$('#listsearch').append(html);
+			document.getElementById('listsearch').submit();
+			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		})
+	})
 	</script>
 </head>
 
@@ -71,6 +95,7 @@
 			</table>
 			
 			<table width="100%">
+			<input type="hidden" name="queryString" value="${ queryString }" />
 				<tr>
 					<td height="1" bgcolor="#e6e6e6"></td>
 				</tr>
@@ -104,7 +129,6 @@
 				<td>
 				<table width="100%" height="30">
 				<c:forEach var="board" items="${ boards }">
-				<c:if test="${ board.bdType eq 2 }">
 				<tr>
 					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
 					<td width="1"></td>
@@ -115,7 +139,6 @@
 					<td 			class="smfont" align="center" width="40"><div style="padding-left:10px;">${board.bdReadCount}</div></td>
 					<td width="1"></td>
 				</tr>
-				</c:if>
 				</c:forEach>
 				<tr>
 					<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
@@ -145,18 +168,18 @@
 			</div>
 	
 	 		<!-- 검색폼 // 시작 -->
+			<form id="listsearch" action="freeboard.action" method="get">
 			<table align="center">
-			<form id="listsearch" action="freeboardsearch.action" method="post">
-				<td height='30' border='0' align='center' valign='middle'>
+					<td height='30' border='0' align='center' valign='middle'>
 					<!-- <input type='radio' name='search' value='bdno' checked> 번호 -->
 					<input type='radio' id="search" name='search' value='bdTitle' checked> 제목
 					<input type='radio' id="search" name='search' value='bdWriter'> 작성자
 					<input style='width:135px;height:18px' type="text" name="searchdata" id="searchdata" />
+					
 					<!-- <input type="button" value='검색' style='height: 25px;margin-right:600px; ' onclick="listsearch();" /> -->
-					<td align="left" onclick="javascript:listsearch();" ><img src="/easyauction/resources/images/search1.png"></a>
-				</td>
-			</form>
+					<td align="left" ><img src="/easyauction/resources/images/search1.png" id="searchboard"></a></td>
 			</table>
+			</form>
 			</td>
 			</tr>
 			</table>
