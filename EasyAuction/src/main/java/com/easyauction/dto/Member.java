@@ -1,6 +1,7 @@
 package com.easyauction.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,6 +23,17 @@ public class Member {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
 	private Date mbRegdate;
 	private String mbEmail;
+	
+/*///////////////////////////////////////////////////////////////////////////////////	
+	private List<Auction> auctions;
+	public List<Auction> getAuctions() {
+		return auctions;
+	}
+	public void setAuctions(List<Auction> auctions) {
+		this.auctions = auctions;
+	}
+///////////////////////////////////////////////////////////////////////////////////	
+*/	
 	
 	public String getMbId() {
 		return mbId;

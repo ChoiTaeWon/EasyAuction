@@ -15,10 +15,10 @@
 <script type="text/javascript">
 
 		$(function(){
-			$("#doregistdeal").on({ 
+			$("#doregistdeal2").on({ 
 				//이벤트 이름 : 호출할 함수
 				click : function(event) {
-					$("#regiform").submit();
+					$("#regiform2").submit();
 				}
 			});
 		 	 $('.datetimepicker').appendDtpicker({'locale':'ko'});
@@ -37,7 +37,7 @@
 		<br/>
 					
 			<div class="registerauction">
-				<form action="dealregister.action" method="POST" enctype="multipart/form-data" id='regiform' name="auction" style="margin:0;">
+				<form action="directregister.action" method="POST" enctype="multipart/form-data" id='regiform2' name="auction" style="margin:0;">
 								<input type=hidden name="aucWriter" value="${ loginuser.mbId }">
 								
 								<!-- 상단 이미지  -->
@@ -369,12 +369,12 @@
 								<div style="padding:10px;"></div>
 								
 								<div align="center" style="width:960px;">
-									<input id="doregistdeal" type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'>
+									<input id="doregistdeal2" type=image src='/easyauction/resources/images/btn_goregister.gif' border='0' alt='일반경매등록'>
 										<!-- <input type="button" value="등록" id="gogo" onclick="javascript:sub();"> -->
 									
 									 <img src='/easyauction/resources/images/btn_resetregister.gif'  border='0'>
 								 
-									 <a href="deal.action">
+									 <a href="driect.action">
 									 <img src='/easyauction/resources/images/btn_backtolist.gif' border='0'></a>
 								</div>
 								

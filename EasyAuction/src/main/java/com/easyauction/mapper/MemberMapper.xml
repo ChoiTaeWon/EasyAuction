@@ -38,11 +38,7 @@
 		mbRegdate,
 		mbEmail
 		</sql>
-<!-- mybatis-config.xml에 alias으로 Dto로 정의 해두면 resultType="Member" 접근 가능 함.  
-	만약  resultMap로 설정했을경우 resultMap="Member"로 접근 -->
-	<!-- <select id="getMemberByIdAndPasswd" parameterType="hashMap" resultType="Member">
-		SELECT * FROM member 
-	</select> -->
+
 	
 <select id="getMemberByIdAndPasswd" resultType="Member">
 		SELECT <include refid="membercolumns" />
@@ -156,6 +152,14 @@
 		mbDelete = '1' 
 	WHERE mbId = #{ mbId }
 </update>
+
+
+<select id="getMemberAddressList" resultType="Member">
+	select <include refid="membercolumns"></include>
+	from member
+</select>
+
+
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~옥션 데이터관련~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <resultMap type="Auction" id="auctionResult">

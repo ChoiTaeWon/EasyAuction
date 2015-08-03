@@ -215,6 +215,9 @@ var newtime = null;
 											<c:when test="${ auction.aucState eq 0 }">경매 시작 전</c:when>
 											<c:when test="${ auction.aucState eq 1 }">경매 중</c:when>
 											<c:when test="${ auction.aucState eq 2 }">경매 마감</c:when>
+											<c:when test="${ auction.aucState eq 3 }">입금 대기</c:when>
+											<c:when test="${ auction.aucState eq 4 }">결제 완료</c:when>
+											<c:when test="${ auction.aucState eq 5 }">거래 완료</c:when>
 											<c:otherwise>에러 상태</c:otherwise>
 										</c:choose>
 										

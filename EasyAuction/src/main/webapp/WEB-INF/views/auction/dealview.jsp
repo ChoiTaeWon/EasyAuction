@@ -107,7 +107,163 @@
 			alert(aucState);
 			
 		}
+		
+		
+		
+		$("#imgOnclick1").click(function(event) {
+			$("#ITEM1").css("display", "block");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick2").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "block");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
 	
+		$("#imgOnclick3").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "block");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		 
+		$("#imgOnclick4").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "block");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick5").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "block");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick6").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "block");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick7").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "block");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick8").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "block");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick9").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "block");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick10").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "block");
+			$("#ITEM11").css("display", "none");
+		});
+		
+		$("#imgOnclick11").click(function(event) {
+			$("#ITEM1").css("display", "none");
+			$("#ITEM2").css("display", "none");
+			$("#ITEM3").css("display", "none");
+			$("#ITEM4").css("display", "none");
+			$("#ITEM5").css("display", "none");
+			$("#ITEM6").css("display", "none");
+			$("#ITEM7").css("display", "none");
+			$("#ITEM8").css("display", "none");
+			$("#ITEM9").css("display", "none");
+			$("#ITEM10").css("display", "none");
+			$("#ITEM11").css("display", "block");
+		});
+		
 		
 	 });	
 	
@@ -302,14 +458,16 @@ var aucState = ${auction.aucState};
 		modal : true,
 		buttons : {
 			닫기 : function() {		
-				$('#ipchalListTR').empty();				
-				$('#ipchalListTR').remove();
+				$('#ipchalTable').empty();				
+				$('#ipchalTable').remove();
 				ipchalListDialog.dialog("close");
 			}
 		},
 		close : function() {
-			$('#ipchalListTR').empty();	
-			$('#ipchalListTR').remove();
+			$.each()
+		
+			$('#ipchalTable').empty();	
+			$('#ipchalTable').remove();
 		}
 	});
 	
@@ -328,7 +486,7 @@ var aucState = ${auction.aucState};
 						var bidLength= biddingLists.length;
 						var html =null;
 						$.each(biddingLists, function(index, item){
-							html="<tr class='smfont12' style='width:100%;text-align: right;' id='ipchalListTR'><td style='width: 25%'>" 
+							html="<tr class='smfont12' style='width:100%;text-align: right;' id='ipchalListTR${index}'><td style='width: 25%'>" 
 									+ (bidLength-index) + "번 </td><td style='width: 30%'>"
 									+ item.mbId + "</td><td style='width: 45%'>"+item.bidPrice + "원 </td></tr>";
 						
@@ -542,7 +700,7 @@ $(function(){
 										
 									</tr>
 								</table>
-							${ fn:length(auction.auctionImage) }
+							
 							<div style="padding:5px;"></div>
 						
 								<table width="100%">
@@ -557,7 +715,7 @@ $(function(){
 															<%-- <c:forEach var="image" items="images"> --%>
 															<!-- <div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div>
 															<div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div> -->
-															 <c:forEach  begin="1" end="10" step="1" varStatus="status">
+															 <c:forEach  begin="1" end="11" step="1" varStatus="status">
 															  <c:choose>
 															  	<c:when test="${status.current==1}">
 															  		<div ID="ITEM${status.current}">
@@ -580,7 +738,7 @@ $(function(){
 												<tr>
 													<td style="padding-top:10px;width:100%;">
 														
-														 <c:forEach  begin="1" end="10" step="1" varStatus="status">
+<%-- 														 <c:forEach  begin="1" end="10" step="1" varStatus="status">
 															  <c:choose>
 															  	<c:when test="${ status.current-1 < fn:length(auction.auctionImage) && status.current != 1 }">
 															  		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current].aucImgName }" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
@@ -593,7 +751,23 @@ $(function(){
 															  		<img src="/easyauction/resources/images/no_detail_img.gif" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
 															  	</c:otherwise>
 															  </c:choose>
-														</c:forEach> 
+														</c:forEach>  --%>
+														 <c:forEach  begin="1" end="11" step="1" varStatus="status">
+															  <c:choose>
+															 	 <c:when test="${ status.current-1 < fn:length(auction.auctionImage)}">
+															  		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current-1].aucImgName }" id='imgOnclick${status.current}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:when>
+															  	<c:when test="${ status.current-1 < fn:length(auction.auctionImage)  && status.current >5 }">
+															  		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current-1].aucImgName }" id='imgOnclick${status.current}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:when>
+															  	<c:when test="${ status.current  == 11 }">
+															  		
+															  	</c:when>
+															  	<c:otherwise>
+															  		<img src="/easyauction/resources/images/no_detail_img.gif" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:otherwise>
+															  </c:choose>
+															</c:forEach> 
 													</td>
 												</tr>
 												<tr>
@@ -651,10 +825,10 @@ $(function(){
 		  													<table style="width: 270px">
 																	<tr>
 																	<td style="text-align: left;">
-																		<div id="dayText"></div> 
+																		<div class="dayText" id="dayText"></div> 
 																	</td>
 																	 <td style="text-align: right;">
-																		<div id="days1"></div>
+																		<div class="dayText" id="days1"></div>
 																	 </td>
 																</tr>
 															</table> 
@@ -780,20 +954,21 @@ $(function(){
 										<table style="background:url(/easyauction/resources/images/bg_realtime_title_bar.png); background-repeat:x-repeat; width:100%; height:28px; border:1px solid #828282;">
 										<tr>
 											<td class="detail_realtime_title">&nbsp;>&nbsp;실시간 입찰현황</td>
-											<td align="right" class="detail_realtime_title" id="realTimeCount">0명 참여 &nbsp;</td>
+											<td align="right" class="detail_realtime_title" id="realTimeCount"> &nbsp;</td>
 										</tr>
 										</table>
 										
 										<!--실시간 입찰현황 목록 -->
+										<div style="overflow-y:scroll;height: 200px">
 										<table style="border:1px solid #DFDFDF; width:100%;">
 										<tr>
 											<td style="padding:5px; background-color:#F0F0F0;" align="center">
 												<table id="biddinglist" style="width: 100%;" >
-													<tr>
+													<!-- <tr>
 														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 													</tr>
 													
-													<!-- 
+													
 													<tr>
 														<td>123456원&nbsp;qwerqwer&nbsp;시간</td>
 													</tr>
@@ -805,6 +980,7 @@ $(function(){
 												</table>
 											</td>
 										</table>
+										</div>
 										
 										<div style="padding:5px;"></div>
 										<!--실시간 입찰현황-->
