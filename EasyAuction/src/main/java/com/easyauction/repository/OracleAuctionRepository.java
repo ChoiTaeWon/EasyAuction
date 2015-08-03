@@ -73,6 +73,31 @@ public class OracleAuctionRepository implements AuctionRepository{
 	}
 
 	@Override
+	public List<Auction> getAuctionListByAucState() {
+		// TODO Auto-generated method stub
+		return auctionMapper.getAuctionListByAucState();
+	}
+
+
+	@Override
+	public void insertAuctionDirectDeal(Auction auction) {
+		// TODO Auto-generated method stub
+		auctionMapper.insertAuctionDirectDeal(auction);
+	}
+
+
+	@Override
+	public List<Auction> getAuctionListByAucType() {
+		return auctionMapper.getAuctionListByAucType();
+	}
+
+
+	@Override
+	public List<Auction> getAuctionListByAucWriter(String mbId) {
+		// TODO Auto-generated method stub
+		return auctionMapper.getAuctionListByAucWriter(mbId);
+	}
+
 	public List<Auction> getAucReportList(){
 		return auctionMapper.getAucReportList();
 	}
