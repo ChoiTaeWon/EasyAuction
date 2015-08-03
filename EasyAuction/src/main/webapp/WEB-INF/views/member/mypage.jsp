@@ -196,6 +196,12 @@ $(function(){
 			event.stopPropagation();//버블링 업 막아줌
 		})
 	});
+	
+	$('#aucstate5up').click(function(){
+		$(location).attr('href','/easyauction/ajax/auctionPayment.action?aucNo=' + $('#aucstate5up').attr('alt') + "&mbId=" + '${ mbId }');
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+		event.stopPropagation();//버블링 업 막아줌
+	})
 
 })
 
@@ -393,11 +399,27 @@ $(function(){
 					<c:when test="${ auction.aucState eq 2 }">
 					<img src="/easyauction/resources/images/view_stats2.png" alt="경매 마감">
 					</c:when>
+					<c:when test="${ auction.aucState eq 3 }">
+					<img src="/easyauction/resources/images/view_stats3.png" alt="결재대기">
+					</c:when>
+					<c:when test="${ auction.aucState eq 4 }">
+					<img src="/easyauction/resources/images/view_stats4.png" alt="결제완료">
+					</c:when>
+					<c:when test="${ auction.aucState eq 5 }">
+					<img src="/easyauction/resources/images/view_stats5.png" alt="거래완료">
+					</c:when>
 					<c:otherwise>에러 상태</c:otherwise>
 				</c:choose>
 				</td>
 			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
 			<!-- 나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div> -->
+			<c:choose>
+			<c:when test="${ auction.aucState eq 4 }">
+			<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>
 			</td>
 		</tr>
 		</c:forEach>
