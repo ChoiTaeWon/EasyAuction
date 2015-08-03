@@ -214,7 +214,7 @@
 						<!-- 댓글 옆 수정 삭제 -->
 						<td align="right">
 							<img src='/easyauction/resources/images/sujung.png' id='u${ comment.bcNo }' class="bcsujung">
-							<img src='/easyauction/resources/images/list.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
+							<img src='/easyauction/resources/images/list1.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
 						</td>
 						<td width='50'></td>
 					</tr>
@@ -223,9 +223,11 @@
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='comment.action' method='post'>
+				<form action='freeboardcomment.action' method='post'>
 					<input type="hidden" name="bdno" value="${ view.bdNo }" /> 
 					<input type="hidden" name="writer" value="${ view.bdWriter }" />
+					<input type="hidden" name="pageno" value="${ pageno }" />
+					<%-- <input type="hidden" name="pageno" value="${ pageno }" /> --%>
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td>

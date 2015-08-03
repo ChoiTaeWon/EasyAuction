@@ -65,7 +65,7 @@
 				<td align="left">&nbsp;</td>
 								  
 				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/.action'><img src='/easyauction/resources/images/small.png'></a>
+								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
 				</td>
 			</tr>
 			</table>
