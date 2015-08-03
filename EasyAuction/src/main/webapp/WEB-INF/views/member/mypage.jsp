@@ -14,6 +14,7 @@
 <script src="/easyauction/resources/js/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function(){
+
 	var html =
 		"<div id='reportContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"     
         + "<label for='reporter'>신고자</label>"
@@ -24,7 +25,7 @@ $(function(){
         + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
     var payment =
 		"<div id='paymentContent' title='결제하기' style='display: none;width: 300px;height: 250px'>"     
-        + "<label for='auctitle' style='width: 100%;text-align: center;'>상품명</label></br>"
+        + "<label for='' id='auctionno' style='width: 100%;text-align: center;'>상품명</label></br>"
         + "<label for='auctitle' id='auctitle' style='width: 100%;text-align: center;'></label></br>"
         + "<label for='price' style='width: 100%;text-align: center;'>결제금액</label><br>"
         + "<label for='price' id='price' style='width: 100%;text-align: center;'></label><br>"
@@ -65,26 +66,8 @@ $(function(){
 			
 			function dopayment() {
 				alert('결제완료');
-					$.ajax({
-						url : "/easyauction/ajax/auctionPayment.action",	
-						async : false,
-						type : "GET",
-						data : {
-							aucNo : '26'
-							
-						},
-						success : function(result) {
-							
-							paymentDialog.dialog('close');
-							
-							
-						},
-						error : function() {
-							alert('게시글 신고 실패 + 걍 아예 에러임 ');
-						}
-					});
+				$(location).attr('href','/easyauction/ajax/auctionPayment.action?mbId='+'${ mbId }'+'&aucNo='+$('#auctionno').attr('for'));
 			}
-			
 			/////////////////////////////////////////////////////////////////////////////////
 			//신고 요청 처리
 			function doReport() {
@@ -119,11 +102,14 @@ $(function(){
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
     $('.aucstateup').click(function(){
     	//getauctions  	
-    	var altval = $(this).attr('alt');
-    	alert('${ getauctions[0].aucFinalPrice }');
-    	alert('${ getauctions[altval].aucFinalPrice }');
-    	$('#auctitle').text('${ getauctions[0].aucTitle }'+'${ getauctions[0].aucItemName }');
-    	$('#price').text('${ getauctions[0].aucFinalPrice }');
+    	var altval = $(this).attr('alt').split('&&');
+    	var price = altval[0];
+    	var title = altval[1];
+    	var itemName = altval[2];
+    	var aucno = altval[3];
+    	$('#auctionno').attr('for', aucno);
+    	$('#auctitle').text(title+itemName);
+    	$('#price').text(price);
     	
     	paymentDialog.dialog("open");
     	event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
@@ -220,7 +206,7 @@ $(function(){
 <table id="dialogspot">
 </table>
 <body>
-<div id="wrap"></div> <!-- A 시작 -->
+<div id="wrap"> <!-- A 시작 -->
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 --><br />
@@ -487,7 +473,7 @@ $(function(){
 						</td>
 						<c:choose>
 						<c:when test="${ auction.aucState eq 3 }">
-						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ status.index }"></td>
+						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ auction.aucFinalPrice }&&${ auction.aucTitle }&&${ auction.aucItemName }&&${ auction.aucNo }"></td>
 						</c:when>
 						<c:when test="${ auction.aucState >= 4 }">
 						<td align="center">결제완료</td>

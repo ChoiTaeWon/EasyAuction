@@ -249,7 +249,7 @@
 		order By
 		aucno DESC
 	</select>
-	<update id="setUpdateaAuctionState" parameterType="String">
+	<update id="setUpdateaAuctionState" parameterType="integer">
 	UPDATE auction SET 
 		aucState = (select aucState from auction WHERE aucNo= #{ aucNo }) +1
 	WHERE aucNo = #{ aucNo }

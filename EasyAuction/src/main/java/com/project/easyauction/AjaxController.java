@@ -68,12 +68,10 @@ public class AjaxController {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping(value="auctionPayment.action", method = RequestMethod.GET)
-	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
-	public int auctionPayment(int aucNo) {
-		int result = 0;
+	public String auctionPayment(int aucNo, String mbId) {
 		mbgsvc.setUpdateaAuctionState(aucNo);
 		
-		return result;
+		return "redirect:/member/viewmypage.action?mbId="+mbId;
 	}
 	
 
