@@ -31,8 +31,10 @@
 		 });
 		 
 		 $(function(){
-			 if('${ locationurl }' != ''){
+			 if('${ locationurl }' == 'findPasswd' ||'${ locationurl }' == 'findmbId'){
 				 alert('이메일을 발송했습니다. 확인해주세요');
+			 }else if('${ locationurl }' == 'memberdelete'){
+				 alert('회원정보가 삭제되었습니다.');
 			 }
 				 $("#gonggi_top").on({ 
 						//이벤트 이름 : 호출할 함수

@@ -17,7 +17,8 @@
     <script type="text/javascript" src="/easyauction/resources/js/i18n/grid.locale-en.js"></script>
     <script type="text/javascript"> 
         $(function () {
-        	$("#tabs").tabs();
+        	$ ( "#tabs" ).tabs ();
+
             $("#jqGrid").jqGrid({
                 url: 'memberlist.action',
                 mtype: "POST",
@@ -38,7 +39,9 @@
                     }},
                     { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
                     { name: 'mbReportingCount', index: 'mbReportingCount', formatter: function(cellValue,options,rowObject){
-                    	if(cellValue >= 3){
+                    	if(cellValue >= 3 && cellValue <= 29){
+                    		return '<font color="#DBA901">'+cellValue+'회</font>';
+                    	}else if(cellValue >= 30){
                     		return '<font color="red">'+cellValue+'회</font>';
                     	}else {
                     		return '<font color="black">'+cellValue+'회</font>';
@@ -65,7 +68,7 @@
         			});		
                 },
 				loadonce:true, // just for demo purpose
-                width: 710,
+                width: 780,
                 height: 500,
                 rowNum: 20,
 				rowList:[20,25,50],
@@ -76,11 +79,53 @@
             });
 			$("#jqGrid").jqGrid("navGrid","#jqGridPager",{add:false, edit:false, del:false});
 			
-            $("#deleteList").jqGrid({
+			$("#reportList").jqGrid({
+                url: 'memberreportlist.action',
+                mtype: "POST",
+                datatype: "json",
+                colNames: ['등급','아이디','연락처','이메일','회원명','가입일','신고횟수', '처리'],
+                colModel: [
+                    { name: 'mbGrade', index:'mbGrade', width: 70, formatter: gradeformat},
+                    { name: 'mbId', index:'mbId', key: true, width: 80 },
+ 					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
+ 					{ name: 'mbEmail', index:'mbEmail', width: 150 },
+                    { name: 'mbName', index:'mbName', width: 100 },
+                    { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
+                    { name: 'mbReportingCount', index: 'mbReportingCount', formatter: function(cellValue,options,rowObject){
+                    	if(cellValue >= 3 && cellValue <= 29){
+                    		return '<font color="#DBA901">'+cellValue+'회</font>';
+                    	}else if(cellValue >= 30){
+                    		return '<font color="red">'+cellValue+'회</font>';
+                    	}else {
+                    		return '<font color="black">'+cellValue+'회</font>';
+                    	}
+                    }, width: 100, align: 'right'},
+                    { name: 'mbId', width: 80, formatter: blackout }
+                ],
+                loadError : function(xhr, status, error) {
+                	console.log(error);
+                },
+                loadComplete: function() {
+                    $("tr.jqgrow:even").css("background", "#ffffff");
+                    $("tr.jqgrow:odd").css("background", "#E6E6E6");
+                    //$("tr.jqgrow:odd").addClass('myAltRowClass');
+                },
+				loadonce:true, // just for demo purpose
+                width: 780,
+                height: 500,
+                rowNum: 20,
+				rowList:[20,25,50],
+				sortname: 'mbReportingCount',
+                pager: "#reportListPager",
+				viewrecords: true
+            });
+			$("#reportList").jqGrid("navGrid","#reportListPager",{add:false, edit:false, del:false});			
+            
+			$("#deleteList").jqGrid({
                 url: 'memberdeletlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['아이디','연락처','이메일','회원명','성별','가입일','신고횟수'],
+                colNames: ['아이디','연락처','이메일','회원명','성별','가입일'],
                 colModel: [
                     { name: 'mbId', index:'mbId', key: true, width: 80 },
  					{ name: 'mbPhone2', index:'mbPhone2', width: 150 },
@@ -93,14 +138,7 @@
                         	return '<font color="#FF3399">'+'여자'+'</font>';
                         }
                     }},
-                    { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}},
-                    { name: 'mbReportingCount', index: 'mbReportingCount', formatter: function(cellValue,options,rowObject){
-                    	if(cellValue >= 3){
-                    		return '<font color="red">'+cellValue+'회</font>';
-                    	}else {
-                    		return '<font color="black">'+cellValue+'회</font>';
-                    	}
-                    }, width: 100, align: 'right'}
+                    { name: 'mbRegdate', index:'mbRegdate', width: 100, formatter: 'date', formatoptions: {srcformat:'Y-m-d h:i A',newformat:'Y-m-d'}}
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -111,7 +149,7 @@
                     //$("tr.jqgrow:odd").addClass('myAltRowClass');
                 },
 				loadonce:true, // just for demo purpose
-                width: 710,
+                width: 780,
                 height: 500,
                 rowNum: 20,
 				rowList:[20,25,50],
@@ -121,6 +159,10 @@
             });
 			$("#deleteList").jqGrid("navGrid","#deleteListPager",{add:false, edit:false, del:false});
         });
+        function blackout(cellValue,options,rowObject){
+        	var pat3 = "<a href='/easyauction/admin/black.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
+        	return pat3;
+        }
 		function imageTool(cellValue,options,rowObject){
 			var pat = "<a href='#'><img src='/easyauction/resources/images/member_icon_03.gif' onclick='messageBtn(\""+cellValue+"\")'></a><div style='padding-top:2px;'></div>";
 			var pat2 = "<a href='/easyauction/admin/memberview.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_04.gif'></a>&nbsp;<a class='delete' href='#' value="+cellValue+"><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
@@ -163,14 +205,14 @@
 		</div><!-- 헤더 끝 -->
 	<br />
 	<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
-		<div style="width:216px;float: left; margin:0 0 0 0;"><!-- 사이드메뉴 -->
+		<div style="width:150px;float: left; margin:0 0 0 0;"><!-- 사이드메뉴 -->
 			<c:import url="/WEB-INF/views/admin/sidemenu.jsp" />
 		</div><!-- 사이드메뉴 끝 -->
 	</div>
-		<div style="width: 730px; float:right;"><!-- list -->
+		<div style="width: 800px; float:right;"><!-- list -->
 			<table width="100%">
 			 <tr>
-			  <td align="center"><a href="#"><img width="728" src="/easyauction/resources/images/admin_image.png"></td>
+			  <td align="center"><a href="#"><img width="800" src="/easyauction/resources/images/admin_image.png"></td>
 			 </tr>
 			</table>
 		<div style="padding:5px;"></div>
@@ -183,16 +225,21 @@
 		<div id="tabs">
 		  <ul>
    			<li><a href="#tabs-1">전체회원리스트</a></li>
-    		<li><a href="#tabs-2">삭제/탈퇴리스트</a></li>
+   			<li><a href="#tabs-2">신고회원리스트</a></li>
+    		<li><a href="#tabs-3">삭제/탈퇴리스트</a></li>
  		 </ul>
 		<div id="tabs-1">	
 		 <table id="jqGrid"></table>
    		 <div id="jqGridPager"></div>
    		</div>
    		<div id="tabs-2">
+   		 <table id="reportList"></table>
+   		 <div id="reportListPager"></div>
+   		</div>
+   		<div id="tabs-3">
    		 <table id="deleteList"></table>
-   		 <div id="deleteListPager"></div>
-   		</div>    
+   		<div id="deleteListPager"></div>
+   		</div>     
    		</div>
 		</div><!-- list 끝 -->
 		<div id="footer">

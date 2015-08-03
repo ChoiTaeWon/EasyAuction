@@ -208,14 +208,21 @@ public class MemberController {
 		return mav;
 	}
 	@RequestMapping(value = "deletemember.action", method = RequestMethod.GET)
-	public String deletememberform(String mbId, String confim) {
+	public ModelAndView deletememberform(String mbId) {
 		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mypagedeletemember");
+		mav.addObject("mbId", mbId);		
+		return mav;
+	}
+	@RequestMapping(value = "deletemember.action", method = RequestMethod.POST)
+	public ModelAndView deletemember(String mbId) {
+		ModelAndView mav = new ModelAndView();
+		mbsvc.setMemberDelete(mbId);
+		mav.setViewName("mainpage");
+		mav.addObject("locationurl", "memberdelete");
 		
-		if(confim.equals("yes")){
-		
-		return "redirect:/home.action";
-		}
-		return "member/deletemember";
+		//return "redirect:/home.action"
+		return mav;
 	}
 	
 }

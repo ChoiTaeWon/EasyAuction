@@ -10,4 +10,8 @@ public interface AdminRepository {
 	void setMemberDelete(String mbId);
 	
 	List<Member> getMemberDeleteList();
+	
+	List<Member> getMemberReportList();
+	void setBlack(String mbId);
+	
 }

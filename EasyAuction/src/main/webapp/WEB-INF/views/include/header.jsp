@@ -39,6 +39,7 @@
 					 jQuery.Event('keypress', { keyCode : 68, which : 68, ctrlKey : true  })
 			  );
 		       */
+		       /* addEvent('keyup', { keyCode : 68, which : 68, ctrlKey : true  }).trigger('keyup'); */
 		      
 		   }
 		   // Firefox
@@ -58,6 +59,7 @@
 		   }
 	 } 
 	$(function(){
+		//사용자 입력 키값 읽기위한것
 		/* $(document).keyup(function(event) {
 			alert(event.keyCode + "/" + event.ctrlKey)
 		}); */

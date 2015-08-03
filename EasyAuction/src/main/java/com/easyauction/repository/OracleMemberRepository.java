@@ -109,5 +109,19 @@ public class OracleMemberRepository implements MemberRepository {
 		
 	}
 
+
+	@Override
+	public void setMemberDelete(String mbId) {
+		memberMapper.setMemberDelete(mbId);
+		
+	}
+
+
+	@Override
+	public int setUpdateaAuctionState(int aucNo) {
+		int result = memberMapper.setUpdateaAuctionState(aucNo);
+		return result;
+	}
+
 	
 }
