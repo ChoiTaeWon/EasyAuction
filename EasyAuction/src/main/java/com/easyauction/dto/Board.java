@@ -15,6 +15,7 @@ public class Board implements Serializable{
 	private Date bdDate;
 	private int bdReportingCount;
 	private boolean bdBlindCheck;
+	private int commentCount;
 	
 	// 데이터베이스의 Board 와 BoardComment 테이블 간의 1:M 관계를 구현한 필드 
 	private List<BoardComment> comments;
@@ -109,6 +110,14 @@ public class Board implements Serializable{
 
 	public void setBdImage(List<BoardImage> boardImage) {
 		this.boardImage = boardImage;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 	
 }

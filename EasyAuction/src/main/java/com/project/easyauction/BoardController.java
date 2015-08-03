@@ -58,11 +58,18 @@ public class BoardController {
 
 	boards= boardService.getFreeBoardList(first, first + pageSize); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.			
 	//$$$$$$$$$$$$$$$$  페이지 개수 조정 (조건에 맞는 개수만큼만 페이징 조정) 작업.
+	
+	for(Board board : boards){
+		board.setCommentCount(board.getComments().size());
+	}
+	/*for(int i = 0; i<boards.size();i++){
+		count = count + boards.get(i).getComments().size();
+	}*/
 	dataCount = boardService.getFreeBoardCount(); //전체 게시물 갯수 조회
-	System.out.println(dataCount);
+	//System.out.println(dataCount);
 					
 	ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url);
-	System.out.println(pager);
+	//System.out.println(pager);
 				
 	ModelAndView mav = new ModelAndView();
 	/*List<Employee> employees = employeeDao.getEmployeeList(lineup);*/
