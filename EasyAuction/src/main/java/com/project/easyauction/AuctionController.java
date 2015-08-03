@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
 import com.easyauction.dto.Bidding;
@@ -119,7 +120,7 @@ public class AuctionController {
 	               );
 	            
 	            //가상경로 -> 물리경로
-	            String path = application.getRealPath("/resources/imagefile/");
+	           
 	            
 
 	            auctionService.insertAuction(auction);
@@ -130,10 +131,14 @@ public class AuctionController {
 	               if (fileName.contains("\\")) {//IE일 경우 전체 경로에서 파일이름만 추출
 	                  //C:\ABC\DEF\xyz.txt -> xyz.txt
 	                  fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+	                 
 	               }
+	               String path = application.getRealPath("/resources/imagefile/");
+	               String savedName = Util.getUniqueFileName(path, fileName);
+	               
 	               
 	               AuctionImage auctionImage = new AuctionImage();
-	               auctionImage.setAucImgName(fileName);
+	               auctionImage.setAucImgName(savedName);
 	               auctionImage.setAucNo(auction.getAucNo());
 	               auctionService.insertAuctionPhotoImage(auctionImage);
 	               System.out.println("파일명 : "+auctionImage.getAucImgName());

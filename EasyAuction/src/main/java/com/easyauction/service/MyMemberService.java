@@ -80,6 +80,9 @@ public class MyMemberService implements MemberService {
 		
 	}
 	@Override
+	public List<Member> getMemberAddressList() {
+		return mbrepo.getMemberAddressList();
+	}
 	public void setUpdateaAuctionState(int aucNo) {
 		mbrepo.setUpdateaAuctionState(aucNo);
 		

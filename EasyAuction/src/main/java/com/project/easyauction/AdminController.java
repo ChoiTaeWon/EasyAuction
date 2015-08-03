@@ -72,7 +72,7 @@ public class AdminController {
 		}else if(member.getMbGrade() >= 71 && member.getMbGrade() < 100){
 			member.setMbGrade(71);
 		}else{
-			member.setMbGrade(0);
+			member.setMbGrade(101);
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/membereditview");
@@ -131,6 +131,7 @@ public class AdminController {
 	@RequestMapping(value = "auctionlist.action", method = RequestMethod.POST)
 	public @ResponseBody List<Auction> auctionList() {
 		List<Auction> auctions = adminService.getAuctionListByAdmin();
+		
 		return auctions;
 	}
 	@RequestMapping(value = "aucreportlist.action", method = RequestMethod.GET)

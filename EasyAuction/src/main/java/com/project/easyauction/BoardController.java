@@ -49,7 +49,7 @@ public class BoardController {
 	int pagerSize = 0; //번호로 표시할 페이지 갯수
 	int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
 	String url = "freeboard.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
-	//요청한 페이지 번호가 있다면, 읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
+	//요청한 페이지 번호가 있다면,  읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
 	if (pageno != null ) {
 		pageNo = pageno;
 	}

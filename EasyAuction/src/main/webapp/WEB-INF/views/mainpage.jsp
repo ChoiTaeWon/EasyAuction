@@ -30,12 +30,15 @@
 				
 		 });
 		 
+		 
+		 var auctionListResult = null;
 		 $(function(){
 			 if('${ locationurl }' == 'findPasswd' ||'${ locationurl }' == 'findmbId'){
 				 alert('이메일을 발송했습니다. 확인해주세요');
 			 }else if('${ locationurl }' == 'memberdelete'){
 				 alert('회원정보가 삭제되었습니다.');
 			 }
+			 
 				 $("#gonggi_top").on({ 
 						//이벤트 이름 : 호출할 함수
 						mouseover : function(event) {
@@ -56,10 +59,33 @@
 						}
 					});
 				 
+				 
+					
+				$.ajax({
+					url : "/easyauction/ajax/selectMainAuction.action",	
+					async : false,
+					type : "POST",
+					
+					success : function(auctionList) {
+						//alert(auctionList + ' : auctionList 값' );
+						
+						if (auctionList != null) {	
+							//alert("실시간 경매를 불러옵니다.");
+							auctionListResult =  auctionList;
+						} else {
+							alert('실시간 경매를 불러오기 실패');
+						}
+						
+					},
+					error : function() {
+						alert('실시간 경매를 불러오기 아예 에러');
+					}
+				});
+				 
+				 
 		 });
 		
 	</script>
-	
 	
 
 
@@ -76,7 +102,7 @@
 		
 		<div id="" style="width: 960px"> <!-- AAAAAA -->
 		
-			<div style="width:250px;float: left; border: 1px solid">
+			<div style="width:250px;float: left;">
 				<table style="height: 250px; width: 250px;padding: 0 0 0 0; margin: 0 0 0 0;">
 					<tr valign="top">
 						<td style="background-color:#F8F8F8; border:1px solid #DEDEDE;" width="278" align="center">
@@ -127,12 +153,12 @@
 								<div class="slideshow-wrapper-box2">
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg01.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide1.PNG"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg02.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide2.jpg"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
@@ -168,7 +194,7 @@
 	</div><!-- AAAAAA 끝 -->
 	
 	
-	<div style="width:100%;border: 1px solid">
+	<div style="width:100%;">
  		  	<div>	
  		  		<table style="width:100%;" >
 					<tr>
@@ -177,51 +203,73 @@
 						</td>									
 					 </tr>
 					 <tr>							   
-						<td style="padding:10px;">
-							<table style="width: 250px;background-color:yellow;border:0;cellpadding:0;cellspacing:0;">
-								<tr>
-									<td valign=top align=left>
-										<table style="width:209px; background-color:orange; margin:10px 0 5px 0;" valign="middle">
-											<tr>
-												<td style="width:209px; height:7px; background:url(/easyauction/resources/images/mainlogo.png);"></td>
-											</tr>
-											<tr>
-												<td style="background:url(img/imgpart_temple_round_02.gif);" align="center" valign="top">
-													<div style="margin:8px 0 6px 0;"><a href='./view.php?num=32&tb=&count=&category=57r16&pg=1'><b>[미니언]미니언!</b></a></div>
-													<a href='./view.php?num=32&tb=&count=&category=57r16&pg=1'><img src="/easyauction/resources/images/qwerqwerqwer.jpg" width="145" height="145"></a>
-													
-													<div class="time_main" id="main_ex_2_time_32">
-														<div class="time_main_day" style="display:none;" id="main_ex_2_time_32_day"></div>
-														<div class="time_main_dayicon" style="display:none;" id="main_ex_2_time_32_dayicon"></div>
-														<div class="time_main_day_no" id="main_ex_2_time_32_day_no"></div>
-														<div class="time_main_dayicon_no" id="main_ex_2_time_32_dayicon_no"></div>
-														<div class="time_main_hour" id="main_ex_2_time_32_hour">00</div>
-														<div class="time_main_minutes" id="main_ex_2_time_32_minutes">00</div>
-														<div class="time_main_second" id="main_ex_2_time_32_second">00</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-								 				<td align="center">
-								 					<div style="clear:both;">
-								 						<b><span class="tenwon_price_main" id="main_ex_2_price_32">가겨겨겨겨격</span></b>
-								 						<img src="img/ico_won.gif" align="absmiddle">
-								 					</div>
-								 				</td>
-											</tr>
-											<tr>
-												<td align="center" style="padding-top:5px;">
-													<a href="javascript:void(0);" onclick="tenAuctionIpchal('32')">
-													<img src="img/btn_ipchal.gif" border="0" align="absmiddle"></a>
-												 </td>
-											</tr>
-											<tr>
-												<td style="width:209px; height:16px; background:url(img/imgpart_temple_round_03.gif);"></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>	
+						<td style="padding:5px;">
+									<c:forEach begin="1" end="8" step="1" varStatus="status">
+									<!-- 여기서부터 테두리  -->
+										
+											<table class="realTimeMain" style="float: left;">
+												<tr>
+													<td valign=top align="center">
+														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
+															<tr>
+															<%-- <c:choose>
+																	<c:when test="${ auction.aucCategory eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
+																	<c:when test="${ auction.aucCategory eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
+																	<c:otherwise>에러 상태</c:otherwise>
+																</c:choose> --%>
+															</tr>
+															<tr>
+																<td align="center" valign="top">
+																	<div style="margin:8px 0 6px 0;">
+																		<a href=''>
+																			<b>[미니언]미니언!</b>
+																		</a>
+																	</div>
+																	<a href=''>
+																		<img src="/easyauction/resources/images/qwerqwerqwer.jpg" width="145" height="145">
+																	</a>
+																	
+																	<div align="center" style="width: 100%;">
+																		<table>
+																		  <tr>
+																		  
+																		    <td><div class="deal_time_main_hour" id="count1"></div></td>
+																		    <td><div class="deal_time_main_blank">:</div></td> 
+																		    <td><div class="deal_time_main_minutes" id="count2"></div></td>
+																		    <td><div class="deal_time_main_blank">:</div></td> 
+																		    <td><div class="deal_time_main_second" id="count3"></div></td>
+																		  </tr>
+																		</table>
+																	</div>
+																	
+																	<div style="padding-top: 10px"></div>
+																	
+																	<div>
+																		<img style="width: 100%" src="/easyauction/resources/images/btn_ipchal_basic.gif">
+																	</div>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+											<!-- 토탈 테두리 끝 -->
+										
+								</c:forEach>
+								
 						</td>
 					</tr>
 				</table>
@@ -238,5 +286,3 @@
 </div><!-- div wrap 끝 -->
 </body>
 </html>
-
-

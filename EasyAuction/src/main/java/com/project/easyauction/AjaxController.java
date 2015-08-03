@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.easyauction.common.Util;
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.BoardReporting;
@@ -42,6 +43,8 @@ public class AjaxController {
 	public void setMessageService(MessageService msgsvc){
 		this.msgsvc = msgsvc;
 	}
+	
+	
 	
 	
 	private ReportService reportService;
@@ -304,5 +307,62 @@ public class AjaxController {
 	}
 	
 	
-
+	
+	@RequestMapping(value="selectMainAuction.action", method = RequestMethod.POST)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Auction> selectMainAuction() {
+			List<Auction> auctionList = auctionService.getAuctionListByAucState();
+			
+			if(auctionList != null){
+				return auctionList;
+			}else{
+				return null;
+			}
+	}  //메인에서 쓸거임
+	
+	
+/*	@RequestMapping(value="selectDirectDealList.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Auction> selectDirectDealList() {
+			System.out.println("하이!!!!!!!!!!");
+			List<Auction> directLists = auctionService.getAuctionListByAucType();
+				for(Auction auction : directLists){
+				System.out.println(auction.getAucNo() + "&&" + auction.getAucWriter() + "&&" + auction.getAucTitle());
+				}
+			
+			if(directLists != null){
+				return directLists;
+			}else{
+				return directLists;
+			}
+	}*/ 
+	
+	
+	@RequestMapping(value="selectMembersAddress.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Member> selectMemebersAddress() {
+		List<Member> members = mbgsvc.getMemberAddressList();
+//			for(Member member : members){
+//			System.out.println(member.getMbId() + "&&" + member.getMbAddress1() + "&&" + member.getMbAddress2());
+//			}
+			
+		return members;
+	} 	//
+	
+	
+	
+	
+	@RequestMapping(value="selectAuctionListByAucWriter.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public List<Auction> selectAuctionListByAucWriter(String mbId) {
+		List<Auction> auctions = auctionService.getAuctionListByAucWriter(mbId);
+//			for(Member member : members){
+//			System.out.println(member.getMbId() + "&&" + member.getMbAddress1() + "&&" + member.getMbAddress2());
+//			}
+			
+		return auctions;
+	} 	//
+	
+	
+	
 }

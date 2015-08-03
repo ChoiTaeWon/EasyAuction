@@ -64,7 +64,8 @@
 		$('#modify').click(function(){
 			$('#editform').submit();
 		})
-		$('#mbGrade').val('${member.mbGrade}');
+		//$("#mbGrade option:eq(${ member.mbGrade })").attr("selected", "selected");
+		$("#mbGrade").val("${ member.mbGrade }");
 	})
 </script>
 <!-- 다음 주소관련 function 끝 -->

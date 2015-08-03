@@ -20,7 +20,15 @@ public interface AuctionRepository {
 	Auction getAuctionDetailByAuctionNo(int aucNo);
 
 	void updateAuctionReportCount(int aucNo);
-	
+
+	List<Auction> getAuctionListByAucState();
+
+	void insertAuctionDirectDeal(Auction auction);
+
+	List<Auction> getAuctionListByAucType();
+
+	List<Auction> getAuctionListByAucWriter(String mbId);
+
 	List<Auction> getAuctionListByAdmin();
 	
 	List<Auction> getAucReportList();
