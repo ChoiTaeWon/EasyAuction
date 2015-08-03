@@ -47,7 +47,7 @@ public interface BoardMapper {
 
 	List<Board> getGongjiBoardSearchList(HashMap<String, String> params);
 	
-	int getFreeBoardCount();
+	int getFreeBoardCount(int bdtype);
 	
 	int getFreeBoardCommentCount();
 	
@@ -56,5 +56,7 @@ public interface BoardMapper {
 	void updateFreeBoard(Board board);
 	
 	void updateFreeBoardReadCount(int bdNo);
+
+	int getFreeBoardSearchCount(HashMap<String, String> params);
 
 }

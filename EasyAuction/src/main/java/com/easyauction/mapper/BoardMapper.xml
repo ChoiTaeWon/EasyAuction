@@ -91,31 +91,40 @@
  					bdno, bdtype, bdcontent, bdwriter, bdtitle,
  					bdreadcount, bddate, bdreportingcount, bdblindcheck
 				FROM 
-					board
+					board WHERE bdtype = #{ bdtype }
  				ORDER BY 
  					bdno DESC
  				)s	
  		)
  	WHERE
- 		idx &gt;= #{ first } AND idx &lt; #{ last } 
+ 		idx &gt;= #{ first } AND idx &lt; #{ last } AND bdtype = #{ bdtype }
  	</select>
 	
 	<select id="getFreeBoardSearchList" parameterType="hashMap" resultMap="boardResult">
-		SELECT <include refid="boardcolumns" />
-			FROM board
-		<trim prefix="where" prefixOverrides="AND | OR">
-				<if test="search == 'bdNo'">
-					bdNo LIKE '%'|| #{searchdata} ||'%'
-				</if>
-				<if test="search == 'bdWriter'">
-					AND bdWriter LIKE '%'|| #{searchdata} ||'%'
-				</if>
-				<if test="search == 'bdTitle'">
-					AND bdTitle LIKE '%'||  #{searchdata} ||'%'
-				</if>
-
-		</trim>
-		ORDER BY bdno DESC
+		SELECT
+				bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+	 	FROM 
+	 		(
+	 			SELECT 
+	 				rownum idx, s.*
+	 			FROM (
+	 				SELECT 
+	 					bdno, bdtype, bdcontent, bdwriter, bdtitle,
+	 					bdreadcount, bddate, bdreportingcount, bdblindcheck
+					FROM 
+						board WHERE bdtype = #{ bdtype } 
+						<if test="search == 'bdWriter'">
+							AND bdWriter LIKE '%'|| #{searchdata} ||'%'
+						</if>
+						<if test="search == 'bdTitle'">
+							AND bdTitle LIKE '%'||  #{searchdata} ||'%'
+						</if>
+	 				ORDER BY 
+	 					bdno DESC
+	 				)s	
+	 		)
+	 	WHERE
+ 		idx &gt;= #{ first } AND idx &lt; #{ last } AND bdtype = #{ bdtype }
 	</select>
 	
 	<select id="getGongjiBoardSearchList" parameterType="hashMap" resultMap="boardResult">
@@ -218,11 +227,28 @@
    		bcno = #{ bcNo }
    </delete>
    
-	<select id="getFreeBoardCount" parameterType="String" resultType="int">
+	<select id="getFreeBoardCount" parameterType="integer" resultType="int">
  	SELECT 
  	COUNT (bdno)
  	FROM 
- 		board
+ 		board 
+ 	WHERE 
+ 	BDTYPE = #{ bdtype } AND bdBlindCheck = 0
+ 	</select>
+ 	<select id="getFreeBoardSearchCount" parameterType="hashMap" resultType="int">
+ 	SELECT 
+ 	COUNT (bdno)
+ 	FROM 
+ 		board 
+ 	WHERE 
+ 	BDTYPE = #{ bdtype } 
+ 	<if test="search == 'bdTitle'">
+ 	AND BDTITLE LIKE '%'|| #{searchdata} ||'%'
+ 	</if>
+ 	<if test="search == 'bdWriter'">
+ 	AND BDWRITER LIKE '%'|| #{searchdata} ||'%'
+ 	</if>
+ 	AND bdBlindCheck = 0
  	</select>
 	
 	<!--  게시글 수정 (편집)?   -->

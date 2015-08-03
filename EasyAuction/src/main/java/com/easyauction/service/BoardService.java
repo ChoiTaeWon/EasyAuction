@@ -19,7 +19,7 @@ public interface BoardService {
  
 	List<Board> getPhotoList();
 	
-	List<Board> getFreeBoardList(int first, int last);
+	List<Board> getFreeBoardList(int first, int last, int bdtype);
 	
 	Board getPhotoViewByBoardNo(int bdNo);
 	
@@ -41,7 +41,7 @@ public interface BoardService {
 	
 	void deleteFreeBoardComment(int bcNo);
 	
-	List<Board> getFreeBoardSearchList(String search, String searchdata);
+	List<Board> getFreeBoardSearchList(int first, int last, String search, String searchdata, int bdtype);
 
 	List<Board> getGongjiBoardSearchList(String search, String searchdata);
 
@@ -51,9 +51,11 @@ public interface BoardService {
 
 	int getFreeBoardCommentCount();
 
-	int getFreeBoardCount();
+	int getFreeBoardCount(int bdtype);
 	
 	void updateFreeBoardReadCount(int bdNo);
+
+	int getFreeBoardSearchCount(String search, String searchdata, int bdtype);
 
 }
 
