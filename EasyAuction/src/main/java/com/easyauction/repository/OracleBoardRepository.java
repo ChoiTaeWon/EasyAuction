@@ -106,8 +106,9 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 	
 	@Override
-	public void updateFreeBoardComment(BoardComment boardComment) {
-		boardMapper.updateFreeBoardComment(boardComment);
+	public void updateFreeBoardComment(HashMap<String, Object> params) {
+		boardMapper.updateFreeBoardComment(params);
+		
 	}
 	
 	@Override
@@ -158,5 +159,7 @@ public class OracleBoardRepository implements BoardRepository{
 		boardMapper.updateFreeBoardReadCount(bdNo);
 		
 	}
+
+	
 
 }

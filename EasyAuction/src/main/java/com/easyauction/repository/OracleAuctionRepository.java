@@ -19,6 +19,7 @@ import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.Board;
+import com.easyauction.dto.Member;
 import com.easyauction.mapper.AuctionMapper;
 
 @Repository(value="auctionRepository")
@@ -65,7 +66,18 @@ public class OracleAuctionRepository implements AuctionRepository{
 		auctionMapper.updateAuctionReportCount(aucNo);
 	}
 
+	
+	@Override
+	public List<Auction> getAuctionListByAdmin(){
+		return auctionMapper.getAuctionListByAdmin();
+	}
 
-
-
+	@Override
+	public List<Auction> getAucReportList(){
+		return auctionMapper.getAucReportList();
+	}
+	@Override
+	public void setBlindAuction(int aucNo){
+		auctionMapper.setBlindAuction(aucNo);
+	}
 }

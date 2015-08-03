@@ -5,6 +5,7 @@ import java.util.List;
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionImage;
 import com.easyauction.dto.Bidding;
+import com.easyauction.dto.Member;
 
 public interface AuctionMapper {
 	void insertAuction(Auction auction);
@@ -12,6 +13,8 @@ public interface AuctionMapper {
 	List<Auction> getAuctionList();
 	Auction getAuctionDetailByAuctioNo(int aucNo);
 	void updateAuctionReportCount(int aucNo);
-	
+	List<Auction> getAuctionListByAdmin();
+	List<Auction> getAucReportList();
+	void setBlindAuction(int aucNo);
 	
 }

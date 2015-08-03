@@ -47,5 +47,16 @@
 		ORDER BY
 		  mbregdate desc
 	</select>
-	
+	<select id="getMemberReportList" resultMap="memberResult">
+	  		SELECT <include refid="membercolumns" />
+		FROM MEMBER
+		where mbgrant = 0 and mbdelete = 0 and mbreportingCount >= 1
+		ORDER BY
+		  mbregdate desc 
+	</select>
+	<update id="setBlack" parameterType="String">
+		update member set
+		mbgrade = 0
+		where mbid = #{ mbId }
+	</update>
 </mapper>

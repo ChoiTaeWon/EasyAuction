@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>공지사항게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -76,8 +76,27 @@
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">${ view.bdDate }</td>
 				 	  <td width="1"></td>
-				 	  <td align="center" width="40">${ view.bdReportingCount }</td>
+				 	  <td align="center" width="40">${ view.bdReadCount }</td>
+				 	 <%--  <td width="1"></td>
+				 	  <td align="center" width="40">${ view.bdBlindCheck }</td> --%>
 				 	</tr>
+				 	
+				 	<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
+						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
+						<!-- 내용 옆 수정 삭제 -->
+						<td align="right"><a href='/easyauction/board/updategongji.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
+										  <a href='/easyauction/board/deletegongji.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+						</td>
+						
+						</td>
+						<td width='50'></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
+					</tr>
+				</table>
 				    <tr>
 						<td height="3" colspan="14" background="/easyauction/resources/images/bg_line_dot.gif"></td>
 					</tr>
@@ -113,29 +132,32 @@
 						<td height="2px"  bgcolor="#EBEBEB"></td>
 					</tr>
 				</table>
+				
 				<c:forEach var="comment" items="${ view.comments }">
 				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
-						<td width='600' align='eft'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font></td>
+						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						<!-- 댓글 옆 수정 삭제 -->
-						<td align="right"><a href='/easyauction/board/updatefreeboardcomment.action'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletedfreeboardcomment.action'><img src='/easyauction/resources/images/delete.png'></a>
+						<td align="right"><a href='/easyauction/board/updategongjicomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
+										  <a href='/easyauction/board/deletegongjicomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
 						</td>
+						
+						</td>
+						<td width='50'></td>
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='gongjiboardcomment.action?bdno=${ view.bdNo }' method='post'>
+				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
 					<input type="hidden" value="${ view.bdWriter }" name="writer" >
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td><textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea></td>
 							<td align=right  width=80><input type=image src=/easyauction/resources/images/memo_add.gif onclick="document.forms[0].submit();"></td>
 						</tr>
-						
 					</table>
 				</form>
 				<!-- 댓글 // 끝 -->

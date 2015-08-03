@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.Util;
+import com.easyauction.dto.Auction;
 import com.easyauction.dto.Member;
 import com.easyauction.service.AdminService;
 import com.easyauction.service.MemberService;
@@ -105,5 +106,46 @@ public class AdminController {
 	public @ResponseBody List<Member> memberDeleteList() {
 		List<Member> members = adminService.getMemberDeleteList();
 		return members;
+	}
+	@RequestMapping(value = "memberreportlist.action", method = RequestMethod.GET)
+	public String memberReportList() {
+		return "admin/memberlist";
+	}
+	@RequestMapping(value = "memberreportlist.action", method = RequestMethod.POST)
+	public @ResponseBody List<Member> memberReportList2() {
+		List<Member> members2 = adminService.getMemberReportList();
+		return members2;
+	}
+	@RequestMapping(value = "black.action", method = RequestMethod.GET)
+	public String blackOut(String mbId) {
+		System.out.println(mbId);
+		adminService.setBlack(mbId);
+		return "admin/memberlist";
+	}
+	
+	
+	@RequestMapping(value = "auctionlist.action", method = RequestMethod.GET)
+	public String boardList() {
+		return "admin/auctionlist";
+	}
+	@RequestMapping(value = "auctionlist.action", method = RequestMethod.POST)
+	public @ResponseBody List<Auction> auctionList() {
+		List<Auction> auctions = adminService.getAuctionListByAdmin();
+		
+		return auctions;
+	}
+	@RequestMapping(value = "aucreportlist.action", method = RequestMethod.GET)
+	public String auctionReportList() {
+		return "admin/auctionlist";
+	}
+	@RequestMapping(value = "aucreportlist.action", method = RequestMethod.POST)
+	public @ResponseBody List<Auction> auctionReportList2() {
+		List<Auction> auctions2 = adminService.getAucReportList();
+		return auctions2;
+	}
+	@RequestMapping(value = "blind.action", method = RequestMethod.GET)
+	public String blind(int aucNo) {
+		adminService.setBlindAuction(aucNo);
+		return "admin/auctionlist";
 	}
 }

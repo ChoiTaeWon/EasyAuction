@@ -12,4 +12,7 @@ public interface AdminMapper {
 	List<Member> getMemberList();
 	void setMemberDelete(String mbId);
 	List<Member> getMemberDeleteList();
+	List<Member> getMemberReportList();
+	void setBlack(String mbId);
+	List<Member> getAucReportList();
 }

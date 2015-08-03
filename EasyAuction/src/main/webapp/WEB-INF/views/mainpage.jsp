@@ -31,8 +31,10 @@
 		 });
 		 
 		 $(function(){
-			 if('${ locationurl }' != ''){
+			 if('${ locationurl }' == 'findPasswd' ||'${ locationurl }' == 'findmbId'){
 				 alert('이메일을 발송했습니다. 확인해주세요');
+			 }else if('${ locationurl }' == 'memberdelete'){
+				 alert('회원정보가 삭제되었습니다.');
 			 }
 				 $("#gonggi_top").on({ 
 						//이벤트 이름 : 호출할 함수
@@ -125,12 +127,12 @@
 								<div class="slideshow-wrapper-box2">
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg01.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide1.PNG"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg02.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide2.jpg"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >

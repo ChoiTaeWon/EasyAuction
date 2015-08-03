@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,11 @@
  			return;
  		}
 		now = new Date(); 
-		//days = (dday - now) / 1000 / 60 / 60 / 24;
-		days = (now.getTime() - dday.getTime()) / 1000 / 60 / 60 / 24;
+		
+		days = (dday - now) / 1000 / 60 / 60 / 24;
+		//alert(dday);
+		//alert(now);
+		//days = (now.getTime() - dday.getTime()) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days); 
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
 		hRound = Math.floor(hours); 
@@ -59,8 +63,8 @@
 		var aucState = ${auction.aucState};
 		var checkDate=null;
 
-		var startDate = "<fmt:formatDate value='${auction.aucStartDate}' pattern='yyyy-MM-dd HH:mm:ss' />";
-		var endDate = "<fmt:formatDate value='${auction.aucEndDate}' pattern='yyyy-MM-dd HH:mm:ss' />";
+		var startDate = "<fmt:formatDate value='${auction.aucStartDate}' pattern='yyyy-M-d H:m:s' />";
+		var endDate = "<fmt:formatDate value='${auction.aucEndDate}' pattern='yyyy-M-d H:m:s' />";
 		
 		if(aucState == 0){ //경매 시작전
 			var spStartDate = startDate.split(' ')[0];
@@ -68,14 +72,15 @@
 			
 			var startYear = spStartDate.split('-')[0];
 			var startMonth = spStartDate.split('-')[1];
-			var startDay = spStartDate.split('')[2];
+			
+			var startDay = spStartDate.split('-')[2];
 			var startHour =  spStartTime.split(':')[0];
 			var startMinute = spStartTime.split(':')[1];
 			
 			$("#dayText").empty();
 			$("#dayText").html("경매 시작까지 남은 시간 :"); 
 			
-			dday = new Date(startYear,startMonth,startDay,startHour, startMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+			dday = new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
 			getTime(startYear,startMonth,startDay,startHour, startMinute);
 			
 		}else if(aucState == 1){ //경매 중
@@ -90,7 +95,7 @@
 			
 			$("#dayText").empty();
 			$("#dayText").html("경매 마감까지 남은 시간 :"); 
-			checkDate = new Date(endYear, endMonth, endDay, endHour, endMinute, 00);
+			checkDate = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00);
 			dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
 			getTime(endYear,endMonth,endDay,endHour, endMinute);
 			
@@ -102,10 +107,7 @@
 			alert(aucState);
 			
 		}
-		
-		if((checkDate-new Date())<0){
-			
-		}
+	
 		
 	 });	
 	
@@ -540,7 +542,7 @@ $(function(){
 										
 									</tr>
 								</table>
-						
+							${ fn:length(auction.auctionImage) }
 							<div style="padding:5px;"></div>
 						
 								<table width="100%">
@@ -553,37 +555,45 @@ $(function(){
 													<td style="border:1px solid #DEDEDE;">
 														<%-- <c:forEach var="image" items="${ auction.aucImgName }"> --%>
 															<%-- <c:forEach var="image" items="images"> --%>
-															<div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div>
-															<div ID="ITEM2" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM3" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM4" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM5" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM6" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM7" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM8" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM9" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM10" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<div ID="ITEM11" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
-															<%-- </c:forEach> --%>	
-														<%-- </c:forEach> --%>	
+															<!-- <div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div>
+															<div ID="ITEM1"><a href="#" onclick="window.open('img.php?num=4','popup_img','width=900,height=600,top=50, left=50 ,toolbar=no,scrollbars=no')"><img src='/easyauction/resources/images/qwerqwerqwer.jpg' WIDTH='300' height='300' border=0></a></div> -->
+															 <c:forEach  begin="1" end="10" step="1" varStatus="status">
+															  <c:choose>
+															  	<c:when test="${status.current==1}">
+															  		<div ID="ITEM${status.current}">
+																		<a href="#">
+																		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current-1].aucImgName }" width="300" height="300" style="width:300; height:300;border: 0" ></a>
+																	</div>
+															  	</c:when>
+															  	<c:when test="${ status.current-1 < fn:length(auction.auctionImage) }">
+															  		<div ID="ITEM${status.current}" style="display:none;"><img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current-1].aucImgName }" WIDTH='300' height='300'></div>
+															  	</c:when>
+															  	<c:otherwise>
+															  		<div ID="ITEM${status.current}" style="display:none;"><img src="/easyauction/resources/images/no_detail_img.gif" WIDTH='300' height='300'></div>
+															  	</c:otherwise>
+															  </c:choose>
+															</c:forEach> 
+															
 													</td>
 													
 												</tr>
 												<tr>
 													<td style="padding-top:10px;width:100%;">
-														<img src="/easyauction/resources/images/qwerqwerqwer.jpg" onclick="javascript:Selection('2');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('3');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('4');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('5');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('6');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<br>
 														
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('7');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('8');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('9');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('10');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														<img src="/easyauction/resources/images/no_detail_img.gif" onclick="javascript:Selection('11');" width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
-														
+														 <c:forEach  begin="1" end="10" step="1" varStatus="status">
+															  <c:choose>
+															  	<c:when test="${ status.current-1 < fn:length(auction.auctionImage) && status.current != 1 }">
+															  		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current].aucImgName }" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:when>
+															  	<c:when test="${ status.current-1 < fn:length(auction.auctionImage) && status.current >5  }">
+															  		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[status.current].aucImgName }" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:when>
+															  	
+															  	<c:otherwise>
+															  		<img src="/easyauction/resources/images/no_detail_img.gif" id='imgOnclick${status.current+1}' width='53' height='53' style='border:1px solid #c9c9c9; margin:0px 2px 2px 0px;padding:0'>
+															  	</c:otherwise>
+															  </c:choose>
+														</c:forEach> 
 													</td>
 												</tr>
 												<tr>
