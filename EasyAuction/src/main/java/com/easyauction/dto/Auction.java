@@ -21,6 +21,7 @@ public class Auction {
 	private	int aucReadCount;
 	private	String aucWriter;
 	private String aucAdText;
+	private String aucGetter;
 ///////////////////////////////////////////////////////////////////////////
 	private List<AuctionImage> auctionImage;
 	public List<AuctionImage> getAuctionImage() {
@@ -150,5 +151,11 @@ public class Auction {
 	}
 	public void setAucAdText(String aucAdText) {
 		this.aucAdText = aucAdText;
+	}
+	public String getAucGetter() {
+		return aucGetter;
+	}
+	public void setAucGetter(String aucGetter) {
+		this.aucGetter = aucGetter;
 	}	
 }

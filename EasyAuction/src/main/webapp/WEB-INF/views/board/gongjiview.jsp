@@ -151,7 +151,7 @@
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='comment.action?bdno=${ view.bdNo }' method='post'>
+				<form action='gongjiboardcomment.action?bdno=${ view.bdNo }' method='post'>
 					<input type="hidden" value="${ view.bdWriter }" name="writer" >
 					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 						<tr>

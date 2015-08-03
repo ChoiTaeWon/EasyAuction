@@ -122,6 +122,10 @@ public class OracleMemberRepository implements MemberRepository {
 		// TODO Auto-generated method stub
 		return memberMapper.getMemberAddressList();
 	}
+	public int setUpdateaAuctionState(int aucNo) {
+		int result = memberMapper.setUpdateaAuctionState(aucNo);
+		return result;
+	}
 
 	
 }

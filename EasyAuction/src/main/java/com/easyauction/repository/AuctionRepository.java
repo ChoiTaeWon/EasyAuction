@@ -7,6 +7,7 @@ import com.easyauction.dto.AuctionImage;
 import com.easyauction.dto.Bidding;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardImage;
+import com.easyauction.dto.Member;
 
 public interface AuctionRepository {
 
@@ -28,8 +29,10 @@ public interface AuctionRepository {
 
 	List<Auction> getAuctionListByAucWriter(String mbId);
 
-
+	List<Auction> getAuctionListByAdmin();
 	
+	List<Auction> getAucReportList();
 	
+	void setBlindAuction(int aucNo);
 
 }

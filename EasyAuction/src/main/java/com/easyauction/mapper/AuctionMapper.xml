@@ -23,6 +23,7 @@
 		<result column="aucreadcount" property="aucReadCount" />
 		<result column="aucwriter" property="aucWriter" />
 		<result column="aucadtext" property="aucAdText" />
+		<result column="aucgetter" property="aucGetter" />
 		<association property="countBidders" column="aucno" select="getCountBidders" />
 		<association property="bidding" column="aucno" select="getBiddingInfoByAucNo" />
 		<collection property="auctionImage" column="aucno" select="getAuctionImageByAuctionNo" />
@@ -66,7 +67,7 @@
 			 aucno, auctitle, aucstartdate, aucenddate, 
 			 aucitemname, auccategory, aucdetail, aucstartprice, 
 			 aucfinalprice, aucstate, aucregdate, aucreportingcount,
-			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext
+			 aucblindcheck, auctype, aucreadcount, aucwriter, aucadtext, aucgetter
 	</sql>
 	
 <!-- 	<sql id="insertcolumns">
@@ -164,4 +165,28 @@
  		from auction where auctype = 1 and aucwriter = #{mbId}
  	</select>
 	
+<!-- 	<update id="updateReportingCount" parameterType="int">
+		update auction set aucreportingcount= (select aucreportingcount from auction where aucno = #{aucNo}) +1 where aucno= #{aucNo};	
+	</update> -->
+	<!--  관리자 auction controller -->
+	<select id="getAuctionListByAdmin" resultMap="auctionResult">
+		select  <include refid="auctioncolumns" />
+		from AUCTION
+		where aucblindcheck != 1
+		order By
+		aucno DESC
+	</select>
+	<select id="getAucReportList" resultMap="auctionResult">
+				select  <include refid="auctioncolumns" />
+		from AUCTION
+		where aucreportingcount >= 1
+		order By
+		aucno DESC
+	</select>
+	<update id="setBlindAuction" parameterType="int">
+		update auction 
+		set aucblindcheck = 1 
+		where aucno = #{ aucNo }
+	</update>
+	<!-- /관리자 -->
 </mapper>

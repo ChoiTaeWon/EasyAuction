@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,30 +38,39 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "freeboard.action", method = RequestMethod.GET)
-	public ModelAndView freeboardList(Integer pageno) {
+	public ModelAndView freeboardList(
+			Integer pageno, @RequestParam(value="search", required=false)String search, 
+			@RequestParam(value="searchdata", required=false)String searchdata/*,
+			@RequestParam(value="queryString", required=false)String queryString*/) {
 
 	//******* 페이징 관련 데이터 처리 ********* 
 	int pageNo = 1; // 현재 페이지 번호
 	int pageSize = 3; //한 페이지에 표시할 데이터 갯수
-	int pagerSize = 3; //번호로 표시할 페이지 갯수
+	int pagerSize = 0; //번호로 표시할 페이지 갯수
 	int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
 	String url = "freeboard.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
 	//요청한 페이지 번호가 있다면, 읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
 	if (pageno != null ) {
 		pageNo = pageno;
 	}
-	//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
 	int first = (pageNo - 1) * pageSize + 1; //1 page -> 1, 2 page -> 4, 3 page -> 7
-	//1. 데이터 조회 (DAO객체 이용해서 처리)
-	//내가 조건에 맞게 검색한 정보만, (type별로) 나오게 하는 작업.
-	List<Board> boards = null;
-
-	boards= boardService.getFreeBoardList(first, first + pageSize); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.			
+	int bdtype = 2;
 	//$$$$$$$$$$$$$$$$  페이지 개수 조정 (조건에 맞는 개수만큼만 페이징 조정) 작업.
-	dataCount = boardService.getFreeBoardCount(); //전체 게시물 갯수 조회
-	System.out.println(dataCount);
-					
-	ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url);
+	List<Board> boards = null;
+	String queryString = null;
+	if(search != null){
+		queryString = "search=" + search + "&searchdata=" + searchdata;
+		dataCount = boardService.getFreeBoardSearchCount(search, searchdata, bdtype); //전체 게시물 갯수 조회
+		pagerSize = dataCount/pageSize;
+		boards = boardService.getFreeBoardSearchList(first, first + pageSize, search, searchdata, bdtype);
+	}else {
+		dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
+		pagerSize = dataCount/pageSize;
+		boards = boardService.getFreeBoardList(first, first + pageSize, bdtype); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.
+	}
+	
+	//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
+	ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
 	System.out.println(pager);
 				
 	ModelAndView mav = new ModelAndView();
@@ -68,6 +78,7 @@ public class BoardController {
 	mav.addObject("boards", boards);
 	mav.addObject("pager", pager);
 	mav.addObject("pageno", pageNo);
+	//mav.addObject("queryString", queryString);
 	mav.setViewName("board/freeboardlist");
 				
 	return mav;
@@ -89,16 +100,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(@RequestParam("bdno")int bdNo, @RequestParam("content")String content, 
-										 @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
 		boardComment.setBcWriter(writer);
-		System.out.println(bdNo + "/" + content + "/" +writer);
+		System.out.println(bdNo + "/" + content + "/" + writer);
 		
 		boardService.insertFreeBoardComment(boardComment);
-		return "redirect:/board/freeboardview.action?bdno="+bdNo;
+		return "redirect:/board/freeboardview.action?bdno="+bdNo+"&pageno="+pageno;
 	}
 	
 	@RequestMapping(value = "updatefreeboard.action", method = RequestMethod.GET)
@@ -120,18 +130,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
-	public ModelAndView updateFreeBoardComment(int bcNo, String bcContent) {
+	@ResponseBody
+	public String updateFreeBoardComment(int bcNo, String bcContent) {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("bcNo", bcNo);
 		params.put("bcContent", bcContent);
 		boardService.updateFreeBoardComment(params);
-		/*return "redirect:/board/freeboardview.action?bdno="+bdno+"&bcno="+bcno+"&pageno="+ pageno*/
-		ModelAndView mav = new ModelAndView();
-		String success = "success";
-		mav.addObject("success",success);
-		return mav;
+		return "success";
 	}
-	
 	
 	@RequestMapping(value="deletefreeboard.action", method= RequestMethod.GET)
 	public String deletefreeboard(int bdno, int pageno) {
@@ -229,19 +235,20 @@ public class BoardController {
 		if (pageno != null ) {
 			pageNo = pageno;
 		}
+		int bdtype = 1;
 		//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
+		dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
+		pagerSize = dataCount/pageSize;
 		
 		int first = (pageNo - 1) * pageSize + 1; //1 page -> 1, 2 page -> 4, 3 page -> 7
 		//1. 데이터 조회 (DAO객체 이용해서 처리)
 		//내가 조건에 맞게 검색한 정보만, (type별로) 나오게 하는 작업.
 		List<Board> boards = null;
-
 		boards= boardService.getGongjiList(first, first + pageSize); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.			
 		//$$$$$$$$$$$$$$$$  페이지 개수 조정 (조건에 맞는 개수만큼만 페이징 조정) 작업.
-		dataCount = boardService.getFreeBoardCount(); //전체 게시물 갯수 조회
 		System.out.println(dataCount);
-						
-		ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url);
+		String queryString = "";
+		ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
 		System.out.println(pager);
 					
 		ModelAndView mav = new ModelAndView();
@@ -275,7 +282,7 @@ public class BoardController {
 		boardComment.setBcWriter(writer);
 		System.out.println(bdNo + "/" + content + "/" +writer);
 		
-		boardService.insertComment(boardComment);
+		boardService.insertGongjiBoardComment(boardComment);
 		return "redirect:/board/gongjiview.action?bdno="+bdNo;
 	}
 	
@@ -410,15 +417,16 @@ public class BoardController {
 		return "redirect:/board/photolist.action";
 	}
 	
-	@RequestMapping(value = "freeboardsearch.action", method = RequestMethod.POST)
+/*	@RequestMapping(value = "freeboardsearch.action", method = RequestMethod.POST)
 	public ModelAndView freeboardsearchList(String search, String searchdata) {
 		ModelAndView mav = new ModelAndView();
-		List<Board> boards = boardService.getFreeBoardSearchList(search, searchdata);
+		int bdtype = 0;
+		List<Board> boards = boardService.getFreeBoardSearchList(search, searchdata, bdtype);
 		mav.setViewName("board/freeboardlist");
 		mav.addObject("boards", boards);
 		return mav;
 		
-	}
+	}*/
 	
 	@RequestMapping(value = "gongjiboardsearch.action", method = RequestMethod.POST)
 	public ModelAndView gongjiboardsearchList(String search, String searchdata) {

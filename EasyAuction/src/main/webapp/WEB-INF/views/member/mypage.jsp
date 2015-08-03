@@ -14,6 +14,7 @@
 <script src="/easyauction/resources/js/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function(){
+
 	var html =
 		"<div id='reportContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"     
         + "<label for='reporter'>신고자</label>"
@@ -22,7 +23,14 @@ $(function(){
         + "<input id='targetmbId' type='text' value='' />"
         + "<label for='reportText'>신고 사유</label></br>"
         + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
-
+    var payment =
+		"<div id='paymentContent' title='결제하기' style='display: none;width: 300px;height: 250px'>"     
+        + "<label for='' id='auctionno' style='width: 100%;text-align: center;'>상품명</label></br>"
+        + "<label for='auctitle' id='auctitle' style='width: 100%;text-align: center;'></label></br>"
+        + "<label for='price' style='width: 100%;text-align: center;'>결제금액</label><br>"
+        + "<label for='price' id='price' style='width: 100%;text-align: center;'></label><br>"
+        
+        $('#dialogspot').append(payment);
         $('#dialogspot').append(html);
 		//신고하기 dialog 생성
 			var reportDialog = $('#reportContent').dialog({
@@ -37,10 +45,30 @@ $(function(){
 					}
 				},
 				close : function() {
-					$('#reportText').val('');
+					
+				}
+			});
+			//결제하기 dialog 생성
+			var paymentDialog = $('#paymentContent').dialog({
+				autoOpen : false,
+				width : 280,
+				height : 400,
+				modal : true,
+				buttons : {
+					결제하기 : dopayment,
+					취소 : function() {						
+						paymentDialog.dialog("close");
+					}
+				},
+				close : function() {
 				}
 			});
 			
+			function dopayment() {
+				alert('결제완료');
+				$(location).attr('href','/easyauction/ajax/auctionPayment.action?mbId='+'${ mbId }'+'&aucNo='+$('#auctionno').attr('for'));
+			}
+			/////////////////////////////////////////////////////////////////////////////////
 			//신고 요청 처리
 			function doReport() {
 				
@@ -72,7 +100,22 @@ $(function(){
 				
 			}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+    $('.aucstateup').click(function(){
+    	//getauctions  	
+    	var altval = $(this).attr('alt').split('&&');
+    	var price = altval[0];
+    	var title = altval[1];
+    	var itemName = altval[2];
+    	var aucno = altval[3];
+    	$('#auctionno').attr('for', aucno);
+    	$('#auctitle').text(title+itemName);
+    	$('#price').text(price);
+    	
+    	paymentDialog.dialog("open");
+    	event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	    event.stopPropagation();//버블링 업 막아줌
+    
+    })
 	$('#photoreview').click(function(){
 		/* function post_to_url(path, params, method) {
 		    method = method || "post"; // Set method to post by default, if not specified.
@@ -167,7 +210,7 @@ $(function(){
 		<div id="top"><!-- 헤더 -->
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div><!-- 헤더 끝 --><br />
-		<div style="width: 960px; "><!-- 헤더밑 부분 margin:0 auto;-->
+		<div style="width: 960px; "></div><!-- 헤더밑 부분 margin:0 auto;-->
 <!-- 사이드메뉴 -->
 	<c:import url="/WEB-INF/views/member/sidemenu.jsp" />
 <!-- 사이드메뉴 끝 -->
@@ -176,7 +219,7 @@ $(function(){
 <!-- 마이페이지 이미지 -->
 <table width="100%">
 	<tr>
-		<td><img src="/easyauction/resources/images/img_banner_mypage.gif" border="0" align="absmiddle"></td>
+		<td><img src="/easyauction/resources/images/img_banner_mypage.gif" border="0"></td>
 	</tr>
 </table>
 <!-- 마이페이지 이미지 -->
@@ -205,7 +248,7 @@ $(function(){
 			</table>
 		</div>
 	</td>
-	<td height="22" align="center"><img align="absMiddle" alt="" src="/easyauction/resources/images/ico_arrow_04.gif" /></td>
+	<td height="22" align="center"><img alt="" src="/easyauction/resources/images/ico_arrow_04.gif" /></td>
 	<td width="152">
 		<div class="dongurimom">
 			<table align="center" width="100%">
@@ -225,7 +268,7 @@ $(function(){
 			</table>
 		</div>
 	</td>
-	<td height="22" align="center"><img align="absMiddle" alt="" src="/easyauction/resources/images/ico_arrow_04.gif" /></td>
+	<td height="22" align="center"><img alt="" src="/easyauction/resources/images/ico_arrow_04.gif" /></td>
 	<td width="152">
 		<div class="dongurimom">
 			<table align="center" width="100%">
@@ -271,8 +314,8 @@ $(function(){
 <div style="padding:5px;"></div>
 <table style="width:100%; height:28px; border:1px solid #5561d7; background : linear-gradient( to bottom, #DAD9FF, #565dd3 );">
 	<tr>
-		<td align="left" style="padding-left:10px;"><b><img src="/easyauction/resources/images/ico_arrow_06.png">
-		<font color="white">&nbsp;내 경매 물품 목록</td>
+		<td align="left" style="padding-left:10px;"><img src="/easyauction/resources/images/ico_arrow_06.png">
+		<font color="white">&nbsp;내 경매 물품 목록</font></td>
 		<td style="width:508px; height:32px;" align="right"><b>
 		<font color="#FEEF00">[${ countList.AUCLISTCOUNT }]</font><font class="smfont3"></b>건의 진행중 물품이 있습니다.</font>
 		</td>
@@ -383,9 +426,9 @@ $(function(){
 
 	<table style="width:100%; height:28px; border:1px solid #5561d7; background : linear-gradient( to bottom, #DAD9FF, #565dd3 );">
 	<tr>
-		<td align="left" style="padding-left:10px;"><b>
+		<td align="left" style="padding-left:10px;">
 		<img src="/easyauction/resources/images/ico_arrow_06.png" title="">
-		<font color="white">&nbsp; 낙찰완료 경매내역</td>
+		<font color="white">&nbsp; 낙찰완료 경매내역</font></td>
 	</tr>
 	</table>
 
@@ -401,18 +444,19 @@ $(function(){
 		<td style="width:1px; background-color:#DEDEDE;"></td>
 		<td align="center" class="smfont" width="75">판매자</td>
 		<td style="width:1px; background-color:#DEDEDE;"></td>
-		<td align="center" class="smfont" width="105">포토후기남기기</td>
-		<td align="center" class="smfont" width="105">결제하기</td>
+		<td align="center" class="smfont" width="75">결제하기</td>
+		<td style="width:1px; background-color:#DEDEDE;"></td>
+		<td align="center" class="smfont" width="75">포토후기</td>
 	</tr>
 	</table>
 	
 	<table style="width:100%; height:25px; border:1px solid #DEDEDE;">
 	<c:choose>
 		<c:when test="${ getauctions ne null && fn:length(getauctions) > 0 }">
-			<c:forEach var="auction" items="${ getauctions }">
+			<c:forEach var="auction" items="${ getauctions }" varStatus="status">
 					<tr class="myAuctionView" id="${ auction.aucNo }" height="25px">
 						<td align="center" class="smfont" width="110">${ auction.aucNo }</td>
-						<td align="center" class="smfont" width="360">${ auction.aucTitle }</td>
+						<td align="center" class="smfont" width="255">${ auction.aucTitle }</td>
 						<td align="center" class="smfont" width="75">${ auction.aucFinalPrice }</td>
 						<td align="center" class="smfont" width="75">
 							                <!-- sdfhasdkjhfjksadlfjkshad -->
@@ -427,15 +471,25 @@ $(function(){
 											</div> 
 											<!-- sdfhasdkjhfjksadlfjkshad -->
 						</td>
-						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
-						<td align="center" width="105"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
+						<c:choose>
+						<c:when test="${ auction.aucState eq 3 }">
+						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ auction.aucFinalPrice }&&${ auction.aucTitle }&&${ auction.aucItemName }&&${ auction.aucNo }"></td>
+						</c:when>
+						<c:when test="${ auction.aucState >= 4 }">
+						<td align="center">결제완료</td>
+						</c:when>
+						<c:otherwise>
+							<td>에러</td>
+						</c:otherwise>
+						</c:choose>
+						<td align="center" width="75"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
 					</tr>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<tr>
 				<td>
-				<p align=center><br><font style='font-size:11px;color:gray' align=center>낙찰된 상품이 없습니다.</font><br><br></p>
+				<p align=center><br><font style='font-size:11px;color:gray'>낙찰된 상품이 없습니다.</font><br><br></p>
 				</td>
 			</tr>
 		</c:otherwise>

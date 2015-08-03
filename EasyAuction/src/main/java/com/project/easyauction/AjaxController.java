@@ -70,7 +70,12 @@ public class AjaxController {
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
+	@RequestMapping(value="auctionPayment.action", method = RequestMethod.GET)
+	public String auctionPayment(int aucNo, String mbId) {
+		mbgsvc.setUpdateaAuctionState(aucNo);
+		
+		return "redirect:/member/viewmypage.action?mbId="+mbId;
+	}
 	
 
 	@RequestMapping(value="membercheck.action", method = RequestMethod.GET)
