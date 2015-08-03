@@ -64,8 +64,8 @@ public class MyBoardService implements BoardService{
 	}
 	
 	@Override
-	public List<Board> getFreeBoardList(int first, int last){
-		List<Board> boards = boardRepository.getFreeBoardList(first, last);
+	public List<Board> getFreeBoardList(int first, int last, int bdtype){
+		List<Board> boards = boardRepository.getFreeBoardList(first, last, bdtype);
 		return boards;
 	}
 	
@@ -107,8 +107,8 @@ public class MyBoardService implements BoardService{
 	}
 
 	@Override
-	public List<Board> getFreeBoardSearchList(String search, String searchdata) {
-		List<Board> boards = boardRepository.getFreeBoardSearchList(search, searchdata);
+	public List<Board> getFreeBoardSearchList(int first, int last, String search, String searchdata, int bdtype) {
+		List<Board> boards = boardRepository.getFreeBoardSearchList(first, last, search, searchdata, bdtype);
 		return boards;
 	}
 	
@@ -119,8 +119,8 @@ public class MyBoardService implements BoardService{
 	}
 
 	@Override
-	public int getFreeBoardCount() {
-		return boardRepository.getFreeBoardCount();
+	public int getFreeBoardCount(int bdtype) {
+		return boardRepository.getFreeBoardCount(bdtype);
 	}
 	
 	@Override
@@ -141,6 +141,11 @@ public class MyBoardService implements BoardService{
 	@Override
 	public void updateFreeBoardReadCount(int bdNo) {
 		boardRepository.updateFreeBoardReadCount(bdNo);
+	}
+
+	@Override
+	public int getFreeBoardSearchCount(String search, String searchdata, int bdtype) {
+		return boardRepository.getFreeBoardSearchCount(search, searchdata, bdtype);
 	}
 
 	
