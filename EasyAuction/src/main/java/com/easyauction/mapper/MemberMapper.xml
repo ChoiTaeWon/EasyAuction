@@ -243,7 +243,10 @@
 			(select count(*) from AUCTION Where aucwriter = #{ mbId }) auclistcount,
 			(select count(*) from AUCTION Where aucstate = 0 and aucwriter = #{ mbId }) aucstate0,
 			(select count(*) from AUCTION Where aucstate = 1 and aucwriter = #{ mbId }) aucstate1, 
-			(select count(*) from AUCTION Where aucstate = 2 and aucwriter = #{ mbId }) aucstate2 
+			(select count(*) from AUCTION Where aucstate = 2 and aucwriter = #{ mbId }) aucstate2,
+			(select count(*) from AUCTION Where aucstate = 3 and aucwriter = #{ mbId }) aucstate3,
+			(select count(*) from AUCTION Where aucstate = 4 and aucwriter = #{ mbId }) aucstate4,
+			(select count(*) from AUCTION Where aucstate = 5 and aucwriter = #{ mbId }) aucstate5
 		from dual
 	</select>
 	<select id="getGetterAuctionListBymbId" resultType="Auction" parameterType="String">

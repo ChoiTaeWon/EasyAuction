@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +76,7 @@
 			<!--리스트 위의 맨위 이미지-->
 			<div id="contents_wrap">
 				
-			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
+			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96">
 			<tr>
 				<td style="padding-left:25px;"><img src="/easyauction/resources/images/gongjimain.png"></td>
 			</tr>
@@ -95,7 +96,6 @@
 			</table>
 			
 			<table width="100%">
-			<input type="hidden" name="queryString" value="${ queryString }" />
 				<tr>
 					<td height="1" bgcolor="#e6e6e6"></td>
 				</tr>
@@ -128,6 +128,8 @@
 			<tr>
 				<td>
 				<table width="100%" height="30">
+				<c:choose>
+				<c:when test="${ boards ne null && fn:length(boards) > 0 }">
 				<c:forEach var="board" items="${ boards }">
 				<tr>
 					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/gongjiview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
@@ -140,6 +142,11 @@
 					<td width="1"></td>
 				</tr>
 				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				<td class="smfont" align="center" width="40"><div style="padding-left:10px;">등록된 게시글이 없습니다.</div></td>
+				</c:otherwise>
+				</c:choose>
 				<tr>
 					<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
 				</tr>
@@ -164,7 +171,13 @@
 			
 			<!-- 페이지 번호 -->
 			<div style="text-align:center">
+			<c:choose>
+			<c:when test="${ pager ne null }">		
 			${pager}
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>	
 			</div>
 	
 	 		<!-- 검색폼 // 시작 -->
