@@ -209,7 +209,7 @@
 	
 	<insert id="insertFreeBoardComment" parameterType="BoardComment">
 		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
-			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter }, #{pageno})
+			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
 	
 	<insert id="insertGongjiBoardComment" parameterType="BoardComment">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<%pageContext.setAttribute("enter", "\n"); %>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
 	<script type="text/javascript">
@@ -209,7 +211,8 @@
 							<b>${ comment.bcWriter }</b>
 						</td>
 						<td width='600' align='left' class="bccontent">
-							<textarea name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
+							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${fn:replace(comment.bcContent, rn , br)}</textarea>
+						<%-- ${fn:replace(newComment.commentContent, enter, '<br>') } --%>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
 						<td align="right">
