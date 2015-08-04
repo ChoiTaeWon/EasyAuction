@@ -240,7 +240,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 					<font class="smfont8">경매 진행중
-					<font color="#960000">[${ countList.AUCSTATE0 }]</font>
+					<font color="#960000">[${ countList.AUCSTATE1 + countList.AUCSTATE2}]</font>
 					</font>
 				</td>
 			</tr>
@@ -261,7 +261,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">입금요망
-				<font color="#960000">[${ countList.AUCSTATE1 }]</font>
+				<font color="#960000">[${ countList.AUCSTATE3 }]</font>
 				</font>
 				</td>
 			</tr>
@@ -281,7 +281,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">배송중/구매결정
-				<font color="#960000">[${ countList.AUCSTATE2 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE4 + countList.AUCSTATE5 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -300,7 +300,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">구매완료
-				<font color="#960000"><%-- [${ countList.AUCSTATE3 }] --%></font></font>
+				<font color="#960000">[${ countList.AUCSTATE3 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -414,8 +414,14 @@ $(function(){
 			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
 			<!-- 나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div> -->
 			<c:choose>
+			<c:when test="${ auction.aucState < 4 }">
+			거래중
+			</c:when>
 			<c:when test="${ auction.aucState eq 4 }">
 			<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
+			</c:when>
+			<c:when test="${ auction.aucState > 4 }">
+			거래완료
 			</c:when>
 			<c:otherwise>
 			</c:otherwise>
@@ -498,7 +504,7 @@ $(function(){
 						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ auction.aucFinalPrice }&&${ auction.aucTitle }&&${ auction.aucItemName }&&${ auction.aucNo }"></td>
 						</c:when>
 						<c:when test="${ auction.aucState >= 4 }">
-						<td align="center">결제완료</td>
+						<td align="center" width="75">결제완료</td>
 						</c:when>
 						<c:otherwise>
 							<td>에러</td>

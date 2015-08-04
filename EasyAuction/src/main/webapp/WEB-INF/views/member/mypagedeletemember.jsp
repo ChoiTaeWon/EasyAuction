@@ -20,7 +20,6 @@ $(function(){
 	$('#formsubmit').click(function(){
 		var mbId = '${ mbId }';
 		var mbPasswd = $('#mbPasswd').val();
-		alert(mbId+mbPasswd)
 		$.ajax({
 			url : "/easyauction/ajax/memberchecktoidandpasswd.action",
 			async : false,
@@ -30,11 +29,11 @@ $(function(){
 				mbPasswd : mbPasswd
 			},
 			success : function(result){
-				alert(mbId+mbPasswd)
-				if(result != 0){
+				if(result == 0){
 					alert("비밀번호가 다릅니다.");
-					
+					return;
 				}else{
+					
 					$('#form').submit();
 				}
 			
@@ -114,8 +113,7 @@ $(function(){
 											<td colspan="2" style="padding-left: 10px;" align="center">
 												<br />
 											<br />
-											<br /><input width="100" type="image" id="formsubmit"
-												src="/easyauction/resources/images/btn_findpassorid.png">
+											<br /><img src="/easyauction/resources/images/btn_findpassorid.png" id="formsubmit">
 											</td>
 										</tr>
 									</table>

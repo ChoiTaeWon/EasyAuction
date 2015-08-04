@@ -34,7 +34,7 @@
 			<!--내용-->
 			<div id="contents_wrap">
 				
-			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
+			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96">
 			<tr>
 				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>

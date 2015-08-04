@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,8 @@
 					</tr>		
 				 </table>
 				 <div style="padding:3px;"></div>
-				 
+				 <c:choose>
+				<c:when test="${ photos ne null && fn:length(photos) > 0 }">
 				 <c:forEach var="photo" items="${ photos }">
 				 <c:if test="${ photo.bdType eq 3 }">
 				 <input type="hidden" name="bdno" value="${ photo.bdNo }">
@@ -88,6 +90,11 @@
 				 </table>
 				 </c:if>
 				 </c:forEach>
+				 </c:when>
+				<c:otherwise>
+				<td class="smfont" align="center" width="40"><div style="padding-left:10px;">등록된 게시글이 없습니다.</div></td>
+				</c:otherwise>
+				</c:choose>
 				 <div style="padding:3px;"></div>
 				<table width="100%">
 				<tr>
@@ -99,9 +106,15 @@
 						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
 					</tr>
 				 </table>
-				<%--  <div style="text-align:center">
+				<div style="text-align:center">
+				<c:choose>
+				<c:when test="${ pager ne null }">		
 				${pager}
-				</div> --%>
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+				</c:choose>	
+				</div>
 				 
 				<!-- 검색폼 // 시작 -->
 				<table width="100%" align="center">
