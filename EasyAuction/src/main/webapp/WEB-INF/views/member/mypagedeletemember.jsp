@@ -16,6 +16,14 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+//jQuery 로, 모든 엔터 입력시 무시하게 하는 코드
+$(document).ready(function(){
+  $(document).keypress(function(e){
+    if(e.keyCode==13) return false;
+  });
+});
+</script>
+<script type="text/javascript">
 $(function(){
 	$('#formsubmit').click(function(){
 		var mbId = '${ mbId }';
@@ -113,7 +121,7 @@ $(function(){
 											<td colspan="2" style="padding-left: 10px;" align="center">
 												<br />
 											<br />
-											<br /><img src="/easyauction/resources/images/btn_findpassorid.png" id="formsubmit">
+											<br /><img width="100" src="/easyauction/resources/images/btn_delmember.png" id="formsubmit">
 											</td>
 										</tr>
 									</table>
