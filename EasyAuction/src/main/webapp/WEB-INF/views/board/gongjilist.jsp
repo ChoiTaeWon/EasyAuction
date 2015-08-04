@@ -11,30 +11,9 @@
 <title>공지사항게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
-	
-/* 	function listsearch() {
-		var search = document.getElementById('search').value;
-		var searchdata = document.getElementById('searchdata').value;
-		var re = /^[0-9]+$/;
-		var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata;
-		if(search == 'bdtitle'&&!re.test(searchdata)){
-			alert("제목을 입력하세요");
-			searchdata.focus();
-			return;
-			
-		}else if(searchdata.length==0){
-			alert("내용을 입력하세요");
-			searchdata.focus();
-			return;
-		}
-		//document.getElementById('listsearch').innerHTML = html;
-		$('#listsearch').append(html);
-		document.getElementById('listsearch').submit();
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
-	} */
+
 	$(function(){
 		$('#searchboard').click(function(){
 			var search = document.getElementById('search').value;

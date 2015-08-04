@@ -487,7 +487,7 @@ $(function(){
 						<td align="center" class="smfont" width="255">${ auction.aucTitle }</td>
 						<td align="center" class="smfont" width="75">${ auction.aucFinalPrice }</td>
 						<td align="center" class="smfont" width="75">
-							                <!-- sdfhasdkjhfjksadlfjkshad -->
+							                <!-- 쪽지보내기및회원신고기능 -->
 											<div class="dropDown">
 											<a href="#" class="btn_drop">${ auction.aucWriter }</a>
 												<div class="dropBox">
@@ -497,7 +497,7 @@ $(function(){
 													</ul>
 												</div>
 											</div> 
-											<!-- sdfhasdkjhfjksadlfjkshad -->
+											<!--  쪽지보내기및회원신고기능 --> 
 						</td>
 						<c:choose>
 						<c:when test="${ auction.aucState eq 3 }">
