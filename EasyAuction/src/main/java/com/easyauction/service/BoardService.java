@@ -56,6 +56,8 @@ public interface BoardService {
 	void updateFreeBoardReadCount(int bdNo);
 
 	int getFreeBoardSearchCount(String search, String searchdata, int bdtype);
+	
+	List<Board> gongiTypeOne();
 
 }
 
