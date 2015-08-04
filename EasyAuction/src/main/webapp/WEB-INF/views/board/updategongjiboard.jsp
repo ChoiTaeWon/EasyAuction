@@ -9,6 +9,15 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#formsubmit').click(function(){
+			alert('수정하시겠습니까?');
+			$('#sujung').submit();
+			
+		})
+	})
+	</script>
 </head>
 <body>
 	<div id="wrap"> <!-- A 시작 -->
@@ -27,7 +36,7 @@
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
 			<tr>
-				<td style="padding-left:25px;"><img src="/easyauction/resources/images/gongjimain.png"></td>
+				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>
 			</table>
 				
@@ -44,11 +53,10 @@
 				</td> -->
 			</tr>
 				
-				<form method='post' action='gongjiregister.action' enctype="multipart/form-data">
-				<input type=hidden name='mode' value='add_ok'>
-				<input type=hidden name='tb' value='board_knowhow'>
-				<input type=hidden name='bbs_num' value=''>
-				
+				<form method='post' action='updategongji.action' enctype="multipart/form-data" id="sujung" name='board'>
+				<input type=hidden name='bdNo' value='${ view.bdNo }'>
+				<input type=hidden name='pageNo' value='${ pageno }'>
+				 
 				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td>
@@ -57,7 +65,7 @@
 							<td height="1" bgcolor="#DEDEDE"></td>
 						</tr>
 						<tr height="30">
-							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp; 게시물등록하기</td>
+							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp;게시물수정하기</td>
 						</tr>
 						<tr>
 							<td height="1" bgcolor="#DEDEDE"></td>
@@ -65,49 +73,43 @@
 						</table>
 				
 						<div style="padding:1px;"></div>
-						
+				 		
 						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 						<tr height="28">
 							<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='bdWriter' value=${ view.bdWriter } maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
-						<tr height="28">
-							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>첨부자료1</td>
-							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input type='file' name='img' maxlength=20 style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'></td>
-						</tr>
-						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
-						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
+						
 						<tr height="28">
 							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>제목</td>
-							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input name='title' type='text' style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='' size="70" maxlength="50"></td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input name='bdTitle' type='text'  value=${ view.bdTitle } style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='' size="70" maxlength="50"></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr height="28">
 							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>내용</td>
-							<td bgcolor="#FFFFFF" style="padding-left:10px; padding-top:5px"><textarea name="content" cols="100" rows="20" style='font-size:12px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'></textarea></td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px; padding-top:5px"><textarea name="bdContent" cols="100" rows="20" style='font-size:12px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'>${ view.bdContent }</textarea></td>
 						</tr>
 						<tr><td height="5"></td></tr>
 						<tr><td height="5"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="5"></td></tr>
 						<tr><td height="5"></td></tr>
-						<tr>			
-			<td colspan="2">
-				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
-				</td>
-			</tr>
-							</table>
-						</tr>
 						</table>
 					</td>
 				</tr>
+						
+				<!-- 내용 옆 수정 삭제 -->
+				<td align="right">
+					<img src='/easyauction/resources/images/sujung.png' id="formsubmit">
+					<a href='/easyauction/board/gongjiview.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
+				</td>
+				
 				</table>
 				</form>
+			</table>
 	</div> <!-- A 끝 -->	
 </body>
 </html>

@@ -88,8 +88,8 @@
 				<!-- 오른쪽 위 자유게시판 아이콘 이미지-->
 				<td align="left">&nbsp;</td>
 								  
-				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				<!-- <td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a> -->
 				</td>
 			</tr>
 			</table>
@@ -130,7 +130,7 @@
 				<table width="100%" height="30">
 				<c:forEach var="board" items="${ boards }">
 				<tr>
-					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.bdReportingCount }]</td>
+					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
 					<td width="1"></td>
 					<td 			class="smfont" align="center" width="90"><div style="padding-left:10px;">${board.bdWriter}</div></td>
 					<td width="1"></td>

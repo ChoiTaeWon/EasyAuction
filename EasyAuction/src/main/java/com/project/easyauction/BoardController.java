@@ -69,6 +69,10 @@ public class BoardController {
 		boards = boardService.getFreeBoardList(first, first + pageSize, bdtype); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.
 	}
 	
+	for(Board board : boards){
+		board.setCommentCount(board.getComments().size());
+	}
+	
 	//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
 	ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
 	System.out.println(pager);
@@ -91,7 +95,6 @@ public class BoardController {
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
 		ModelAndView mav = new ModelAndView();
-		
 		mav.setViewName("board/freeboardview");
 		mav.addObject("view", view);
 		mav.addObject("pageno", pageno);
@@ -100,7 +103,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(@RequestParam("pageno")int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
