@@ -164,7 +164,13 @@
 			
 			<!-- 페이지 번호 -->
 			<div style="text-align:center">
+			<c:choose>
+			<c:when test="${ pager ne null }">		
 			${pager}
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>	
 			</div>
 	
 	 		<!-- 검색폼 // 시작 -->

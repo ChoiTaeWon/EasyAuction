@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,6 +129,8 @@
 			<tr>
 				<td>
 				<table width="100%" height="30">
+				<c:choose>
+				<c:when test="${ boards ne null && fn:length(boards) > 0 }">
 				<c:forEach var="board" items="${ boards }">
 				<tr>
 					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
@@ -140,6 +143,11 @@
 					<td width="1"></td>
 				</tr>
 				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				<td 			class="smfont" align="center" width="40"><div style="padding-left:10px;">아시바없다고</div></td>
+				</c:otherwise>
+				</c:choose>
 				<tr>
 					<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
 				</tr>
@@ -164,7 +172,13 @@
 			
 			<!-- 페이지 번호 -->
 			<div style="text-align:center">
+			<c:choose>
+			<c:when test="${ pager ne null }">		
 			${pager}
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>	
 			</div>
 	
 	 		<!-- 검색폼 // 시작 -->
