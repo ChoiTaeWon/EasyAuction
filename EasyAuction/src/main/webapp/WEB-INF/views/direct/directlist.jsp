@@ -194,8 +194,6 @@
  
  function addMarkerListener(marker, markerId){
 	 google.maps.event.addListener(marker, "click", function () {
-			
-			
 			var contentString="<div>"+ markerId +"님의 게시물 목록</div><br/>";
 		 	$.ajax({
 				url : "/easyauction/ajax/selectAuctionListByAucWriter.action",
@@ -205,23 +203,23 @@
 					mbId : markerId
 				},
 				success : function(auctions){
-					if(auctions != null){
+					if(auctions != null && auctions.length > 0){
 						//auction{mbId, title, content, ...뭐 이렇게 올건데 1회원에 2이상 게시물 있을 수있음}
 						$.each(auctions, function(index, item){
 							
-							var tempString	= '<div>' +
-							'<h2>'+item.aucItemName+'</h2>'+
-							'<p>'+item.aucAdText+'</p>' +
-							'<a href="showdeal.action?aucno='+item.aucNo+'" target="_blank">'
-							+ item.aucTitle +'</a></div><br/><br/>';
+							var tempString	= "<div>" +
+							"<h2>"+item.aucItemName+"</h2>"+
+							"<p>"+item.aucAdText+"</p>" +
+							"<a href='showdeal.action?aucno="+item.aucNo+"' target='_blank'>"
+							+ item.aucTitle +"</a></div><br/><br/>";
 							contentString = contentString + tempString; 
 						});
 						
 					}
 					else{
-						var tempString = '<div>'
-							+'<h2>'+ item.mbId+'님의 게시물</h2>'
-							+'<p>회원님이 올린 게시물이 없습니다</p></div>';
+						var tempString = "<div>"
+							
+							+"<p>회원님이 올린 게시물이 없습니다</p></div>";
 						contentString = contentString + tempString; 
 					}
 					
@@ -302,8 +300,8 @@
 		
 	</div><!-- div wrap 끝 -->
 	
-	<div id="indicator" style="position: absolute;z-index: 1;left: 500px;top: 500px;display: none">
-		<h1>기다려주세여</h1>
+	<div id="indicator" style="position: absolute;z-index: 1;left: 40%;top: 380px;display: none">
+		<img src="/easyauction/resources/images/loading_image.gif">
 	</div>
 </body>
 </html>

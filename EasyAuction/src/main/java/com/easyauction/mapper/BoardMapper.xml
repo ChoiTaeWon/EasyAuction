@@ -269,7 +269,7 @@
  	<!-- 3회가 되면 블라인드처리가 되게 하려면 이곳에서 조건을 정해주어야 하나??
  	blind된 글은 jquery써서 못읽게 alert를 뜨게하기??? -->
 	<update id="deleteFreeBoard" parameterType="int" >
-	UPDATE BOARD SET BDBLINDCHECK = '1' WHERE bdno = #{ bdno }
+	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
 	</update>
 	
 	<update id="updateFreeBoardReadCount" parameterType="int" >

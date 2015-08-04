@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	<%pageContext.setAttribute("enter", "\n"); %>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
 	<script type="text/javascript">
@@ -135,11 +135,11 @@
 				 	
 				 	<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> --> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						<!-- 내용 옆 수정 삭제 -->
 						<td align="right"><a href='/easyauction/board/updatefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/singo.png'></a>
 						</td>
 						
 						</td>
@@ -163,7 +163,7 @@
 								 </c:forEach>
 								</tr>
 								<tr>
-								  <td>${ view.bdContent }</td>
+								  <td>${ fn:replace(view.bdContent, newLineChar, "<br />") }</td>
 								</tr>
 							</table>
 							</div>
@@ -185,14 +185,14 @@
 					</tr>
 				</table>
 				<c:forEach var="comment" items="${ view.comments }">
-				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+				<table style="border-bottom: groove 1px" width='100%' cellspacing='0' cellpadding='0'>
 					<tr id="comment_row_view${ comment.bcNo }" style="display: block">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
-							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' />
+							<!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> -->
 							<b>${ comment.bcWriter }</b>
 						</td>
 						<td width='600' align='left' class="bccontent">
-							<span id="vc${ comment.bcNo }">${ comment.bcContent }</span>&nbsp;&nbsp;
+							<span id="vc${ comment.bcNo }">${ fn:replace(comment.bcContent, newLineChar, "<br />") }</span>&nbsp;&nbsp;
 							<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
@@ -207,11 +207,11 @@
 					</tr>
 					<tr id="comment_row_edit${ comment.bcNo }" style="display:none">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
-							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> 
+							<!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> --> 
 							<b>${ comment.bcWriter }</b>
 						</td>
 						<td width='600' align='left' class="bccontent">
-							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${fn:replace(comment.bcContent, rn , br)}</textarea>
+							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
 						<%-- ${fn:replace(newComment.commentContent, enter, '<br>') } --%>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
@@ -231,7 +231,7 @@
 					<input type="hidden" name="writer" value="${ view.bdWriter }" />
 					<input type="hidden" name="pageno" value="${ pageno }" />
 					<%-- <input type="hidden" name="pageno" value="${ pageno }" /> --%>
-					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+					<table style="border-bottom: groove 1px;" width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td>
 								<textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea>

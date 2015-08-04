@@ -132,6 +132,8 @@
 				<c:choose>
 				<c:when test="${ boards ne null && fn:length(boards) > 0 }">
 				<c:forEach var="board" items="${ boards }">
+				<c:choose>
+				<c:when test="${board.bdBlindCheck eq false}">
 				<tr>
 					<td align="center" style="padding-left:10px;"><b><a href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
 					<td width="1"></td>
@@ -142,6 +144,13 @@
 					<td 			class="smfont" align="center" width="40"><div style="padding-left:10px;">${board.bdReadCount}</div></td>
 					<td width="1"></td>
 				</tr>
+				</c:when>
+				<c:otherwise>
+				<tr>
+					<td align="center">블라인드 처리 되었습니다.</td>				
+				</tr>
+				</c:otherwise>
+				</c:choose>
 				</c:forEach>
 				</c:when>
 				<c:otherwise>

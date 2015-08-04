@@ -65,7 +65,7 @@
 							<td height="1" bgcolor="#DEDEDE"></td>
 						</tr>
 						<tr height="30">
-							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp;게시물수정하기</td>
+							<td bgcolor="#F8F8F8" style="padding-left:10px;"><!-- <img src="img/ico_arrow_03.gif" border="0" align="absmiddle"> -->&nbsp;게시물수정하기</td>
 						</tr>
 						<tr>
 							<td height="1" bgcolor="#DEDEDE"></td>

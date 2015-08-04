@@ -308,7 +308,7 @@ public class AjaxController {
 	
 	
 	
-	@RequestMapping(value="selectMainAuction.action", method = RequestMethod.POST)
+/*	@RequestMapping(value="selectMainAuction.action", method = RequestMethod.POST)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
 	public List<Auction> selectMainAuction() {
 			List<Auction> auctionList = auctionService.getAuctionListByAucState();
@@ -319,7 +319,7 @@ public class AjaxController {
 				return null;
 			}
 	}  //메인에서 쓸거임
-	
+*/	
 	
 /*	@RequestMapping(value="selectDirectDealList.action", method = RequestMethod.GET)
 	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
@@ -361,7 +361,21 @@ public class AjaxController {
 //			}
 			
 		return auctions;
-	} 	//
+	} 	
+	
+	@RequestMapping(value="updateAuctionState.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int updateAuctionState(int aucNo) {
+		int result = 0;
+		
+		if(aucNo != -1 ){
+			auctionService.updateAucStateByDate(aucNo);			
+			return result + 1;
+		}
+		else{
+			return result;
+		}
+	}
 	
 	
 	

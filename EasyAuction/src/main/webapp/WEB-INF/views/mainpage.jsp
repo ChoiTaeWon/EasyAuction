@@ -59,30 +59,6 @@
 						}
 					});
 				 
-				 
-					
-				$.ajax({
-					url : "/easyauction/ajax/selectMainAuction.action",	
-					async : false,
-					type : "POST",
-					
-					success : function(auctionList) {
-						//alert(auctionList + ' : auctionList 값' );
-						
-						if (auctionList != null) {	
-							//alert("실시간 경매를 불러옵니다.");
-							auctionListResult =  auctionList;
-						} else {
-							alert('실시간 경매를 불러오기 실패');
-						}
-						
-					},
-					error : function() {
-						alert('실시간 경매를 불러오기 아예 에러');
-					}
-				});
-				 
-				 
 		 });
 		
 	</script>
@@ -240,7 +216,7 @@
 																	
 																	<div style="padding-top: 10px"></div>
 																	
-																	<div>
+									   								<div>
 																	 <a href="/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }">
 																		<img style="width: 100%" src="/easyauction/resources/images/btn_ipchal_basic.gif">
 																	 </a>
