@@ -9,33 +9,12 @@
 <head>
 <meta charset="utf-8">
 <title>자유게시판</title>
-<link rel="Stylesheet" type="text/css"
-	href="/easyauction/resources/styles/body-style.css" />
-<link rel="Stylesheet" type="text/css"
-	href="/easyauction/resources/styles/style.css" />
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css" />
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css" />
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="/easyauction/resources/js/jquery-ui.js"></script>
 <script type="text/javascript">
-	/* 	function listsearch() {
-	 var search = document.getElementById('search').value;
-	 var searchdata = document.getElementById('searchdata').value;
-	 var re = /^[0-9]+$/;
-	 var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata;
-	 if(search == 'bdtitle'&&!re.test(searchdata)){
-	 alert("제목을 입력하세요");
-	 searchdata.focus();
-	 return;
-	
-	 }else if(searchdata.length==0){
-	 alert("내용을 입력하세요");
-	 searchdata.focus();
-	 return;
-	 }
-	 //document.getElementById('listsearch').innerHTML = html;
-	 $('#listsearch').append(html);
-	 document.getElementById('listsearch').submit();
-	 event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
-	 } */
 	$(function() {
 		$('#searchboard').click(function() {
 			var search = document.getElementById('search').value;
@@ -57,9 +36,120 @@
 			document.getElementById('listsearch').submit();
 			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 		})
+		///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
+		var html =
+		"<div id='reportContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"     
+        + "<label for='reporter'>신고자</label>"
+        + "<input id='reporter' type='text' value=''/>"
+        + "<label for='targetmbId'>신고할 회원</label>"
+        + "<input id='targetmbId' type='text' value='' />"
+        + "<label for='reportText'>신고 사유</label></br>"
+        + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
+
+        $('#dialogspot').append(html);
+		
+        //신고하기 dialog 생성
+			var reportDialog = $('#reportContent').dialog({
+				autoOpen : false,
+				width : 550,
+				height : 400,
+				modal : true,
+				buttons : {
+					신고하기 : doReport,
+					취소 : function() {						
+						reportDialog.dialog("close");
+					}
+				},
+				close : function() {
+					
+				}
+			});
+			/////////////////////////////////////////////////////////////////////////////////
+			//신고 요청 처리
+			function doReport() {
+				
+				$.ajax({
+					url : "/easyauction/ajax/memberReporting.action",	
+					async : false,
+					type : "GET",
+					data : {
+						reporter : $("#reporter").val(),
+						targetmbId : $("#targetmbId").val(),
+						reportText : $("#reportText").val()
+						
+					},
+					success : function(result) {
+						alert(result + ' : result 값' );
+						
+						if (result == 0) {	
+							alert("회원이 신고 되었습니다.");
+							reportDialog.dialog('close');
+						} else {
+							alert('회원 신고 실패');
+						}
+						
+					},
+					error : function() {
+						alert('게시글 신고 실패 + 걍 아예 에러임 ');
+					}
+				});
+				
+			}
+			$( ".btn_drop" ).click(function() {
+			     $(this).next().toggleClass("on");
+			     return false;
+			});
+			$('.dropselect').click(function(){
+				var strArray = $(this).attr('id').split('/');
+				var targetaction = strArray[1];
+				var receiver = strArray[0];
+				var mbId = '${ loginuser.mbId }';
+				if(targetaction=='sendmessage'){
+					window.open("/easyauction/message/sendmessage.action?mbId=" + mbId + "&receiver=" + receiver, "쪽지함",
+					"width=700,height=500,titlebar=no");
+				}else{
+					$('#reporter').attr('value', mbId);
+					$('#targetmbId').attr('value', receiver);
+				
+					//신고하기 버튼 클릭 시 신고이력 확인 절차	
+						if(mbId != receiver){
+						$.ajax({
+							url : "/easyauction/ajax/memberRepoterCheck.action",
+							async : false,
+							type : "GET",
+							data : {
+								mbId : mbId,
+								receiver : receiver
+							},
+							success : function(result){
+								if(result == 0){
+									alert(event + " : event 값");
+									alert("신고 가능 상태");
+									reportDialog.dialog("open");
+								}else{
+									alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
+								}
+							},
+							error : function (){
+								alert("신고 가능 상태 확인 에러.");
+							}
+						});
+						}else{
+							alert("자신을 신고할 수는 없습니다. ");
+						}
+					
+					event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+					event.stopPropagation();//버블링 업 막아줌
+				}
+				event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+				event.stopPropagation();//버블링 업 막아줌
+			})
+			///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
 	})
 </script>
 </head>
+<table id="dialogspot">
+</table>
 
 <body>
 	<div id="wrap">
@@ -150,10 +240,22 @@
 													<c:when test="${board.bdBlindCheck eq false}">
 														<tr>
 															<td align="center" style="padding-left: 10px;"><b><a
-																	href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
+																	href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}&bdWriter=${ board.bdWriter }">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
 															<td width="1"></td>
 															<td class="smfont" align="center" width="90"><div
-																	style="padding-left: 10px;">${board.bdWriter}</div></td>
+																	style="padding-left: 10px;">
+																	<!-- sdfhasdkjhfjksadlfjkshad -->
+											<div class="dropDown">
+											<a href="#" class="btn_drop">${board.bdWriter}</a>
+												<div class="dropBox">
+													<ul>
+														<li class="dropselect" id='${board.bdWriter}/sendmessage'>쪽지보내기</li>
+														<li class="dropselect" id='${board.bdWriter}/reporting'>신고하기</li>
+													</ul>
+												</div>
+											</div> 
+											<!-- sdfhasdkjhfjksadlfjkshad -->
+																	</div></td>
 															<td width="1"></td>
 															<td class="smfont" align="center" width="90"><div
 																	style="padding-left: 10px;">${board.bdDate }</div>

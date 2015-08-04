@@ -281,7 +281,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">배송중/구매결정
-				<font color="#960000">[${ countList.AUCSTATE4 + countList.AUCSTATE5 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE3 + countList.AUCSTATE4 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -300,7 +300,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">구매완료
-				<font color="#960000">[${ countList.AUCSTATE3 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE5 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -487,7 +487,7 @@ $(function(){
 						<td align="center" class="smfont" width="255">${ auction.aucTitle }</td>
 						<td align="center" class="smfont" width="75">${ auction.aucFinalPrice }</td>
 						<td align="center" class="smfont" width="75">
-							                <!-- sdfhasdkjhfjksadlfjkshad -->
+							                <!-- 쪽지보내기및회원신고기능 -->
 											<div class="dropDown">
 											<a href="#" class="btn_drop">${ auction.aucWriter }</a>
 												<div class="dropBox">
@@ -497,7 +497,7 @@ $(function(){
 													</ul>
 												</div>
 											</div> 
-											<!-- sdfhasdkjhfjksadlfjkshad -->
+											<!--  쪽지보내기및회원신고기능 --> 
 						</td>
 						<c:choose>
 						<c:when test="${ auction.aucState eq 3 }">

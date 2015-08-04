@@ -11,30 +11,9 @@
 <title>공지사항게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
-	
-/* 	function listsearch() {
-		var search = document.getElementById('search').value;
-		var searchdata = document.getElementById('searchdata').value;
-		var re = /^[0-9]+$/;
-		var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata;
-		if(search == 'bdtitle'&&!re.test(searchdata)){
-			alert("제목을 입력하세요");
-			searchdata.focus();
-			return;
-			
-		}else if(searchdata.length==0){
-			alert("내용을 입력하세요");
-			searchdata.focus();
-			return;
-		}
-		//document.getElementById('listsearch').innerHTML = html;
-		$('#listsearch').append(html);
-		document.getElementById('listsearch').submit();
-		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
-	} */
+
 	$(function(){
 		$('#searchboard').click(function(){
 			var search = document.getElementById('search').value;
@@ -88,10 +67,6 @@
 			<tr height="30">
 				<!-- 오른쪽 위 자유게시판 아이콘 이미지-->
 				<td align="left">&nbsp;</td>
-								  
-				<!-- <td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a> -->
-				</td>
 			</tr>
 			</table>
 			
@@ -159,10 +134,9 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 			<tr>
-				<td align="right"><a href="/easyauction/board/gongjiregister.action">
-								  <img src="/easyauction/resources/images/write.png"></a>&nbsp;
-								  <a href='/easyauction/board/gongji.action'>
-								  <img src="/easyauction/resources/images/list1.png"></a>
+				<td align="right">
+						<a href='/easyauction/board/gongji.action'>
+						<img src="/easyauction/resources/images/list1.png"></a>
 				</td>
 			</tr>
 			</table>
@@ -189,8 +163,7 @@
 					<input type='radio' id="search" name='search' value='bdWriter'> 작성자
 					<input style='width:135px;height:18px' type="text" name="searchdata" id="searchdata" />
 					
-					<!-- <input type="button" value='검색' style='height: 25px;margin-right:600px; ' onclick="listsearch();" /> -->
-					<td align="left" ><img src="/easyauction/resources/images/search1.png" id="searchboard"></a></td>
+					<td align="left" ><img src="/easyauction/resources/images/search1.png" id="searchboard"></td>
 			</table>
 			</form>
 			</td>
@@ -203,12 +176,5 @@
 		</div>
 	</div> <!-- A 끝 -->
 </body>
-
-	<!-- 
-	<div style="border:solid 1px;padding:5px;text-align:right">
-		[ TOTAL : <%= application.getAttribute("bdReadCount") %> ]
-		[ CURRENT : <%= application.getAttribute("bdReadCount") %> ]
-	</div>
-	 -->
 
 </html>

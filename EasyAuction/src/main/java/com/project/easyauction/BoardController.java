@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,7 @@ import com.easyauction.common.ThePager;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
+import com.easyauction.dto.Member;
 import com.easyauction.service.BoardService;
 
 @Controller
@@ -87,8 +89,11 @@ public class BoardController {
 	}	
 		
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
-	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno) {
+	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno,String bdWriter,HttpSession session) {
+		Member member = (Member) session.getAttribute("loginuser");
+		if(!bdWriter.equals(member.getMbId())){
 		boardService.updateFreeBoardReadCount(bdNo);
+		}
 		Board view = boardService.getFreeBoardViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
@@ -222,7 +227,7 @@ public class BoardController {
 		
 		return mav;
 	}
-	
+	/////////////////공지리스트 조회수 카운터 되게 바꾸기/
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
 	public ModelAndView gongjiList(Integer pageno, @RequestParam(value="search", required=false)String search, 
 			@RequestParam(value="searchdata", required=false)String searchdata) {
@@ -230,7 +235,7 @@ public class BoardController {
 		//******* 페이징 관련 데이터 처리 ********* 
 		int pageNo = 1; // 현재 페이지 번호
 		int pageSize = 3; //한 페이지에 표시할 데이터 갯수
-		int pagerSize = 0; //번호로 표시할 페이지 갯수
+		int pagerSize = 3; //번호로 표시할 페이지 갯수
 		int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
 		String url = "gongji.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
 		//요청한 페이지 번호가 있다면,  읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
@@ -289,6 +294,47 @@ public class BoardController {
 		
 		boardService.insertGongjiBoardComment(boardComment);
 		return "redirect:/board/gongjiview.action?bdno="+bdNo;
+	}
+	
+	@RequestMapping(value = "updategongjiboard.action", method = RequestMethod.GET)
+	public ModelAndView updategongjiboard(int bdno, int pageno, Board board) {
+		Board board1 = boardService.getGongjiBoardViewByBoardNo(bdno);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/updategongjiboard");
+		mav.addObject("view", board1);
+		mav.addObject("pageno", pageno);
+		return mav;
+	}
+	//////////////////이거안됨//로그인해서 댓글달았는데 아디 입력 필터가 제대로 안됨/
+	@RequestMapping(value="updategongjiboard.action", method= RequestMethod.POST)
+	public String updategongjiboard2(int pageNo, Board board) {
+		System.out.println("aslkdlasdj");
+		boardService.updateGongjiBoard(board);
+		
+		return "redirect:/board/gongjiview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
+	}
+	
+	@RequestMapping(value="updategongjiboardcomment.action", method= RequestMethod.POST)
+	@ResponseBody
+	public String updateGongjiBoardComment(int bcNo, String bcContent) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bcNo", bcNo);
+		params.put("bcContent", bcContent);
+		boardService.updateGongjiBoardComment(params);
+		return "success";
+	}
+	////////////////////이거안됨//
+	@RequestMapping(value="deletegongjiboard.action", method= RequestMethod.GET)
+	public String deletegongjiboard(int bdno) {
+		
+		boardService.deleteGongjiBoard(bdno);
+		return "redirect:/board/gongji.action?bdno="+bdno;
+	}
+	
+	@RequestMapping(value="deletegongjiboardcomment.action", method= RequestMethod.GET)
+	public String deleteGongjiBoardComment(int bdno, int bcno) {
+		boardService.deleteGongjiBoardComment(bcno);
+		return "redirect:/board/gongjiview.action?bdno="+bdno;
 	}
 	
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.GET)
