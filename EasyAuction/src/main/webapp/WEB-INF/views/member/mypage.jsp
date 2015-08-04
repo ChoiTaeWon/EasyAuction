@@ -281,7 +281,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">배송중/구매결정
-				<font color="#960000">[${ countList.AUCSTATE4 + countList.AUCSTATE5 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE3 + countList.AUCSTATE4 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -300,7 +300,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">구매완료
-				<font color="#960000">[${ countList.AUCSTATE3 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE5 }]</font></font>
 				</td>
 			</tr>
 			<tr>
