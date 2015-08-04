@@ -37,8 +37,8 @@
                     { name: 'aucCategory', width: 150, align: 'center', formatter: category },
                     { name: 'aucWriter', width: 90, align: 'center' },
                     { name: 'aucGetter', width: 90, align: 'center'},
-                    { name: 'aucState', width: 80, align: 'center'},
-                    { name: 'aucNo', width: 150 }
+                    { name: 'aucState', width: 90, align: 'center', formatter: AuctionState},
+                    { name: 'aucNo', width: 100 }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -117,6 +117,13 @@
         					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
         				}
         			});	 */	
+        			$(".aucblind").click(function(){
+        				if(confirm("블라인드처리 하시겠습니까?")){
+        					event.preventDefault();
+        					var data = $(this).attr('value');
+        					location.href='/easyauction/admin/blind.action?aucNo='+data;
+        				}
+        			});
                 },
 				loadonce:true, // just for demo purpose
                 width: 780,
@@ -130,7 +137,7 @@
 			$("#auctionReport").jqGrid("navGrid","#auctionReportPager",{add:false, edit:false, del:false});			
         });
         function blindComplte(cellValue,options,rowObject){
-        	var pat3 = "<a href='/easyauction/admin/blind.action?aucNo="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
+        	var pat3 = "<a class='aucblind' href='#' value='"+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
         	return pat3;
         }
         function imageRead(cellValue,options,rowObject){
@@ -154,7 +161,15 @@
         	else if(cellValue == 14){return "도서/티켓/서비스";}
         	else{return "출력될 매물 디렉토리";}
         }
-
+		function AuctionState(cellValue,options,rowObject){
+        	if(cellValue == 0){return "경매 시작 전";}
+        	else if(cellValue == 1){return "경매 중";}
+        	else if(cellValue == 2){return "경매 마감";}
+        	else if(cellValue == 3){return "입금 대기";}
+        	else if(cellValue == 4){return "결제 완료";}	
+        	else if(cellValue == 5){return "거래 완료";}	
+        	else {return "상태 오류";}
+		}
     </script>
 </head>
 <body>

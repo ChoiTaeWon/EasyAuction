@@ -191,7 +191,7 @@
 														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
 															<tr>
 																<td align="center" valign="top">
-																	<div style="margin:8px 0 6px 0;">
+																	<div style="margin:8px 0 6px 0; width: 190px;height: 16px;overflow-x:hidden;overflow-y:hidden">
 																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
 																			<b>[경매중] ${ auction.aucTitle }</b>
 																		</a>

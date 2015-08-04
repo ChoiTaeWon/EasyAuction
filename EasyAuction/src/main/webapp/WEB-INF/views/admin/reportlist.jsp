@@ -74,8 +74,8 @@
                 height: 500,
                 rowNum: 20,
 				rowList:[20,25,50],
-				sortname: 'mrpNo',
-                pager: "#memberReportPager",
+				sortname: 'arpNo',
+                pager: "#auctionReportPager",
 				viewrecords: true,
             });
 			$("#auctionReport").jqGrid("navGrid","#auctionReportPager",{add:false, edit:false, del:false, view:true});       
@@ -122,7 +122,7 @@
    		 <div id="auctionReportPager"></div>
    		</div>
 		<div id="tabs-3">	
-   		</div> -->
+   		</div>
    		</div>
 		</div><!-- list 끝 -->
 		<div id="footer">
