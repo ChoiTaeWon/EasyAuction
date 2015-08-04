@@ -38,7 +38,7 @@
                     { name: 'aucWriter', width: 90, align: 'center' },
                     { name: 'aucGetter', width: 90, align: 'center'},
                     { name: 'aucState', width: 80, align: 'center'},
-                    { name: 'aucNo', width: 150 }
+                    { name: 'aucNo', width: 150, formatter: adminTool }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -84,7 +84,7 @@
                     		return "일반";
                     	}
                     }},
- 					{ name: 'auctionImage', width: 80, search: false, align: 'center'},
+                    { name:'auctionImage', jsonmap: 'auctionImage.0.aucImgName', width: 80, search: false, align: 'center', formatter: imageRead },
  					{ name: 'aucTitle', width: 150, align: 'center' },
                     { name: 'aucCategory', width: 150, align: 'center', formatter: category },
                     { name: 'aucWriter', width: 90, align: 'center' },
@@ -153,6 +153,10 @@
         	else if(cellValue == 13){return "자동차/관련용품";}
         	else if(cellValue == 14){return "도서/티켓/서비스";}
         	else{return "출력될 매물 디렉토리";}
+        }
+        function adminTool(){
+        	var pat3 = "<a href='/easyauction/admin/black.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
+        	return pat3;
         }
 
     </script>
