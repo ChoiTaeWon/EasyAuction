@@ -216,7 +216,7 @@
 																<td align="center" valign="top">
 																	<div style="margin:8px 0 6px 0;">
 																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
-																			<b>${ auction.aucTitle }</b>
+																			<b>[경매중] ${ auction.aucTitle }</b>
 																		</a>
 																	</div>
 																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
