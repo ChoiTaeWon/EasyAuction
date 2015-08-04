@@ -23,10 +23,36 @@
  			return;
  		}
  		var now = new Date();
+ 		
 		days = (dday - now) / 1000 / 60 / 60 / 24;
-		//alert(dday);
-		//alert(now);
-		//days = (now.getTime() - dday.getTime()) / 1000 / 60 / 60 / 24;
+		
+		if(days < 0){
+			//alert(days);
+			//return;
+			$.ajax({
+				url : "/easyauction/ajax/updateAuctionState.action",
+				async : false,
+				type : "GET",
+				data : {
+					aucNo : auctionNo
+				},
+				success : function(result){
+					if(result > 0){
+						//alert("경매상태가 바뀌었습니다.");
+						location.reload(true);
+						return;
+					}
+					else{
+						alert("경매상태 변경하다 문제 발생.");
+					}
+					
+				},
+				error : function(){
+					alert("경매상태 변경 에러!");
+				}
+			}); 
+		}
+		
 		dRound = Math.floor(days); 
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
 		hRound = Math.floor(hours); 
@@ -56,6 +82,7 @@
 		}else{
 			document.getElementById("counter3").innerHTML = sRound; 	
 		}
+		
 		newtime = window.setTimeout("getTime();", 1000); 
 	}													
 	
@@ -73,6 +100,7 @@ var time = 1000 * 5;
 var aucState = ${auction.aucState};
 
  $(function(){
+	 
 	  bidderId = $("#loginuserId").val();
 	  auctionNo = ${ auction.aucNo };
 	  aucWriter = $("#aucWriter").val();
@@ -98,31 +126,6 @@ var aucState = ${auction.aucState};
 			
 			dday = new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
 			
-				//현재 시간이 시작시간을 넘으면 경매 상태 업데이트 
-				if(new Date() >= dday){
-					$.ajax({
-						url : "/easyauction/ajax/updateAuctionState.action",
-						async : false,
-						type : "GET",
-						data : {
-							aucNo : auctionNo
-						},
-						success : function(result){
-							if(result > 0){
-								alert("경매상태가 바뀌었습니다.");
-								
-							}
-							else{
-								alert("경매상태 변경하다 문제 발생.");
-							}
-							
-						},
-						error : function(){
-							alert("경매상태 변경 에러!");
-						}
-					}); 
-				}
-			
 			getTime();
 			
 		}else if(aucState == 1){ //경매 중
@@ -139,35 +142,6 @@ var aucState = ${auction.aucState};
 			$("#dayText").html("경매 마감까지 남은 시간 :"); 
 			
 			dday = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
-			
-			
-				//현재 시간이 마감시간을 넘으면 경매 상태 업데이트 
-				if(new Date() >= dday){
-					alert("경매상태가 바뀌었습니다.");
-				
-					$.ajax({
-						url : "/easyauction/ajax/updateAuctionState.action",
-						async : false,
-						type : "GET",
-						data : {
-							aucNo : auctionNo
-						},
-						success : function(result){
-							if(result > 0){
-								alert("경매상태가 바뀌었습니다.");
-								location.reload();
-							}
-							else{
-								alert("경매상태 변경하다 문제 발생.");
-							}
-							
-						},
-						error : function(){
-							alert("경매상태 변경 에러!");
-						}
-					}); 
-					
-				}
 			
 			getTime();
 			
