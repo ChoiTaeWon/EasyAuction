@@ -138,10 +138,14 @@
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						<!-- 내용 옆 수정 삭제 -->
+						<c:choose>
+						<c:when test="${ loginuser.mbGrant eq true }">
 						<td align="right"><a href='/easyauction/board/updatefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
 										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
 						</td>
-						
+						</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>
 						</td>
 						<td width='50'></td>
 					</tr>
