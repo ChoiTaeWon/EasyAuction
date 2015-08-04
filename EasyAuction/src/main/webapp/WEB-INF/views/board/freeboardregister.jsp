@@ -99,8 +99,8 @@
 						<tr>			
 			<td colspan="2">
 				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
+				<td align="center"> <input type=image value='등록' src='/easyauction/resources/images/gaib.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 <a href='#'><img src='/easyauction/resources/images/list.png' BORDER=0 width="70" height="30"></A>
 				</td>
 			</tr>
 							</table>

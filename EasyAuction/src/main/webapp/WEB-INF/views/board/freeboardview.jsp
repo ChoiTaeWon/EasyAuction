@@ -203,23 +203,23 @@
 								<img src='/easyauction/resources/images/delete.png'>
 							</a>
 						</td>
-						<td width='50'></td>
 					</tr>
 					<tr id="comment_row_edit${ comment.bcNo }" style="display:none">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
 							<!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> --> 
 							<b>${ comment.bcWriter }</b>
 						</td>
+						
 						<td width='600' align='left' class="bccontent">
-							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
+							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${ fn:replace(comment.bcContent, newLineChar, "<br />") }</textarea>
+						<!-- <img src='/easyauction/resources/images/list.png' style="max-width: 100%; height: auto;"/> --> 
 						<%-- ${fn:replace(newComment.commentContent, enter, '<br>') } --%>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
 						<td align="right">
 							<img src='/easyauction/resources/images/sujung.png' id='u${ comment.bcNo }' class="bcsujung">
-							<img src='/easyauction/resources/images/list1.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
+							<img src='/easyauction/resources/images/list.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
 						</td>
-						<td width='50'></td>
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
