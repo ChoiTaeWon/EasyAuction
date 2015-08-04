@@ -207,6 +207,7 @@
 						<td style="padding:5px;">
 									<c:forEach var="auction" items="${ auctions }" end="8">
 									 <c:if test="${ auction.aucState eq 1 }">
+									 <c:if test="${ auction.aucType eq false }">
 									<!-- 여기서부터 테두리  -->
 											<table class="realTimeMain" style="float: left;">
 												<tr>
@@ -252,6 +253,7 @@
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
+									</c:if>
 									</c:if>	
 								</c:forEach>
 								

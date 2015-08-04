@@ -177,7 +177,7 @@
 		aucno DESC
 	</select>
 	<select id="getAucReportList" resultMap="auctionResult">
-				select  <include refid="auctioncolumns" />
+		select  <include refid="auctioncolumns" />
 		from AUCTION
 		where aucreportingcount >= 1
 		order By

@@ -1,6 +1,7 @@
 package com.easyauction.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.MemberReporting;
@@ -14,5 +15,8 @@ public interface ReportMapper {
 	void insertMemberReportingBytargetmbId(MemberReporting memberReporting);
 
 	int getResultMemberReportCheck(HashMap<String, Object> params);
-
+	
+	List<MemberReporting> getMrpList();
+	
+	List<AuctionReporting> getAucpList();
 }

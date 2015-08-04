@@ -41,7 +41,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="/easyauction/board/photolist.action" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/#" class="bbs_menu_name">신고 관리</b>
+		           <b><a href="/easyauction/admin/repmember.action" class="bbs_menu_name">신고 관리</b>
 		         </a>
 		       </td>
 		      </tr>		      
