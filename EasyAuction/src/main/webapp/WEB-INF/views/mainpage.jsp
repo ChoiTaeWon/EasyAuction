@@ -60,29 +60,6 @@
 					});
 				 
 				 
-					
-				$.ajax({
-					url : "/easyauction/ajax/selectMainAuction.action",	
-					async : false,
-					type : "POST",
-					
-					success : function(auctionList) {
-						//alert(auctionList + ' : auctionList 값' );
-						
-						if (auctionList != null) {	
-							//alert("실시간 경매를 불러옵니다.");
-							auctionListResult =  auctionList;
-						} else {
-							alert('실시간 경매를 불러오기 실패');
-						}
-						
-					},
-					error : function() {
-						alert('실시간 경매를 불러오기 아예 에러');
-					}
-				});
-				 
-				 
 		 });
 		
 	</script>
@@ -211,7 +188,8 @@
 												<tr>
 													<td valign=top align="center">
 														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
-															<tr>
+															<tr id="ttt">
+															<c:out value="${auctionListResult}"/>
 															<%-- <c:choose>
 																	<c:when test="${ auction.aucCategory eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
 																	<c:when test="${ auction.aucCategory eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
@@ -235,7 +213,7 @@
 																<td align="center" valign="top">
 																	<div style="margin:8px 0 6px 0;">
 																		<a href=''>
-																			<b>[미니언]미니언!</b>
+																			<b>[미니언]미니언!<span id="test"></span></b>
 																		</a>
 																	</div>
 																	<a href=''>

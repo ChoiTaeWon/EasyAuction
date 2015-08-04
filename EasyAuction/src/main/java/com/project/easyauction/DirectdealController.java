@@ -18,8 +18,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
@@ -59,12 +61,16 @@ public class DirectdealController {
 		return "direct/directlist";
 	}
 	
-	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
-	public String showdealView() {
-		
-		return "direct/directview";
-	}
 	
+	@RequestMapping(value = "showdeal.action", method = RequestMethod.GET)
+	public ModelAndView detailView(@RequestParam("aucno") int aucNo) {
+		Auction auction = auctionService.getAuctionDetailByAuctionNo(aucNo);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("direct/directview");
+		mav.addObject("auction", auction);
+		return mav;
+	}
 	
 	
 	//경매글 등록!

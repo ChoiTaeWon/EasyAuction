@@ -16,13 +16,13 @@
 </head>
 
 <script type="text/javascript">
+	
 	var dday = null;
- 	function getTime(Year, Month, Day, Hour, Minute) { 
+ 	function getTime() { 
  		if(dday == null){
  			return;
  		}
-		now = new Date(); 
-		
+ 		var now = new Date();
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		//alert(dday);
 		//alert(now);
@@ -59,10 +59,26 @@
 		newtime = window.setTimeout("getTime();", 1000); 
 	}													
 	
-	 $(function(){
-		var aucState = ${auction.aucState};
-		var checkDate=null;
+</script>
 
+<script  type="text/javascript">
+var returnbidNo = -1;
+var bidderId = null;
+var auctionNo = -1;
+var ipchalState;
+var aucWriter = null;
+var refreshTimer = null;
+var maxBiddNo= -1;
+var time = 1000 * 5; 
+var aucState = ${auction.aucState};
+
+ $(function(){
+	  bidderId = $("#loginuserId").val();
+	  auctionNo = ${ auction.aucNo };
+	  aucWriter = $("#aucWriter").val();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	var aucState = ${auction.aucState};
 		var startDate = "<fmt:formatDate value='${auction.aucStartDate}' pattern='yyyy-M-d H:m:s' />";
 		var endDate = "<fmt:formatDate value='${auction.aucEndDate}' pattern='yyyy-M-d H:m:s' />";
 		
@@ -81,7 +97,33 @@
 			$("#dayText").html("경매 시작까지 남은 시간 :"); 
 			
 			dday = new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
-			getTime(startYear,startMonth,startDay,startHour, startMinute);
+			
+				//현재 시간이 시작시간을 넘으면 경매 상태 업데이트 
+				if(new Date() >= dday){
+					$.ajax({
+						url : "/easyauction/ajax/updateAuctionState.action",
+						async : false,
+						type : "GET",
+						data : {
+							aucNo : auctionNo
+						},
+						success : function(result){
+							if(result > 0){
+								alert("경매상태가 바뀌었습니다.");
+								
+							}
+							else{
+								alert("경매상태 변경하다 문제 발생.");
+							}
+							
+						},
+						error : function(){
+							alert("경매상태 변경 에러!");
+						}
+					}); 
+				}
+			
+			getTime();
 			
 		}else if(aucState == 1){ //경매 중
 			var spEndDate = endDate.split(' ')[0];
@@ -95,9 +137,39 @@
 			
 			$("#dayText").empty();
 			$("#dayText").html("경매 마감까지 남은 시간 :"); 
-			checkDate = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00);
-			dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
-			getTime(endYear,endMonth,endDay,endHour, endMinute);
+			
+			dday = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+			
+			
+				//현재 시간이 마감시간을 넘으면 경매 상태 업데이트 
+				if(new Date() >= dday){
+					alert("경매상태가 바뀌었습니다.");
+				
+					$.ajax({
+						url : "/easyauction/ajax/updateAuctionState.action",
+						async : false,
+						type : "GET",
+						data : {
+							aucNo : auctionNo
+						},
+						success : function(result){
+							if(result > 0){
+								alert("경매상태가 바뀌었습니다.");
+								location.reload();
+							}
+							else{
+								alert("경매상태 변경하다 문제 발생.");
+							}
+							
+						},
+						error : function(){
+							alert("경매상태 변경 에러!");
+						}
+					}); 
+					
+				}
+			
+			getTime();
 			
 		}else if(aucState == 2){ //경매 마감
 			//alert(aucState);
@@ -109,7 +181,7 @@
 		}
 		
 		
-		
+	//나중에 포문쓸거야 다꺼졍	
 		$("#imgOnclick1").click(function(event) {
 			$("#ITEM1").css("display", "block");
 			$("#ITEM2").css("display", "none");
@@ -263,28 +335,9 @@
 			$("#ITEM10").css("display", "none");
 			$("#ITEM11").css("display", "block");
 		});
-		
-		
-	 });	
-	
-	
-</script>
-
-<script  type="text/javascript">
-var returnbidNo = -1;
-var bidderId = null;
-var auctionNo = -1;
-var ipchalState;
-var aucWriter = null;
-var refreshTimer = null;
-var maxBiddNo= -1;
-var time = 1000 * 5; 
-var aucState = ${auction.aucState};
-
- $(function(){
-	  bidderId = $("#loginuserId").val();
-	  auctionNo = ${ auction.aucNo };
-	  aucWriter = $("#aucWriter").val();
+	  
+	  
+	  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 //신고하기 dialog 
@@ -317,8 +370,8 @@ var aucState = ${auction.aucState};
 			},
 			success : function(result){
 				if(result == 0){
-					alert(event + " : event 값");
-					alert("신고 가능 상태");
+					//alert(event + " : event 값");
+					//alert("신고 가능 상태");
 					reportDialog.dialog("open");
 				}else{
 					alert("신고 이력이 있습니다 이미 신고했던 글입니다.");
@@ -435,7 +488,7 @@ var aucState = ${auction.aucState};
 			           	
 			        	},
 			        	error : function() {
-							alert('입찰 실패');
+							alert('입찰 에러');
 						}
 					});
 				}
@@ -444,9 +497,6 @@ var aucState = ${auction.aucState};
 	
 			
 	});
-
- 
- 	
  
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 //입찰 버튼 내역보기
@@ -609,6 +659,25 @@ $(function(){
 					}
 		 	}
 		});	
+	 
+	 
+		var changeAucStateOKDialog = $('#changeAucStateOK').dialog({
+			autoOpen : false,
+			width : 300,
+			height : 100,
+			modal : true,
+			buttons : {
+				닫기 : function() {						
+					changeAucStateOKDialog.dialog("close");
+				}
+			},
+			close : function() {
+				
+			}
+		});
+		
+	 /* changeAucStateOKDialog.dialog("open"); */
+	 
 });
 
 </script>
@@ -640,6 +709,8 @@ $(function(){
 						</tr>				
 				</table>    
 		</div>		
+		
+	
 
 
 
