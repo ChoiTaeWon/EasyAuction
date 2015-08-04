@@ -113,8 +113,18 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 	
 	@Override
+	public void updateGongjiBoardComment(HashMap<String, Object> params) {
+		boardMapper.updateGongjiBoardComment(params);
+	}
+	
+	@Override
 	public void deleteFreeBoardComment(int bcNo) {
 		boardMapper.deleteFreeBoardComment(bcNo);
+	}
+	
+	@Override
+	public void deleteGongjiBoardComment(int bcNo) {
+		boardMapper.deleteGongjiBoardComment(bcNo);
 	}
 
 	@Override
@@ -149,13 +159,23 @@ public class OracleBoardRepository implements BoardRepository{
 	}
 	
 	@Override
-	public void deleteFreeBoard(int bdNo) {
-		boardMapper.deleteFreeBoard(bdNo);
+	public void deleteFreeBoard(int bdno) {
+		boardMapper.deleteFreeBoard(bdno);
+	}
+	
+	@Override
+	public void deleteGongjiBoard(int bdno) {
+		boardMapper.deleteGongjiBoard(bdno);
 	}
 
 	@Override
 	public void updateFreeBoard(Board board) {
 		boardMapper.updateFreeBoard(board);
+	}
+	
+	@Override
+	public void updateGongjiBoard(Board board) {
+		boardMapper.updateGongjiBoard(board);
 	}
 
 	@Override
@@ -177,6 +197,14 @@ public class OracleBoardRepository implements BoardRepository{
 	public List<Board> gongiTypeOne(){
 		return boardMapper.gongiTypeOne();
 	}
+
+	
+
+	
+
+	
+
+	
 	
 
 }

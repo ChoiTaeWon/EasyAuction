@@ -227,7 +227,7 @@ public class BoardController {
 		
 		return mav;
 	}
-	
+	/////////////////공지리스트 조회수 카운터 되게 바꾸기/
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
 	public ModelAndView gongjiList(Integer pageno, @RequestParam(value="search", required=false)String search, 
 			@RequestParam(value="searchdata", required=false)String searchdata) {
@@ -294,6 +294,47 @@ public class BoardController {
 		
 		boardService.insertGongjiBoardComment(boardComment);
 		return "redirect:/board/gongjiview.action?bdno="+bdNo;
+	}
+	
+	@RequestMapping(value = "updategongjiboard.action", method = RequestMethod.GET)
+	public ModelAndView updategongjiboard(int bdno, int pageno, Board board) {
+		Board board1 = boardService.getGongjiBoardViewByBoardNo(bdno);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/updategongjiboard");
+		mav.addObject("view", board1);
+		mav.addObject("pageno", pageno);
+		return mav;
+	}
+	//////////////////이거안됨//로그인해서 댓글달았는데 아디 입력 필터가 제대로 안됨/
+	@RequestMapping(value="updategongjiboard.action", method= RequestMethod.POST)
+	public String updategongjiboard2(int pageNo, Board board) {
+		System.out.println("aslkdlasdj");
+		boardService.updateGongjiBoard(board);
+		
+		return "redirect:/board/gongjiview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
+	}
+	
+	@RequestMapping(value="updategongjiboardcomment.action", method= RequestMethod.POST)
+	@ResponseBody
+	public String updateGongjiBoardComment(int bcNo, String bcContent) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bcNo", bcNo);
+		params.put("bcContent", bcContent);
+		boardService.updateGongjiBoardComment(params);
+		return "success";
+	}
+	////////////////////이거안됨//
+	@RequestMapping(value="deletegongjiboard.action", method= RequestMethod.GET)
+	public String deletegongjiboard(int bdno) {
+		
+		boardService.deleteGongjiBoard(bdno);
+		return "redirect:/board/gongji.action?bdno="+bdno;
+	}
+	
+	@RequestMapping(value="deletegongjiboardcomment.action", method= RequestMethod.GET)
+	public String deleteGongjiBoardComment(int bdno, int bcno) {
+		boardService.deleteGongjiBoardComment(bcno);
+		return "redirect:/board/gongjiview.action?bdno="+bdno;
 	}
 	
 	@RequestMapping(value = "gongjiregister.action", method = RequestMethod.GET)
