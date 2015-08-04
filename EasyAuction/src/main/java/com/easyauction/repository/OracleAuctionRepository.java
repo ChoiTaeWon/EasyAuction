@@ -105,4 +105,11 @@ public class OracleAuctionRepository implements AuctionRepository{
 	public void setBlindAuction(int aucNo){
 		auctionMapper.setBlindAuction(aucNo);
 	}
+
+
+	@Override
+	public void updateAucStateByDate(int aucNo) {
+		// TODO Auto-generated method stub
+		auctionMapper.updateAucStateByDate(aucNo);
+	}
 }
