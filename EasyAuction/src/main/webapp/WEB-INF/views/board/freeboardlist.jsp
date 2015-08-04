@@ -240,7 +240,7 @@
 													<c:when test="${board.bdBlindCheck eq false}">
 														<tr>
 															<td align="center" style="padding-left: 10px;"><b><a
-																	href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
+																	href="/easyauction/board/freeboardview.action?bdno=${ board.bdNo }&pageno=${pageno}&bdWriter=${ board.bdWriter }">${ board.bdTitle }</a></b>[${ board.commentCount }]</td>
 															<td width="1"></td>
 															<td class="smfont" align="center" width="90"><div
 																	style="padding-left: 10px;">

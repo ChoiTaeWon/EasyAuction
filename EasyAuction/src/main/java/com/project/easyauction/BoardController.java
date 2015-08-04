@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,7 @@ import com.easyauction.common.ThePager;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
+import com.easyauction.dto.Member;
 import com.easyauction.service.BoardService;
 
 @Controller
@@ -87,8 +89,11 @@ public class BoardController {
 	}	
 		
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
-	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno) {
+	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno,String bdWriter,HttpSession session) {
+		Member member = (Member) session.getAttribute("loginuser");
+		if(!bdWriter.equals(member.getMbId())){
 		boardService.updateFreeBoardReadCount(bdNo);
+		}
 		Board view = boardService.getFreeBoardViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
