@@ -58,5 +58,7 @@ public interface BoardMapper {
 	void updateFreeBoardReadCount(int bdNo);
 
 	int getFreeBoardSearchCount(HashMap<String, String> params);
+	
+	List<Board> gongiTypeOne();
 
 }
