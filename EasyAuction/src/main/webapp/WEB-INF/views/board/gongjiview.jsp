@@ -200,6 +200,8 @@
 							<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
+						<c:choose>
+						<c:when test="${ loginuser.mbId eq comment.bcWriter }">
 						<td align="right">
 							<%-- <a href='/easyauction/board/updatefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'> --%>
 							<img src='/easyauction/resources/images/sujung.png' id="e${ comment.bcNo }" class='bcedit'><!-- </a> -->
@@ -207,6 +209,9 @@
 								<img src='/easyauction/resources/images/delete.png'>
 							</a>
 						</td>
+						</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>
 					</tr>
 					<tr id="comment_row_edit${ comment.bcNo }" style="display:none">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
