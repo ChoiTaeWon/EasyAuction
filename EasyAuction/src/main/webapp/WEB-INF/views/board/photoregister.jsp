@@ -54,7 +54,7 @@
 		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 		<tr height="28">
 			<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-			<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+			<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='${loginuser.mbId}' readonly></td>
 		</tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 		<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
@@ -82,8 +82,8 @@
 		<tr>			
 			<td colspan="2">
 				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
+				<td align="center"> <input type=image value='등록' src='/easyauction/resources/images/gaib.png' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 <a href="/easyauction/board/photolist.action"><img src='/easyauction/resources/images/list.png' BORDER=0 width="70" height="30"></A>
 				</td>
 			</tr>
 			</table>

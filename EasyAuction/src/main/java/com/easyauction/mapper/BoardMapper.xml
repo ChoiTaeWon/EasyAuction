@@ -223,9 +223,25 @@
  	SET 
  		bccontent = #{ bcContent } 
   	 WHERE bcno = #{ bcNo }
+ 	</update>
+ 	
+ 	<update id="updateGongjiBoardComment" parameterType="hashMap">
+ 	UPDATE 
+ 		boardcomment
+ 	SET 
+ 		bccontent = #{ bcContent } 
+  	 WHERE bcno = #{ bcNo }
  	</update> 
  	
    <delete id="deleteFreeBoardComment" parameterType="int">
+   DELETE 
+   FROM
+   		boardcomment 
+   WHERE 
+   		bcno = #{ bcNo }
+   </delete>
+   
+   <delete id="deleteGongjiBoardComment" parameterType="int">
    DELETE 
    FROM
    		boardcomment 
@@ -271,6 +287,14 @@
 	<update id="deleteFreeBoard" parameterType="int" >
 	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
 	</update>
+	
+	<delete id="deleteGongjiBoard" parameterType="int" >
+	DELETE
+	FROM
+	 	BOARD 
+	WHERE
+	 	bdno = #{ bdno }
+	</delete>
 	
 	<update id="updateFreeBoardReadCount" parameterType="int" >
 	   UPDATE

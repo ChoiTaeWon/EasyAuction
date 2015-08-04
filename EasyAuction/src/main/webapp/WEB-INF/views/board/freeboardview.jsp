@@ -91,9 +91,9 @@
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
 								  
-				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+				<!-- <td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
-				</td>
+				</td> -->
 			</tr>
 				
 				<table width="100%">
