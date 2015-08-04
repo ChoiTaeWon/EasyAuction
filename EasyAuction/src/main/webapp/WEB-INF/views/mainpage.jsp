@@ -59,7 +59,6 @@
 						}
 					});
 				 
-				 
 		 });
 		
 	</script>
@@ -89,32 +88,33 @@
 									<td id="gonggi_top" align="center" style="width:119px; border-right:1px solid grey; cursor:pointer;">
 									<span style="line-height:25px; color:#797979; letter-spacing:-1px;">공지사항</span></td>
 									<td id="event_top"align="center" style="width:119px; cursor:pointer;">
-									<span style="line-height:25px; color:#797979; letter-spacing:-1px;">이벤트</span></td>
+									<span style="line-height:25px; color:#797979; letter-spacing:-1px;">포토후기</span></td>
 								</tr>
 							</table>
 							<!-- 공지 박스 -->
 							<table id="gonggi" class="gonggi_box" style="width: 100%;display:none">
-								<%for(int i=0; i<5;i++){ %>
+								<c:forEach var="gongge" items="${ boards }" >
 								<tr align="left" style="text-align: left; width: 100%">
 									<td style="height: 20px;onMouseOver:this.style.backgroundColor='#F9F4F0'; onMouseOut:this.style.backgroundColor='';">
 										<img src='/easyauction/resources/images/ico_dot.gif'>
-										<a href='#gonggi1'>[공지] 공지글 <%= i %>입니다..........</a>
+										<a href='/easyauction/board/gongjiview.action?bdno=${ gongge.bdNo }&pageno=1'>[공지] ${ gongge.bdTitle }</a>
 									</td>
 								</tr>
-								<% } %>	
+								</c:forEach>	
 							</table>
 							<!-- 이벤트 박스 -->
 							<table id="event" class="event_box" style="width: 100%;display:block">
-								<%for(int i=0; i<5;i++){ %>
+							 <c:forEach var="photo" items="${ photos }">
 								<tr align="left" style="text-align: left; width: 100%">
 									<td style="height: 20px;onMouseOver:this.style.backgroundColor='#F9F4F0'; onMouseOut:this.style.backgroundColor='';">
-										<img src='/easyauction/resources/images/ico_dot.gif'>
-										<a href='#event'>[이벤트]  <%= i %>입니다..........</a>
+										<c:forEach var="image" items="${ photo.boardImage }">
+										<img width=20 height=20 src='/easyauction/resources/imagefile/${ image.bdImgName }'>
+										</c:forEach>
+										<a href='/easyauction/board/photoview.action?bdno=${ photo.bdNo }'>[포토후기] ${ photo.bdTitle }</a>
 									</td>
 								</tr>
-								<% } %>	
+								</c:forEach>
 							</table>
-							
 						</td>
 					</tr>
 				</table>
@@ -181,43 +181,24 @@
 					 </tr>
 					 <tr>							   
 						<td style="padding:5px;">
-									<c:forEach begin="1" end="8" step="1" varStatus="status">
+									<c:forEach var="auction" items="${ auctions }" end="8">
+									 <c:if test="${ auction.aucState eq 1 }">
 									<!-- 여기서부터 테두리  -->
-										
 											<table class="realTimeMain" style="float: left;">
 												<tr>
 													<td valign=top align="center">
 														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
-															<tr id="ttt">
-															<c:out value="${auctionListResult}"/>
-															<%-- <c:choose>
-																	<c:when test="${ auction.aucCategory eq 1 }">[의류/패션용품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 2 }">[국내화장품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 3 }">[컴퓨터/주변기기/게임]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 4 }">[해외화장품/향수]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 5 }">[출산용품/유아용품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 6 }">[자연식품/식재료]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 7 }">[가공식품/건강/음료]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 8 }">[가구/생활용품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 9 }">[악기/음악관련상품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 10 }">[프라모델/문구/사무]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 11 }">[디지털/가전제품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 12 }">[스포츠/성인/상품권]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 13 }">[자동차/관련용품]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 14 }">[도서/티켓/서비스]${ auction.aucItemName }</c:when>
-																	<c:when test="${ auction.aucCategory eq 15 }">[출력될 매물 디렉토리]${ auction.aucItemName }</c:when>
-																	<c:otherwise>에러 상태</c:otherwise>
-																</c:choose> --%>
-															</tr>
 															<tr>
 																<td align="center" valign="top">
 																	<div style="margin:8px 0 6px 0;">
-																		<a href=''>
-																			<b>[미니언]미니언!<span id="test"></span></b>
+																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
+																			<b>[경매중] ${ auction.aucTitle }</b>
 																		</a>
 																	</div>
-																	<a href=''>
-																		<img src="/easyauction/resources/images/qwerqwerqwer.jpg" width="145" height="145">
+																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
+																	  <c:forEach var="image" items="${ auction.auctionImage }">
+																		<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="145" height="145">
+																	  </c:forEach>
 																	</a>
 																	
 																	<div align="center" style="width: 100%;">
@@ -235,8 +216,10 @@
 																	
 																	<div style="padding-top: 10px"></div>
 																	
-																	<div>
+									   								<div>
+																	 <a href="/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }">
 																		<img style="width: 100%" src="/easyauction/resources/images/btn_ipchal_basic.gif">
+																	 </a>
 																	</div>
 																</td>
 															</tr>
@@ -245,7 +228,7 @@
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
-										
+									</c:if>	
 								</c:forEach>
 								
 						</td>
