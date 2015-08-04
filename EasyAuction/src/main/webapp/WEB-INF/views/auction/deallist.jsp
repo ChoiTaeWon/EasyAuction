@@ -16,8 +16,6 @@
 <script type="text/javascript">
 var ddaylist = [];
 var newtime = null;
-//alert(ddaylist[0].id + "&&" + ddaylist[0].dday);
-
 
  	function getTime() { 
  		if(ddaylist == null || ddaylist.length ==0){
@@ -25,15 +23,7 @@ var newtime = null;
  		}
  		
 		now = new Date(); 
-/* 		days = (dday - now) / 1000 / 60 / 60 / 24; 
-		dRound = Math.floor(days); 
-		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
-		hRound = Math.floor(hours); 
-		minutes = (dday - now) / 1000 /60 - (24 * 60 * dRound) - (60 * hRound); 
-		mRound = Math.floor(minutes); 
-		seconds = (dday - now) / 1000 - (24 * 60 * 60 * dRound) - (60 * 60 * hRound) - (60 * mRound); 
-		sRound = Math.round(seconds); */
-		
+	
 		$.each(ddaylist, function(index, item){
 			var id = item.id;
 			var dday = item.dday;
@@ -104,8 +94,6 @@ var newtime = null;
 			
 		<br/><br/>
 		
-		
-		
 		<div id="viewlist"> <!-- viewlist div -->
 			<table style="width:955px; margin-left: 5.5px" >
 				<tr>
@@ -132,7 +120,7 @@ var newtime = null;
 			
 			
 <c:forEach var="auction" items="${ auctions }">
- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }">
+ <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState < 4)}">
  
 	<fmt:formatDate value="${ auction.aucStartDate }" pattern="yyyy-M-d H:m" var="startDateFormat"/>
 	<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
@@ -301,8 +289,6 @@ var newtime = null;
 											<div class="deal_time_list_blank">:</div>
 											<div class="deal_time_list_second" id="counter3${ auction.aucNo }"></div>
 									</div> 
-									
-									
 									
 									<!-- 참여하기 버튼 -->
 									<div style="padding-top: 5px"></div>

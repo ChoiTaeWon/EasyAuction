@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,13 +135,17 @@
 				 	
 				 	<table border='0' width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
-						<td width='140' style='padding-top:10px;padding-bottom:10px;'><img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> <b>${ comment.bcWriter }</b></td>
+						<td width='140' style='padding-top:10px;padding-bottom:10px;'><!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> --> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						<!-- 내용 옆 수정 삭제 -->
+						<c:choose>
+						<c:when test="${ loginuser.mbId eq view.bdWriter }">
 						<td align="right"><a href='/easyauction/board/updatefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+										  <a href='/easyauction/board/deletefreeboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/singo.png'></a>
 						</td>
-						
+						</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>
 						</td>
 						<td width='50'></td>
 					</tr>
@@ -161,7 +167,7 @@
 								 </c:forEach>
 								</tr>
 								<tr>
-								  <td>${ view.bdContent }</td>
+								  <td>${ fn:replace(view.bdContent, newLineChar, "<br />") }</td>
 								</tr>
 							</table>
 							</div>
@@ -183,40 +189,47 @@
 					</tr>
 				</table>
 				<c:forEach var="comment" items="${ view.comments }">
-				<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+				<table style="border-bottom: groove 1px" width='100%' cellspacing='0' cellpadding='0'>
 					<tr id="comment_row_view${ comment.bcNo }" style="display: block">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
-							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' />
+							<!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> -->
 							<b>${ comment.bcWriter }</b>
 						</td>
 						<td width='600' align='left' class="bccontent">
-							<span id="vc${ comment.bcNo }">${ comment.bcContent }</span>&nbsp;&nbsp;
+							<span id="vc${ comment.bcNo }">${ fn:replace(comment.bcContent, newLineChar, "<br />") }</span>&nbsp;&nbsp;
 							<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
+						
+						<c:choose>
+						<c:when test="${ loginuser.mbId eq comment.bcWriter }">
 						<td align="right">
-							<%-- <a href='/easyauction/board/updatefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'> --%>
-							<img src='/easyauction/resources/images/sujung.png' id="e${ comment.bcNo }" class='bcedit'><!-- </a> -->
+							<img src='/easyauction/resources/images/sujung.png' id="e${ comment.bcNo }" class='bcedit'>
 							<a href='/easyauction/board/deletefreeboardcomment.action?bdno=${ view.bdNo }&bcno=${ comment.bcNo }&pageno=${ pageno }'>
-								<img src='/easyauction/resources/images/delete.png'>
-							</a>
+							<img src='/easyauction/resources/images/delete.png'></a>
 						</td>
-						<td width='50'></td>
+						</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>
 					</tr>
 					<tr id="comment_row_edit${ comment.bcNo }" style="display:none">
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'>
-							<img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> 
+							<!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle' /> --> 
 							<b>${ comment.bcWriter }</b>
 						</td>
+						
 						<td width='600' align='left' class="bccontent">
-							<textarea name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
+							<textarea style="resize: none;" name="bcContent" id="bcContent${ comment.bcNo }">${ comment.bcContent }</textarea>
+						<!-- <img src='/easyauction/resources/images/list.png' style="max-width: 100%; height: auto;"/> --> 
+						<%-- ${fn:replace(newComment.commentContent, enter, '<br>') } --%>
 						</td>
 						<!-- 댓글 옆 수정 삭제 -->
+						
 						<td align="right">
 							<img src='/easyauction/resources/images/sujung.png' id='u${ comment.bcNo }' class="bcsujung">
-							<img src='/easyauction/resources/images/list1.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
+							<img src='/easyauction/resources/images/list.png' id="c${ comment.bcNo }" class="bcedit_cancel">							
 						</td>
-						<td width='50'></td>
+						
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
@@ -228,7 +241,7 @@
 					<input type="hidden" name="writer" value="${ view.bdWriter }" />
 					<input type="hidden" name="pageno" value="${ pageno }" />
 					<%-- <input type="hidden" name="pageno" value="${ pageno }" /> --%>
-					<table border='0' width='100%' cellspacing='0' cellpadding='0'>
+					<table style="border-bottom: groove 1px;" width='100%' cellspacing='0' cellpadding='0'>
 						<tr>
 							<td>
 								<textarea style='width:95%' rows=4 name=content style='font-size:12px; height:35;'></textarea>

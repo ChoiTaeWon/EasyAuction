@@ -188,5 +188,14 @@
 		set aucblindcheck = 1 
 		where aucno = #{ aucNo }
 	</update>
+	
+	<update id="updateAucStateByDate" parameterType="int">
+		update auction 
+		set aucstate = aucstate+1 
+		where aucno = #{ aucNo }
+	</update>
+	
+	
+	
 	<!-- /관리자 -->
 </mapper>

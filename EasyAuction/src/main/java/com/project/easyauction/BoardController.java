@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,7 @@ import com.easyauction.common.ThePager;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
+import com.easyauction.dto.Member;
 import com.easyauction.service.BoardService;
 
 @Controller
@@ -46,7 +48,7 @@ public class BoardController {
 	//******* 페이징 관련 데이터 처리 ********* 
 	int pageNo = 1; // 현재 페이지 번호
 	int pageSize = 3; //한 페이지에 표시할 데이터 갯수
-	int pagerSize = 0; //번호로 표시할 페이지 갯수
+	int pagerSize = 3; //번호로 표시할 페이지 갯수
 	int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
 	String url = "freeboard.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
 	//요청한 페이지 번호가 있다면,  읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
@@ -61,37 +63,41 @@ public class BoardController {
 	if(search != null){
 		queryString = "search=" + search + "&searchdata=" + searchdata;
 		dataCount = boardService.getFreeBoardSearchCount(search, searchdata, bdtype); //전체 게시물 갯수 조회
-		pagerSize = dataCount/pageSize;
 		boards = boardService.getFreeBoardSearchList(first, first + pageSize, search, searchdata, bdtype);
 	}else {
 		dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
-		pagerSize = dataCount/pageSize;
 		boards = boardService.getFreeBoardList(first, first + pageSize, bdtype); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.
 	}
 	
+	for(Board board : boards){
+		board.setCommentCount(board.getComments().size());
+	}
+	
+	ThePager pager = null;
+	if(boards != null && boards.size() > 0){
 	//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
-	ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
-	System.out.println(pager);
+		pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
+	}
 				
 	ModelAndView mav = new ModelAndView();
-	/*List<Employee> employees = employeeDao.getEmployeeList(lineup);*/
+	mav.setViewName("board/freeboardlist");
 	mav.addObject("boards", boards);
 	mav.addObject("pager", pager);
 	mav.addObject("pageno", pageNo);
-	//mav.addObject("queryString", queryString);
-	mav.setViewName("board/freeboardlist");
 				
 	return mav;
 	}	
 		
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
-	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno) {
+	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno,String bdWriter,HttpSession session) {
+		Member member = (Member) session.getAttribute("loginuser");
+		if(!bdWriter.equals(member.getMbId())){
 		boardService.updateFreeBoardReadCount(bdNo);
+		}
 		Board view = boardService.getFreeBoardViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
 		ModelAndView mav = new ModelAndView();
-		
 		mav.setViewName("board/freeboardview");
 		mav.addObject("view", view);
 		mav.addObject("pageno", pageno);
@@ -100,7 +106,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="freeboardcomment.action", method=RequestMethod.POST)
-	public String insertFreeBoardComment(int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
+	public String insertFreeBoardComment(@RequestParam("pageno")int pageno, @RequestParam("bdno")int bdNo, @RequestParam("content")String content, @RequestParam("writer")String writer){
 		BoardComment boardComment = new BoardComment();
 		boardComment.setBdNo(bdNo);
 		boardComment.setBcContent(content);
@@ -223,7 +229,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
-	public ModelAndView gongjiList(Integer pageno) {
+	public ModelAndView gongjiList(Integer pageno, @RequestParam(value="search", required=false)String search, 
+			@RequestParam(value="searchdata", required=false)String searchdata) {
 		
 		//******* 페이징 관련 데이터 처리 ********* 
 		int pageNo = 1; // 현재 페이지 번호
@@ -231,28 +238,31 @@ public class BoardController {
 		int pagerSize = 3; //번호로 표시할 페이지 갯수
 		int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
 		String url = "gongji.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
-		//요청한 페이지 번호가 있다면, 읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
+		//요청한 페이지 번호가 있다면,  읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
 		if (pageno != null ) {
 			pageNo = pageno;
 		}
-		int bdtype = 1;
-		//현재 페이지의 첫 번째 데이터의 순서번호를 계산하는 방법.
-		dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
-		pagerSize = dataCount/pageSize;
-		
 		int first = (pageNo - 1) * pageSize + 1; //1 page -> 1, 2 page -> 4, 3 page -> 7
-		//1. 데이터 조회 (DAO객체 이용해서 처리)
-		//내가 조건에 맞게 검색한 정보만, (type별로) 나오게 하는 작업.
+		int bdtype = 1;
 		List<Board> boards = null;
-		boards= boardService.getGongjiList(first, first + pageSize); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.			
-		//$$$$$$$$$$$$$$$$  페이지 개수 조정 (조건에 맞는 개수만큼만 페이징 조정) 작업.
-		System.out.println(dataCount);
-		String queryString = "";
-		ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
-		System.out.println(pager);
-					
+		String queryString = null;
+		if(search != null){
+			queryString = "search=" + search + "&searchdata=" + searchdata;
+			dataCount = boardService.getFreeBoardSearchCount(search, searchdata, bdtype); //전체 게시물 갯수 조회
+			boards = boardService.getFreeBoardSearchList(first, first + pageSize, search, searchdata, bdtype);
+		}else {
+			dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
+			boards = boardService.getFreeBoardList(first, first + pageSize, bdtype); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.
+		}
+		
+		for(Board board : boards){
+			board.setCommentCount(board.getComments().size());
+		}
+		ThePager pager = null;
+		if(boards != null && boards.size() > 0){
+			pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
+		}
 		ModelAndView mav = new ModelAndView();
-		/*List<Employee> employees = employeeDao.getEmployeeList(lineup);*/
 		mav.addObject("boards", boards);
 		mav.addObject("pager", pager);
 		mav.addObject("pageno", pageNo);

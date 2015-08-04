@@ -35,4 +35,6 @@ public interface AuctionRepository {
 	
 	void setBlindAuction(int aucNo);
 
+	void updateAucStateByDate(int aucNo);
+
 }

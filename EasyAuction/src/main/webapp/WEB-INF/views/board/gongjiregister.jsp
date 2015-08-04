@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>공지사항게시판</title>
+<title>자유게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -25,7 +25,7 @@
 			<!--내용-->
 			<div id="contents_wrap">
 				
-			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
+			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96">
 			<tr>
 				<td style="padding-left:25px;"><img src="/easyauction/resources/images/gongjimain.png"></td>
 			</tr>
@@ -39,9 +39,9 @@
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
 								  
-				<td align="right"><a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/gongji.action'><img src='/easyauction/resources/images/gongjismall.png'></a>
-				</td>
+				<!-- <td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				</td> -->
 			</tr>
 				
 				<form method='post' action='gongjiregister.action' enctype="multipart/form-data">
@@ -69,7 +69,7 @@
 						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 						<tr height="28">
 							<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='${loginuser.mbId}' readonly></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
@@ -95,12 +95,12 @@
 						<tr><td height="5"></td></tr>
 						<tr><td height="5"></td></tr>
 						<tr>			
-							<td colspan="2">
-								<table border="0" cellspacing="0" cellpadding="0" width="100%" >
-								<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
-									 <a href='gongji.action'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
-								</td>
-							</tr>
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" >
+				<td> <input type=image value='등록' src='/easyauction/resources/images/bbs_upload.gif' border=0 width="70" height="30" onclick="document.forms[0].submit();"> 
+					 <a href='#'><img src='/easyauction/resources/images/bbs_list.gif' BORDER=0 width="70" height="30"></A>
+				</td>
+			</tr>
 							</table>
 						</tr>
 						</table>

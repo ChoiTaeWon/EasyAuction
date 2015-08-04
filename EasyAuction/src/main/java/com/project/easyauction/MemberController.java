@@ -13,6 +13,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -215,12 +216,12 @@ public class MemberController {
 		return mav;
 	}
 	@RequestMapping(value = "deletemember.action", method = RequestMethod.POST)
-	public ModelAndView deletemember(String mbId) {
+	public ModelAndView deletemember(String mbId,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mbsvc.setMemberDelete(mbId);
 		mav.setViewName("mainpage");
 		mav.addObject("locationurl", "memberdelete");
-		
+		session.removeAttribute("loginuser");
 		//return "redirect:/home.action"
 		return mav;
 	}
