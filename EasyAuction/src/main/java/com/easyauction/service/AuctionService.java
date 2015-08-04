@@ -26,6 +26,10 @@ public interface AuctionService {
 
 	List<Auction> getAuctionListByAucWriter(String mbId);
 
+	void updateAucStateByDate(int aucNo);
+
+	
+
 	
 
 	

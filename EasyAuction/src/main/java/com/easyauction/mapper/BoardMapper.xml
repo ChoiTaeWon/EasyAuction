@@ -75,6 +75,7 @@
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
 		FROM Board
+		where bdtype = 3
 		ORDER BY 
 			bdno DESC
 	</select>
@@ -144,7 +145,12 @@
 		</trim>
 		ORDER BY bdno DESC
 	</select>
-	
+	<select id="gongiTypeOne" resultMap="boardResult">
+		select 
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+		from board
+		where bdtype = 1 and bdblindcheck = 0
+	</select>
 	<select id="getGongjiList" parameterType="hashMap" resultMap="boardResult">
  	SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
@@ -203,7 +209,7 @@
 	
 	<insert id="insertFreeBoardComment" parameterType="BoardComment">
 		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
-			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter }, #{pageno})
+			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
 	
 	<insert id="insertGongjiBoardComment" parameterType="BoardComment">
@@ -217,9 +223,25 @@
  	SET 
  		bccontent = #{ bcContent } 
   	 WHERE bcno = #{ bcNo }
+ 	</update>
+ 	
+ 	<update id="updateGongjiBoardComment" parameterType="hashMap">
+ 	UPDATE 
+ 		boardcomment
+ 	SET 
+ 		bccontent = #{ bcContent } 
+  	 WHERE bcno = #{ bcNo }
  	</update> 
  	
    <delete id="deleteFreeBoardComment" parameterType="int">
+   DELETE 
+   FROM
+   		boardcomment 
+   WHERE 
+   		bcno = #{ bcNo }
+   </delete>
+   
+   <delete id="deleteGongjiBoardComment" parameterType="int">
    DELETE 
    FROM
    		boardcomment 
@@ -263,8 +285,16 @@
  	<!-- 3회가 되면 블라인드처리가 되게 하려면 이곳에서 조건을 정해주어야 하나??
  	blind된 글은 jquery써서 못읽게 alert를 뜨게하기??? -->
 	<update id="deleteFreeBoard" parameterType="int" >
-	UPDATE BOARD SET BDBLINDCHECK = '1' WHERE bdno = #{ bdno }
+	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
 	</update>
+	
+	<delete id="deleteGongjiBoard" parameterType="int" >
+	DELETE
+	FROM
+	 	BOARD 
+	WHERE
+	 	bdno = #{ bdno }
+	</delete>
 	
 	<update id="updateFreeBoardReadCount" parameterType="int" >
 	   UPDATE

@@ -39,7 +39,11 @@ public interface BoardRepository {
 	
 	void updateFreeBoardComment(HashMap<String, Object> params);
 	
+	void updateGongjiBoardComment(HashMap<String, Object> params);
+	
 	void deleteFreeBoardComment(int bcNo);
+	
+	void deleteGongjiBoardComment(int bcNo);
 	
 	List<Board> getFreeBoardSearchList(int first, int last, String search, String searchdata, int bdtype);
 
@@ -49,11 +53,25 @@ public interface BoardRepository {
 	
 	void deleteFreeBoard(int bdno);
 	
+	void deleteGongjiBoard(int bdno);
+	
 	void updateFreeBoard(Board board);
+	
+	void updateGongjiBoard(Board board);
 
 	int getFreeBoardCommentCount();
 	
 	void updateFreeBoardReadCount(int bdNo);
 
 	int getFreeBoardSearchCount(String search, String searchdata, int bdtype);
+	
+	List<Board> gongiTypeOne();
+
+	
+
+	
+
+	
+
+	
 }

@@ -34,7 +34,7 @@
 			<!--내용-->
 			<div id="contents_wrap">
 				
-			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96" background="#">
+			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96">
 			<tr>
 				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
 			</tr>
@@ -65,7 +65,7 @@
 							<td height="1" bgcolor="#DEDEDE"></td>
 						</tr>
 						<tr height="30">
-							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp;게시물수정하기</td>
+							<td bgcolor="#F8F8F8" style="padding-left:10px;"><!-- <img src="img/ico_arrow_03.gif" border="0" align="absmiddle"> -->&nbsp;게시물수정하기</td>
 						</tr>
 						<tr>
 							<td height="1" bgcolor="#DEDEDE"></td>

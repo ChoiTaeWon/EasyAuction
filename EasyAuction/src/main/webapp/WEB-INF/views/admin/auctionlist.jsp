@@ -22,7 +22,7 @@
                 url: 'auctionlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['번호','타입','사진','경매명','카테고리', '경매자','낙찰자','경매상태','관리자툴'],
+                colNames: ['번호','타입','사진','경매명','카테고리', '경매자','낙찰자','경매상태'],
                 colModel: [
                     { name: 'aucNo', key: true, width: 60, align: 'center'},
                     { name: 'aucType', width: 80, align: 'center', formatter: function(cellValue,options,rowObject){
@@ -37,8 +37,8 @@
                     { name: 'aucCategory', width: 150, align: 'center', formatter: category },
                     { name: 'aucWriter', width: 90, align: 'center' },
                     { name: 'aucGetter', width: 90, align: 'center'},
-                    { name: 'aucState', width: 80, align: 'center'},
-                    { name: 'aucNo', width: 150, formatter: adminTool }
+                    { name: 'aucState', width: 90, align: 'center', formatter: 'select', editable:true, edittype:'select', editoptions : {
+                    		value:"0:경매시작전;1:경매중;2:경매마감;3:입금대기;4:결제완료;5:거래완료;6:블라인드"} }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -67,8 +67,11 @@
 				sortname: 'aucNo',
                 pager: "#auctionGridPager",
 				viewrecords: true,
+				onclickSubmit: function(options, postData){
+					edi
+				}
             });
-			$("#auctionGrid").jqGrid("navGrid","#auctionGridPager",{add:false, edit:false, del:false});
+			$("#auctionGrid").jqGrid("navGrid","#auctionGridPager",{add:false, edit:true, del:false});
 
 			$("#auctionReport").jqGrid({
                 url: 'aucreportlist.action',
@@ -97,8 +100,8 @@
                     		return "<font color='black'>"+cellValue+"회</font>";
                     	}
                     }},
-                    { name: 'aucState', width: 80, align: 'center'},
-                    { name: 'aucNo', width: 150, formatter: blindComplte }
+                    { name: 'aucState', width: 80, align: 'center', formatter: AuctionState},
+                    { name: 'aucNo', width: 70, formatter: blindComplte }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -106,17 +109,15 @@
                 loadComplete: function() {
                     $("tr.jqgrow:even").css("background", "#ffffff");
                     $("tr.jqgrow:odd").css("background", "#E6E6E6");
-                    //$("tr.jqgrow:odd").addClass('myAltRowClass');
-                    
-/*                     $(".delete").click(function(event){
-        				
-        				//var data2 = $("#jqGrid").getCol('mbId');
-        				if(confirm("정말 삭제하시겠습니까?")){
+
+        			$(".aucblind").click(function(){
+        				if(confirm("블라인드처리 하시겠습니까?")){
         					event.preventDefault();
-                            var data = $(this).attr('value');
-        					location.href = '/easyauction/admin/memberdelete.action?mbId='+data;
+        					var data = $(this).attr('value');
+        					location.href='/easyauction/admin/blind.action?aucNo='+data;
+        					alert("처리되었습니다.");
         				}
-        			});	 */	
+        			});
                 },
 				loadonce:true, // just for demo purpose
                 width: 780,
@@ -130,7 +131,7 @@
 			$("#auctionReport").jqGrid("navGrid","#auctionReportPager",{add:false, edit:false, del:false});			
         });
         function blindComplte(cellValue,options,rowObject){
-        	var pat3 = "<a href='/easyauction/admin/blind.action?aucNo="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
+        	var pat3 = "<a class='aucblind' href='#' value='"+cellValue+"'><img width=60 height=20 src='/easyauction/resources/images/member_icon_08.gif'></a>";
         	return pat3;
         }
         function imageRead(cellValue,options,rowObject){
@@ -154,11 +155,22 @@
         	else if(cellValue == 14){return "도서/티켓/서비스";}
         	else{return "출력될 매물 디렉토리";}
         }
+
         function adminTool(){
         	var pat3 = "<a href='/easyauction/admin/black.action?mbId="+cellValue+"'><img src='/easyauction/resources/images/member_icon_08.gif'></a>";
         	return pat3;
         }
 
+		function AuctionState(cellValue,options,rowObject){
+        	if(cellValue == 0){return "경매 시작 전";}
+        	else if(cellValue == 1){return "경매 중";}
+        	else if(cellValue == 2){return "경매 마감";}
+        	else if(cellValue == 3){return "입금 대기";}
+        	else if(cellValue == 4){return "결제 완료";}	
+        	else if(cellValue == 5){return "거래 완료";}
+        	else if(cellValue == 6){return "블라인드";}
+        	else {return "상태 오류";}
+		}
     </script>
 </head>
 <body>
@@ -187,7 +199,7 @@
 			</table>
 		<div id="tabs">
 		  <ul>
-   			<li><a href="#tabs-1">경매리스트1</a></li>
+   			<li><a href="#tabs-1">경매리스트</a></li>
    			<li><a href="#tabs-2">신고받은경매</a></li>
  		 </ul>
 		<div id="tabs-1">	

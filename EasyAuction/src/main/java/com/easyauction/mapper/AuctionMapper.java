@@ -21,5 +21,6 @@ public interface AuctionMapper {
 	List<Auction> getAuctionListByAdmin();
 	List<Auction> getAucReportList();
 	void setBlindAuction(int aucNo);
+	void updateAucStateByDate(int aucNo);
 	
 }

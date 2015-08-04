@@ -41,7 +41,11 @@ public interface BoardMapper {
 	
 	void updateFreeBoardComment(HashMap<String, Object> params);
 	
+	void updateGongjiBoardComment(HashMap<String, Object> params);
+	
 	void deleteFreeBoardComment(int bcNo);
+	
+	void deleteGongjiBoardComment(int bcNo);
 	
 	List<Board> getFreeBoardSearchList(HashMap<String, String> params);
 
@@ -53,10 +57,16 @@ public interface BoardMapper {
 	
 	void deleteFreeBoard(int bdno);
 	
+	void deleteGongjiBoard(int bdno);
+	
 	void updateFreeBoard(Board board);
+	
+	void updateGongjiBoard(Board board);
 	
 	void updateFreeBoardReadCount(int bdNo);
 
 	int getFreeBoardSearchCount(HashMap<String, String> params);
+	
+	List<Board> gongiTypeOne();
 
 }

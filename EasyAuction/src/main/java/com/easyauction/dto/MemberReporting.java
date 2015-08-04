@@ -2,10 +2,13 @@ package com.easyauction.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MemberReporting {
 	
 	private int mrpNo;
 	private String mrpContent;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
 	private Date mrpDate;
 	private String mrpRepoter;
 	private String mrpTarget;

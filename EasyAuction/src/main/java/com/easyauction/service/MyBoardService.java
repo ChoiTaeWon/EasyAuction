@@ -102,8 +102,19 @@ public class MyBoardService implements BoardService{
 	}
 	
 	@Override
+	public void updateGongjiBoardComment(HashMap<String, Object> params) {
+		boardRepository.updateGongjiBoardComment(params);
+		
+	}
+	
+	@Override
 	public void deleteFreeBoardComment(int bcNo){
 		boardRepository.deleteFreeBoardComment(bcNo);
+	}
+	
+	@Override
+	public void deleteGongjiBoardComment(int bcNo) {
+		boardRepository.deleteGongjiBoardComment(bcNo);
 	}
 
 	@Override
@@ -132,10 +143,20 @@ public class MyBoardService implements BoardService{
 	public void deleteFreeBoard(int bdno) {
 		boardRepository.deleteFreeBoard(bdno);
 	}
+	
+	@Override
+	public void deleteGongjiBoard(int bdno) {
+		boardRepository.deleteGongjiBoard(bdno);
+	}
 
 	@Override
 	public void updateFreeBoard(Board board) {
 		boardRepository.updateFreeBoard(board);
+	}
+	
+	@Override
+	public void updateGongjiBoard(Board board) {
+		boardRepository.updateGongjiBoard(board);
 	}
 
 	@Override
@@ -148,7 +169,11 @@ public class MyBoardService implements BoardService{
 		return boardRepository.getFreeBoardSearchCount(search, searchdata, bdtype);
 	}
 
-	
+	@Override
+	public List<Board> gongiTypeOne(){
+		return boardRepository.gongiTypeOne();
+	}
 
+	
 	
 }

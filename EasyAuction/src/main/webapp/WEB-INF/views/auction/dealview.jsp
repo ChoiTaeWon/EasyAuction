@@ -16,17 +16,43 @@
 </head>
 
 <script type="text/javascript">
+	
 	var dday = null;
- 	function getTime(Year, Month, Day, Hour, Minute) { 
+ 	function getTime() { 
  		if(dday == null){
  			return;
  		}
-		now = new Date(); 
-		
+ 		var now = new Date();
+ 		
 		days = (dday - now) / 1000 / 60 / 60 / 24;
-		//alert(dday);
-		//alert(now);
-		//days = (now.getTime() - dday.getTime()) / 1000 / 60 / 60 / 24;
+		
+		if(days < 0){
+			//alert(days);
+			//return;
+			$.ajax({
+				url : "/easyauction/ajax/updateAuctionState.action",
+				async : false,
+				type : "GET",
+				data : {
+					aucNo : auctionNo
+				},
+				success : function(result){
+					if(result > 0){
+						//alert("경매상태가 바뀌었습니다.");
+						location.reload(true);
+						return;
+					}
+					else{
+						alert("경매상태 변경하다 문제 발생.");
+					}
+					
+				},
+				error : function(){
+					alert("경매상태 변경 에러!");
+				}
+			}); 
+		}
+		
 		dRound = Math.floor(days); 
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
 		hRound = Math.floor(hours); 
@@ -56,13 +82,31 @@
 		}else{
 			document.getElementById("counter3").innerHTML = sRound; 	
 		}
+		
 		newtime = window.setTimeout("getTime();", 1000); 
 	}													
 	
-	 $(function(){
-		var aucState = ${auction.aucState};
-		var checkDate=null;
+</script>
 
+<script  type="text/javascript">
+var returnbidNo = -1;
+var bidderId = null;
+var auctionNo = -1;
+var ipchalState;
+var aucWriter = null;
+var refreshTimer = null;
+var maxBiddNo= -1;
+var time = 1000 * 5; 
+var aucState = ${auction.aucState};
+
+ $(function(){
+	 
+	  bidderId = $("#loginuserId").val();
+	  auctionNo = ${ auction.aucNo };
+	  aucWriter = $("#aucWriter").val();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	var aucState = ${auction.aucState};
 		var startDate = "<fmt:formatDate value='${auction.aucStartDate}' pattern='yyyy-M-d H:m:s' />";
 		var endDate = "<fmt:formatDate value='${auction.aucEndDate}' pattern='yyyy-M-d H:m:s' />";
 		
@@ -81,7 +125,8 @@
 			$("#dayText").html("경매 시작까지 남은 시간 :"); 
 			
 			dday = new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
-			getTime(startYear,startMonth,startDay,startHour, startMinute);
+			
+			getTime();
 			
 		}else if(aucState == 1){ //경매 중
 			var spEndDate = endDate.split(' ')[0];
@@ -95,9 +140,10 @@
 			
 			$("#dayText").empty();
 			$("#dayText").html("경매 마감까지 남은 시간 :"); 
-			checkDate = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00);
-			dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
-			getTime(endYear,endMonth,endDay,endHour, endMinute);
+			
+			dday = new Date(endYear, Number(endMonth)-1, endDay, endHour, endMinute, 00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+			
+			getTime();
 			
 		}else if(aucState == 2){ //경매 마감
 			//alert(aucState);
@@ -109,7 +155,7 @@
 		}
 		
 		
-		
+	//나중에 포문쓸거야 다꺼졍	
 		$("#imgOnclick1").click(function(event) {
 			$("#ITEM1").css("display", "block");
 			$("#ITEM2").css("display", "none");
@@ -263,28 +309,9 @@
 			$("#ITEM10").css("display", "none");
 			$("#ITEM11").css("display", "block");
 		});
-		
-		
-	 });	
-	
-	
-</script>
-
-<script  type="text/javascript">
-var returnbidNo = -1;
-var bidderId = null;
-var auctionNo = -1;
-var ipchalState;
-var aucWriter = null;
-var refreshTimer = null;
-var maxBiddNo= -1;
-var time = 1000 * 5; 
-var aucState = ${auction.aucState};
-
- $(function(){
-	  bidderId = $("#loginuserId").val();
-	  auctionNo = ${ auction.aucNo };
-	  aucWriter = $("#aucWriter").val();
+	  
+	  
+	  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 //신고하기 dialog 
@@ -317,8 +344,8 @@ var aucState = ${auction.aucState};
 			},
 			success : function(result){
 				if(result == 0){
-					alert(event + " : event 값");
-					alert("신고 가능 상태");
+					//alert(event + " : event 값");
+					//alert("신고 가능 상태");
 					reportDialog.dialog("open");
 				}else{
 					alert("신고 이력이 있습니다 이미 신고했던 글입니다.");
@@ -435,7 +462,7 @@ var aucState = ${auction.aucState};
 			           	
 			        	},
 			        	error : function() {
-							alert('입찰 실패');
+							alert('입찰 에러');
 						}
 					});
 				}
@@ -444,9 +471,6 @@ var aucState = ${auction.aucState};
 	
 			
 	});
-
- 
- 	
  
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 //입찰 버튼 내역보기
@@ -609,14 +633,153 @@ $(function(){
 					}
 		 	}
 		});	
+	 
+	 
+		var changeAucStateOKDialog = $('#changeAucStateOK').dialog({
+			autoOpen : false,
+			width : 300,
+			height : 100,
+			modal : true,
+			buttons : {
+				닫기 : function() {						
+					changeAucStateOKDialog.dialog("close");
+				}
+			},
+			close : function() {
+				
+			}
+		});
+		
+	 /* changeAucStateOKDialog.dialog("open"); */
+	 
 });
 
 </script>
 
-	    
-	  
-	    
+
+<script type="text/javascript">
+	$(function() {
+		///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
+		var mbhtml = "<div id='reportmbContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"
+				+ "<label for='reportermbId'>신고자</label><br />"
+				+ "<input id='reportermbId' type='text' value='' readonly='readonly'/><br />"
+				+ "<label for='targetmbId'>신고할 회원</label><br />"
+				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
+				+ "<label for='reportmbText'>신고 사유</label></br>"
+				+ "<textarea id='reportmbText' rows='3' cols='48'></textarea></div>"
+
+		$('#dialogspot').append(mbhtml);
+
+		//신고하기 dialog 생성
+		var reportmbDialog = $('#reportmbContent').dialog({
+			autoOpen : false,
+			width : 550,
+			height : 400,
+			modal : true,
+			buttons : {
+				신고하기 : doReportMember,
+				취소 : function() {
+					reportmbDialog.dialog("close");
+				}
+			},
+			close : function() {
+
+			}
+		});
+		/////////////////////////////////////////////////////////////////////////////////
+		//신고 요청 처리
+		function doReportMember() {
+
+			$.ajax({
+				url : "/easyauction/ajax/memberReporting.action",
+				async : false,
+				type : "GET",
+				data : {
+					reporter : $("#reportermbId").val(),
+					targetmbId : $("#targetmbId").val(),
+					reportText : $("#reportmbText").val()
+
+				},
+				success : function(result) {
+					alert(result + ' : result 값');
+
+					if (result == 0) {
+						alert("회원이 신고 되었습니다.");
+						reportmbDialog.dialog('close');
+					} else {
+						alert('회원 신고 실패');
+					}
+
+				},
+				error : function() {
+					alert('게시글 신고 실패 + 걍 아예 에러임 ');
+				}
+			});
+
+		}
+		$(".btn_drop").click(function() {
+			$(this).next().toggleClass("on");
+			return false;
+		});
+		$('.dropselect')
+				.click(
+						function() {
+							var strArray = $(this).attr('id').split('/');
+							var targetaction = strArray[1];
+							var receiver = strArray[0];
+							var mbId = '${ loginuser.mbId }';
+							if (targetaction == 'sendmessage') {
+								window.open(
+										"/easyauction/message/sendmessage.action?mbId="
+												+ mbId + "&receiver="
+												+ receiver, "쪽지함",
+										"width=700,height=500,titlebar=no");
+							} else {
+								$('#reportermbId').attr('value', mbId);
+								$('#targetmbId').attr('value', receiver);
+
+								//신고하기 버튼 클릭 시 신고이력 확인 절차	
+								if (mbId != receiver) {
+									$
+											.ajax({
+												url : "/easyauction/ajax/memberRepoterCheck.action",
+												async : false,
+												type : "GET",
+												data : {
+													mbId : mbId,
+													receiver : receiver
+												},
+												success : function(result) {
+													if (result == 0) {
+														alert("신고 가능 상태");
+														reportmbDialog
+																.dialog("open");
+													} else {
+														alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
+													}
+												},
+												error : function() {
+													alert("신고 가능 상태 확인 에러.");
+												}
+											});
+								} else {
+									alert("자신을 신고할 수는 없습니다. ");
+								}
+
+								event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+								event.stopPropagation();//버블링 업 막아줌
+							}
+							event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+							event.stopPropagation();//버블링 업 막아줌
+						})
+		///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
+	})
+</script>
 <body>
+<!-- 다이얼로그 table삽입공간 -->
+<table id="dialogspot">
+</table>
+<!-- 다이얼로그 table삽입공간 -->
 		
 		<div id="reportContent" title="게시글 신고하기" style="display: none;width: 300px;height: 250px">	        
 			        <label for="reporter">신고자</label>
@@ -640,6 +803,8 @@ $(function(){
 						</tr>				
 				</table>    
 		</div>		
+		
+	
 
 
 
@@ -774,7 +939,19 @@ $(function(){
 														<td style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 												</tr>
 												<tr>
-													<td align="left" height="25" style="width:50px; border:1px solid #DEDEDE;">판매자 : ${ auction.aucWriter }</td>
+													<td align="left" height="25" style="width:50px; border:1px solid #DEDEDE;">판매자 : 
+													<!-- 쪽지보내기및회원신고기능 -->
+														<div class="dropDown">
+														<a href="#" class="btn_drop">${ auction.aucWriter }</a>
+															<div class="dropBox">
+																<ul>
+																	<li class="dropselect" id='${ auction.aucWriter }/sendmessage'>쪽지보내기</li>
+																	<li class="dropselect" id='${ auction.aucWriter }/reporting'>신고하기</li>
+																</ul>
+															</div>
+														</div> 
+													<!--  쪽지보내기및회원신고기능 --> 
+													</td>
 												</tr>
 												
 											</table>

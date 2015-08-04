@@ -95,5 +95,13 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public void updateAucStateByDate(int aucNo) {
+		// TODO Auto-generated method stub
+		auctionRepository.updateAucStateByDate(aucNo);
+	}
+
+
+
 
 }

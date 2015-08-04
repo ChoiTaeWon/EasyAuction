@@ -16,11 +16,18 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+//jQuery 로, 모든 엔터 입력시 무시하게 하는 코드
+$(document).ready(function(){
+  $(document).keypress(function(e){
+    if(e.keyCode==13) return false;
+  });
+});
+</script>
+<script type="text/javascript">
 $(function(){
 	$('#formsubmit').click(function(){
 		var mbId = '${ mbId }';
 		var mbPasswd = $('#mbPasswd').val();
-		alert(mbId+mbPasswd)
 		$.ajax({
 			url : "/easyauction/ajax/memberchecktoidandpasswd.action",
 			async : false,
@@ -30,11 +37,11 @@ $(function(){
 				mbPasswd : mbPasswd
 			},
 			success : function(result){
-				alert(mbId+mbPasswd)
-				if(result != 0){
+				if(result == 0){
 					alert("비밀번호가 다릅니다.");
-					
+					return;
 				}else{
+					
 					$('#form').submit();
 				}
 			
@@ -114,8 +121,7 @@ $(function(){
 											<td colspan="2" style="padding-left: 10px;" align="center">
 												<br />
 											<br />
-											<br /><input width="100" type="image" id="formsubmit"
-												src="/easyauction/resources/images/btn_findpassorid.png">
+											<br /><img width="100" src="/easyauction/resources/images/btn_delmember.png" id="formsubmit">
 											</td>
 										</tr>
 									</table>
