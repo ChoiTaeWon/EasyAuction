@@ -69,7 +69,7 @@
 						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 						<tr height="28">
 							<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='${loginuser.mbId}' readonly></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
