@@ -667,7 +667,7 @@ $(function(){
 			        <label for="targetAuctionNo">신고할 게시글</label>
 			        <input type="text" value="${auction.aucItemName}" readonly="readonly"/>
 			        <input id="targetAuctionNo" type="hidden" value="${ auction.aucNo }" />
-			        <label for="reportText">신고 사유</label></br>
+			        <label for="reportText">신고 사유</label><br/>
 			        <textarea id="reportText" rows="3" cols="48"></textarea>
 		</div>	
 		
