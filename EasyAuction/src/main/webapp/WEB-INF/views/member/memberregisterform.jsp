@@ -232,7 +232,7 @@ $(function(){
 										<div style="padding: 5px;"></div>
 				</table>
 				<div style="padding: 5px;"></div>
-				<tr align="center"><td><a href="#" id="myButton">회원가입</a></td></tr>
+				<tr align="center"><td><img src="/easyauction/resources/images/btn_regmember.png" id="myButton"></td></tr>
 </table>
 <!-- 푸터  -->
 <div id="footer">
