@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +59,7 @@
 							<td height="1" bgcolor="#DEDEDE"></td>
 						</tr>
 						<tr height="30">
-							<td bgcolor="#F8F8F8" style="padding-left:10px;"><img src="img/ico_arrow_03.gif" border="0" align="absmiddle">&nbsp; 게시물등록하기</td>
+							<td bgcolor="#F8F8F8" style="padding-left:10px;"><!-- <img src="img/ico_arrow_03.gif" border="0" align="absmiddle"> -->&nbsp; 게시물등록하기</td>
 						</tr>
 						<tr>
 							<td height="1" bgcolor="#DEDEDE"></td>
@@ -69,7 +71,7 @@
 						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 						<tr height="28">
 							<td width="120" bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>아이디</td>
-							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='won' readonly></td>
+							<td width="470" bgcolor="#FFFFFF" style="padding-left:10px;"><input type='text' name='id' maxlength=20 style='font-size:12px; width:150px; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='${loginuser.mbId}' readonly></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
@@ -87,7 +89,7 @@
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr height="28">
 							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>내용</td>
-							<td bgcolor="#FFFFFF" style="padding-left:10px; padding-top:5px"><textarea name="content" cols="100" rows="20" style='font-size:12px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'></textarea></td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px; padding-top:5px"><textarea name="content" cols="100" rows="20" style='font-size:12px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;'>${ fn:replace(view.bdContent, newLineChar, "<br />") }</textarea></td>
 						</tr>
 						<tr><td height="5"></td></tr>
 						<tr><td height="5"></td></tr>
