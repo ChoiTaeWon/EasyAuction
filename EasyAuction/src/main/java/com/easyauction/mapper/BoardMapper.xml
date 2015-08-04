@@ -75,6 +75,7 @@
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
 		FROM Board
+		where bdtype = 3
 		ORDER BY 
 			bdno DESC
 	</select>
@@ -144,7 +145,12 @@
 		</trim>
 		ORDER BY bdno DESC
 	</select>
-	
+	<select id="gongiTypeOne" resultMap="boardResult">
+		select 
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+		from board
+		where bdtype = 1 and bdblindcheck = 0
+	</select>
 	<select id="getGongjiList" parameterType="hashMap" resultMap="boardResult">
  	SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck

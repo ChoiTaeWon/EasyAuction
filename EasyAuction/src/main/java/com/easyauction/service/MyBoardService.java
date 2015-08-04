@@ -148,7 +148,10 @@ public class MyBoardService implements BoardService{
 		return boardRepository.getFreeBoardSearchCount(search, searchdata, bdtype);
 	}
 
-	
+	@Override
+	public List<Board> gongiTypeOne(){
+		return boardRepository.gongiTypeOne();
+	}
 
 	
 }

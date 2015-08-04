@@ -173,7 +173,10 @@ public class OracleBoardRepository implements BoardRepository{
 		
 		return boardMapper.getFreeBoardSearchCount(params);
 	}
-
+	@Override
+	public List<Board> gongiTypeOne(){
+		return boardMapper.gongiTypeOne();
+	}
 	
 
 }
