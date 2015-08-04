@@ -414,8 +414,14 @@ $(function(){
 			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
 			<!-- 나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div> -->
 			<c:choose>
+			<c:when test="${ auction.aucState < 4 }">
+			거래중
+			</c:when>
 			<c:when test="${ auction.aucState eq 4 }">
 			<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
+			</c:when>
+			<c:when test="${ auction.aucState > 4 }">
+			거래완료
 			</c:when>
 			<c:otherwise>
 			</c:otherwise>
