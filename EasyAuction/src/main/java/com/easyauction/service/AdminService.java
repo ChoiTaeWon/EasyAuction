@@ -1,5 +1,6 @@
 package com.easyauction.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Auction;
@@ -28,4 +29,5 @@ public interface AdminService {
 	List<MemberReporting> getMrpList();
 	
 	List<AuctionReporting> getAucpList();
+	void updateAucState(HashMap<String, Object> params);
 }

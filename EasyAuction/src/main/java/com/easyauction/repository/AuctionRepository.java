@@ -1,5 +1,6 @@
 package com.easyauction.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Auction;
@@ -36,5 +37,6 @@ public interface AuctionRepository {
 	void setBlindAuction(int aucNo);
 
 	void updateAucStateByDate(int aucNo);
+	void updateAucState(HashMap<String, Object> params);
 
 }
