@@ -36,9 +36,10 @@
 				
 			<table cellpadding="0" cellspacing="0" border="0" width="730" height="96">
 			<tr>
-				<td style="padding-left:25px;"><img src="/easyauction/resources/images/freeboardmain.png"></td>
+				<td style="padding-left:25px;"><img width="728" src="/easyauction/resources/images/img_photo_review.jpg"></td>
 			</tr>
 			</table>
+				
 				
 			<div style="padding:5px;"></div>
 			
@@ -47,14 +48,14 @@
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
 								  
-				<!-- <td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
-								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
+				<!-- <td align="right"><a href='/easyauction/board/photolist.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+								  <a href='/easyauction/board/photolist.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
 				</td> -->
 			</tr>
 				
-				<form method='post' action='updatefreeboard.action' enctype="multipart/form-data" id="sujung" name='board'>
+				<form method='post' action='updatephotoboard.action' enctype="multipart/form-data" id="sujung" name='board'>
 				<input type=hidden name='bdNo' value='${ view.bdNo }'>
-				<input type=hidden name='pageno' value='${ pageno }'>
+				<input type=hidden name='pageNo' value='${ pageno }'>
 				 
 				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -103,7 +104,7 @@
 				<!-- 내용 옆 수정 삭제 -->
 				<td align="right">
 					<img src='/easyauction/resources/images/sujung.png' id="formsubmit">
-					<a href='/easyauction/board/freeboardview.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
+					<a href='/easyauction/board/photoview.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/list.png'></a>
 				</td>
 				
 				</table>
