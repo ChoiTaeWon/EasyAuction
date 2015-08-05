@@ -129,7 +129,6 @@ public class BoardController {
 	
 	@RequestMapping(value="updatefreeboard.action", method= RequestMethod.POST)
 	public String updatefreeboard2(int pageNo, Board board) {
-		System.out.println("aslkdlasdj");
 		boardService.updateFreeBoard(board);
 		
 		return "redirect:/board/freeboardview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
@@ -149,7 +148,7 @@ public class BoardController {
 	public String deletefreeboard(int bdno, int pageno) {
 		
 		boardService.deleteFreeBoard(bdno);
-		return "redirect:/board/freeboard.action?bdno="+bdno+"&pageno="+pageno;
+		return "redirect:/board/freeboardview.action?bdno="+bdno+"&pageno="+pageno;
 	}
 	
 	@RequestMapping(value="deletefreeboardcomment.action", method= RequestMethod.GET)
@@ -295,7 +294,6 @@ public class BoardController {
 	//////////////////이거안됨//로그인해서 댓글달았는데 아디 입력 필터가 제대로 안됨/
 	@RequestMapping(value="updategongjiboard.action", method= RequestMethod.POST)
 	public String updategongjiboard2(int pageNo, Board board) {
-		System.out.println("aslkdlasdj");
 		boardService.updateGongjiBoard(board);
 		
 		return "redirect:/board/gongjiview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;

@@ -83,7 +83,6 @@ $(function(){
 						
 					},
 					success : function(result) {
-						alert(result + ' : result 값' );
 						
 						if (result == 0) {	
 							alert("회원이 신고 되었습니다.");

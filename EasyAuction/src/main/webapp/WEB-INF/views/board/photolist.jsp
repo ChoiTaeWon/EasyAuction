@@ -23,7 +23,7 @@
 				+ "<label for='targetmbId'>신고할 회원</label><br />"
 				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
 				+ "<label for='reportmbText'>신고 사유</label></br>"
-				+ "<textarea id='reportmbText' rows='3' cols='48'></textarea></div>"
+				+ "<textarea id='reportmbText' style='width: 260' rows='3' cols='48'></textarea></div>"
 
 		$('#dialogspot').append(mbhtml);
 
@@ -85,6 +85,10 @@
 							var targetaction = strArray[1];
 							var receiver = strArray[0];
 							var mbId = '${ loginuser.mbId }';
+							if(receiver == 'admin'){
+								alert('관리자는 신고가 불가능합니다.')
+								return;
+							}
 							if (targetaction == 'sendmessage') {
 								window.open(
 										"/easyauction/message/sendmessage.action?mbId="
@@ -94,9 +98,6 @@
 							} else {
 								$('#reportermbId').attr('value', mbId);
 								$('#targetmbId').attr('value', receiver);
-							if(receiver == 'admin'){
-								alert("관리자는 신고할 수 없습니다. ");
-								return;
 								//신고하기 버튼 클릭 시 신고이력 확인 절차	
 								if (mbId != receiver) {
 									$
@@ -124,7 +125,6 @@
 								} else {
 									alert("자신을 신고할 수는 없습니다. ");
 								}
-							}
 
 								event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 								event.stopPropagation();//버블링 업 막아줌
@@ -240,11 +240,11 @@
 					<td align="right"><a href="/easyauction/board/photoregister.action"><img src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 				</table>
-				 <!-- <table width="100%">
+				 <table width="100%">
 					<tr>
-						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
+						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
 					</tr>
-				 </table> -->
+				 </table>
 				<div style="text-align:center">
 				<c:choose>
 				<c:when test="${ pager ne null }">		
@@ -261,16 +261,16 @@
 				<input type=hidden name='num' value=''>
 				<input type=hidden name='action' value='search'>
 				<input type=hidden name='tb' value='board_review'>
-				<!-- <tr>
+				<tr>
 					<td height='30' border='0' align='center' valign='middle'>
 						<input type='radio' name='search' value='bbs_title' checked> 제목
-						<input type='radio' name='search' value='bbs_name'> 이름
-						<input type='radio' name='search' value='bbs_review'> 내용
+						<!-- <input type='radio' name='search' value='bbs_name'> 이름 -->
+						<input type='radio' name='search' value='bbs_review'> 작성자
 						<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 						<input type='image' src='/easyauction/resources/images/bbs_search.gif' border="0" value='검색' align='absmiddle'>
 				
 					</td>
-				</tr> -->
+				</tr>
 				</form>
 				</table>
 				<!-- 검색폼 // 끝 -->
