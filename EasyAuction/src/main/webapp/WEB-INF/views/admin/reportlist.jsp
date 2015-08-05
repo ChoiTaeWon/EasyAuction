@@ -55,7 +55,7 @@
                 url: 'repauction.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['신고번호','신고자','신고일','신고대상(번호)','내용'],
+                colNames: ['신고번호1','신고자','신고일','신고대상(번호)','내용'],
                 colModel: [
                     { name: 'arpNo', key: true, width: 60, align: 'center'},
                     { name: 'arpRepoter', width: 80, align: 'center'},
