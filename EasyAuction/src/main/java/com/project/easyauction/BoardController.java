@@ -216,7 +216,6 @@ public class BoardController {
 	
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
 	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
-		System.out.println(bdNo);
 		Board view = boardService.getPhotoViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
@@ -400,6 +399,12 @@ public class BoardController {
 		mav.addObject("photos",photos);
 		return mav;
 		
+	}
+	
+	@RequestMapping(value="deletephotoboard.action", method= RequestMethod.GET)
+	public String deletephotoboard(int bdno, int pageno) {
+		boardService.deletePhotoBoard(bdno);
+		return "redirect:/board/photolist.action?bdno="+bdno+"&pageno="+pageno;
 	}
 	
 

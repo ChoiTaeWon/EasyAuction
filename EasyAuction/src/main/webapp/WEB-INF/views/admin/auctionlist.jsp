@@ -20,6 +20,7 @@
         	$ ( "#tabs" ).tabs ();
             $("#auctionGrid").jqGrid({
                 url: 'auctionlist.action',
+				editurl: 'aucstate.action',                
                 mtype: "POST",
                 datatype: "json",
                 colNames: ['번호','타입','사진','경매명','카테고리', '경매자','낙찰자','경매상태'],
@@ -66,12 +67,11 @@
 				rowList:[20,25,50],
 				sortname: 'aucNo',
                 pager: "#auctionGridPager",
-				viewrecords: true,
-				onclickSubmit: function(options, postData){
-					edi
-				}
+				viewrecords: true
             });
-			$("#auctionGrid").jqGrid("navGrid","#auctionGridPager",{add:false, edit:true, del:false});
+			$("#auctionGrid").jqGrid("navGrid","#auctionGridPager",{add:false, edit:true, del:false},
+					{closeAfterEdit: true, reloadAfterSubmit: false}		
+			);
 
 			$("#auctionReport").jqGrid({
                 url: 'aucreportlist.action',

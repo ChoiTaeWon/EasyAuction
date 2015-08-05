@@ -52,6 +52,8 @@ public interface BoardService {
 	void deleteFreeBoard(int bdno);
 	
 	void deleteGongjiBoard(int bdno);
+	
+	void deletePhotoBoard(int bdno);
 
 	void updateFreeBoard(Board board);
 	
@@ -68,6 +70,8 @@ public interface BoardService {
 	List<Board> gongiTypeOne();
 
 	List<Board> getBoardSearchList(String aucSearchData);
+
+	
 
 	
 

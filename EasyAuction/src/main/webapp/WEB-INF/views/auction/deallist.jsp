@@ -36,14 +36,47 @@ var newtime = null;
 			seconds = (dday - now) / 1000 - (24 * 60 * 60 * dRound) - (60 * 60 * hRound) - (60 * mRound); 
 			sRound = Math.round(seconds);
 		
+			
+			if(days < 0){
+				//alert(days);
+				//return;
+				$.ajax({
+					url : "/easyauction/ajax/updateAuctionState.action",
+					async : false,
+					type : "GET",
+					data : {
+						aucNo : auctionNo
+					},
+					success : function(result){
+						if(result > 0){
+							//alert("경매상태가 바뀌었습니다.");
+							location.reload(true);
+							return;
+						}
+						else{
+							alert("경매상태 변경하다 문제 발생.");
+						}
+						
+					},
+					error : function(){
+						alert("경매상태 변경 에러!");
+					}
+				}); 
+			}
+			
+			
+			
 	 		if(dRound <10){
 				$("#dayText"+id).html("0" + dRound);
 			}else{
 				$("#dayText"+id).html(dRound);
 			}
 			
+	 		
 			if(hRound <10){
 				$("#counter1"+id).html("0" + hRound);
+			}else if(hRound < 0){
+				$("#counter1"+id).html("00");
 			}else{
 				$("#counter1"+id).html(hRound);
 			}
@@ -57,6 +90,7 @@ var newtime = null;
 			}else{
 				$("#counter3"+id).html(sRound);
 			} 
+	 		
 		});
 		
 		
@@ -120,7 +154,7 @@ var newtime = null;
 			
 			
 <c:forEach var="auction" items="${ auctions }">
- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState < 4)}">
+ <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState < 3)}">
  
 	<fmt:formatDate value="${ auction.aucStartDate }" pattern="yyyy-M-d H:m" var="startDateFormat"/>
 	<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
@@ -229,7 +263,7 @@ var newtime = null;
 									<div style="width: 100%;height: 30px">
 										<c:choose>
 											<c:when test="${ auction.aucState eq 0 }">
-												<div class="deal_time_list_day">경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
+												<div class="deal_time_list_day" >경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var startYear = ${ startYear };
@@ -248,7 +282,7 @@ var newtime = null;
 												
 											</c:when>
 											<c:when test="${ auction.aucState eq 1 }">
-												<div class="deal_time_list_day" id="dayText">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
+												<div class="deal_time_list_day" style="background-color: #5AAEFF">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var endYear = ${ endYear };
