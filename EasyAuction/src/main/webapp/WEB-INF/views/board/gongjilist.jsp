@@ -138,7 +138,7 @@
 				<c:choose>
 				<c:when test="${ loginuser ne null && loginuser.mbGrant ne false }">
 				 		<a href="/easyauction/board/gongjiregister.action"> 
-						<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
+							<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -150,7 +150,6 @@
 			</tr>
 			</table>
 
-			
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 페이지 번호 -->

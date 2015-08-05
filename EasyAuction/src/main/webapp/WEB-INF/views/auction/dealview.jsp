@@ -51,6 +51,7 @@
 					alert("경매상태 변경 에러!");
 				}
 			}); 
+			
 		}
 		
 		dRound = Math.floor(days); 
