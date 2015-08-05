@@ -41,9 +41,13 @@ public interface BoardRepository {
 	
 	void updateGongjiBoardComment(HashMap<String, Object> params);
 	
+	void updatePhotoBoardComment(HashMap<String, Object> params);
+	
 	void deleteFreeBoardComment(int bcNo);
 	
 	void deleteGongjiBoardComment(int bcNo);
+	
+	void deletePhotoBoardComment(int bcNo);
 	
 	List<Board> getFreeBoardSearchList(int first, int last, String search, String searchdata, int bdtype);
 
