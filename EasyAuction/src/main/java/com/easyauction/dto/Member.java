@@ -14,6 +14,7 @@ public class Member {
 	private String mbPhone1;
 	private String mbPhone2;
 	private boolean mbGender;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
 	private Date mbBirthDate;
 	private int mbGrade;
 	private int mbReportingCount;

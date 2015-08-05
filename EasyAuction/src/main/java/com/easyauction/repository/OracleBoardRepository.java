@@ -198,6 +198,11 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.gongiTypeOne();
 	}
 
+	@Override
+	public List<Board> getBoardSearchList(String aucSearchData) {
+		return boardMapper.getBoardSearchList(aucSearchData);
+	}
+
 	
 
 	

@@ -256,6 +256,7 @@ var newtime = null;
 										<c:set var="endHour" value ="${fn:split(spEndTime,':')[0]}" ></c:set>
 										<c:set var="endMinute" value ="${fn:split(spEndTime,':')[1]}" ></c:set>
 									
+									 
 									<!-- 여기서부터 테두리  -->
 											<table class="realTimeMain" style="float: left;">
 												<tr>
@@ -263,7 +264,7 @@ var newtime = null;
 														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
 															<tr>
 																<td align="center" valign="top">
-																	<div style="margin:8px 0 6px 0;">
+																	<div style="margin:8px 0 6px 0; width: 190px;height: 16px;overflow-x:hidden;overflow-y:hidden">
 																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
 																			<c:choose>
 																				<c:when test="${ fn:length(auction.aucTitle) > 10}">
@@ -337,7 +338,7 @@ var newtime = null;
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
-									</c:if>	
+									</c:if>
 								</c:forEach>
 								
 								

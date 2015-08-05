@@ -23,4 +23,6 @@ public interface AuctionMapper {
 	void setBlindAuction(int aucNo);
 	void updateAucStateByDate(int aucNo);
 	
+	List<Auction> getAuctionSearchList(String aucSearchData);
+	
 }

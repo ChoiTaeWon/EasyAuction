@@ -67,6 +67,8 @@ public interface BoardService {
 	
 	List<Board> gongiTypeOne();
 
+	List<Board> getBoardSearchList(String aucSearchData);
+
 	
 
 	

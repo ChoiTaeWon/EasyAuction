@@ -103,5 +103,12 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public List<Auction> getAuctionSearchList(String aucSearchData) {
+		return auctionRepository.getAuctionSearchList(aucSearchData);
+	}
+
+
+
 
 }

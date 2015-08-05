@@ -6,7 +6,13 @@
   
   <mapper namespace="com.easyauction.mapper.ReportMapper">
   
-  
+   <resultMap type="MemberReporting" id="MemberReportResult">
+   		<id column="mrpno" property="mrpNo"/>
+   		<result column="mrpcontent" property="mrpContent"/>
+   		<result column="mrpdate" property="mrpDate"/>
+   		<result column="mrprepoter" property="mrpRepoter"/>
+   		<result column="mrptarget" property="mrpTarget"/>
+   </resultMap>
    <resultMap type="AuctionReporting" id="AuctionReportResult">
 		<id column="arpno" property="arpNo" />
 		<result column="arpcontent" property="arpContent" />
@@ -24,6 +30,12 @@
 			VALUES(SEQUENCEAUCTIONREPORTINGNO.nextVal, #{ arpTagetNo }, #{ arpRepoter }, #{ arpContent })
 	</insert> 
 	
+	<select id="getMrpList" resultMap="MemberReportResult">
+		select mrpno, mrpcontent, mrpdate, mrprepoter, mrptarget
+		from MemberReporting
+		order by
+		mrpno desc
+	</select>
   
   
   	<select id="getResultReportCheck" resultType="int" parameterType="hashMap">
@@ -39,5 +51,10 @@
 	<select id="getResultMemberReportCheck" resultType="int" parameterType="hashMap">
   		select count(*) from MEMBERREPORTING where MRPREPOTER = #{ mbId } and MRPTARGET= #{ receiver }
   	</select>
-  
+    <select id="getAucpList" resultMap="AuctionReportResult">
+    	select arpno, arpcontent, arpdate, arprepoter, arptagetno
+    	from AuctionReporting
+ 		order by
+ 		arpno desc
+    </select>
   </mapper>

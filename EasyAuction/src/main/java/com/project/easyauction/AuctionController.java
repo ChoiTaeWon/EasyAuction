@@ -32,6 +32,7 @@ import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardImage;
 import com.easyauction.service.AuctionService;
 import com.easyauction.service.BiddingService;
+import com.easyauction.service.BoardService;
 
 
 @Controller
@@ -46,8 +47,7 @@ public class AuctionController {
 	@Qualifier("biddingService")
 	private BiddingService biddingService;
 	
-	
-	
+
 	@InitBinder
 	 public void initBinder(WebDataBinder binder) {
 
@@ -173,4 +173,23 @@ public class AuctionController {
 	            return "redirect:/auction/auction.action";
 	      
 	   }
+	   
+		@RequestMapping(value = "searchauction.action", method = RequestMethod.GET)
+		public ModelAndView searchAuction(String aucSearchData) {
+			//Auction auction = auctionService.getAuctionDetailByAuctionNo(aucNo);
+			/*Bidding bidding = biddingService.getExceptBidder(aucNo);*/
+
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName("auction/searchdeallist");
+//			//mav.addObject("auction", auction);
+//			mav.addObject("bidding", bidding);
+//			return mav;
+			List<Auction> auctions = auctionService.getAuctionSearchList(aucSearchData);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("auction/searchdeallist");
+			mav.addObject("auctions", auctions);
+			
+			return mav;
+		}
 }

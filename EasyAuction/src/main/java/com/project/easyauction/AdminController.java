@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
+import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Member;
+import com.easyauction.dto.MemberReporting;
 import com.easyauction.service.AdminService;
 import com.easyauction.service.MemberService;
 
@@ -45,6 +47,7 @@ public class AdminController {
 	@RequestMapping(value = "memberlist.action", method = RequestMethod.POST)
 	public @ResponseBody List<Member> dealList() {
 		List<Member> members = adminService.getMemberList();
+		System.out.println(members.get(0).getMbRegdate());
 		return members;
 	}
 	
@@ -147,5 +150,25 @@ public class AdminController {
 	public String blind(int aucNo) {
 		adminService.setBlindAuction(aucNo);
 		return "admin/auctionlist";
+	}
+	@RequestMapping(value="repmember.action", method = RequestMethod.GET)
+	public String repMemberList(){
+		return "admin/reportlist";
+	}
+	@RequestMapping(value="repmember.action", method = RequestMethod.POST, produces="application/json;charset=utf-8")
+	@ResponseBody
+	public  List<MemberReporting> repMemberList2(){
+		List<MemberReporting> mrpReports = adminService.getMrpList();
+		return mrpReports;
+	}
+	@RequestMapping(value="repauction.action", method = RequestMethod.GET)
+	public String repAuctionList(){
+		return "admin/reportlist";
+	}
+	@RequestMapping(value="repauction.action", method = RequestMethod.POST, produces="application/json;charset=utf-8")
+	@ResponseBody
+	public  List<AuctionReporting> repAuctionList2(){
+		List<AuctionReporting> aucpReports = adminService.getAucpList();
+		return aucpReports;
 	}
 }
