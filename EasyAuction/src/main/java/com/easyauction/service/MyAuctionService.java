@@ -110,5 +110,13 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public List<Auction> getAuctionListForMain() {
+		// TODO Auto-generated method stub
+		return auctionRepository.getAuctionListForMain();
+	}
+
+
+
 
 }

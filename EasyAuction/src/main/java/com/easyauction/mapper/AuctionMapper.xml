@@ -213,6 +213,13 @@
 		order By
 		aucno DESC
 	</select>
+	<select id="getAuctionListForMain" resultMap="auctionResult">
+		select <include refid="auctioncolumns"></include>
+		from auction where auctype = 0 and aucblindcheck = 0 and aucstate = 1 order by aucenddate asc
+	</select>
+	
+	
+	
 	
 	
 	<!-- /관리자 -->

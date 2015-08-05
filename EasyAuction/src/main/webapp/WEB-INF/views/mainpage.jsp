@@ -252,8 +252,8 @@ var newtime = null;
 						
 						
 						
-									<c:forEach var="auction" items="${ auctions }" end="8">
-									 <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState eq 1) }">
+									<c:forEach var="auction" items="${ auctions }" end="7">
+									 
 									 
 										<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
 									
@@ -346,7 +346,7 @@ var newtime = null;
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
-									</c:if>
+									
 								</c:forEach>
 								
 								
