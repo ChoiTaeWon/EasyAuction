@@ -27,7 +27,9 @@
                     { name: 'mrpNo', key: true, width: 60, align: 'center'},
                     { name: 'mrpRepoter', width: 80, align: 'center'},
  					{ name:'mrpDate', width: 80, search: false, align:'center', formatter: 'date', formatoptions: {newformat:'Y-m-d'} },
- 					{ name: 'mrpTarget', width: 150, align: 'center' },
+ 					{ name: 'mrpTarget', width: 150, align: 'center', formatter: function(cellValue,options,rowObject){
+ 						return "<a href='/easyauction/admin/memberview.action?mbId="+cellValue+"'>"+cellValue+"</a>";
+ 					} },
                     { name: 'mrpContent', width: 250, search: false, align: 'center'}
                 ],
                 loadError : function(xhr, status, error) {
@@ -53,12 +55,12 @@
                 url: 'repauction.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['신고번호','신고자','신고일','신고대상(번호)','내용'],
+                colNames: ['신고번호1','신고자','신고일','신고대상(번호)','내용'],
                 colModel: [
                     { name: 'arpNo', key: true, width: 60, align: 'center'},
                     { name: 'arpRepoter', width: 80, align: 'center'},
  					{ name:'arpDate', width: 80, search: false, align:'center', formatter: 'date', formatoptions: {newformat:'Y-m-d'} },
- 					{ name: 'arpTagetNo', width: 150, align: 'center' },
+ 					{ name: 'arpTagetNo', width: 150, align: 'center', formatter: boardView},
                     { name: 'arpContent', width: 250, search: false, align: 'center', edittype:'textarea'}
                 ],
                 loadError : function(xhr, status, error) {
@@ -66,8 +68,13 @@
                 },
                 loadComplete: function() {
                     $("tr.jqgrow:even").css("background", "#ffffff");
-                    $("tr.jqgrow:odd").css("background", "#E6E6E6");	
-				
+                    $("tr.jqgrow:odd").css("background", "#E6E6E6");
+         			
+                    $(".auctionview").click(function(){
+        					event.preventDefault();
+        					var data = $(this).attr('value');
+        					location.href="/easyauction/auction/showdeal.action?aucno="+data;
+         			});
                 },
 				loadonce:true, // just for demo purpose
                 width: 780,
@@ -80,7 +87,9 @@
             });
 			$("#auctionReport").jqGrid("navGrid","#auctionReportPager",{add:false, edit:false, del:false, view:true});       
         });
-
+		function boardView(cellValue,options,rowObject){
+			return "<a class='auctionview' href='#' value="+cellValue+">"+cellValue+"</a>"
+		}
     </script>
 </head>
 <body>
@@ -111,7 +120,6 @@
 		  <ul>
    			<li><a href="#tabs-1">회원신고리스트</a></li>
   			<li><a href="#tabs-2">경매신고리스트</a></li>
-   			<li><a href="#tabs-3">게시판신고리스트</a></li> 
  		 </ul>
 		<div id="tabs-1">	
 		 <table id="memberReport"></table>
@@ -120,8 +128,6 @@
 		<div id="tabs-2">	
 		 <table id="auctionReport"></table>
    		 <div id="auctionReportPager"></div>
-   		</div>
-		<div id="tabs-3">	
    		</div>
    		</div>
 		</div><!-- list 끝 -->

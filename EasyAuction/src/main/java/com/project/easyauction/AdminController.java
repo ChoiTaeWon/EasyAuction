@@ -15,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,9 +23,11 @@ import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
 import com.easyauction.dto.Board;
+import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.Member;
 import com.easyauction.dto.MemberReporting;
 import com.easyauction.service.AdminService;
+import com.easyauction.service.BoardService;
 import com.easyauction.service.MemberService;
 
 @Controller
@@ -209,4 +212,9 @@ public class AdminController {
 
 		return "admin/boardlist";
 	}	
+	@RequestMapping(value = "boardblind.action", method = RequestMethod.GET)
+	public String setBoardBlind(int bdNo){
+		adminService.setBoardBlind(bdNo);
+		return "admin/boardlist";
+	}
 }

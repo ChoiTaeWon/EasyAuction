@@ -356,5 +356,15 @@
 		ORDER BY 
 			bdno DESC
 	</select> -->
-	
+	<select id="getBoardView" resultMap="boardResult" parameterType="int">
+		SELECT 
+		  <include refid="boardcolumns" />
+		from BOARD
+		where bdno = #{ bdno }
+	</select>
+	<update id="setBoardBlind" parameterType="int" >
+		UPDATE Board 
+		set BDBLINDCHECK = 1 
+		where bdno = #{ bdNo }
+	</update>
 </mapper>

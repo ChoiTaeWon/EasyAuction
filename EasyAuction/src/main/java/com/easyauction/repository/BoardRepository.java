@@ -79,7 +79,9 @@ public interface BoardRepository {
 
 	List<Board> getBoardReportList();
 
-	
+	Board getBoardView(int bdNo);
+
+	void setBoardBlind(int bdNo);
 
 	
 

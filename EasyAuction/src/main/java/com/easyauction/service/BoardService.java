@@ -75,6 +75,8 @@ public interface BoardService {
 
 	List<Board> getBoardSearchList(String aucSearchData);
 
+	Board getBoardView(int bdno);
+
 	
 
 	

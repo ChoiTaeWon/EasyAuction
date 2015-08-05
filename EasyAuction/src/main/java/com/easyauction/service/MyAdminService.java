@@ -90,4 +90,7 @@ public class MyAdminService implements AdminService{
 	public List<Board> getBoardReportList(){
 		return boardRepository.getBoardReportList();
 	}
+	public void setBoardBlind(int bdNo){
+		boardRepository.setBoardBlind(bdNo);
+	}
 }

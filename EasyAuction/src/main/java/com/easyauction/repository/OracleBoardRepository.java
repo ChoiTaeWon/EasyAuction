@@ -227,9 +227,15 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getBoardReportList();
 	}
 	
-
+	@Override
+	public Board getBoardView(int bdno){
+		return boardMapper.getBoardView(bdno);
+	}
 	
-
+	@Override
+	public void setBoardBlind(int bdNo){
+		boardMapper.setBoardBlind(bdNo);
+	}
 	
 
 	
