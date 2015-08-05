@@ -94,7 +94,9 @@
 							} else {
 								$('#reportermbId').attr('value', mbId);
 								$('#targetmbId').attr('value', receiver);
-
+							if(receiver == 'admin'){
+								alert("관리자는 신고할 수 없습니다. ");
+								return;
 								//신고하기 버튼 클릭 시 신고이력 확인 절차	
 								if (mbId != receiver) {
 									$
@@ -122,6 +124,7 @@
 								} else {
 									alert("자신을 신고할 수는 없습니다. ");
 								}
+							}
 
 								event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 								event.stopPropagation();//버블링 업 막아줌
@@ -237,7 +240,7 @@
 					<td align="right"><a href="/easyauction/board/photoregister.action"><img src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 				</table>
-				 <table width="100%">
+				<table width="100%">
 					<tr>
 						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
 					</tr>

@@ -147,7 +147,22 @@
 						</c:choose>
 				</tr>
 			</table> 
-			
+			<tr>
+				<td align="right">
+				<c:choose>
+				<c:when test="${ loginuser ne null && loginuser.mbGrant ne false }">
+				 	<a href="/easyauction/board/gongjiregiste.action"> 
+				 	<img src="/easyauction/resources/images/write.png"></a>&nbsp;
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+				</c:choose>	
+					<a href='/easyauction/board/gongji.action'>
+					<img src="/easyauction/resources/images/list1.png"></a>
+				
+				</td>
+			</tr>
+			</table>
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 페이지 번호 -->
@@ -160,7 +175,6 @@
 			</c:otherwise>
 			</c:choose>	
 			</div>
-	
 	 		<!-- 검색폼 // 시작 -->
 			<form id="listsearch" action="gongji.action" method="get">
 			<table align="center">

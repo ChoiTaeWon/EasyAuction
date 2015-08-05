@@ -202,6 +202,11 @@ var newtime = null;
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
+										<img src="/easyauction/resources/images/tracker.PNG"  border="0" alt=""></a>
+										</div>
+									</div>
+									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
+										<div class="part zindex10" rel=0><a href="" target="_parent">
 										<img src="/easyauction/resources/images/slide1.png"  border="0" alt=""></a>
 										</div>
 									</div>
@@ -218,6 +223,11 @@ var newtime = null;
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
 										<img src="/easyauction/resources/images/jehyu.jpg"  border="0" alt=""></a>
+										</div>
+									</div>
+									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
+										<div class="part zindex10" rel=0><a href="" target="_parent">
+										<img src="/easyauction/resources/images/tracker.PNG"  border="0" alt=""></a>
 										</div>
 									</div>
 									

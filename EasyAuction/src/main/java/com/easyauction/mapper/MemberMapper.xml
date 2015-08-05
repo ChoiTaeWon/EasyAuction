@@ -252,7 +252,7 @@
 	<select id="getGetterAuctionListBymbId" resultType="Auction" parameterType="String">
 		select *  
 		from AUCTION 
-		Where aucgetter = #{ mbId } and aucstate >= 3 
+		Where aucgetter = #{ mbId } and aucstate >= 2 
 		order By
 		aucno DESC
 	</select>
