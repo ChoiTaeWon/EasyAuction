@@ -20,7 +20,6 @@
 			var search = document.getElementById('search').value;
 			var searchdata = document.getElementById('searchdata').value;
 			var re = /^[0-9]+$/;
-			//var html = "<input type='hidden' name='queryString' id='queryString' value='search=" + search + "&searchdata=" + searchdata + "'/>";
 			if (search == 'bdtitle' && !re.test(searchdata)) {
 				alert("제목을 입력하세요");
 				searchdata.focus();
@@ -313,7 +312,6 @@
 								<form id="listsearch" action="freeboard.action" method="get">
 									<table align="center">
 										<td height='30' border='0' align='center' valign='middle'>
-											<!-- <input type='radio' name='search' value='bdno' checked> 번호 -->
 											<input type='radio' id="search" name='search' value='bdTitle'
 											checked> 제목 <input type='radio' id="search"
 											name='search' value='bdWriter'> 작성자 <input
