@@ -2,7 +2,10 @@ package com.project.easyauction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -171,4 +174,18 @@ public class AdminController {
 		List<AuctionReporting> aucpReports = adminService.getAucpList();
 		return aucpReports;
 	}
+	
+	@RequestMapping("aucstate.action")
+	@ResponseBody
+	public void updateState(HttpServletRequest req){
+		String aucNo = req.getParameter("id");
+		String aucState = req.getParameter("aucState");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("aucNo", Integer.parseInt(aucNo));
+		params.put("aucState", Integer.parseInt(aucState));
+		adminService.updateAucState(params);
+		
+		
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.easyauction.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,7 @@ public class MyAdminService implements AdminService{
 	public List<AuctionReporting> getAucpList(){
 		return reportRepository.getAucpList();
 	}
-	
+	public void updateAucState(HashMap<String, Object> params){
+		auctionRepository.updateAucState(params);
+	}
 }

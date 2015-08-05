@@ -134,7 +134,7 @@
 						<c:choose>
 						<c:when test="${ loginuser.mbId eq view.bdWriter }">
 						<td align="right"><a href='/easyauction/board/updatephotoboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
-										  <a href='/easyauction/board/deletephotoboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
+										  <a href='/easyauction/board/deletephotoboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/singo.png'></a>
 						</td>
 						</c:when>
 						<c:otherwise></c:otherwise>

@@ -193,6 +193,13 @@
 		set aucstate = aucstate+1 
 		where aucno = #{ aucNo }
 	</update>
+
+	<update id="updateAucState" parameterType="hashmap">
+		update auction
+		set aucstate = #{ aucState }
+		where aucno = #{ aucNo }
+	</update>
+
 	
 	<select id="getAuctionSearchList" resultMap="auctionResult" parameterType="string">
 		select  aucno, auctitle, aucstartdate, aucenddate, 
