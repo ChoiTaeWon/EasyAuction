@@ -129,4 +129,16 @@ public class OracleAuctionRepository implements AuctionRepository{
 		// TODO Auto-generated method stub
 		return auctionMapper.getAuctionListForMain();
 	}
+
+
+	@Override
+	public void insertFinishedAuctionInfo(int finalPrice, String aucGetter, int aucNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("aucFinalPrice", finalPrice);
+		params.put("aucGetter", aucGetter);
+		params.put("aucNo", aucNo);
+		
+		auctionMapper.insertFinishedAuctionInfo(params);
+	}
 }

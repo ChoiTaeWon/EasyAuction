@@ -379,4 +379,28 @@ public class AjaxController {
 	
 	
 	
+	@RequestMapping(value="updateFinishedAuctionInfo.action", method = RequestMethod.GET)
+	@ResponseBody //별도의 뷰를 사용하지 말고 return 값을 응답 본문으로 사용하세요
+	public int updateFinishedAuctionInfo(int aucNo) {
+		int result = 0;
+		
+		if(aucNo != -1 ){
+			Bidding bidInfo = biddingService.getLastBidInfo(aucNo);
+			int finalPrice = bidInfo.getBidPrice();
+			String aucGetter = bidInfo.getMbId();
+			
+			System.out.println("최종 낙찰자는 : " + aucGetter + "$$$$$"+ finalPrice);
+
+			
+			auctionService.insertFinishedAuctionInfo(finalPrice, aucGetter, aucNo);
+			
+			
+			return result + 1;
+		}
+		else{
+			return result;
+		}
+	}
+	
+	
 }

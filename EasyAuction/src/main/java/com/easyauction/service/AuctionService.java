@@ -32,6 +32,8 @@ public interface AuctionService {
 
 	List<Auction> getAuctionListForMain();
 
+	void insertFinishedAuctionInfo(int finalPrice, String aucGetter, int aucNo);
+
 	
 
 	

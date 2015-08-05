@@ -72,6 +72,12 @@ public class OracleBiddingRepository implements BiddingRepository{
 		return biddingMapper.getMaxBiddingNo(aucNo);
 	}
 
+	@Override
+	public Bidding getLastBidInfo(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingMapper.getLastBidInfo(aucNo);
+	}
+
 	
 
 	

@@ -78,6 +78,10 @@
 	 select mbid from bidding where aucno = #{aucNo} and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
 	</select>
 	
+	<select id="getLastBidInfo" resultMap="biddingResult" parameterType="int">
+	 select bidprice, mbid from bidding where aucno = #{aucNo} and bidprice = (select max(bidprice) from bidding where aucno= #{aucNo})
+	</select>
+	
 	
 	<select id="getIpchalList" resultMap="biddingResult" parameterType="hashMap">
   		select  <include refid="biddingcolumns"></include> from bidding where aucno = #{ aucNo } and bidno >= #{ bidNo }

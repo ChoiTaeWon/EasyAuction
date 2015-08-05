@@ -25,4 +25,6 @@ public interface BiddingMapper {
 
 	int getMaxBiddingNo(int aucNo);
 
+	Bidding getLastBidInfo(int aucNo);
+
 }

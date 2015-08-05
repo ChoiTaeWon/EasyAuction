@@ -22,5 +22,7 @@ public interface BiddingService {
 
 	int getMaxBiddingNo(int aucNo);
 
+	Bidding getLastBidInfo(int aucNo);
+
 
 }

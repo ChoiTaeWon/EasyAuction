@@ -118,5 +118,13 @@ public class MyAuctionService implements AuctionService{
 
 
 
+	@Override
+	public void insertFinishedAuctionInfo(int finalPrice, String aucGetter, int aucNo) {
+		// TODO Auto-generated method stub
+		auctionRepository.insertFinishedAuctionInfo(finalPrice, aucGetter, aucNo);
+	}
+
+
+
 
 }

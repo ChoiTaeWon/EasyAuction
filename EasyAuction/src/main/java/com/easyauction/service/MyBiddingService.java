@@ -63,6 +63,11 @@ public class MyBiddingService implements BiddingService{
 		// TODO Auto-generated method stub
 		return biddingRepository.getMaxBiddingNo(aucNo);
 	}
+	@Override
+	public Bidding getLastBidInfo(int aucNo) {
+		// TODO Auto-generated method stub
+		return biddingRepository.getLastBidInfo(aucNo);
+	}
 	
 	
 	

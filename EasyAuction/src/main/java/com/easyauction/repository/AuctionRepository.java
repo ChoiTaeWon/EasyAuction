@@ -43,4 +43,6 @@ public interface AuctionRepository {
 
 	List<Auction> getAuctionListForMain();
 
+	void insertFinishedAuctionInfo(int finalPrice, String aucGetter, int aucNo);
+
 }

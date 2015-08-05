@@ -27,5 +27,6 @@ public interface AuctionMapper {
 	
 	List<Auction> getAuctionSearchList(String aucSearchData);
 	List<Auction> getAuctionListForMain();
+	Object insertFinishedAuctionInfo(HashMap<String, Object> params);
 	
 }

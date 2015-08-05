@@ -109,6 +109,15 @@
 	
 	
 	
+	<insert id="insertFinishedAuctionInfo" parameterType="hashMap">
+		insert into auction (aucfinalprice, aucgetter)
+		values (#{ aucFinalPrice }, #{ aucGetter }) where aucno = #{aucNo}
+	</insert>
+	
+	
+	
+	
+	
 	<select id="getAuctionImageByAuctionNo" resultMap="auctionImageResult" parameterType="int">
 		select aucimgno, aucimgname, aucno
 		from AUCTIONIMAGE

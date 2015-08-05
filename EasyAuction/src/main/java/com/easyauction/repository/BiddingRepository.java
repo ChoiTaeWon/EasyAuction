@@ -22,4 +22,6 @@ public interface BiddingRepository {
 
 	int getMaxBiddingNo(int aucNo);
 
+	Bidding getLastBidInfo(int aucNo);
+
 }

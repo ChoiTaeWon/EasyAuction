@@ -43,14 +43,16 @@
 						return;
 					}
 					else{
-						alert("경매상태 변경하다 문제 발생.");
+						//alert("경매상태 변경하다 문제 발생.");
 					}
 					
 				},
 				error : function(){
-					alert("경매상태 변경 에러!");
+					//alert("경매상태 변경 에러!");
 				}
-			}); 
+			});
+			
+			
 			
 		}
 		
@@ -150,6 +152,33 @@ var aucState = ${auction.aucState};
 			//alert(aucState);
 			$("#wholeTimeDiv").empty();
 			$("#wholeTimeDiv").html("<img src='/easyauction/resources/images/auction_end_icon.png' style='width:270px;'>"); 
+			
+			$.ajax({
+				url : "/easyauction/ajax/updateFinishedAuctionInfo.action",
+				async : false,
+				type : "GET",
+				data : {
+					aucNo : auctionNo
+				},
+				success : function(result){
+					if(result > 0){
+						alert("마지막 낙찰자가 선정되었습니다. 마이페이지를 확인하세요");
+						//location.reload(true);
+						//return;
+					}
+					else{
+						alert("마지막 낙찰자 선정못함");
+					}
+					
+				},
+				error : function(){
+					
+				}
+			});
+			
+			
+			
+			
 		}else{
 			alert(aucState);
 			
