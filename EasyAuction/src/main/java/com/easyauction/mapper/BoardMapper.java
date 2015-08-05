@@ -80,7 +80,8 @@ public interface BoardMapper {
 	
 	List<Board> getBoardList();
 	List<Board> getBoardReportList();
-
+	Board getBoardView(int bdno);
+	void setBoardBlind(int bdNo);
 
 	
 

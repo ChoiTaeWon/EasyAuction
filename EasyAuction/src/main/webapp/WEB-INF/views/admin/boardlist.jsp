@@ -26,10 +26,10 @@
                 colModel: [
                     { name: 'bdNo', key: true, width: 60, align: 'center'},
                     { name: 'bdType', width: 60, align: 'center', formatter: stateBoard},
- 					{ name:'bdTitle', width: 150, search: false, align: 'center'},
+ 					{ name:'bdTitle', width: 200, search: false, align: 'center'},
  					{ name: 'bdWriter', width: 100, align: 'center' },
                     { name: 'bdDate', width: 100, align: 'center'},
-                    { name: 'bdNo', width: 120, search: false}
+                    { name: 'bdNo', width: 100, formatter: imageTool, search: false}
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -55,7 +55,7 @@
                 url: 'boardreportlist.action',
                 mtype: "POST",
                 datatype: "json",
-                colNames: ['번호','타입','글제목','게시자','신고횟수','관리자툴'],
+                colNames: ['번호','타입','글제목','게시자','신고횟수','상태','관리자툴'],
                 colModel: [
                     { name: 'bdNo', key: true, width: 60, align: 'center'},
                     { name: 'bdType', width: 60, align: 'center', formatter: stateBoard},
@@ -64,7 +64,14 @@
                     { name: 'bdReportingCount', width: 100, align: 'center', formatter: function(cellValue,options,rowObject){
                     	return cellValue + "회";
                     }},
-                    { name: 'bdNo', width: 120, search: false}
+                    { name: 'bdBlindCheck', width: 100, formatter : function(cellValue,options,rowObject){
+                    	if(cellValue == true){
+                    		return "블라인드";
+                    	}else{
+                    		return "활성화";
+                    	}
+                    } },
+                    { name: 'bdNo', width: 60, formatter: blindComplte, search: false}
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);
@@ -73,6 +80,14 @@
                     $("tr.jqgrow:even").css("background", "#ffffff");
                     $("tr.jqgrow:odd").css("background", "#E6E6E6");
         			 var t = $("tr.jqgrow:odd td:nth(2)").text();
+         			$(".bdblind").click(function(){
+        				if(confirm("블라인드처리 하시겠습니까?")){
+        					event.preventDefault();
+        					var data = $(this).attr('value');
+        					location.href='/easyauction/admin/boardblind.action?bdNo='+data;
+        					alert("처리되었습니다.");
+        				}
+         			});
                 },
 				loadonce:true, // just for demo purpose
                 width: 780,
@@ -93,7 +108,14 @@
         		return "포토후기";
         	}
         }
-
+        function imageTool(cellValue,options,rowObject){
+			var pat2 = "<a href='/easyauction/board/boardview.action?bdno="+cellValue+"&pageno=1'><img src='/easyauction/resources/images/member_icon_12.gif'></a>&nbsp;<a class='delete' href='#' value="+cellValue+"><img src='/easyauction/resources/images/member_icon_05.gif'></a>";
+			return pat2;
+		};
+        function blindComplte(cellValue,options,rowObject){
+        	var pat3 = "<a class='bdblind' href='#' value='"+cellValue+"'><img width=60 height=20 src='/easyauction/resources/images/member_icon_08.gif'></a>";
+        	return pat3;
+        }
     </script>
 </head>
 <body>

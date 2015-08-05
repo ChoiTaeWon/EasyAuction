@@ -35,4 +35,5 @@ public interface AdminService {
 	List<Board> getBoardList();
 	
 	List<Board> getBoardReportList();
+	void setBoardBlind(int bdNo);
 }

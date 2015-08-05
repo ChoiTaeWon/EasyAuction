@@ -194,11 +194,10 @@ public class MyBoardService implements BoardService{
 		return boardRepository.getBoardSearchList(aucSearchData);
 	}
 
-	
-	
-
-	
-
+	@Override
+	public Board getBoardView(int bdno){
+		return boardRepository.getBoardView(bdno);
+	}
 	
 	
 }

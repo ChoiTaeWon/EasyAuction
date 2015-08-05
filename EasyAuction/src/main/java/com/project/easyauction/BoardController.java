@@ -546,5 +546,19 @@ public class BoardController {
 		return mav;
 		
 	}
+	
+	@RequestMapping(value = "boardview.action", method = RequestMethod.GET)
+	public ModelAndView boardviewList(@RequestParam("bdno")int bdNo, int pageno) {
+		Board view = boardService.getBoardView(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		System.out.println(comments+"//커맨트");
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/photoview");
+		mav.addObject("view", view);
+		mav.addObject("pageno", pageno);
+		
+		return mav;
+	}
 }
 
