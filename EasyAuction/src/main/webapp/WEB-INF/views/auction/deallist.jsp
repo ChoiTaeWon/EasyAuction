@@ -263,7 +263,7 @@ var newtime = null;
 									<div style="width: 100%;height: 30px">
 										<c:choose>
 											<c:when test="${ auction.aucState eq 0 }">
-												<div class="deal_time_list_day">경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
+												<div class="deal_time_list_day" >경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var startYear = ${ startYear };
@@ -282,7 +282,7 @@ var newtime = null;
 												
 											</c:when>
 											<c:when test="${ auction.aucState eq 1 }">
-												<div class="deal_time_list_day">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
+												<div class="deal_time_list_day" style="background-color: #5AAEFF">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
 												<script type="text/javascript">
 													var dday = null;
 													var endYear = ${ endYear };

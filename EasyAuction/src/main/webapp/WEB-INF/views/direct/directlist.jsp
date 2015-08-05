@@ -194,7 +194,7 @@
  
  function addMarkerListener(marker, markerId){
 	 google.maps.event.addListener(marker, "click", function () {
-			var contentString="<div>"+ markerId +"님의 게시물 목록</div><br/>";
+			var contentString="<div><h2>"+ markerId +"님의 게시물 목록</h2></div><hr/><br/>";
 		 	$.ajax({
 				url : "/easyauction/ajax/selectAuctionListByAucWriter.action",
 				async : false,
@@ -207,11 +207,19 @@
 						//auction{mbId, title, content, ...뭐 이렇게 올건데 1회원에 2이상 게시물 있을 수있음}
 						$.each(auctions, function(index, item){
 							
-							var tempString	= "<div>" +
-							"<h2>"+item.aucItemName+"</h2>"+
-							"<p>"+item.aucAdText+"</p>" +
-							"<a href='showdeal.action?aucno="+item.aucNo+"' target='_blank'>"
-							+ item.aucTitle +"</a></div><br/><br/>";
+							var tempString	= "<div style='height:100px'>"
+													+"<div style='float:left;width:100px;height:100px;padding-right:5;'>"
+													+	"<a href='showdeal.action?aucno="+item.aucNo+"' target='_blank' style='padding:0; margin:0;'>"
+													+		"<img src='/easyauction/resources/imagefile/"+ item.auctionImage[0].aucImgName +"' width='80px' height='80px' />"   
+													+	"</a>"
+													+"</div>"
+													+"<div style='float:right;height:100px;'>" 
+													+	"<h4 style='padding:0; margin:0;'>물품명 :"+item.aucItemName+"</h4>" 
+													+		 "<a href='showdeal.action?aucno="+item.aucNo+"' target='_blank' style='padding:0; margin:0;'>"
+													+ 			item.aucTitle +"</a>"
+													+ 		"<p>["+item.aucAdText+"]</p>"
+													+"</div>"
+												+"</div><br/><br/>";
 							contentString = contentString + tempString; 
 						});
 						
@@ -288,6 +296,7 @@
 		<div id="map" style="width:960px;height:500px;margin-top:20px;"></div>
 		<input type="button" value="마커 삭제" onclick="Javascript:fnRemoveMarker();" />
 		<input type="button" value="마커 읽어오기" onclick="Javascript:viewMarker();" />
+		
 		
 		
 	<br /><br/>

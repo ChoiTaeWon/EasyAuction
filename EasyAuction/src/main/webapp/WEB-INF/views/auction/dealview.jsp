@@ -415,11 +415,12 @@ var aucState = ${auction.aucState};
 								success : function(result){
 									if(result == 0){
 										e = 0;
-										alert(event + " : event 값");
-										alert("입찰 가능 상태");
+										//alert(event + " : event 값");
+										//alert("입찰 가능 상태");
 									}else{
 										e = 1;
-										alert("방금 입찰하셨습니다.");
+										alert("방금 입찰하셨습니다. 메크로를 이용한 입찰 시도는 관리자의 제재를 받을 수 있습니다.");
+										//$("#alertIpchal").css("display", "block");
 									}
 								},
 								error : function (){
@@ -566,8 +567,8 @@ var aucState = ${auction.aucState};
 							returnbidNo = item.bidNo + 1;
 							
 							
-							$("#realTimeCount").empty();
-							$("#realTimeCount").html(biddingList.length + "명 참여&nbsp;");
+							/* $("#realTimeCount").empty();
+							$("#realTimeCount").html(biddingList.length + "명 참여&nbsp;"); */
 							
 							$("#refreshBidPrice").empty();
 							$("#refreshBidPrice").html("<b><font id='list_now_price'>"+item.bidPrice +"</font> 원</b>"); 
@@ -576,12 +577,12 @@ var aucState = ${auction.aucState};
 
 							
 						} else {
-							alert("biddingList가 null임");
+							//alert("biddingList가 null임");
 						}
 						
 					},
 					error : function() {
-						alert("리스트 불러오기 실패"); 
+						//alert("리스트 불러오기 실패"); 
 					}
 				});
 			}
@@ -622,12 +623,12 @@ $(function(){
 						if( refreshTimer == null && $("#btn_realTime").attr("src") != "/easyauction/resources/images/realTime_before_start.png"){
 							$("#btn_realTime").attr("src", "/easyauction/resources/images/realTime_Restart.png" );
 							 refreshTimer = 	setInterval("getIpchalList()", time);
-							alert("실시간 재시작");
+							alert("실시간 입찰을 재시작합니다");
 						}else{
 							$("#btn_realTime").attr("src", "/easyauction/resources/images/realTime_stop.png" );
 							clearInterval(refreshTimer);
 							refreshTimer = null;
-							alert("실시간 스탑");
+							alert("실시간 입찰을 중지 합니다.");
 							
 						}
 					}
@@ -802,11 +803,11 @@ $(function(){
 							<td colspan="3" style="background:url(/easyauction/resources/images/bg_detail_ipchal_line.png); width:100%; height:2px;"></td>
 						</tr>				
 				</table>    
-		</div>		
-		
-	
+		</div>
 
-
+<!-- 		<div class="ui-state-highlight" id="alertIpchal" style="width: 300px;height: 250px;position: absolute;z-index: 1;left: 40%;top: 380px;display: none;">		
+			방금 입찰하셨습니다. 메크로를 이용한 입찰 시도는 관리자의 제재를 받을 수 있습니다.
+		</div> -->
 
 	<div id="wrap">
 		<div id="top">
@@ -968,7 +969,7 @@ $(function(){
 															<td width="72"><img src="/easyauction/resources/images/ico_now_price.gif" title="현재가격"></td>
 															<td width="178" align="right"> 
 															<c:choose>
-																<c:when test="${ auction.countBidders <= 1 }"><b>입찰 대기 중</b></c:when>
+																<c:when test="${ auction.countBidders <= 1 }"><div id="refreshBidPrice"><b>입찰 대기 중</b></div></c:when>
 																<c:otherwise>
 																	<div id="refreshBidPrice">
 																		<b><font id="list_now_price"><fmt:formatNumber type="number"  maxFractionDigits="3" value="${ auction.bidding.bidPrice }" /></font> 원</b>
@@ -984,7 +985,7 @@ $(function(){
 															<td width="72"><img src="/easyauction/resources/images/ico_nakchal.gif" title="예상낙찰자"></td>
 															<td width="178" align="right">
 															<c:choose>
-																<c:when test="${ auction.countBidders <= 1 }"><b>입찰자 없음</b></c:when>
+																<c:when test="${ auction.countBidders <= 1 }"><div id="refreshMbId"><b>입찰자 없음</b></div></c:when>
 																<c:otherwise><div id="refreshMbId"><b><font id="list_now_price">${ auction.bidding.mbId }</font></b></div></c:otherwise>
 															</c:choose>
 															

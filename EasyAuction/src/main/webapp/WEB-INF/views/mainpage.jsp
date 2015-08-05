@@ -265,7 +265,15 @@ var newtime = null;
 																<td align="center" valign="top">
 																	<div style="margin:8px 0 6px 0;">
 																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
-																			<b>[경매중] ${ auction.aucTitle }</b>
+																			<c:choose>
+																				<c:when test="${ fn:length(auction.aucTitle) > 10}">
+																					<c:set var="spTitle" value="${fn:substring(auction.aucTitle,0, 10)}"></c:set>
+																					<b>[경매중] ${ spTitle }...</b>
+																				</c:when>
+																				<c:otherwise>
+																					<b>[경매중] ${ auction.aucTitle }</b>
+																				</c:otherwise>
+																			</c:choose>
 																		</a>
 																	</div>
 																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
