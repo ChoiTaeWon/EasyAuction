@@ -59,6 +59,8 @@ public interface BoardMapper {
 	
 	void deleteGongjiBoard(int bdno);
 	
+	void deletePhotoBoard(int bdno);
+	
 	void updateFreeBoard(Board board);
 	
 	void updateGongjiBoard(Board board);
@@ -68,5 +70,7 @@ public interface BoardMapper {
 	int getFreeBoardSearchCount(HashMap<String, String> params);
 	
 	List<Board> gongiTypeOne();
+
+	List<Board> getBoardSearchList(String aucSearchData);
 
 }

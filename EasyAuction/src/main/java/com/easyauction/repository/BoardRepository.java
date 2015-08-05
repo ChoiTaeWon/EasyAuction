@@ -55,6 +55,8 @@ public interface BoardRepository {
 	
 	void deleteGongjiBoard(int bdno);
 	
+	void deletePhotoBoard(int bdno);
+	
 	void updateFreeBoard(Board board);
 	
 	void updateGongjiBoard(Board board);
@@ -66,6 +68,10 @@ public interface BoardRepository {
 	int getFreeBoardSearchCount(String search, String searchdata, int bdtype);
 	
 	List<Board> gongiTypeOne();
+
+	List<Board> getBoardSearchList(String aucSearchData);
+
+	
 
 	
 

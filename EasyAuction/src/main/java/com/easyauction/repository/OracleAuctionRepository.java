@@ -117,4 +117,9 @@ public class OracleAuctionRepository implements AuctionRepository{
 	public void updateAucState(HashMap<String, Object> params){
 		auctionMapper.updateAucState(params);
 	}
+
+	@Override
+	public List<Auction> getAuctionSearchList(String aucSearchData) {
+		return auctionMapper.getAuctionSearchList(aucSearchData);
+	}
 }

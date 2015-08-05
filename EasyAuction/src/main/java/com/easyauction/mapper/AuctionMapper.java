@@ -25,4 +25,6 @@ public interface AuctionMapper {
 	void updateAucStateByDate(int aucNo);
 	void updateAucState(HashMap<String, Object> params);
 	
+	List<Auction> getAuctionSearchList(String aucSearchData);
+	
 }

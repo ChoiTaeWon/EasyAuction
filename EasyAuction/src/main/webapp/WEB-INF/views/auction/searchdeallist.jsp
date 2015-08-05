@@ -12,96 +12,7 @@
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
-
 <script type="text/javascript">
-var ddaylist = [];
-var newtime = null;
-
- 	function getTime() { 
- 		if(ddaylist == null || ddaylist.length ==0){
- 			return;
- 		}
- 		
-		now = new Date(); 
-	
-		$.each(ddaylist, function(index, item){
-			var id = item.id;
-			var dday = item.dday;
-			days = (dday - now) / 1000 / 60 / 60 / 24; 
-			dRound = Math.floor(days); 
-			hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
-			hRound = Math.floor(hours); 
-			minutes = (dday - now) / 1000 /60 - (24 * 60 * dRound) - (60 * hRound); 
-			mRound = Math.floor(minutes); 
-			seconds = (dday - now) / 1000 - (24 * 60 * 60 * dRound) - (60 * 60 * hRound) - (60 * mRound); 
-			sRound = Math.round(seconds);
-		
-			
-			if(days < 0){
-				//alert(days);
-				//return;
-				$.ajax({
-					url : "/easyauction/ajax/updateAuctionState.action",
-					async : false,
-					type : "GET",
-					data : {
-						aucNo : auctionNo
-					},
-					success : function(result){
-						if(result > 0){
-							//alert("경매상태가 바뀌었습니다.");
-							location.reload(true);
-							return;
-						}
-						else{
-							alert("경매상태 변경하다 문제 발생.");
-						}
-						
-					},
-					error : function(){
-						alert("경매상태 변경 에러!");
-					}
-				}); 
-			}
-			
-			
-			
-	 		if(dRound <10){
-				$("#dayText"+id).html("0" + dRound);
-			}else{
-				$("#dayText"+id).html(dRound);
-			}
-			
-	 		
-			if(hRound <10){
-				$("#counter1"+id).html("0" + hRound);
-			}else if(hRound < 0){
-				$("#counter1"+id).html("00");
-			}else{
-				$("#counter1"+id).html(hRound);
-			}
-			if(mRound <10){
-				$("#counter2"+id).html("0" + mRound);
-			}else{
-				$("#counter2"+id).html(mRound);
-			}
-			if(sRound <10){
-				$("#counter3"+id).html("0" + sRound);
-			}else{
-				$("#counter3"+id).html(sRound);
-			} 
-	 		
-		});
-		
-		
-		newtime = window.setTimeout("getTime();", 1000); 
-	}													
-	
- 	$(function(){
- 		newtime = window.setTimeout("getTime();", 1000); 
- 		
- 	});
-	
 </script>
 <body>
 
@@ -116,12 +27,9 @@ var newtime = null;
 			<table style="width: 100%" >
 				<tr>
 					<td style="text-align:left;width: 95%">
-						<img src="/easyauction/resources/images/deal_list_ko.png" style="width: 90px;height: 31px">
-						<img src="/easyauction/resources/images/deal_list_en.png" style="width: 100px;height: 31px">
+						<img src="/easyauction/resources/images/img_search_banner.gif" style="width: 100%;">
 					</td>
 				
-					<td style="text-align:center;width: 5%"><a href="dealregister.action">
-					<img  src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 			</table>
 		</div>
@@ -142,7 +50,7 @@ var newtime = null;
 								<td align="center" width="150"><b>현재가</b></td>
 								<td align="center" width="120"><b>진행 상태</b></td>
 								<td align="center" width="70"><b>입찰수</b></td>
-								<td align="center" width="180"><b>마감시간</b></td>
+								<td align="center" width="180"><b>참여하기</b></td>
 							</tr>
 						</table>
 					</td>
@@ -154,29 +62,8 @@ var newtime = null;
 			
 			
 <c:forEach var="auction" items="${ auctions }">
- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState < 3)}">
+ <c:if test="${(auction.aucBlindCheck eq false) && (auction.aucState < 4)}">
  
-	<fmt:formatDate value="${ auction.aucStartDate }" pattern="yyyy-M-d H:m" var="startDateFormat"/>
-	<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
-
-	<c:set var="startDate" value="${ startDateFormat }"></c:set>
-	<c:set var="spStartDate" value="${fn:split(startDate,' ')[0]}"></c:set>
-	<c:set var="spStartTime" value="${fn:split(startDate,' ')[1]}"></c:set>
-	<c:set var="startYear" value ="${fn:split(spStartDate,'-')[0]}" ></c:set>
-	<c:set var="startMonth" value ="${fn:split(spStartDate,'-')[1]}" ></c:set>
-	<c:set var="startDay" value ="${fn:split(spStartDate,'-')[2]}" ></c:set>
-	<c:set var="startHour" value ="${fn:split(spStartTime,':')[0]}" ></c:set>
-	<c:set var="startMinute" value ="${fn:split(spStartTime,':')[1]}" ></c:set>
-			
-	<c:set var="endDate" value="${ endDateFormat }"></c:set>
-	<c:set var="spEndDate" value="${fn:split(endDate,' ')[0]}"></c:set>
-	<c:set var="spEndTime" value="${fn:split(endDate,' ')[1]}"></c:set>
-	<c:set var="endYear" value ="${fn:split(spEndDate,'-')[0]}" ></c:set>
-	<c:set var="endMonth" value ="${fn:split(spEndDate,'-')[1]}" ></c:set>
-	<c:set var="endDay" value ="${fn:split(spEndDate,'-')[2]}" ></c:set>
-	<c:set var="endHour" value ="${fn:split(spEndTime,':')[0]}" ></c:set>
-	<c:set var="endMinute" value ="${fn:split(spEndTime,':')[1]}" ></c:set>
-									
 			<table class="href_link" style="width: 955px;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td valign=top align=center> 
@@ -229,9 +116,6 @@ var newtime = null;
 								</td>
 		
 								<td width="120" align="center">
-									<!-- <img src=img/ico_baesong_free.gif alt='무료배송' border=0 align=absmiddle>
-									<div style="padding-top:5px;"></div>  
-									<img src=img/new_product_icon.gif border=0 align=absmiddle alt='새제품'> -->
 									<b>
 										<c:choose>
 											<c:when test="${ auction.aucState eq 0 }">경매 시작 전</c:when>
@@ -262,68 +146,16 @@ var newtime = null;
 									<!-- 남은 날짜 -->
 									<div style="width: 100%;height: 30px">
 										<c:choose>
-											<c:when test="${ auction.aucState eq 0 }">
-												<div class="deal_time_list_day" >경매 시작까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
-												<script type="text/javascript">
-													var dday = null;
-													var startYear = ${ startYear };
-													var startMonth = ${ startMonth };
-													var startDay = ${ startDay };
-													var startHour = ${ startHour };
-													var startMinute = ${ startMinute };
-													//var dday = new Date(startYear,startMonth,startDay,startHour, startMinute, 00);
-													var obj =  {
-														"id" : "${auction.aucNo}",
-														"dday" : new Date(startYear,Number(startMonth)-1,startDay,startHour, startMinute, 00)
-													};
-													ddaylist.push(obj);
-													//getTime(startYear,startMonth,startDay,startHour, startMinute, 00);
-												</script>
-												
+											<c:when test="${ auction.aucType eq false }">
+												<img src="/easyauction/resources/images/aucdeal.png" style="width: 100px;height: 31px">
 											</c:when>
-											<c:when test="${ auction.aucState eq 1 }">
-												<div class="deal_time_list_day" style="background-color: #5AAEFF">경매 마감까지 : <span id="dayText${ auction.aucNo }"></span>일</div>
-												<script type="text/javascript">
-													var dday = null;
-													var endYear = ${ endYear };
-													var endMonth = ${ endMonth };
-													var endDay = ${ endDay };
-													var endHour = ${ endHour };
-													var endMinute = ${ endMinute };
-													var obj =  {
-														"id" : "${auction.aucNo}",
-														"dday" : new Date(endYear,Number(endMonth)-1,endDay,endHour, endMinute, 00)
-													};
-													ddaylist.push(obj);
-													//dday = new Date(endYear, endMonth, endDay, endHour, endMinute, 00);
-													//getTime(endYear,endMonth,endDay,endHour, endMinute);
-												
-												</script>
-												
+											<c:when test="${ auction.aucType eq true }">
+												<img src="/easyauction/resources/images/direct_deal_ko.png" style="width: 100px;height: 31px">
 											</c:when>
-											<c:when test="${ auction.aucState eq 2 }">
-												
-												<div style="width: 100%;height: 35px;id="auction_end">
-													<img src='/easyauction/resources/images/auction_end_icon.png' style='width:180px;height:50px'>
-												</div>
-												<div style="padding-top: 5px"></div>
-												
-											</c:when>
+											
 											<c:otherwise>에러 상태</c:otherwise>
 										</c:choose>
 									</div>
-									<!-- 남은 시간  -->
-									<div style="width: 100%;height: 35px;display: ${ auction.aucState eq 2 ? 'none' : 'block'}" >
-											<div style="float: left;">
-												<img src="/easyauction/resources/images/clock_icon.png" width="30px" height="30px" style="padding-right: 4px">
-											</div>
-											<div class="deal_time_list_hour" id="counter1${ auction.aucNo }"></div>
-											<div class="deal_time_list_blank">:</div> 
-											<div class="deal_time_list_minutes" id="counter2${ auction.aucNo }"></div>
-											<div class="deal_time_list_blank">:</div>
-											<div class="deal_time_list_second" id="counter3${ auction.aucNo }"></div>
-									</div> 
-									
 									<!-- 참여하기 버튼 -->
 									<div style="padding-top: 5px"></div>
 									<a href="showdeal.action?aucno=${ auction.aucNo }"><img src="/easyauction/resources/images/btn_ipchal_basic.gif" border="0" align="absmiddle" alt="일반경매입찰"></a>
@@ -346,7 +178,10 @@ var newtime = null;
 	</c:if>
 </c:forEach>
 		
-		</div><!-- viewlist div -->
+</div>
+
+
+
 		
 		
 		

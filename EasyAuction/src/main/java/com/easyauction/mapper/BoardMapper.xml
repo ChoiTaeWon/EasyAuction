@@ -296,6 +296,10 @@
 	 	bdno = #{ bdno }
 	</delete>
 	
+	<update id="deletePhotoBoard" parameterType="int" >
+	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
+	</update>
+	
 	<update id="updateFreeBoardReadCount" parameterType="int" >
 	   UPDATE
 	   		board
@@ -303,7 +307,17 @@
 	   		
 	   WHERE bdno = #{ bdno }
    </update>
-   
+   	<select id="getBoardSearchList" parameterType="string" resultMap="boardResult">
+		SELECT <include refid="boardcolumns" /> 
+		FROM board
+		<trim prefix="WHERE" prefixOverrides="OR">
+		OR bdtitle Like '%'|| #{ aucSearchData } ||'%' 
+		OR bdwriter Like  '%'|| #{ aucSearchData } ||'%'
+		OR bdcontent Like '%'|| #{ aucSearchData } ||'%'
+		</trim>
+		order By
+		bdno DESC
+	</select>
    <!-- <select id="getBoard" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
