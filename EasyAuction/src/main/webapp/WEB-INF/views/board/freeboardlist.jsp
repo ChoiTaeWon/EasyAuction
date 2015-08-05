@@ -79,8 +79,6 @@
 						
 					},
 					success : function(result) {
-						alert(result + ' : result 값' );
-						
 						if (result == 0) {	
 							alert("회원이 신고 되었습니다.");
 							reportDialog.dialog('close');
@@ -111,6 +109,9 @@
 					$('#reporter').attr('value', mbId);
 					$('#targetmbId').attr('value', receiver);
 				
+					if(receiver == 'admin'){
+						alert("관리자는 신고할 수 없습니다. ");
+						return;
 					//신고하기 버튼 클릭 시 신고이력 확인 절차	
 						if(mbId != receiver){
 						$.ajax({
@@ -123,8 +124,6 @@
 							},
 							success : function(result){
 								if(result == 0){
-									alert(event + " : event 값");
-									alert("신고 가능 상태");
 									reportDialog.dialog("open");
 								}else{
 									alert("신고 이력이 있습니다 이미 신고했던 회원입니다.");
@@ -137,7 +136,7 @@
 						}else{
 							alert("자신을 신고할 수는 없습니다. ");
 						}
-					
+					}
 					event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 					event.stopPropagation();//버블링 업 막아줌
 				}
