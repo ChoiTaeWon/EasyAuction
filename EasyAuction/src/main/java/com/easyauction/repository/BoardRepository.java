@@ -75,9 +75,9 @@ public interface BoardRepository {
 
 	List<Board> getBoardSearchList(String aucSearchData);
 
-	
+	List<Board> getBoardList();
 
-	
+	List<Board> getBoardReportList();
 
 	
 

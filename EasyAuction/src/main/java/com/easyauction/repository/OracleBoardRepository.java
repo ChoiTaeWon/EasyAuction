@@ -217,8 +217,15 @@ public class OracleBoardRepository implements BoardRepository{
 		return boardMapper.getBoardSearchList(aucSearchData);
 	}
 
+	@Override
+	public List<Board> getBoardList(){
+		return boardMapper.getBoardList();
+	}
 	
-
+	@Override
+	public List<Board> getBoardReportList(){
+		return boardMapper.getBoardReportList();
+	}
 	
 
 	

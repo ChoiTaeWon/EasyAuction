@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easyauction.common.ThePager;
+import com.easyauction.common.Util;
 import com.easyauction.dto.Board;
 import com.easyauction.dto.BoardComment;
 import com.easyauction.dto.BoardImage;
@@ -189,8 +190,9 @@ public class BoardController {
 				//C:\ABC\DEF\xyz.txt -> xyz.txt
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			}
+			String savedName = Util.getUniqueFileName(path, fileName);
 			BoardImage boardImage = new BoardImage();
-			boardImage.setBdImgName(fileName);
+			boardImage.setBdImgName(savedName);
 			boardImage.setBdNo(board.getBdNo());
 			
 			boardService.insertPhotoImage(boardImage);
@@ -496,8 +498,10 @@ public class BoardController {
 				//C:\ABC\DEF\xyz.txt -> xyz.txt
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			}
+			String savedName = Util.getUniqueFileName(path, fileName);
 			BoardImage boardImage = new BoardImage();
-			boardImage.setBdImgName(fileName);
+			
+			boardImage.setBdImgName(savedName);
 			boardImage.setBdNo(board.getBdNo());
 			
 			boardService.insertPhotoImage(boardImage);

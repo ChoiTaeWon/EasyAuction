@@ -78,5 +78,10 @@ public interface BoardMapper {
 	List<Board> getBoardSearchList(String aucSearchData);
 
 	
+	List<Board> getBoardList();
+	List<Board> getBoardReportList();
+
+
+	
 
 }

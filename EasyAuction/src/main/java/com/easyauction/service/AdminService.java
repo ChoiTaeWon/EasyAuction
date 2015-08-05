@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
+import com.easyauction.dto.Board;
 import com.easyauction.dto.Member;
 import com.easyauction.dto.MemberReporting;
 
@@ -30,4 +31,8 @@ public interface AdminService {
 	
 	List<AuctionReporting> getAucpList();
 	void updateAucState(HashMap<String, Object> params);
+	
+	List<Board> getBoardList();
+	
+	List<Board> getBoardReportList();
 }

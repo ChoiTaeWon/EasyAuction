@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.easyauction.common.Util;
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
+import com.easyauction.dto.Board;
 import com.easyauction.dto.Member;
 import com.easyauction.dto.MemberReporting;
 import com.easyauction.service.AdminService;
@@ -184,8 +185,28 @@ public class AdminController {
 		params.put("aucNo", Integer.parseInt(aucNo));
 		params.put("aucState", Integer.parseInt(aucState));
 		adminService.updateAucState(params);
-		
-		
 	}
 	
+	@RequestMapping(value = "boardlist.action", method = RequestMethod.POST)
+	public @ResponseBody List<Board> boardList2() {
+		List<Board> boards = adminService.getBoardList();
+		return boards;
+	}
+	
+	@RequestMapping(value = "boardlist.action", method = RequestMethod.GET)
+	public String boardList1() {
+
+		return "admin/boardlist";
+	}
+	@RequestMapping(value = "boardreportlist.action", method = RequestMethod.POST)
+	public @ResponseBody List<Board> boardReportList2() {
+		List<Board> boards = adminService.getBoardReportList();
+		return boards;
+	}
+	
+	@RequestMapping(value = "boardreportlist.action", method = RequestMethod.GET)
+	public String boardReportList1() {
+
+		return "admin/boardlist";
+	}	
 }
