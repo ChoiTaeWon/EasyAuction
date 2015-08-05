@@ -72,7 +72,7 @@
 			
 			var mbId = '${loginuser.mbId}';
 			window.open("/easyauction/message/receivemessages.action?mbId=" + mbId, "쪽지함",
-				"width=700,height=500,titlebar=no");
+				"width=700,height=500,titlebar=no;scrollbars=no");
 		})
 		$(".findMember").click(function(event){
 			$(location).attr('href','/easyauction/member/email.action?locationurl=' + $(this).attr('id'));

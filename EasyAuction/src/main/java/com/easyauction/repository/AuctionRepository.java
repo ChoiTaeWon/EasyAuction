@@ -41,4 +41,6 @@ public interface AuctionRepository {
 
 	List<Auction> getAuctionSearchList(String aucSearchData);
 
+	List<Auction> getAuctionListForMain();
+
 }

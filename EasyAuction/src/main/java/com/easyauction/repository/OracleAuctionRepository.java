@@ -122,4 +122,11 @@ public class OracleAuctionRepository implements AuctionRepository{
 	public List<Auction> getAuctionSearchList(String aucSearchData) {
 		return auctionMapper.getAuctionSearchList(aucSearchData);
 	}
+
+
+	@Override
+	public List<Auction> getAuctionListForMain() {
+		// TODO Auto-generated method stub
+		return auctionMapper.getAuctionListForMain();
+	}
 }

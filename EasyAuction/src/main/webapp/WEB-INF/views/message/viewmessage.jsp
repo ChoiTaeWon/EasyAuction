@@ -32,7 +32,7 @@ $(function(){
 
 </script>
 </head>
-<body>
+<body style="width: 98%">
 <!-- 쪽지 해더 -->
 <div id='cssmenu'>
 <ul>

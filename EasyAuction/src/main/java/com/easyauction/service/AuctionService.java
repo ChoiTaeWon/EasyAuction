@@ -30,6 +30,8 @@ public interface AuctionService {
 
 	List<Auction> getAuctionSearchList(String aucSearchData);
 
+	List<Auction> getAuctionListForMain();
+
 	
 
 	

@@ -75,7 +75,9 @@ public class MessageController {
 	public ModelAndView viewmessage(int msgNo, String pageId, String mbId) {
 		
 		Message message = msgsvc.getMsgBymsgNo(msgNo);
-		msgsvc.setReadMsgBymsgNo(msgNo);
+		if(pageId.equals("receivemessages")){
+			msgsvc.setReadMsgBymsgNo(msgNo);
+		}
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("message/viewmessage");

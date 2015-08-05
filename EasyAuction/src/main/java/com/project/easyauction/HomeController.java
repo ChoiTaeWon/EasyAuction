@@ -50,7 +50,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		List<Board> boards = boardService.gongiTypeOne();
 		List<Board> photos = boardService.getPhotoList();
-		List<Auction> auctions = auctionService.getAuctionList();
+		List<Auction> auctions = auctionService.getAuctionListForMain();
 		mav.addObject("boards", boards);
 		mav.addObject("photos", photos);
 		mav.addObject("auctions", auctions);
