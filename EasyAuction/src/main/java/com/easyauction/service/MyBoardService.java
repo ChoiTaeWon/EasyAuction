@@ -148,6 +148,11 @@ public class MyBoardService implements BoardService{
 	public void deleteGongjiBoard(int bdno) {
 		boardRepository.deleteGongjiBoard(bdno);
 	}
+	
+	@Override
+	public void deletePhotoBoard(int bdno) {
+		boardRepository.deletePhotoBoard(bdno);
+	}
 
 	@Override
 	public void updateFreeBoard(Board board) {
@@ -178,6 +183,8 @@ public class MyBoardService implements BoardService{
 	public List<Board> getBoardSearchList(String aucSearchData) {
 		return boardRepository.getBoardSearchList(aucSearchData);
 	}
+
+	
 
 	
 	

@@ -3,6 +3,7 @@ package com.easyauction.repository;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -112,7 +113,10 @@ public class OracleAuctionRepository implements AuctionRepository{
 		// TODO Auto-generated method stub
 		auctionMapper.updateAucStateByDate(aucNo);
 	}
-
+	@Override
+	public void updateAucState(HashMap<String, Object> params){
+		auctionMapper.updateAucState(params);
+	}
 
 	@Override
 	public List<Auction> getAuctionSearchList(String aucSearchData) {

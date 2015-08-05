@@ -167,6 +167,11 @@ public class OracleBoardRepository implements BoardRepository{
 	public void deleteGongjiBoard(int bdno) {
 		boardMapper.deleteGongjiBoard(bdno);
 	}
+	
+	@Override
+	public void deletePhotoBoard(int bdno) {
+		boardMapper.deletePhotoBoard(bdno);
+	}
 
 	@Override
 	public void updateFreeBoard(Board board) {

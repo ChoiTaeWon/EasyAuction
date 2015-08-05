@@ -59,6 +59,8 @@ public interface BoardMapper {
 	
 	void deleteGongjiBoard(int bdno);
 	
+	void deletePhotoBoard(int bdno);
+	
 	void updateFreeBoard(Board board);
 	
 	void updateGongjiBoard(Board board);
