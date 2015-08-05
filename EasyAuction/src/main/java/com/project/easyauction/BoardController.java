@@ -90,9 +90,11 @@ public class BoardController {
 		
 	@RequestMapping(value = "freeboardview.action", method = RequestMethod.GET)
 	public ModelAndView freeboardviewList(@RequestParam("bdno")int bdNo, int pageno,String bdWriter,HttpSession session) {
-		Member member = (Member) session.getAttribute("loginuser");
-		if(!bdWriter.equals(member.getMbId())){
-		boardService.updateFreeBoardReadCount(bdNo);
+		if(bdWriter != null){
+			Member member = (Member) session.getAttribute("loginuser");
+			if(bdWriter.equals(member.getMbId())){
+				boardService.updateFreeBoardReadCount(bdNo);
+			}
 		}
 		Board view = boardService.getFreeBoardViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
@@ -128,10 +130,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="updatefreeboard.action", method= RequestMethod.POST)
-	public String updatefreeboard2(int pageNo, Board board) {
+	public String updatefreeboard2(int pageno, Board board) {
 		boardService.updateFreeBoard(board);
 		
-		return "redirect:/board/freeboardview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
+		return "redirect:/board/freeboardview.action?bdno="+ board.getBdNo()+"&pageno="+ pageno;
 	}
 	
 	@RequestMapping(value="updatefreeboardcomment.action", method= RequestMethod.POST)
@@ -148,7 +150,7 @@ public class BoardController {
 	public String deletefreeboard(int bdno, int pageno) {
 		
 		boardService.deleteFreeBoard(bdno);
-		return "redirect:/board/freeboardview.action?bdno="+bdno+"&pageno="+pageno;
+		return "redirect:/board/freeboard.action?bdno="+bdno+"&pageno="+pageno;
 	}
 	
 	@RequestMapping(value="deletefreeboardcomment.action", method= RequestMethod.GET)
@@ -377,12 +379,46 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "photolist.action", method = RequestMethod.GET)
-	public ModelAndView photoList() {
+	public ModelAndView photoList(Integer pageno, @RequestParam(value="search", required=false)String search, 
+	@RequestParam(value="searchdata", required=false)String searchdata) {
+		//******* 페이징 관련 데이터 처리 ********* 
+		int pageNo = 1; // 현재 페이지 번호
+		int pageSize = 3; //한 페이지에 표시할 데이터 갯수
+		int pagerSize = 3; //번호로 표시할 페이지 갯수
+		int dataCount = 0; //전체 데이터 갯수 (pageSize와 dataCount를 알아야, 페이지가 얼마나? 있는지 알 수 있다.)
+		String url = "photo.action"; // 페이징 관련 링크를 누르면, 페이지번호와 함께 요청할 경로
+		//요청한 페이지 번호가 있다면,  읽어서 현재 페이지 번호로 설정 (없다면, 1페이지)
+		if (pageno != null ) {
+			pageNo = pageno;
+		}
+		int first = (pageNo - 1) * pageSize + 1; //1 page -> 1, 2 page -> 4, 3 page -> 7
+		int bdtype = 3;
+		List<Board> photos = null;
+		String queryString = null;
+		if(search != null){
+			queryString = "search=" + search + "&searchdata=" + searchdata;
+			dataCount = boardService.getFreeBoardSearchCount(search, searchdata, bdtype); //전체 게시물 갯수 조회
+			photos = boardService.getFreeBoardSearchList(first, first + pageSize, search, searchdata, bdtype);
+		}else {
+			dataCount = boardService.getFreeBoardCount(bdtype); //전체 게시물 갯수 조회
+			photos = boardService.getFreeBoardList(first, first + pageSize, bdtype); // 페이징 처리로 해줬기 때문에 이런 처리를 해줘야한다.
+		}
+		
+		for(Board photo : photos){
+			photo.setCommentCount(photo.getComments().size());
+		}
+		ThePager pager = null;
+		if(photos != null && photos.size() > 0){
+			pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, url, queryString);
+		}
 		ModelAndView mav = new ModelAndView();
-		List<Board> photos = boardService.getPhotoList();
 		mav.setViewName("board/photolist");
-		mav.addObject("photos",photos);
+		mav.addObject("photos", photos);
+		mav.addObject("pager", pager);
+		mav.addObject("pageno", pageNo);
+					
 		return mav;
+		
 	}
 	
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)

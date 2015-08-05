@@ -195,14 +195,14 @@
 	
 	<select id="getFreeBoardViewByBoardNo" resultMap="boardResult" parameterType="int">
 		SELECT
-			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount
 		FROM Board
 		where bdno = #{ bdNo }
 	</select>
 	
 	<select id="getGongjiBoardViewByBoardNo" resultMap="boardResult" parameterType="int">
 		SELECT
-			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount
 		FROM Board
 		where bdno = #{ bdNo }
 	</select>
@@ -301,7 +301,7 @@
  	<!-- 3회가 되면 블라인드처리가 되게 하려면 이곳에서 조건을 정해주어야 하나??
  	blind된 글은 jquery써서 못읽게 alert를 뜨게하기??? -->
 	<update id="deleteFreeBoard" parameterType="int" >
-	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
+	UPDATE BOARD SET BDREPORTINGCOUNT = BDREPORTINGCOUNT + 1 WHERE bdno = #{ bdno }
 	</update>
 	
 	<delete id="deleteGongjiBoard" parameterType="int" >

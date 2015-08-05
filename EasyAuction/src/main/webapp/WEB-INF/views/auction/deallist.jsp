@@ -45,11 +45,11 @@ var newtime = null;
 					async : false,
 					type : "GET",
 					data : {
-						aucNo : auctionNo
+						aucNo : id
 					},
 					success : function(result){
 						if(result > 0){
-							//alert("경매상태가 바뀌었습니다.");
+							alert("경매상태가 바뀌었습니다.");
 							location.reload(true);
 							return;
 						}

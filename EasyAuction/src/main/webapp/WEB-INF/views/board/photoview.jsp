@@ -131,7 +131,7 @@
 						<td width='140' style='padding-top:10px;padding-bottom:10px;'><!-- <img src='bbs_img/bbs_reply_manicon.gif' border='0' align='absmiddle'> --> <b>${ comment.bcWriter }</b></td>
 						<td width='600' align='left'>${ comment.bcContent }&nbsp;&nbsp;<font color='#cacaca' style='font-size:11px;'>${ comment.bcRegdate }</font>
 						<!-- 내용 옆 수정 삭제 -->
-						<c:choose>
+						<%-- <c:choose>
 						<c:when test="${ loginuser.mbId eq view.bdWriter }">
 						<td align="right"><a href='/easyauction/board/updatephotoboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
 										  
@@ -141,7 +141,7 @@
 						<td align="right">
 						<a href='/easyauction/board/deletephotoboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/singo.png'></a>
 						</td>
-						<td width='50'></td>
+						<td width='50'></td> --%>
 					</tr>
 					<tr>
 						<td colspan="3" style="height:1px; background:url(img/line_02.gif); width:100%;"></td>
@@ -232,7 +232,7 @@
 				</c:forEach>
 				<form action='comment.action' method='post'>
 					<input type="hidden" name="bdno" value="${ view.bdNo }" /> 
-					<input type="hidden" name="writer" value="${ view.bdWriter }" />
+					<input type="hidden" name="writer" value="${ loginuser.mbId }" />
 					<input type="hidden" name="pageno" value="${ pageno }" />
 					<%-- <input type="hidden" name="pageno" value="${ pageno }" /> --%>
 					<table style="border-bottom: groove 1px;" width='100%' cellspacing='0' cellpadding='0'>

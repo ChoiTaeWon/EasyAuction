@@ -288,9 +288,7 @@ var newtime = null;
 																		</a>
 																	</div>
 																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
-																	  <c:forEach var="image" items="${ auction.auctionImage }">
-																		<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="145" height="145">
-																	  </c:forEach>
+																		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[0].aucImgName }" width="145" height="145">
 																	</a>
 																	
 																	<div align="center" style="width: 100%;">

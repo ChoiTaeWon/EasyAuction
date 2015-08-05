@@ -151,8 +151,8 @@
 				<td align="right">
 				<c:choose>
 				<c:when test="${ loginuser ne null && loginuser.mbGrant ne false }">
-				 	<a href="/easyauction/board/gongjiregiste.action"> 
-				 	<img src="/easyauction/resources/images/write.png"></a>&nbsp;
+				 		<a href="/easyauction/board/gongjiregister.action"> 
+							<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>

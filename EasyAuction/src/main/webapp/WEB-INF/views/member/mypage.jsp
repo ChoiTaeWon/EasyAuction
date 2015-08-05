@@ -22,7 +22,7 @@ $(function(){
         + "<label for='targetmbId'>신고할 회원</label>"
         + "<input id='targetmbId' type='text' value='' />"
         + "<label for='reportText'>신고 사유</label></br>"
-        + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
+        + "<textarea id='reportText' style='width: 260' rows='3' cols='48'></textarea></div>"
     var payment =
 		"<div id='paymentContent' title='결제하기' style='display: none;width: 300px;height: 250px'>"     
         + "<label for='' id='auctionno' style='width: 100%;text-align: center;'>상품명</label></br>"
@@ -83,7 +83,6 @@ $(function(){
 						
 					},
 					success : function(result) {
-						alert(result + ' : result 값' );
 						
 						if (result == 0) {	
 							alert("회원이 신고 되었습니다.");
@@ -174,7 +173,6 @@ $(function(){
 						},
 						success : function(result){
 							if(result == 0){
-								alert(event + " : event 값");
 								alert("신고 가능 상태");
 								reportDialog.dialog("open");
 							}else{
