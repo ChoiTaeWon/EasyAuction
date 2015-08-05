@@ -36,15 +36,15 @@
 			document.getElementById('listsearch').submit();
 			event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 		})
-		
-///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
-		var mbhtml = "<div id='reportmbContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"
+		///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
+		var mbhtml = 
+			"<div id='reportmbContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"
 				+ "<label for='reportermbId'>신고자</label><br />"
-				+ "<input id='reportermbId' type='text' value='' readonly='readonly'/><br />"
+				+ "<input style='width: 500px' id='reportermbId' type='text' value='' readonly='readonly'/><br />"
 				+ "<label for='targetmbId'>신고할 회원</label><br />"
-				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
+				+ "<input style='width: 500px' id='targetmbId' type='text' value='' readonly='readonly' /><br />"
 				+ "<label for='reportmbText'>신고 사유</label></br>"
-				+ "<textarea id='reportmbText' style='width: 260' rows='3' cols='48'></textarea></div>"
+				+ "<textarea id='reportmbText' style='width: 500px' rows='3' cols='48'></textarea></div>"
 
 		$('#dialogspot').append(mbhtml);
 
@@ -106,7 +106,6 @@
 							var targetaction = strArray[1];
 							var receiver = strArray[0];
 							var mbId = '${ loginuser.mbId }';
-							
 							if(receiver == 'admin'){
 								alert('관리자는 신고가 불가능합니다.')
 								return;
@@ -122,7 +121,8 @@
 								$('#targetmbId').attr('value', receiver);
 								//신고하기 버튼 클릭 시 신고이력 확인 절차	
 								if (mbId != receiver) {
-									$.ajax({
+									$
+											.ajax({
 												url : "/easyauction/ajax/memberRepoterCheck.action",
 												async : false,
 												type : "GET",

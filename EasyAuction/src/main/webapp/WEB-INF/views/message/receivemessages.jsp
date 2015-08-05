@@ -17,6 +17,7 @@ $(function(){
 		location.href="/easyauction/message/" + id + ".action?mbId=" + mbId + "&pageId=" + pageId;
 		event.preventDefault('a');//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
 	})
+	;
 })
 function deletemessage(msgNo){
 	var pageId = 'receivemessages';
@@ -25,7 +26,7 @@ function deletemessage(msgNo){
 }
 </script>
 </head>
-<body>
+<body style="width: 98%">
 <!-- 쪽지 해더 -->
 <div id='cssmenu'>
 <ul>

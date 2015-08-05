@@ -173,7 +173,6 @@ $(function(){
 						},
 						success : function(result){
 							if(result == 0){
-								alert(event + " : event 값");
 								alert("신고 가능 상태");
 								reportDialog.dialog("open");
 							}else{
