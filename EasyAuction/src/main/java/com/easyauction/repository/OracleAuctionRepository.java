@@ -112,4 +112,10 @@ public class OracleAuctionRepository implements AuctionRepository{
 		// TODO Auto-generated method stub
 		auctionMapper.updateAucStateByDate(aucNo);
 	}
+
+
+	@Override
+	public List<Auction> getAuctionSearchList(String aucSearchData) {
+		return auctionMapper.getAuctionSearchList(aucSearchData);
+	}
 }

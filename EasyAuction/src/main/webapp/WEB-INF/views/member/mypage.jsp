@@ -353,83 +353,85 @@ $(function(){
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" height="80">
 		<c:choose>
 		<c:when test="${ auctions ne null && fn:length(auctions) > 0 }">
-		<%-- <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) }"> --%>
 		<c:forEach var="auction" items="${ auctions }">
-		<tr class="myAuctionView" id="${ auction.aucNo }">
-			<!-- <td width="18" align="center"></td> -->
-			<td align="center" class="smfont" width="139">
-			<fmt:formatDate var="aucenddate" type="date" pattern="yyyy-MM-dd" value="${ auction.aucEndDate }" />
-			${ aucenddate }
-			</td>
-			<c:forEach var="image" items="${ auction.auctionImage }">
-			<td class="smfont" width="50" height="50" style="padding-left:5px;">
-				<%-- <a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'> --%>
-				<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="50" height="40"></a>
-			</td>
-			</c:forEach>
-			<td class="smfont" width="285" style="padding-left:5px;" align='left'>
-			${ auction.aucTitle }</td>
-
-			<td class="smfont" width="120">
-
-			<table width="110">
-			<tr>
-				<td style="padding-bottom:2px;">
-				<img src="/easyauction/resources/images/ico_price_01.png" title="최고입찰가" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right"><font color="#000"><b>${ auction.bidding.bidPrice } 원</b></font></td>
-			</tr>
-			<tr>
-				<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_02.png" title="입찰자" align="absmiddle"></td>
-				<td style="padding-bottom:2px;" align="right">${ auction.countBidders -1 } 건</td>
-			</tr>
-<!-- 		<tr>
-				<td><img src="/easyauction/resources/images/ico_price_03.gif" title="배송비" align="absmiddle"></td>
-				<td align="right">착불</td>
-			</tr> -->
-			</table>
-			</td>
-			<td align="center" class="smfont" width="62">
+		
+		<c:choose>
+		<c:when test="${ auction.aucBlindCheck eq true }">
+		<tr><td align="center">해당게시물은 블라인드되었습니다</td></tr>
+		</c:when>
+		<c:otherwise>
+			<tr class="myAuctionView" id="${ auction.aucNo }">
+				<!-- <td width="18" align="center"></td> -->
+				<td align="center" class="smfont" width="139">
+				<fmt:formatDate var="aucenddate" type="date" pattern="yyyy-MM-dd" value="${ auction.aucEndDate }" />
+				${ aucenddate }
+				</td>
+				<c:forEach var="image" items="${ auction.auctionImage }">
+				<td class="smfont" width="50" height="50" style="padding-left:5px;">
+					<%-- <a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'> --%>
+					<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="50" height="40"></a>
+				</td>
+				</c:forEach>
+				<td class="smfont" width="285" style="padding-left:5px;" align='left'>
+				${ auction.aucTitle }</td>
+	
+				<td class="smfont" width="120">
+	
+				<table width="110">
+				<tr>
+					<td style="padding-bottom:2px;">
+					<img src="/easyauction/resources/images/ico_price_01.png" title="최고입찰가" align="absmiddle"></td>
+					<td style="padding-bottom:2px;" align="right"><font color="#000"><b>${ auction.bidding.bidPrice } 원</b></font></td>
+				</tr>
+				<tr>
+					<td style="padding-bottom:2px;"><img src="/easyauction/resources/images/ico_price_02.png" title="입찰자" align="absmiddle"></td>
+					<td style="padding-bottom:2px;" align="right">${ auction.countBidders -1 } 건</td>
+				</tr>
+				</table>
+				</td>
+				<td align="center" class="smfont" width="62">
+					<c:choose>
+						<c:when test="${ auction.aucState eq 0 }">
+						<img src="/easyauction/resources/images/view_stats0.png" alt="경매전">
+						</c:when>
+						<c:when test="${ auction.aucState eq 1 }">
+						<img src="/easyauction/resources/images/view_stats1.png" alt="경매중">
+						</c:when>
+						<c:when test="${ auction.aucState eq 2 }">
+						<img src="/easyauction/resources/images/view_stats2.png" alt="경매 마감">
+						</c:when>
+						<c:when test="${ auction.aucState eq 3 }">
+						<img src="/easyauction/resources/images/view_stats3.png" alt="결재대기">
+						</c:when>
+						<c:when test="${ auction.aucState eq 4 }">
+						<img src="/easyauction/resources/images/view_stats4.png" alt="결제완료">
+						</c:when>
+						<c:when test="${ auction.aucState eq 5 }">
+						<img src="/easyauction/resources/images/view_stats5.png" alt="거래완료">
+						</c:when>
+						<c:otherwise>에러 상태</c:otherwise>
+					</c:choose>
+					</td>
+				<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
 				<c:choose>
-					<c:when test="${ auction.aucState eq 0 }">
-					<img src="/easyauction/resources/images/view_stats0.png" alt="경매전">
-					</c:when>
-					<c:when test="${ auction.aucState eq 1 }">
-					<img src="/easyauction/resources/images/view_stats1.png" alt="경매중">
-					</c:when>
-					<c:when test="${ auction.aucState eq 2 }">
-					<img src="/easyauction/resources/images/view_stats2.png" alt="경매 마감">
-					</c:when>
-					<c:when test="${ auction.aucState eq 3 }">
-					<img src="/easyauction/resources/images/view_stats3.png" alt="결재대기">
-					</c:when>
-					<c:when test="${ auction.aucState eq 4 }">
-					<img src="/easyauction/resources/images/view_stats4.png" alt="결제완료">
-					</c:when>
-					<c:when test="${ auction.aucState eq 5 }">
-					<img src="/easyauction/resources/images/view_stats5.png" alt="거래완료">
-					</c:when>
-					<c:otherwise>에러 상태</c:otherwise>
+				<c:when test="${ auction.aucState < 4 }">
+				거래중
+				</c:when>
+				<c:when test="${ auction.aucState eq 4 }">
+				<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
+				</c:when>
+				<c:when test="${ auction.aucState > 4 }">
+				거래완료
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
 				</c:choose>
 				</td>
-			<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
-			<!-- 나의입찰가 <br><font color=#FE7A04>1,100</font>원<div style="padding:2px;"></div> -->
-			<c:choose>
-			<c:when test="${ auction.aucState < 4 }">
-			거래중
-			</c:when>
-			<c:when test="${ auction.aucState eq 4 }">
-			<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
-			</c:when>
-			<c:when test="${ auction.aucState > 4 }">
-			거래완료
-			</c:when>
-			<c:otherwise>
+			</tr>
 			</c:otherwise>
 			</c:choose>
-			</td>
-		</tr>
+		
 		</c:forEach>
-		<%-- </c:if> --%>
 		</c:when>
 		<c:otherwise>
 		<tr>

@@ -28,6 +28,8 @@ public interface AuctionService {
 
 	void updateAucStateByDate(int aucNo);
 
+	List<Auction> getAuctionSearchList(String aucSearchData);
+
 	
 
 	

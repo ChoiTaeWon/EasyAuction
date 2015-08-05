@@ -194,6 +194,18 @@
 		where aucno = #{ aucNo }
 	</update>
 	
+	<select id="getAuctionSearchList" resultMap="auctionResult" parameterType="string">
+		select  aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate, auctype, aucwriter, aucadtext
+		from AUCTION 
+		<trim prefix="WHERE" prefixOverrides="OR">
+		OR auctitle Like '%'|| #{ aucSearchData } ||'%' 
+		OR aucwriter Like  '%'|| #{ aucSearchData } ||'%'
+		OR aucadtext Like '%'|| #{ aucSearchData } ||'%'
+		</trim>
+		order By
+		aucno DESC
+	</select>
 	
 	
 	<!-- /관리자 -->

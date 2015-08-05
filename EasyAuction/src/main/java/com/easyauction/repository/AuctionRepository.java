@@ -37,4 +37,6 @@ public interface AuctionRepository {
 
 	void updateAucStateByDate(int aucNo);
 
+	List<Auction> getAuctionSearchList(String aucSearchData);
+
 }
