@@ -1,5 +1,6 @@
 package com.easyauction.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.easyauction.dto.Auction;
@@ -22,6 +23,7 @@ public interface AuctionMapper {
 	List<Auction> getAucReportList();
 	void setBlindAuction(int aucNo);
 	void updateAucStateByDate(int aucNo);
+	void updateAucState(HashMap<String, Object> params);
 	
 	List<Auction> getAuctionSearchList(String aucSearchData);
 	
