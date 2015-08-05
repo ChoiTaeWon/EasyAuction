@@ -70,7 +70,22 @@
 		INSERT INTO BOARDCOMMENT(bcno, bccontent, bdno, bcwriter)
 			VALUES(SEQUENCEBORADCOMMENTNO.nextVal, #{ bcContent }, #{ bdNo }, #{ bcWriter })
 	</insert>
-	
+	<select id="getBoardList" resultMap="boardResult">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+		FROM Board
+		where bdblindcheck = 0 and bdtype != 1
+		ORDER BY 
+			bdno DESC	
+	</select>
+	<select id="getBoardReportList" resultMap="boardResult">
+		SELECT
+			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdblindcheck
+		FROM Board
+		where bdtype != 1 and bdreportingcount >= 1
+		ORDER BY 
+			bdno DESC	
+	</select>
 	<select id="getPhotoList" resultMap="boardResult">
 		SELECT
 			bdno, bdtype, bdcontent, bdwriter, bdtitle, bdreadcount, bddate, bdreportingcount, bdreportingcount

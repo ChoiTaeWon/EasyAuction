@@ -17,7 +17,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/memberlist.action" class="bbs_menu_name">회원 관리</b>
+		           <b><a style="text-decoration:none" href="/easyauction/admin/memberlist.action" class="bbs_menu_name">회원 관리</b>
 		         </a>
 		       </td>
 		      </tr>
@@ -25,7 +25,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/auctionlist.action" class="bbs_menu_name">경매관리</b>
+		           <b><a style="text-decoration:none" href="/easyauction/admin/auctionlist.action" class="bbs_menu_name">경매관리</b>
 		         </a>
 		       </td>
 		      </tr>
@@ -33,7 +33,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="#" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/auctionlist.action" class="bbs_menu_name">게시판 관리</b>
+		           <b><a style="text-decoration:none" href="/easyauction/admin/boardlist.action" class="bbs_menu_name">게시판 관리</b>
 		         </a>
 		       </td>
 		      </tr>
@@ -41,7 +41,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="/easyauction/board/photolist.action" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/repmember.action" class="bbs_menu_name">신고 관리</b>
+		           <b><a style="text-decoration:none" href="/easyauction/admin/repmember.action" class="bbs_menu_name">신고 관리</b>
 		         </a>
 		       </td>
 		      </tr>		      

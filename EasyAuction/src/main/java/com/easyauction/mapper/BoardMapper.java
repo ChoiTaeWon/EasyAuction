@@ -72,5 +72,7 @@ public interface BoardMapper {
 	List<Board> gongiTypeOne();
 
 	List<Board> getBoardSearchList(String aucSearchData);
-
+	
+	List<Board> getBoardList();
+	List<Board> getBoardReportList();
 }

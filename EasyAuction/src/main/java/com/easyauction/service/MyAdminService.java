@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.easyauction.dto.Auction;
 import com.easyauction.dto.AuctionReporting;
+import com.easyauction.dto.Board;
 import com.easyauction.dto.Member;
 import com.easyauction.dto.MemberReporting;
 import com.easyauction.repository.AdminRepository;
 import com.easyauction.repository.AuctionRepository;
+import com.easyauction.repository.BoardRepository;
 import com.easyauction.repository.ReportRepository;
 
 @Service("adminService")
@@ -24,7 +26,12 @@ public class MyAdminService implements AdminService{
 	public void setAdminRepository(AdminRepository adminRepository) {
 		this.adminRepository = adminRepository;
 	}
-	
+	private BoardRepository boardRepository;
+	@Autowired
+	@Qualifier("boardRepository")
+	public void setBoardRepository(BoardRepository boardRepository) {
+		this.boardRepository = boardRepository;
+	}
 	private AuctionRepository auctionRepository;
 	@Autowired
 	@Qualifier("auctionRepository")
@@ -75,5 +82,12 @@ public class MyAdminService implements AdminService{
 	}
 	public void updateAucState(HashMap<String, Object> params){
 		auctionRepository.updateAucState(params);
+	}
+	
+	public List<Board> getBoardList(){
+		return boardRepository.getBoardList();
+	}
+	public List<Board> getBoardReportList(){
+		return boardRepository.getBoardReportList();
 	}
 }
