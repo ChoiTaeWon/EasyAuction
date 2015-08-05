@@ -9,21 +9,43 @@
 <meta charset="utf-8">
 <title>포토 후기 게시판</title>
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
+	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css" />
 	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="/easyauction/resources/js/jquery-ui.js"></script>
 </head>
 <script type="text/javascript">
+$(function() {
+	$('#searchboard').click(function() {
+		var search = document.getElementById('search').value;
+		var searchdata = document.getElementById('searchdata').value;
+		var re = /^[0-9]+$/;
+		if (search == 'bdtitle' && !re.test(searchdata)) {
+			alert("제목을 입력하세요");
+			searchdata.focus();
+			return;
+
+		} else if (searchdata.length == 0) {
+			alert("내용을 입력하세요");
+			searchdata.focus();
+			return;
+		}
+		//document.getElementById('listsearch').innerHTML = html;
+		//$('#listsearch').append(html);
+		document.getElementById('listsearch').submit();
+		event.preventDefault();//원래 요소의 이벤트에 대한 기본 동작 수행 막는 코드
+	})
+})
 	$(function() {
 		///////////////////////////////////회원신고및 쪽지보내기기능///////////////////////////////////
-		var mbhtml = "<div id='reportmbContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"
+		var mbhtml = 
+			"<div id='reportmbContent' title='회원 신고하기' style='display: none;width: 300px;height: 250px'>"
 				+ "<label for='reportermbId'>신고자</label><br />"
-				+ "<input id='reportermbId' type='text' value='' readonly='readonly'/><br />"
+				+ "<input style='width: 500px' id='reportermbId' type='text' value='' readonly='readonly'/><br />"
 				+ "<label for='targetmbId'>신고할 회원</label><br />"
-				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
+				+ "<input style='width: 500px' id='targetmbId' type='text' value='' readonly='readonly' /><br />"
 				+ "<label for='reportmbText'>신고 사유</label></br>"
-				+ "<textarea id='reportmbText' rows='3' cols='48'></textarea></div>"
+				+ "<textarea id='reportmbText' style='width: 500px' rows='3' cols='48'></textarea></div>"
 
 		$('#dialogspot').append(mbhtml);
 
@@ -85,6 +107,10 @@
 							var targetaction = strArray[1];
 							var receiver = strArray[0];
 							var mbId = '${ loginuser.mbId }';
+							if(receiver == 'admin'){
+								alert('관리자는 신고가 불가능합니다.')
+								return;
+							}
 							if (targetaction == 'sendmessage') {
 								window.open(
 										"/easyauction/message/sendmessage.action?mbId="
@@ -94,7 +120,6 @@
 							} else {
 								$('#reportermbId').attr('value', mbId);
 								$('#targetmbId').attr('value', receiver);
-
 								//신고하기 버튼 클릭 시 신고이력 확인 절차	
 								if (mbId != receiver) {
 									$
@@ -200,7 +225,7 @@
 				 	  <td width="140" align="center"><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }"><img width="140" height="110" src="/easyauction/resources/imagefile/${ image.bdImgName }"></a></td>
 				 	</c:forEach>
 				 	  <td width="1"></td>
-				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }">${ photo.bdTitle }</a></b>[${ photo.bdReportingCount }]</td>
+				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }&pageno=${pageno}">${ photo.bdTitle }</a></b>[${ photo.commentCount }]</td>
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">
 				 	  <!-- 쪽지보내기및회원신고기능 -->
@@ -237,41 +262,41 @@
 					<td align="right"><a href="/easyauction/board/photoregister.action"><img src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 				</table>
-				 <!-- <table width="100%">
+				<table width="100%">
 					<tr>
-						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
+						<td height="25" align="center" valign="top" style="padding-top:3px;"></td>
 					</tr>
-				 </table> -->
-				<div style="text-align:center">
-				<c:choose>
-				<c:when test="${ pager ne null }">		
-				${pager}
-				</c:when>
-				<c:otherwise>
-				</c:otherwise>
-				</c:choose>	
-				</div>
+				 </table>
+				<div style="text-align: center">
+									<c:choose>
+										<c:when test="${ pager ne null }">		
+										${pager}
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
+								</div> 
 				 
-				<!-- 검색폼 // 시작 -->
-				<table width="100%" align="center">
-				<form  method='post' action='photoregister.action'>
-				<input type=hidden name='num' value=''>
-				<input type=hidden name='action' value='search'>
-				<input type=hidden name='tb' value='board_review'>
-				<!-- <tr>
-					<td height='30' border='0' align='center' valign='middle'>
-						<input type='radio' name='search' value='bbs_title' checked> 제목
-						<input type='radio' name='search' value='bbs_name'> 이름
-						<input type='radio' name='search' value='bbs_review'> 내용
-						<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
-						<input type='image' src='/easyauction/resources/images/bbs_search.gif' border="0" value='검색' align='absmiddle'>
-				
-					</td>
-				</tr> -->
-				</form>
-				</table>
-				<!-- 검색폼 // 끝 -->
-			</div><!-- list 끝 -->
+			<!-- 검색폼 // 시작 -->
+								<form id="listsearch" action="photolist.action" method="get">
+									<table align="center">
+										<td height='30' border='0' align='center' valign='middle'>
+											<!-- <input type='radio' name='search' value='bdno' checked> 번호 -->
+											<input type='radio' id="search" name='search' value='bdTitle'
+											checked> 제목 <input type='radio' id="search"
+											name='search' value='bdWriter'> 작성자 <input
+											style='width: 135px; height: 18px' type="text"
+											name="searchdata" id="searchdata" /> <!-- <input type="button" value='검색' style='height: 25px;margin-right:600px; ' onclick="listsearch();" /> -->
+										<td align="left"><img
+											src="/easyauction/resources/images/search1.png"
+											id="searchboard"></a></td>
+									</table>
+								</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- 검색폼 끝 -->			</div><!-- list 끝 -->
 		</div>
 	</div> <!-- A 끝 -->	
 </body>

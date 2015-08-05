@@ -202,6 +202,11 @@ var newtime = null;
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
+										<img src="/easyauction/resources/images/tracker.PNG"  border="0" alt=""></a>
+										</div>
+									</div>
+									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
+										<div class="part zindex10" rel=0><a href="" target="_parent">
 										<img src="/easyauction/resources/images/slide1.png"  border="0" alt=""></a>
 										</div>
 									</div>
@@ -218,6 +223,11 @@ var newtime = null;
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
 										<img src="/easyauction/resources/images/jehyu.jpg"  border="0" alt=""></a>
+										</div>
+									</div>
+									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
+										<div class="part zindex10" rel=0><a href="" target="_parent">
+										<img src="/easyauction/resources/images/tracker.PNG"  border="0" alt=""></a>
 										</div>
 									</div>
 									
@@ -242,8 +252,8 @@ var newtime = null;
 						
 						
 						
-									<c:forEach var="auction" items="${ auctions }" end="8">
-									 <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState eq 1) }">
+									<c:forEach var="auction" items="${ auctions }" end="7">
+									 
 									 
 										<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
 									
@@ -278,9 +288,7 @@ var newtime = null;
 																		</a>
 																	</div>
 																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
-																	  <c:forEach var="image" items="${ auction.auctionImage }">
-																		<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="145" height="145">
-																	  </c:forEach>
+																		<img src="/easyauction/resources/imagefile/${ auction.auctionImage[0].aucImgName }" width="145" height="145">
 																	</a>
 																	
 																	<div align="center" style="width: 100%;">
@@ -338,7 +346,7 @@ var newtime = null;
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
-									</c:if>
+									
 								</c:forEach>
 								
 								

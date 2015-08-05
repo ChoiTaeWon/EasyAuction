@@ -22,7 +22,7 @@ $(function(){
         + "<label for='targetmbId'>신고할 회원</label>"
         + "<input id='targetmbId' type='text' value='' />"
         + "<label for='reportText'>신고 사유</label></br>"
-        + "<textarea id='reportText' rows='3' cols='48'></textarea></div>"
+        + "<textarea id='reportText' style='width: 260' rows='3' cols='48'></textarea></div>"
     var payment =
 		"<div id='paymentContent' title='결제하기' style='display: none;width: 300px;height: 250px'>"     
         + "<label for='' id='auctionno' style='width: 100%;text-align: center;'>상품명</label></br>"
@@ -83,7 +83,6 @@ $(function(){
 						
 					},
 					success : function(result) {
-						alert(result + ' : result 값' );
 						
 						if (result == 0) {	
 							alert("회원이 신고 되었습니다.");
@@ -174,7 +173,6 @@ $(function(){
 						},
 						success : function(result){
 							if(result == 0){
-								alert(event + " : event 값");
 								alert("신고 가능 상태");
 								reportDialog.dialog("open");
 							}else{
@@ -366,12 +364,12 @@ $(function(){
 				<fmt:formatDate var="aucenddate" type="date" pattern="yyyy-MM-dd" value="${ auction.aucEndDate }" />
 				${ aucenddate }
 				</td>
-				<c:forEach var="image" items="${ auction.auctionImage }">
+				<%-- <c:forEach var="image" items="${ auction.auctionImage }"> --%>
 				<td class="smfont" width="50" height="50" style="padding-left:5px;">
 					<%-- <a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'> --%>
-					<img src="/easyauction/resources/imagefile/${ image.aucImgName }" width="50" height="40"></a>
+					<img src="/easyauction/resources/imagefile/${ auction.auctionImage[0].aucImgName }" width="50" height="40"></a>
 				</td>
-				</c:forEach>
+				<%-- </c:forEach> --%>
 				<td class="smfont" width="285" style="padding-left:5px;" align='left'>
 				${ auction.aucTitle }</td>
 	
@@ -502,17 +500,25 @@ $(function(){
 											<!--  쪽지보내기및회원신고기능 --> 
 						</td>
 						<c:choose>
-						<c:when test="${ auction.aucState eq 3 }">
+						<c:when test="${ auction.aucState eq 2 }">
 						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ auction.aucFinalPrice }&&${ auction.aucTitle }&&${ auction.aucItemName }&&${ auction.aucNo }"></td>
 						</c:when>
-						<c:when test="${ auction.aucState >= 4 }">
+						<c:when test="${ auction.aucState >= 3 }">
 						<td align="center" width="75">결제완료</td>
 						</c:when>
 						<c:otherwise>
 							<td>에러</td>
 						</c:otherwise>
 						</c:choose>
-						<td align="center" width="75"><img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }"></td>
+						<td align="center" width="75">
+						<c:choose>
+						<c:when test="${ auction.aucState eq 5 }">
+						<img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }">
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+						</c:choose>
+						</td>
 					</tr>
 			</c:forEach>
 		</c:when>
