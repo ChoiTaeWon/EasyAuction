@@ -48,14 +48,14 @@
 				<!-- 오른쪽 위 자유게시판 -->
 				<td align="left">&nbsp;</td>
 								  
-				<td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
+				<!-- <td align="right"><a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/housefreeboard.png'></a>  
 								  <a href='/easyauction/board/freeboard.action'><img src='/easyauction/resources/images/freeboardsmall.png'></a>
-				</td>
+				</td> -->
 			</tr>
 				
 				<form method='post' action='updatefreeboard.action' enctype="multipart/form-data" id="sujung" name='board'>
 				<input type=hidden name='bdNo' value='${ view.bdNo }'>
-				<input type=hidden name='pageNo' value='${ pageno }'>
+				<input type=hidden name='pageno' value='${ pageno }'>
 				 
 				<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 				<tr>
