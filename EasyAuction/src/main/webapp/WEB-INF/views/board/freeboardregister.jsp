@@ -83,7 +83,7 @@
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr height="28">
 							<td bgcolor="#F9F9F9" style="padding-left:10px;"><font color=#000000><font color=#000000>제목</td>
-							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input name='title' type='text' style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='' size="70" maxlength="50"></td>
+							<td bgcolor="#FFFFFF" style="padding-left:10px;"><input name='title' type='text' style='font-size:12px; width:90%; height:18px; background-color:white; border:1px; border-style:solid;border-color:#DDDDDD;' value='${view.bdTitle}' size="70" maxlength="50"></td>
 						</tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>
 						<tr><td height="1px" bgcolor="#DEDEDE" colspan="2"></td></tr>

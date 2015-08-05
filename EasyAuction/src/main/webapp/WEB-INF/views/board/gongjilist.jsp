@@ -134,17 +134,17 @@
 			<!-- 리스트 아래 글쓰기와 목록 -->
 			<table width="100%">
 				<tr>
-					<%-- <c:choose>
-						<c:when test="${ loginuser.mbId eq comment.bcWriter }"> --%>
+					<c:choose>
+						<c:when test="${ loginuser.mbId eq view.bdWriter }">
 						<td align="right">
 							<a href="/easyauction/board/gongjiregister.action"> 
 							<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
 							<a href='/easyauction/board/gongji.action'> 
 							<img src="/easyauction/resources/images/list1.png"></a>
 						</td>
-						<%-- </c:when>
+						</c:when>
 						<c:otherwise></c:otherwise>
-						</c:choose> --%>
+						</c:choose>
 				</tr>
 			</table> 
 			
