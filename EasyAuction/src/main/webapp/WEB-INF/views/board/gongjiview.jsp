@@ -138,7 +138,7 @@
 						<!-- 내용 옆 수정 삭제 -->
 						<c:choose>
 						<c:when test="${ loginuser.mbId eq view.bdWriter }">
-						<td align="right"><a href='/easyauction/board/updategongjiboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a>
+						<td align="right"><%-- <a href='/easyauction/board/updategongjiboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/sujung.png'></a> --%>
 										  <a href='/easyauction/board/deletegongjiboard.action?bdno=${ view.bdNo }&pageno=${ pageno }'><img src='/easyauction/resources/images/delete.png'></a>
 						</td>
 						</c:when>
