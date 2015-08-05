@@ -225,7 +225,7 @@ $(function() {
 				 	  <td width="140" align="center"><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }"><img width="140" height="110" src="/easyauction/resources/imagefile/${ image.bdImgName }"></a></td>
 				 	</c:forEach>
 				 	  <td width="1"></td>
-				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }">${ photo.bdTitle }</a></b>[${ photo.commentCount }]</td>
+				 	  <td align="left" style="padding-left:10px;"><b><a href="/easyauction/board/photoview.action?bdno=${ photo.bdNo }&pageno=${pageno}">${ photo.bdTitle }</a></b>[${ photo.commentCount }]</td>
 				 	  <td width="1"></td>
 				 	  <td width="90" align="center">
 				 	  <!-- 쪽지보내기및회원신고기능 -->

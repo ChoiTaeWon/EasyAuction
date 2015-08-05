@@ -313,7 +313,7 @@
 	</delete>
 	
 	<update id="deletePhotoBoard" parameterType="int" >
-	UPDATE BOARD SET BDREPORTINGCOUNT = '1' WHERE bdno = #{ bdno }
+	UPDATE BOARD SET BDREPORTINGCOUNT = BDREPORTINGCOUNT + 1 WHERE bdno = #{ bdno }
 	</update>
 	
 	<update id="updateFreeBoardReadCount" parameterType="int" >
