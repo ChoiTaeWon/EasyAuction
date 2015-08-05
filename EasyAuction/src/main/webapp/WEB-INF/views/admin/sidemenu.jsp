@@ -3,7 +3,7 @@
 
 <table style="border-collapse: collapse;"><!-- 사이드메뉴 헤더 -->
 	<tr>
-		<td><a href="#" onFocus="this.blur();"><img width="150" src="/easyauction/resources/images/tit_administrator.gif" title="커뮤니티"></a></td>
+		<td><a href="#" onFocus="this.blur();"><img width="150" src="/easyauction/resources/images/tit_admin.gif" title="커뮤니티"></a></td>
 	</tr>
 </table><!-- 사이드메뉴헤더끝 -->
 <table style="border:1px solid #DEDEDE; border-collapse: collapse; background-color:#F8F8F8;" width="150"><!-- 사이드메뉴 몸통 -->

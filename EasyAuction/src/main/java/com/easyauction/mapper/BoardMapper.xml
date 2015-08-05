@@ -231,6 +231,14 @@
  	SET 
  		bccontent = #{ bcContent } 
   	 WHERE bcno = #{ bcNo }
+ 	</update>
+ 	
+ 	<update id="updatePhotoBoardComment" parameterType="hashMap">
+ 	UPDATE 
+ 		boardcomment
+ 	SET 
+ 		bccontent = #{ bcContent } 
+  	 WHERE bcno = #{ bcNo }
  	</update> 
  	
    <delete id="deleteFreeBoardComment" parameterType="int">
@@ -242,6 +250,14 @@
    </delete>
    
    <delete id="deleteGongjiBoardComment" parameterType="int">
+   DELETE 
+   FROM
+   		boardcomment 
+   WHERE 
+   		bcno = #{ bcNo }
+   </delete>
+   
+   <delete id="deletePhotoBoardComment" parameterType="int">
    DELETE 
    FROM
    		boardcomment 

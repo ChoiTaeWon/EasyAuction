@@ -108,6 +108,11 @@ public class MyBoardService implements BoardService{
 	}
 	
 	@Override
+	public void updatePhotoBoardComment(HashMap<String, Object> params) {
+		boardRepository.updatePhotoBoardComment(params);
+	}
+	
+	@Override
 	public void deleteFreeBoardComment(int bcNo){
 		boardRepository.deleteFreeBoardComment(bcNo);
 	}
@@ -115,6 +120,11 @@ public class MyBoardService implements BoardService{
 	@Override
 	public void deleteGongjiBoardComment(int bcNo) {
 		boardRepository.deleteGongjiBoardComment(bcNo);
+	}
+	
+	@Override
+	public void deletePhotoBoardComment(int bcNo) {
+		boardRepository.deletePhotoBoardComment(bcNo);
 	}
 
 	@Override
@@ -183,6 +193,9 @@ public class MyBoardService implements BoardService{
 	public List<Board> getBoardSearchList(String aucSearchData) {
 		return boardRepository.getBoardSearchList(aucSearchData);
 	}
+
+	
+	
 
 	
 

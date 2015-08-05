@@ -237,11 +237,11 @@
 					<td align="right"><a href="/easyauction/board/photoregister.action"><img src="/easyauction/resources/images/write.png"></a></td>
 				</tr>
 				</table>
-				 <!-- <table width="100%">
+				 <table width="100%">
 					<tr>
-						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[페이지]</b></td>
+						<td height="25" align="center" valign="top" style="padding-top:3px;"><b>[1]</b></td>
 					</tr>
-				 </table> -->
+				 </table>
 				<div style="text-align:center">
 				<c:choose>
 				<c:when test="${ pager ne null }">		
@@ -258,16 +258,16 @@
 				<input type=hidden name='num' value=''>
 				<input type=hidden name='action' value='search'>
 				<input type=hidden name='tb' value='board_review'>
-				<!-- <tr>
+				<tr>
 					<td height='30' border='0' align='center' valign='middle'>
 						<input type='radio' name='search' value='bbs_title' checked> 제목
-						<input type='radio' name='search' value='bbs_name'> 이름
-						<input type='radio' name='search' value='bbs_review'> 내용
+						<!-- <input type='radio' name='search' value='bbs_name'> 이름 -->
+						<input type='radio' name='search' value='bbs_review'> 작성자
 						<input type='text' name='keyword' style="border:1px solid #DEDEDE; height:17px;">
 						<input type='image' src='/easyauction/resources/images/bbs_search.gif' border="0" value='검색' align='absmiddle'>
 				
 					</td>
-				</tr> -->
+				</tr>
 				</form>
 				</table>
 				<!-- 검색폼 // 끝 -->

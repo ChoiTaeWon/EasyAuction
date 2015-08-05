@@ -129,7 +129,6 @@ public class BoardController {
 	
 	@RequestMapping(value="updatefreeboard.action", method= RequestMethod.POST)
 	public String updatefreeboard2(int pageNo, Board board) {
-		System.out.println("aslkdlasdj");
 		boardService.updateFreeBoard(board);
 		
 		return "redirect:/board/freeboardview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
@@ -149,7 +148,7 @@ public class BoardController {
 	public String deletefreeboard(int bdno, int pageno) {
 		
 		boardService.deleteFreeBoard(bdno);
-		return "redirect:/board/freeboard.action?bdno="+bdno+"&pageno="+pageno;
+		return "redirect:/board/freeboardview.action?bdno="+bdno+"&pageno="+pageno;
 	}
 	
 	@RequestMapping(value="deletefreeboardcomment.action", method= RequestMethod.GET)
@@ -214,18 +213,6 @@ public class BoardController {
 		return "redirect:/board/freeboard.action";
 	}
 	
-	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
-		Board view = boardService.getPhotoViewByBoardNo(bdNo);
-		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
-		view.setComments(comments);
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("board/photoview");
-		mav.addObject("view", view);
-		
-		return mav;
-	}
 	/////////////////공지리스트 조회수 카운터 되게 바꾸기/
 	@RequestMapping(value = "gongji.action", method = RequestMethod.GET)
 	public ModelAndView gongjiList(Integer pageno, @RequestParam(value="search", required=false)String search, 
@@ -307,7 +294,6 @@ public class BoardController {
 	//////////////////이거안됨//로그인해서 댓글달았는데 아디 입력 필터가 제대로 안됨/
 	@RequestMapping(value="updategongjiboard.action", method= RequestMethod.POST)
 	public String updategongjiboard2(int pageNo, Board board) {
-		System.out.println("aslkdlasdj");
 		boardService.updateGongjiBoard(board);
 		
 		return "redirect:/board/gongjiview.action?bdno="+ board.getBdNo()+"&pageno="+ pageNo;
@@ -394,11 +380,37 @@ public class BoardController {
 	public ModelAndView photoList() {
 		ModelAndView mav = new ModelAndView();
 		List<Board> photos = boardService.getPhotoList();
-		
 		mav.setViewName("board/photolist");
 		mav.addObject("photos",photos);
 		return mav;
+	}
+	
+	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
+	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo) {
+		Board view = boardService.getPhotoViewByBoardNo(bdNo);
+		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
+		view.setComments(comments);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/photoview");
+		mav.addObject("view", view);
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="updatephotoboardcomment.action", method= RequestMethod.POST)
+	@ResponseBody
+	public String updatePhotoBoardComment(int bcNo, String bcContent) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bcNo", bcNo);
+		params.put("bcContent", bcContent);
+		boardService.updatePhotoBoardComment(params);
+		return "success";
+	}
+	
+	@RequestMapping(value="deletephotoboardcomment.action", method= RequestMethod.GET)
+	public String deletePhotoBoardComment(int bdno, int bcno) {
+		boardService.deletePhotoBoardComment(bcno);
+		return "redirect:/board/photoview.action?bdno="+bdno;
 	}
 	
 	@RequestMapping(value="deletephotoboard.action", method= RequestMethod.GET)
