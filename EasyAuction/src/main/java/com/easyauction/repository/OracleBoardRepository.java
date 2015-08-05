@@ -109,12 +109,16 @@ public class OracleBoardRepository implements BoardRepository{
 	@Override
 	public void updateFreeBoardComment(HashMap<String, Object> params) {
 		boardMapper.updateFreeBoardComment(params);
-		
 	}
 	
 	@Override
 	public void updateGongjiBoardComment(HashMap<String, Object> params) {
 		boardMapper.updateGongjiBoardComment(params);
+	}
+	
+	@Override
+	public void updatePhotoBoardComment(HashMap<String, Object> params) {
+		boardMapper.updatePhotoBoardComment(params);
 	}
 	
 	@Override
@@ -125,6 +129,11 @@ public class OracleBoardRepository implements BoardRepository{
 	@Override
 	public void deleteGongjiBoardComment(int bcNo) {
 		boardMapper.deleteGongjiBoardComment(bcNo);
+	}
+	
+	@Override
+	public void deletePhotoBoardComment(int bcNo) {
+		boardMapper.deletePhotoBoardComment(bcNo);
 	}
 
 	@Override
@@ -207,6 +216,8 @@ public class OracleBoardRepository implements BoardRepository{
 	public List<Board> getBoardSearchList(String aucSearchData) {
 		return boardMapper.getBoardSearchList(aucSearchData);
 	}
+
+	
 
 	
 

@@ -229,7 +229,7 @@
 					</tr>
 				</table>
 				</c:forEach>
-				<form action='photoboardcomment.action' method='post'>
+				<form action='comment.action' method='post'>
 					<input type="hidden" name="bdno" value="${ view.bdNo }" /> 
 					<input type="hidden" name="writer" value="${ view.bdWriter }" />
 					<input type="hidden" name="pageno" value="${ pageno }" />
