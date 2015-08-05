@@ -668,7 +668,7 @@ $(function(){
 				+ "<label for='targetmbId'>신고할 회원</label><br />"
 				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
 				+ "<label for='reportmbText'>신고 사유</label></br>"
-				+ "<textarea id='reportmbText' rows='3' cols='48'></textarea></div>"
+				+ "<textarea id='reportmbText' style='width: 260' rows='3' cols='48'></textarea></div>"
 
 		$('#dialogspot').append(mbhtml);
 

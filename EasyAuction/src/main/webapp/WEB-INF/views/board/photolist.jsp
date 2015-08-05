@@ -23,7 +23,7 @@
 				+ "<label for='targetmbId'>신고할 회원</label><br />"
 				+ "<input id='targetmbId' type='text' value='' readonly='readonly' /><br />"
 				+ "<label for='reportmbText'>신고 사유</label></br>"
-				+ "<textarea id='reportmbText' rows='3' cols='48'></textarea></div>"
+				+ "<textarea id='reportmbText' style='width: 260' rows='3' cols='48'></textarea></div>"
 
 		$('#dialogspot').append(mbhtml);
 
@@ -85,6 +85,10 @@
 							var targetaction = strArray[1];
 							var receiver = strArray[0];
 							var mbId = '${ loginuser.mbId }';
+							if(receiver == 'admin'){
+								alert('관리자는 신고가 불가능합니다.')
+								return;
+							}
 							if (targetaction == 'sendmessage') {
 								window.open(
 										"/easyauction/message/sendmessage.action?mbId="
@@ -94,7 +98,6 @@
 							} else {
 								$('#reportermbId').attr('value', mbId);
 								$('#targetmbId').attr('value', receiver);
-
 								//신고하기 버튼 클릭 시 신고이력 확인 절차	
 								if (mbId != receiver) {
 									$

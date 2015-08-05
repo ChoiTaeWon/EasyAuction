@@ -137,8 +137,8 @@
 				<td align="right">
 				<c:choose>
 				<c:when test="${ loginuser ne null && loginuser.mbGrant ne false }">
-				 	<a href="/easyauction/board/gongjiregiste.action"> 
-				 	<img src="/easyauction/resources/images/write.png"></a>&nbsp;
+				 		<a href="/easyauction/board/gongjiregister.action"> 
+							<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -149,21 +149,7 @@
 				</td>
 			</tr>
 			</table>
-				<tr>
-					<c:choose>
-						<c:when test="${ loginuser.mbId eq view.bdWriter }">
-						<td align="right">
-							<a href="/easyauction/board/gongjiregister.action"> 
-							<img src="/easyauction/resources/images/write.png"></a>&nbsp; 
-							<a href='/easyauction/board/gongji.action'> 
-							<img src="/easyauction/resources/images/list1.png"></a>
-						</td>
-						</c:when>
-						<c:otherwise></c:otherwise>
-						</c:choose>
-				</tr>
-			</table> 
-			
+
 			<!-- 검색폼 위의 내용 끝 -->
 			
 			<!-- 페이지 번호 -->

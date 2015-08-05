@@ -235,7 +235,7 @@
 				</c:forEach>
 				<form action='gongjiboardcomment.action' method='post'>
 					<input type="hidden" name="bdno" value="${ view.bdNo }" /> 
-					<input type="hidden" name="writer" value="${ view.bdWriter }" />
+					<input type="hidden" name="writer" value="${ loginuser.mbId }" />
 					<input type="hidden" name="pageno" value="${ pageno }" />
 					<%-- <input type="hidden" name="pageno" value="${ pageno }" /> --%>
 					<table style="border-bottom: groove 1px;" width='100%' cellspacing='0' cellpadding='0'>
