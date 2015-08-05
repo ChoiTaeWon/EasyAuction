@@ -1,6 +1,7 @@
 package com.easyauction.repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,6 +51,14 @@ public class OracleReportRepository implements ReportRepository{
 		params.put("receiver", receiver);
 		
 		return reportMapper.getResultMemberReportCheck(params);
+	}
+	@Override
+	public List<MemberReporting> getMrpList(){
+		return reportMapper.getMrpList();
+	}
+	@Override
+	public List<AuctionReporting> getAucpList(){
+		return reportMapper.getAucpList();
 	}
 	
 	

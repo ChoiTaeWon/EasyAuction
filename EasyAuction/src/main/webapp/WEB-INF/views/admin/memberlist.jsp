@@ -100,7 +100,7 @@
                     		return '<font color="black">'+cellValue+'회</font>';
                     	}
                     }, width: 100, align: 'right'},
-                    { name: 'mbId', width: 80, formatter: blackout }
+                    { name: 'mbId', width: 50, formatter: blackout }
                 ],
                 loadError : function(xhr, status, error) {
                 	console.log(error);

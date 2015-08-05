@@ -63,6 +63,10 @@
 		/* $(document).keyup(function(event) {
 			alert(event.keyCode + "/" + event.ctrlKey)
 		}); */
+		$('#totalsearch').click(function(){
+			$(location).attr('href','/easyauction/auction/searchauction.action?aucSearchData=' + $('#aucSearchData').val());		
+			
+		})
 		
 		$("#message").click(function(event) {
 			
@@ -165,8 +169,8 @@
 							
 							</td>
 							
-							<td style="width: 28%;">
-								<form name='frm_search' method='get' action='' style="margin:0;" onSubmit="return go_search()">
+							<td style="width: 30%;">
+								<!-- <form name='frm_search' method='get' action='' style="margin:0;" onSubmit="return go_search()"> -->
 								<input type='hidden' name='action2' value='search'>
 								<input type='hidden' name='tb' value=''>
 								
@@ -179,13 +183,9 @@
 													</div>
 											</div>
 									
-											<select name='search_type' id="search_type">
-											<option value='title'>물품명</option>
-											<option value='number'>경매번호</option>
-											<option value='id'>아이디</option>
-											</select>
-											<input type='text' id="search_word" name="search_word" value="" class='search'  onkeyup="startMethod(event.keyCode);" onkeydown="moveLayer(event.keyCode);" onmouseup="startMethod();" AUTOCOMPLETE="off">
-											<input name="image" type="image" src='/easyauction/resources/images/btn_search_go.gif' title='검색하기' border="0" align="absmiddle">
+											<label class="smfont10">통합검색</label>
+											<input type='text' id="aucSearchData" name="aucSearchData" ''/>
+											<input id="totalsearch" type="image" src='/easyauction/resources/images/btn_search_go.gif' title='검색하기' border="0" align="absmiddle">
 										</td>
 									</tr>
 									</table>

@@ -3,7 +3,7 @@
 
 <table style="border-collapse: collapse;"><!-- 사이드메뉴 헤더 -->
 	<tr>
-		<td><a href="#" onFocus="this.blur();"><img width="150" src="/easyauction/resources/images/tit_community.gif" title="커뮤니티"></a></td>
+		<td><a href="#" onFocus="this.blur();"><img width="150" src="/easyauction/resources/images/tit_administrator.gif" title="커뮤니티"></a></td>
 	</tr>
 </table><!-- 사이드메뉴헤더끝 -->
 <table style="border:1px solid #DEDEDE; border-collapse: collapse; background-color:#F8F8F8;" width="150"><!-- 사이드메뉴 몸통 -->
@@ -41,7 +41,7 @@
 		       <td style="padding-top: 10px">
 		        <img src="/easyauction/resources/images/ico_dot_02.gif" style="margin:0 10px 0 20px;">
 		         <a href="/easyauction/board/photolist.action" onFocus="this.blur();">
-		           <b><a href="/easyauction/admin/#" class="bbs_menu_name">신고 관리</b>
+		           <b><a href="/easyauction/admin/repmember.action" class="bbs_menu_name">신고 관리</b>
 		         </a>
 		       </td>
 		      </tr>		      

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <!DOCTYPE html>
 
@@ -63,7 +65,57 @@
 		
 	</script>
 	
+<script type="text/javascript">
+var ddaylist = [];
+var newtime = null;
 
+ 	function getTime() { 
+ 		if(ddaylist == null || ddaylist.length ==0){
+ 			return;
+ 		}
+ 		
+		var now = new Date(); 
+	
+		$.each(ddaylist, function(index, item){
+			var id = item.id;
+			var dday = item.dday;
+			days = (dday - now) / 1000 / 60 / 60 / 24; 
+			dRound = Math.floor(days); 
+			hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound); 
+			hRound = Math.floor(hours); 
+			minutes = (dday - now) / 1000 /60 - (24 * 60 * dRound) - (60 * hRound); 
+			mRound = Math.floor(minutes); 
+			seconds = (dday - now) / 1000 - (24 * 60 * 60 * dRound) - (60 * 60 * hRound) - (60 * mRound); 
+			sRound = Math.round(seconds);
+		
+	 					
+			if(hRound <10){
+				$("#counter1"+id).html("0" + hRound);
+			}else{
+				$("#counter1"+id).html(hRound);
+			}
+			if(mRound <10){
+				$("#counter2"+id).html("0" + mRound);
+			}else{
+				$("#counter2"+id).html(mRound);
+			}
+			if(sRound <10){
+				$("#counter3"+id).html("0" + sRound);
+			}else{
+				$("#counter3"+id).html(sRound);
+			} 
+		});
+		
+		
+		newtime = window.setTimeout("getTime();", 1000); 
+	}													
+	
+ 	$(function(){
+ 		newtime = window.setTimeout("getTime();", 1000); 
+ 		
+ 	});
+	
+</script>
 
 <body>
 
@@ -78,7 +130,7 @@
 		
 		<div id="" style="width: 960px"> <!-- AAAAAA -->
 		
-			<div style="width:250px;float: left;">
+			<div style="width:250px;float: left;border: 1px solid" >
 				<table style="height: 250px; width: 250px;padding: 0 0 0 0; margin: 0 0 0 0;">
 					<tr valign="top">
 						<td style="background-color:#F8F8F8; border:1px solid #DEDEDE;" width="278" align="center">
@@ -130,40 +182,46 @@
 								<div class="slideshow-wrapper-box2">
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/slide1.PNG"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide1.png"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/slide2.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide2.png"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg03.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide3.png"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg04.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/jehyu.jpg"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg05.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide1.png"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg06.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide2.png"  border="0" alt=""></a>
 										</div>
 									</div>
 									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
 										<div class="part zindex10" rel=0><a href="" target="_parent">
-										<img src="/easyauction/resources/images/mainimg07.jpg"  border="0" alt=""></a>
+										<img src="/easyauction/resources/images/slide3.png"  border="0" alt=""></a>
 										</div>
 									</div>
-								</div>
+									<div  class="wrapper-li" rel='0' out="/easyauction/resources/images/icon02.gif" over="/easyauction/resources/images/icon01.gif" >
+										<div class="part zindex10" rel=0><a href="" target="_parent">
+										<img src="/easyauction/resources/images/jehyu.jpg"  border="0" alt=""></a>
+										</div>
+									</div>
+									
+							 	</div>
 						</div>
 					</div>
 			</div><!-- 이미지 슬라이드 끝 -->
@@ -181,8 +239,24 @@
 					 </tr>
 					 <tr>							   
 						<td style="padding:5px;">
+						
+						
+						
 									<c:forEach var="auction" items="${ auctions }" end="8">
-									 <c:if test="${ auction.aucState eq 1 }">
+									 <c:if test="${ (auction.aucType eq false) && (auction.aucBlindCheck eq false) && (auction.aucState eq 1) }">
+									 
+										<fmt:formatDate value="${ auction.aucEndDate }" pattern="yyyy-M-d H:m" var="endDateFormat"/>
+									
+										<c:set var="endDate" value="${ endDateFormat }"></c:set>
+										<c:set var="spEndDate" value="${fn:split(endDate,' ')[0]}"></c:set>
+										<c:set var="spEndTime" value="${fn:split(endDate,' ')[1]}"></c:set>
+										<c:set var="endYear" value ="${fn:split(spEndDate,'-')[0]}" ></c:set>
+										<c:set var="endMonth" value ="${fn:split(spEndDate,'-')[1]}" ></c:set>
+										<c:set var="endDay" value ="${fn:split(spEndDate,'-')[2]}" ></c:set>
+										<c:set var="endHour" value ="${fn:split(spEndTime,':')[0]}" ></c:set>
+										<c:set var="endMinute" value ="${fn:split(spEndTime,':')[1]}" ></c:set>
+									
+									 
 									<!-- 여기서부터 테두리  -->
 											<table class="realTimeMain" style="float: left;">
 												<tr>
@@ -190,9 +264,17 @@
 														<table style="width:195px; margin:10px 0 5px 0;" valign="middle">
 															<tr>
 																<td align="center" valign="top">
-																	<div style="margin:8px 0 6px 0;">
+																	<div style="margin:8px 0 6px 0; width: 190px;height: 16px;overflow-x:hidden;overflow-y:hidden">
 																		<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
-																			<b>[경매중] ${ auction.aucTitle }</b>
+																			<c:choose>
+																				<c:when test="${ fn:length(auction.aucTitle) > 10}">
+																					<c:set var="spTitle" value="${fn:substring(auction.aucTitle,0, 10)}"></c:set>
+																					<b>[경매중] ${ spTitle }...</b>
+																				</c:when>
+																				<c:otherwise>
+																					<b>[경매중] ${ auction.aucTitle }</b>
+																				</c:otherwise>
+																			</c:choose>
 																		</a>
 																	</div>
 																	<a href='/easyauction/auction/showdeal.action?aucno=${ auction.aucNo }'>
@@ -202,16 +284,44 @@
 																	</a>
 																	
 																	<div align="center" style="width: 100%;">
-																		<table>
-																		  <tr>
-																		  
-																		    <td><div class="deal_time_main_hour" id="count1"></div></td>
-																		    <td><div class="deal_time_main_blank">:</div></td> 
-																		    <td><div class="deal_time_main_minutes" id="count2"></div></td>
-																		    <td><div class="deal_time_main_blank">:</div></td> 
-																		    <td><div class="deal_time_main_second" id="count3"></div></td>
-																		  </tr>
-																		</table>
+																		<c:choose>
+																			<c:when test="${ auction.aucState eq 1 }">
+																				<script type="text/javascript">
+																					var dday = null;
+																					var endYear = ${ endYear };
+																					var endMonth = ${ endMonth };
+																					var endDay = ${ endDay };
+																					var endHour = ${ endHour };
+																					var endMinute = ${ endMinute };
+																					var obj =  {
+																						"id" : "${auction.aucNo}",
+																						"dday" : new Date(endYear,Number(endMonth)-1,endDay,endHour, endMinute, 00)
+																					};
+																					ddaylist.push(obj);
+																				</script>
+																			</c:when>
+																			<c:when test="${ auction.aucState eq 2 }">
+																				
+																				<div style="width: 100%;height: 35px;" id="auction_end">
+																					<img src='/easyauction/resources/images/auction_end_icon.png' style='width:180px;height:50px'>
+																				</div>
+																				<div style="padding-top: 5px"></div>
+																				
+																			</c:when>
+																			<c:otherwise>에러 상태</c:otherwise>
+																		</c:choose>
+																	
+																		<div style="width: 100%;height: 35px;display: ${ auction.aucState eq 2 ? 'none' : 'block'}" >
+																			<table>
+																			  <tr>
+																			    <td><div class="deal_time_main_hour" id="counter1${ auction.aucNo }"></div></td>
+																			    <td><div class="deal_time_main_blank">:</div></td> 
+																			    <td><div class="deal_time_main_minutes" id="counter2${ auction.aucNo }"></div></td>
+																			    <td><div class="deal_time_main_blank">:</div></td> 
+																			    <td><div class="deal_time_main_second" id="counter3${ auction.aucNo }"></div></td>
+																			  </tr>
+																			</table>
+																		</div>
 																	</div>
 																	
 																	<div style="padding-top: 10px"></div>
@@ -228,8 +338,10 @@
 												</tr>
 											</table>
 											<!-- 토탈 테두리 끝 -->
-									</c:if>	
+									</c:if>
 								</c:forEach>
+								
+								
 								
 						</td>
 					</tr>

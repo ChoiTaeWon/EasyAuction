@@ -174,6 +174,11 @@ public class MyBoardService implements BoardService{
 		return boardRepository.gongiTypeOne();
 	}
 
+	@Override
+	public List<Board> getBoardSearchList(String aucSearchData) {
+		return boardRepository.getBoardSearchList(aucSearchData);
+	}
+
 	
 	
 }

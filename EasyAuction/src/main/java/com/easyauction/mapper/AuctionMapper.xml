@@ -172,12 +172,11 @@
 	<select id="getAuctionListByAdmin" resultMap="auctionResult">
 		select  <include refid="auctioncolumns" />
 		from AUCTION
-		where aucblindcheck != 1
 		order By
 		aucno DESC
 	</select>
 	<select id="getAucReportList" resultMap="auctionResult">
-				select  <include refid="auctioncolumns" />
+		select  <include refid="auctioncolumns" />
 		from AUCTION
 		where aucreportingcount >= 1
 		order By
@@ -185,7 +184,7 @@
 	</select>
 	<update id="setBlindAuction" parameterType="int">
 		update auction 
-		set aucblindcheck = 1 
+		set aucblindcheck = 1, aucstate = 6
 		where aucno = #{ aucNo }
 	</update>
 	
@@ -195,6 +194,18 @@
 		where aucno = #{ aucNo }
 	</update>
 	
+	<select id="getAuctionSearchList" resultMap="auctionResult" parameterType="string">
+		select  aucno, auctitle, aucstartdate, aucenddate, 
+			 aucitemname, auccategory, aucdetail, aucstartprice, aucstate, auctype, aucwriter, aucadtext
+		from AUCTION 
+		<trim prefix="WHERE" prefixOverrides="OR">
+		OR auctitle Like '%'|| #{ aucSearchData } ||'%' 
+		OR aucwriter Like  '%'|| #{ aucSearchData } ||'%'
+		OR aucadtext Like '%'|| #{ aucSearchData } ||'%'
+		</trim>
+		order By
+		aucno DESC
+	</select>
 	
 	
 	<!-- /관리자 -->

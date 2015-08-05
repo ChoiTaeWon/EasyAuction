@@ -407,6 +407,7 @@ li:HOVER {
 /* ============================================================================ */
 .realTimeMain {
 	 width : 230px;
+	 height : 333px;
 	 border: 10px solid #565DD3;
 	 border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
