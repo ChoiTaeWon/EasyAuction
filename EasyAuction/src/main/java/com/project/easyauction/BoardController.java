@@ -424,10 +424,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "photoview.action", method = RequestMethod.GET)
-	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo, int pageno) {
+	public ModelAndView photoviewList(@RequestParam("bdno")int bdNo, @RequestParam(value="pageno", required=false)Integer pageno) {
 		Board view = boardService.getPhotoViewByBoardNo(bdNo);
 		List<BoardComment> comments = boardService.getCommentByBoardNo(bdNo);
 		view.setComments(comments);
+		if(pageno == null){
+			pageno = 1;
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/photoview");
 		mav.addObject("view", view);
