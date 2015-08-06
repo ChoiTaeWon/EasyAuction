@@ -9,9 +9,11 @@
 <head>
 <meta charset="utf-8">
 <title>공지사항게시판</title>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css"/>
-	<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css"/>
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/body-style.css" />
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/style.css" />
+<link rel="Stylesheet" type="text/css" href="/easyauction/resources/styles/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="/easyauction/resources/js/jquery-ui.js"></script>
 	<script type="text/javascript">
 
 	$(function(){
@@ -146,6 +148,17 @@
 						<c:otherwise></c:otherwise>
 						</c:choose>
 				</tr>
+				<!-- 페이지 번호 -->
+				<c:choose>
+					<c:when test="${ pager ne null }">		
+					<div style="text-align: center;">
+					${pager}
+					</div>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
+			<!-- 페이지 번호 -->
 			</table> 
 			<tr>
 				<td align="right">
@@ -165,16 +178,7 @@
 			</table>
 			<!-- 검색폼 위의 내용 끝 -->
 			
-			<!-- 페이지 번호 -->
-			<div style="text-align:center">
-			<c:choose>
-			<c:when test="${ pager ne null }">		
-			${pager}
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-			</c:choose>	
-			</div>
+			
 	 		<!-- 검색폼 // 시작 -->
 			<form id="listsearch" action="gongji.action" method="get">
 			<table align="center">

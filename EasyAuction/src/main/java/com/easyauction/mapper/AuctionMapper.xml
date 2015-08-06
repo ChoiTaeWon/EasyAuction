@@ -109,10 +109,11 @@
 	
 	
 	
-	<insert id="insertFinishedAuctionInfo" parameterType="hashMap">
-		insert into auction (aucfinalprice, aucgetter)
-		values (#{ aucFinalPrice }, #{ aucGetter }) where aucno = #{aucNo}
-	</insert>
+	<update id="insertFinishedAuctionInfo" parameterType="hashMap">
+		update auction 
+   		set aucfinalprice = #{ aucFinalPrice}, aucgetter = #{ aucGetter }
+   		where aucno =#{ aucNo }
+	</update>
 	
 	
 	

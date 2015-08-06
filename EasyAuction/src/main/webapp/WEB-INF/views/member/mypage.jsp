@@ -279,7 +279,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">배송중/구매결정
-				<font color="#960000">[${ countList.AUCSTATE3 + countList.AUCSTATE4 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE3 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -298,7 +298,7 @@ $(function(){
 			<tr>
 				<td class="donguri">
 				<font class="smfont8">구매완료
-				<font color="#960000">[${ countList.AUCSTATE5 }]</font></font>
+				<font color="#960000">[${ countList.AUCSTATE4 + countList.AUCSTATE5 }]</font></font>
 				</td>
 			</tr>
 			<tr>
@@ -399,12 +399,9 @@ $(function(){
 						<img src="/easyauction/resources/images/view_stats2.png" alt="경매 마감">
 						</c:when>
 						<c:when test="${ auction.aucState eq 3 }">
-						<img src="/easyauction/resources/images/view_stats3.png" alt="결재대기">
-						</c:when>
-						<c:when test="${ auction.aucState eq 4 }">
 						<img src="/easyauction/resources/images/view_stats4.png" alt="결제완료">
 						</c:when>
-						<c:when test="${ auction.aucState eq 5 }">
+						<c:when test="${ auction.aucState eq 4 }">
 						<img src="/easyauction/resources/images/view_stats5.png" alt="거래완료">
 						</c:when>
 						<c:otherwise>에러 상태</c:otherwise>
@@ -412,14 +409,14 @@ $(function(){
 					</td>
 				<td align="center" class="smfont" width="80"><div style="padding:2px;"></div>
 				<c:choose>
-				<c:when test="${ auction.aucState < 4 }">
+				<c:when test="${ auction.aucState < 3 }">
 				거래중
 				</c:when>
-				<c:when test="${ auction.aucState eq 4 }">
+				<c:when test="${ auction.aucState eq 3 }">
 				<img src="/easyauction/resources/images/view_stats6.png" alt="${ auction.aucNo }" id="aucstate5up">
 				</c:when>
-				<c:when test="${ auction.aucState > 4 }">
-				거래완료
+				<c:when test="${ auction.aucState eq 4 }">
+				거래종료
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -503,8 +500,11 @@ $(function(){
 						<c:when test="${ auction.aucState eq 2 }">
 						<td align="center" width="75"><img src="/easyauction/resources/images/btn_aucstateup.png" class="aucstateup" alt="${ auction.aucFinalPrice }&&${ auction.aucTitle }&&${ auction.aucItemName }&&${ auction.aucNo }"></td>
 						</c:when>
-						<c:when test="${ auction.aucState >= 3 }">
-						<td align="center" width="75">결제완료</td>
+						<c:when test="${ auction.aucState eq 3 }">
+						<td align="center" width="75">결제처리중</td>
+						</c:when>
+						<c:when test="${ auction.aucState eq 4 }">
+						<td align="center" width="75">거래종료</td>
 						</c:when>
 						<c:otherwise>
 							<td>에러</td>
@@ -512,7 +512,7 @@ $(function(){
 						</c:choose>
 						<td align="center" width="75">
 						<c:choose>
-						<c:when test="${ auction.aucState eq 5 }">
+						<c:when test="${ auction.aucState eq 4 }">
 						<img src="/easyauction/resources/images/btn_photoreview.png" id="photoreview" alt="${ auction.aucNo }">
 						</c:when>
 						<c:otherwise>

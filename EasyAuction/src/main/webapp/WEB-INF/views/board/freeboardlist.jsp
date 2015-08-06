@@ -289,9 +289,23 @@
 									<tr>
 										<td height="1" colspan="11" bgcolor="#e6e6e6"></td>
 									</tr>
+									
 								</table> <!-- 게시글 내용 끝 --> <!-- 검색폼 위의 내용 시작 -->
 								<div style="padding: 3px;"></div> <!-- 리스트 아래 글쓰기와 목록 -->
+								
 								<table width="100%">
+									<!-- 페이지 번호 -->
+									<c:choose>
+										<c:when test="${ pager ne null }">		
+											<div style="text-align: center">
+												${pager}
+											</div> 
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
+									<!-- 페이지 번호 -->
+									
 									<tr>
 										<td align="right"><a
 											href="/easyauction/board/freeboardregister.action"> <img
@@ -299,16 +313,9 @@
 											href='/easyauction/board/freeboard.action'> <img
 												src="/easyauction/resources/images/list1.png"></a></td>
 									</tr>
-								</table> <!-- 검색폼 위의 내용 끝 --> <!-- 페이지 번호 -->
-								<div style="text-align: center">
-									<c:choose>
-										<c:when test="${ pager ne null }">		
-										${pager}
-										</c:when>
-										<c:otherwise>
-										</c:otherwise>
-									</c:choose>
-								</div> <!-- 검색폼 // 시작 -->
+								</table> <!-- 검색폼 위의 내용 끝 --> 
+								
+									<!-- 검색폼 // 시작 -->
 								<form id="listsearch" action="freeboard.action" method="get">
 									<table align="center">
 										<td height='30' border='0' align='center' valign='middle'>

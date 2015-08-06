@@ -256,6 +256,15 @@ $(function() {
 				<td class="smfont" align="center" width="40"><div style="padding-left:10px;">등록된 게시글이 없습니다.</div></td>
 				</c:otherwise>
 				</c:choose>
+				<c:choose>
+					<c:when test="${ pager ne null }">		
+						<div style="text-align: center;font-size: 12px;color: #757575;font-family: Dotum 돋움;">
+							${pager}
+						</div> 
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 				 <div style="padding:3px;"></div>
 				<table width="100%">
 				<tr>
@@ -267,16 +276,6 @@ $(function() {
 						<td height="25" align="center" valign="top" style="padding-top:3px;"></td>
 					</tr>
 				 </table>
-				<div style="text-align: center">
-									<c:choose>
-										<c:when test="${ pager ne null }">		
-										${pager}
-										</c:when>
-										<c:otherwise>
-										</c:otherwise>
-									</c:choose>
-								</div> 
-				 
 			<!-- 검색폼 // 시작 -->
 								<form id="listsearch" action="photolist.action" method="get">
 									<table align="center">
